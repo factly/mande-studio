@@ -61,16 +61,6 @@ function App() {
     document.body.appendChild(loginForm);
 
     loginForm.submit()
-    
-
-    /*let formData = new FormData();
-    formData.append('csrf_token', config.fields[2].value)
-    formData.append('identifier', values['email'])
-    formData.append('password', values['password'])
-    
-    fetch(config.action, {method: "POST", body: formData})
-      .then(res => console.log(res))
-      .then(res => console.log(res));*/
   };
 
   return (

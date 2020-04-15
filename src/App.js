@@ -8,10 +8,10 @@ import {
 import "antd/dist/antd.css";
 
 import BasicLayout from "./layout/basic";
-import Login from "./login";
-import Products from "./products/index";
-import ProductCreate from "./products/create";
-import ProductDetail from "./products/details";
+import Login from "./pages/login";
+import Products from "./pages/products/index";
+import ProductCreate from "./pages/products/create";
+import ProductDetail from "./pages/products/details";
 
 function App() {
   return (
