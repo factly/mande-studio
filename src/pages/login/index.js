@@ -1,6 +1,6 @@
 import React from "react";
 import "./login.css";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import { Input, Form, Button, Typography } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
@@ -22,12 +22,11 @@ function App() {
 
     if (!obj["request"]) {
       window.location.href =
-        "http://127.0.0.1:4455/.ory/kratos/public/self-service/browser/flows/login";
+        process.env.REACT_APP_KRATOS_PUBLIC_URL + "/self-service/browser/flows/login";
     }
 
     fetch(
-      "http://127.0.0.1:4455/.ory/kratos/public/self-service/browser/flows/requests/login?request=" +
-        obj["request"]
+      process.env.REACT_APP_KRATOS_PUBLIC_URL + "/self-service/browser/flows/requests/login?request=" + obj["request"]
     )
       .then(res => res.json())
       .then(res => setConfig(res.methods.password.config));
