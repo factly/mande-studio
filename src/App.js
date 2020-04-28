@@ -11,7 +11,6 @@ import BasicLayout from "./layout/basic";
 import Login from "./pages/login";
 import Tags from "./pages/tags/index";
 import TagCreate from "./pages/tags/create";
-import TagDetail from "./pages/tags/details";
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           <Switch>
             <Route exact path="/" />
             <Route exact path="/tags/create" component={TagCreate} />
-            <Route exact path="/tags/:id" component={TagDetail} />
             <Route exact path="/tags" component={Tags} />
           </Switch>
         </BasicLayout>

@@ -8,13 +8,14 @@ const formItemLayout = {
 
 const TagCreate = () => {
   const onFinish = (values) => {
-    fetch(process.env.REACT_APP_API_URL + "/tags/create", {
-      
+    fetch(process.env.REACT_APP_API_URL + "/tags", {
+      method: "POST",
+      body: JSON.stringify(values),
     })
-      .then(function (res) {
+      .then( (res) => {
         console.log(res);
       })
-      .catch(function (res) {
+      .catch( (res) => {
         console.log(res);
       });
   };
@@ -24,9 +25,6 @@ const TagCreate = () => {
       name="validate_other"
       {...formItemLayout}
       onFinish={onFinish}
-      initialValues={{
-        rate: 3.5,
-      }}
     >
       <Form.Item label="Name" name="title" rules={[
         {
