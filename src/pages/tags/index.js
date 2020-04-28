@@ -69,7 +69,7 @@ const Tags = () => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      const index = data.findIndex((item) => key === item.id);
+      const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
         const item = data[index];
@@ -95,18 +95,22 @@ const Tags = () => {
   };
 
   const deleteTag = (key) => {
-    fetch(process.env.REACT_APP_API_URL + "/tags/" + key, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("OKAY");
-          setEditingKey("");
-        }
+    const index = data.findIndex((item) => item.id === key);
+    if (index > -1) {
+      fetch(process.env.REACT_APP_API_URL + "/tags/" + key, {
+        method: "DELETE",
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          if (res.status === 200) {
+            const newData = [...data];
+            newData.splice(index, 1);
+            setData(newData)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const columns = [
