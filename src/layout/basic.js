@@ -60,9 +60,9 @@ function BasicLayout(props) {
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/products">
+            <Link to="/tags">
               <UserOutlined />
-              <span>Products</span>
+              <span>Tags</span>
             </Link>
           </Menu.Item>
         </Menu>

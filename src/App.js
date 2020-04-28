@@ -9,9 +9,9 @@ import "antd/dist/antd.css";
 
 import BasicLayout from "./layout/basic";
 import Login from "./pages/login";
-import Products from "./pages/products/index";
-import ProductCreate from "./pages/products/create";
-import ProductDetail from "./pages/products/details";
+import Tags from "./pages/tags/index";
+import TagCreate from "./pages/tags/create";
+import TagDetail from "./pages/tags/details";
 
 function App() {
   return (
@@ -21,9 +21,9 @@ function App() {
         <BasicLayout>
           <Switch>
             <Route exact path="/" />
-            <Route exact path="/products/create" component={ProductCreate} />
-            <Route exact path="/products/:id" component={ProductDetail} />
-            <Route exact path="/products" component={Products} />
+            <Route exact path="/tags/create" component={TagCreate} />
+            <Route exact path="/tags/:id" component={TagDetail} />
+            <Route exact path="/tags" component={Tags} />
           </Switch>
         </BasicLayout>
       </Router>
