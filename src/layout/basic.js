@@ -54,13 +54,13 @@ function BasicLayout(props) {
         </div>
         <Menu theme="dark" mode="vertical" className="slider-menu">
           <Menu.Item key="1">
-            <Link to="/">
+            <Link to={process.env.PUBLIC_URL + "/" }>
               <PieChartOutlined />
               <span>Dashboard</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/tags">
+            <Link to={process.env.PUBLIC_URL + "/tags" }>
               <UserOutlined />
               <span>Tags</span>
             </Link>

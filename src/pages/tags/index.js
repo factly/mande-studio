@@ -51,15 +51,15 @@ const Tags = () => {
     fetch(process.env.REACT_APP_API_URL + "/tags")
       .then((data) => data.json())
       .then((data) => {
-        setData(data);
+        setData(data.nodes);
       });
   }, []);
 
-  const isEditing = (record) => record.id === editingKey;
+  const isEditing = (record) => record.ID === editingKey;
 
   const edit = (record) => {
     form.setFieldsValue(record);
-    setEditingKey(record.id);
+    setEditingKey(record.ID);
   };
 
   const cancel = () => {
@@ -69,11 +69,11 @@ const Tags = () => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      const index = data.findIndex((item) => item.id === key);
+      const index = data.findIndex((item) => item.ID === key);
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + "/tags/" + item.id, {
+        fetch(process.env.REACT_APP_API_URL + "/tags/" + item.ID, {
           method: "PUT",
           body: JSON.stringify(row),
         })
@@ -95,7 +95,7 @@ const Tags = () => {
   };
 
   const deleteTag = (key) => {
-    const index = data.findIndex((item) => item.id === key);
+    const index = data.findIndex((item) => item.ID === key);
     if (index > -1) {
       fetch(process.env.REACT_APP_API_URL + "/tags/" + key, {
         method: "DELETE",
@@ -128,12 +128,12 @@ const Tags = () => {
     },
     {
       title: "Created At",
-      dataIndex: "created_at",
+      dataIndex: "createdAt",
       width: "25%",
       render: (_, record) => {
         return (
-          <span title={record.created_at}>
-            {moment(record.created_at).local().fromNow()}
+          <span title={record.createdAt}>
+            {moment(record.createdAt).local().fromNow()}
           </span>
         );
       },
@@ -148,7 +148,7 @@ const Tags = () => {
             <Button
               type="primary"
               icon={<SaveOutlined />}
-              onClick={() => save(record.id)}
+              onClick={() => save(record.ID)}
               style={{
                 marginRight: 8,
               }}
@@ -175,7 +175,7 @@ const Tags = () => {
             <Popconfirm
               disabled={editingKey !== ""}
               title="Sure to delete?"
-              onConfirm={deleteTag(record.id)}
+              onConfirm={() => deleteTag(record.ID)}
             >
               <Button disabled={editingKey !== ""} icon={<DeleteOutlined />}>
                 Delete
@@ -205,7 +205,7 @@ const Tags = () => {
 
   return (
     <div>
-      <Link to="/tags/create">
+      <Link to={process.env.PUBLIC_URL + "/tags/create" }>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Tag
         </Button>
@@ -218,7 +218,7 @@ const Tags = () => {
             },
           }}
           bordered
-          rowKey="id"
+          rowKey="ID"
           dataSource={data}
           columns={mergedColumns}
           rowClassName="editable-row"
