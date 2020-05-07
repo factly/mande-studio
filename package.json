@@ -1,7 +1,12 @@
 {
   "name": "dashboard",
   "version": "0.1.0",
+  "description": "UI for data-portal-admin",
   "private": true,
+  "license": "MIT",
+  "cacheDirectories": [
+    "node_modules"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -20,8 +25,18 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,html,css}": [
+      "prettier --write"
+    ]
   },
   "browserslist": {
     "production": [
@@ -34,5 +49,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5"
   }
 }
