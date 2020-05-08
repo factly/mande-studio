@@ -1,46 +1,57 @@
-import React from "react";
-import { Form, Input, Button } from "antd";
+import React from 'react';
+import { Form, Input, Button } from 'antd';
 
 const formItemLayout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 14 },
 };
 
-const TagCreate = () => {
+const TagCreate = (props) => {
   const onFinish = (values) => {
-    fetch(process.env.REACT_APP_API_URL + "/tags", {
-      method: "POST",
+    fetch(process.env.REACT_APP_API_URL + '/tags', {
+      method: 'POST',
       body: JSON.stringify(values),
     })
-      .then( (res) => {
-        console.log(res);
+      .then((res) => {
+        if (res.status === 201) {
+          return res.json();
+        } else {
+          throw new Error(res.status);
+        }
       })
-      .catch( (res) => {
+      .then((_) => {
+        props.history.push(`${process.env.PUBLIC_URL}/tags`);
+      })
+      .catch((res) => {
         console.log(res);
       });
   };
 
   return (
-    <Form
-      name="validate_other"
-      {...formItemLayout}
-      onFinish={onFinish}
-    >
-      <Form.Item label="Name" name="title" rules={[
-        {
-          required: true,
-          message: "Please enter name!",
-        }
-      ]}>
+    <Form name="validate_other" {...formItemLayout} onFinish={onFinish}>
+      <Form.Item
+        label="Name"
+        name="title"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter name!',
+          },
+        ]}
+      >
         <Input placeholder="Ex. Crime In India" />
       </Form.Item>
 
-      <Form.Item label="Slug" name="slug" rules={[
-        {
-          required: true,
-          message: "Please enter slug!",
-        }
-      ]}>
+      <Form.Item
+        label="Slug"
+        name="slug"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter slug!',
+          },
+        ]}
+      >
         <Input placeholder="Ex. crime-in-india" />
       </Form.Item>
 
