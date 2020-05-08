@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
@@ -88,13 +88,23 @@ const Tags = () => {
             newData.splice(index, 1, res);
             setData(newData);
             setEditingKey('');
+            notification.success({
+              message: 'Success',
+              description: 'Tag succesfully updated',
+            });
           })
           .catch((err) => {
-            console.log(err);
+            notification.error({
+              message: 'Error',
+              description: 'Something went wrong',
+            });
           });
       }
     } catch (err) {
-      console.log('Validate Failed:', err);
+      notification.warning({
+        message: 'Warning',
+        description: 'Validation failed',
+      });
     }
   };
 
@@ -109,10 +119,17 @@ const Tags = () => {
             const newData = [...data];
             newData.splice(index, 1);
             setData(newData);
+            notification.success({
+              message: 'Success',
+              description: 'Tag succesfully deleted',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          notification.error({
+            message: 'Error',
+            description: 'Something went wrong',
+          });
         });
     }
   };

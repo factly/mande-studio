@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -20,15 +20,22 @@ const TagCreate = (props) => {
         }
       })
       .then((_) => {
+        notification.success({
+          message: 'Success',
+          description: 'Tag succesfully added',
+        });
         props.history.push(`${process.env.PUBLIC_URL}/tags`);
       })
       .catch((res) => {
-        console.log(res);
+        notification.error({
+          message: 'Error',
+          description: 'Something went wrong',
+        });
       });
   };
 
   return (
-    <Form name="validate_other" {...formItemLayout} onFinish={onFinish}>
+    <Form name="tags_create" {...formItemLayout} onFinish={onFinish}>
       <Form.Item
         label="Name"
         name="title"
