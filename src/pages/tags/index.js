@@ -1,23 +1,10 @@
-import React, { useState } from "react";
-import { Table, Input, Button, Popconfirm, Form } from "antd";
-import moment from "moment";
-import { Link } from "react-router-dom";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  SaveOutlined,
-  CloseOutlined,
-} from "@ant-design/icons";
+import React, { useState } from 'react';
+import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
 
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
+const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
     <td {...restProps}>
       {editing ? (
@@ -45,15 +32,27 @@ const EditableCell = ({
 const Tags = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
-  const [editingKey, setEditingKey] = useState("");
+  const [total, setTotal] = useState(0);
+  const [editingKey, setEditingKey] = useState('');
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + "/tags")
+    fetch(process.env.REACT_APP_API_URL + '/tags')
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
+        setTotal(data.total);
       });
   }, []);
+
+  const get = (page, limit) => {
+    cancel();
+    fetch(process.env.REACT_APP_API_URL + '/tags?page=' + page + '&limit=' + limit)
+      .then((data) => data.json())
+      .then((data) => {
+        setData(data.nodes);
+        setTotal(data.total);
+      });
+  };
 
   const isEditing = (record) => record.ID === editingKey;
 
@@ -63,7 +62,7 @@ const Tags = () => {
   };
 
   const cancel = () => {
-    setEditingKey("");
+    setEditingKey('');
   };
 
   const save = async (key) => {
@@ -73,38 +72,43 @@ const Tags = () => {
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + "/tags/" + item.ID, {
-          method: "PUT",
+        fetch(process.env.REACT_APP_API_URL + '/tags/' + item.ID, {
+          method: 'PUT',
           body: JSON.stringify(row),
         })
           .then((res) => {
             if (res.status === 200) {
-              const newData = [...data];
-              newData.splice(index, 1, res.json());
-              setData(newData);
-              setEditingKey("");
+              return res.json();
+            } else {
+              throw new Error(res.status);
             }
+          })
+          .then((res) => {
+            const newData = [...data];
+            newData.splice(index, 1, res);
+            setData(newData);
+            setEditingKey('');
           })
           .catch((err) => {
             console.log(err);
           });
       }
     } catch (err) {
-      console.log("Validate Failed:", err);
+      console.log('Validate Failed:', err);
     }
   };
 
   const deleteTag = (key) => {
     const index = data.findIndex((item) => item.ID === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + "/tags/" + key, {
-        method: "DELETE",
+      fetch(process.env.REACT_APP_API_URL + '/tags/' + key, {
+        method: 'DELETE',
       })
         .then((res) => {
           if (res.status === 200) {
             const newData = [...data];
             newData.splice(index, 1);
-            setData(newData)
+            setData(newData);
           }
         })
         .catch((err) => {
@@ -115,32 +119,28 @@ const Tags = () => {
 
   const columns = [
     {
-      title: "Title",
-      dataIndex: "title",
-      width: "25%",
+      title: 'Title',
+      dataIndex: 'title',
+      width: '25%',
       editable: true,
     },
     {
-      title: "Slug",
-      dataIndex: "slug",
-      width: "25%",
+      title: 'Slug',
+      dataIndex: 'slug',
+      width: '25%',
       editable: true,
     },
     {
-      title: "Created At",
-      dataIndex: "createdAt",
-      width: "25%",
+      title: 'Created At',
+      dataIndex: 'CreatedAt',
+      width: '25%',
       render: (_, record) => {
-        return (
-          <span title={record.createdAt}>
-            {moment(record.createdAt).local().fromNow()}
-          </span>
-        );
+        return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
       },
     },
     {
-      title: "Operation",
-      dataIndex: "operation",
+      title: 'Operation',
+      dataIndex: 'operation',
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -164,7 +164,7 @@ const Tags = () => {
             <Button
               type="primary"
               icon={<EditOutlined />}
-              disabled={editingKey !== ""}
+              disabled={editingKey !== ''}
               onClick={() => edit(record)}
               style={{
                 marginRight: 8,
@@ -173,11 +173,11 @@ const Tags = () => {
               Edit
             </Button>
             <Popconfirm
-              disabled={editingKey !== ""}
+              disabled={editingKey !== ''}
               title="Sure to delete?"
               onConfirm={() => deleteTag(record.ID)}
             >
-              <Button disabled={editingKey !== ""} icon={<DeleteOutlined />}>
+              <Button disabled={editingKey !== ''} icon={<DeleteOutlined />}>
                 Delete
               </Button>
             </Popconfirm>
@@ -205,7 +205,7 @@ const Tags = () => {
 
   return (
     <div>
-      <Link to={process.env.PUBLIC_URL + "/tags/create" }>
+      <Link to={process.env.PUBLIC_URL + '/tags/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Tag
         </Button>
@@ -223,7 +223,8 @@ const Tags = () => {
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
-            onChange: cancel,
+            onChange: get,
+            total: total,
           }}
         />
       </Form>
