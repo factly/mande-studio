@@ -1,19 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Layout, Menu, Button, AutoComplete, Divider } from "antd";
-import "./basic.css";
-import logo from "../assets/logo.svg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Layout, Menu, Button, AutoComplete, Divider } from 'antd';
+import './basic.css';
+import logo from '../assets/logo.svg';
 
 import {
   PieChartOutlined,
   LogoutOutlined,
   UserOutlined,
   MenuUnfoldOutlined,
-  MenuFoldOutlined
-} from "@ant-design/icons";
+  MenuFoldOutlined,
+} from '@ant-design/icons';
 
 const mockVal = (str, repeat = 1) => ({
-  value: str.repeat(repeat)
+  value: str.repeat(repeat),
 });
 
 function BasicLayout(props) {
@@ -23,16 +23,14 @@ function BasicLayout(props) {
   const [options, setOptions] = React.useState([]);
   const [collapsed, setCollapsed] = React.useState(false);
 
-  const onSearch = searchText => {
+  const onSearch = (searchText) => {
     setOptions(
-      !searchText
-        ? []
-        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
     );
   };
 
-  const onSelect = data => {
-    console.log("onSelect", data);
+  const onSelect = (data) => {
+    console.log('onSelect', data);
   };
 
   return (
@@ -44,25 +42,57 @@ function BasicLayout(props) {
         theme="dark"
         trigger={null}
         width="256"
-        onBreakpoint={broken => {
+        onBreakpoint={(broken) => {
           setCollapsed(broken);
         }}
       >
         <div className="menu-header">
           <img alt="logo" className="menu-logo" src={logo} />
-          <span hidden={collapsed} className="menu-company">GO COMM</span>
+          <span hidden={collapsed} className="menu-company">
+            GO COMM
+          </span>
         </div>
         <Menu theme="dark" mode="vertical" className="slider-menu">
           <Menu.Item key="1">
-            <Link to={process.env.PUBLIC_URL + "/" }>
+            <Link to={process.env.PUBLIC_URL + '/'}>
               <PieChartOutlined />
               <span>Dashboard</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to={process.env.PUBLIC_URL + "/tags" }>
+            <Link to={process.env.PUBLIC_URL + '/categories'}>
+              <UserOutlined />
+              <span>Categories</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="3">
+            <Link to={process.env.PUBLIC_URL + '/currencies'}>
+              <UserOutlined />
+              <span>Currencies</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Link to={process.env.PUBLIC_URL + '/products'}>
+              <UserOutlined />
+              <span>Products</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="5">
+            <Link to={process.env.PUBLIC_URL + '/tags'}>
               <UserOutlined />
               <span>Tags</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="6">
+            <Link to={process.env.PUBLIC_URL + '/products/type'}>
+              <UserOutlined />
+              <span>Product Type</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="7">
+            <Link to={process.env.PUBLIC_URL + '/products/status'}>
+              <UserOutlined />
+              <span>Status</span>
             </Link>
           </Menu.Item>
         </Menu>
@@ -70,13 +100,10 @@ function BasicLayout(props) {
       <Layout>
         <Header className="layout-header">
           <div>
-            {React.createElement(
-              collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: "trigger",
-                onClick: () => setCollapsed(!collapsed)
-              }
-            )}
+            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+              className: 'trigger',
+              onClick: () => setCollapsed(!collapsed),
+            })}
             <Divider type="vertical" />
             <AutoComplete
               style={{ width: 300 }}
@@ -86,7 +113,9 @@ function BasicLayout(props) {
               placeholder="Search....."
             />
             <Divider type="vertical" />
-            <a href={process.env.REACT_APP_KRATOS_PUBLIC_URL + "/self-service/browser/flows/logout"}>
+            <a
+              href={process.env.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/logout'}
+            >
               <Button>
                 <LogoutOutlined />
                 Logout
