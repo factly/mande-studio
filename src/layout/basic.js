@@ -9,6 +9,7 @@ import {
   LogoutOutlined,
   UserOutlined,
   ContainerOutlined,
+  IdcardOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined
 } from "@ant-design/icons";
@@ -70,6 +71,12 @@ function BasicLayout(props) {
             <Link to={process.env.PUBLIC_URL + "/plans" }>
               <ContainerOutlined />
               <span>Plans</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Link to={process.env.PUBLIC_URL + "/memberships" }>
+              <IdcardOutlined/>
+              <span>Memberships</span>
             </Link>
           </Menu.Item>
         </Menu>
