@@ -10,6 +10,8 @@ import "antd/dist/antd.css";
 import BasicLayout from "./layout/basic";
 import Tags from "./pages/tags/index";
 import TagCreate from "./pages/tags/create";
+import Plans from "./pages/plans/index";
+import PlanCreate from "./pages/plans/create";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route exact path={process.env.PUBLIC_URL + "/"} />
             <Route exact path={process.env.PUBLIC_URL + "/tags/create"} component={TagCreate} />
             <Route exact path={process.env.PUBLIC_URL + "/tags"} component={Tags} />
+            <Route exact path={process.env.PUBLIC_URL + "/plans/create"} component={PlanCreate} />
+            <Route exact path={process.env.PUBLIC_URL + "/plans"} component={Plans} />
           </Switch>
         </BasicLayout>
       </Router>

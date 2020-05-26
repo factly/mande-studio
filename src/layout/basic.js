@@ -8,6 +8,7 @@ import {
   PieChartOutlined,
   LogoutOutlined,
   UserOutlined,
+  ContainerOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined
 } from "@ant-design/icons";
@@ -63,6 +64,12 @@ function BasicLayout(props) {
             <Link to={process.env.PUBLIC_URL + "/tags" }>
               <UserOutlined />
               <span>Tags</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="3">
+            <Link to={process.env.PUBLIC_URL + "/plans" }>
+              <ContainerOutlined />
+              <span>Plans</span>
             </Link>
           </Menu.Item>
         </Menu>
