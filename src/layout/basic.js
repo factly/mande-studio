@@ -12,6 +12,7 @@ import {
   IdcardOutlined,
   CreditCardOutlined,
   ShoppingOutlined,
+  ShoppingCartOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
@@ -91,6 +92,12 @@ function BasicLayout(props) {
             <Link to={'/orders'}>
               <ShoppingOutlined />
               <span>Orders</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="7">
+            <Link to={'/carts'}>
+              <ShoppingCartOutlined />
+              <span>Carts</span>
             </Link>
           </Menu.Item>
         </Menu>

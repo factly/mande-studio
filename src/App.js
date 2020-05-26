@@ -14,6 +14,8 @@ import Plans from './pages/plans/index';
 import PlanCreate from './pages/plans/create';
 import Orders from './pages/orders/index';
 import OrderDetail from './pages/orders/detail';
+import Carts from './pages/carts/index';
+import CartDetail from './pages/carts/detail';
 
 function App() {
   return (
@@ -31,7 +33,9 @@ function App() {
             <Route exact path={'/memberships'} component={Memberships} />
             <Route exact path={'/payments'} component={Payments} />
             <Route exact path={'/orders'} component={Orders} />
-            <Route path={'/orders/:id'} component={OrderDetail} />
+            <Route exact path={'/orders/:id'} component={OrderDetail} />
+            <Route exact path={'/carts'} component={Carts} />
+            <Route exact path={'/carts/:id'} component={CartDetail} />
           </BasicLayout>
         </Switch>
       </Router>

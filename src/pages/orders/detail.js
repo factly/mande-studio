@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table, Form, Descriptions, Card } from 'antd';
 
-const Orders = () => {
+const OrderDetail = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
+  const [order, setOrder] = useState();
   const [total, setTotal] = useState(0);
   const { id } = useParams();
 
@@ -14,11 +15,14 @@ const Orders = () => {
       .then((data) => {
         setData(data.nodes);
         setTotal(data.total);
+        if (data.total) {
+          setOrder(data.nodes[0].Order)
+        }
       });
   }, [id]);
 
   const get = (page, limit) => {
-    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}/items`)
+    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}/items?page=${page}&limit=${limit}`)
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -48,20 +52,18 @@ const Orders = () => {
     },
   ];
 
-  const Order = data.length && data[0].Order;
-
   return (
     <div>
-      {Order && (
+      {!order ? (null) : (
         <Card>
           <Descriptions title="Order details">
-            <Descriptions.Item label="Order ID">{Order.ID}</Descriptions.Item>
-            <Descriptions.Item label="Order Status">{Order.status}</Descriptions.Item>
+            <Descriptions.Item label="Order ID">{order.ID}</Descriptions.Item>
+            <Descriptions.Item label="Order Status">{order.status}</Descriptions.Item>
             <Descriptions.Item label="Payment">
-              {Order.Payment.amount} {Order.Payment.Currency.iso_code}
+              {order.Payment.amount} {order.Payment.Currency.iso_code}
             </Descriptions.Item>
-            <Descriptions.Item label="Payment Gateway">{Order.Payment.gateway}</Descriptions.Item>
-            <Descriptions.Item label="Payment Status">{Order.Payment.status}</Descriptions.Item>
+            <Descriptions.Item label="Payment Gateway">{order.Payment.gateway}</Descriptions.Item>
+            <Descriptions.Item label="Payment Status">{order.Payment.status}</Descriptions.Item>
           </Descriptions>
         </Card>
       )}
@@ -82,4 +84,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default OrderDetail;
