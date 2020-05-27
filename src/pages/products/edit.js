@@ -14,8 +14,7 @@ const ProductEdit = (props) => {
   const [categories, setCategories] = useState([]);
   const [currencies, setCurrencies] = useState([]);
   const [productType, setProductType] = useState([]);
-  const [product, setProduct] = useState({});
-  const status = ['Hide', 'Unhide'];
+  const [product, setProduct] = useState();
 
   const { id } = useParams();
   React.useEffect(() => {
@@ -52,7 +51,7 @@ const ProductEdit = (props) => {
       });
   }, []);
 
-  function handleChange(value) {
+  function handleChange (value) {
     console.log(`selected ${value}`);
   }
 
@@ -60,15 +59,15 @@ const ProductEdit = (props) => {
     values.currency_id = parseInt(values.currency_id);
     values.product_type_id = parseInt(values.product_type_id);
     values.price = parseInt(values.price);
-    values.category_ids = values.category_ids.map((c) => parseInt(c));
-    values.tag_ids = values.tag_ids.map((t) => parseInt(t));
+    values.category_ids = values.category_ids.map((id) => parseInt(id));
+    values.tag_ids = values.tag_ids.map((id) => parseInt(id));
 
     fetch(process.env.REACT_APP_API_URL + `/products/${1}`, {
       method: 'PUT',
       body: JSON.stringify(values),
     })
       .then((res) => {
-        if (res.status === 201) {
+        if (res.ok) {
           return res.json();
         } else {
           throw new Error(res.status);
@@ -81,7 +80,7 @@ const ProductEdit = (props) => {
         });
         props.history.push('/products');
       })
-      .catch((res) => {
+      .catch((err) => {
         notification.error({
           message: 'Error',
           description: 'Something went wrong',
@@ -89,20 +88,22 @@ const ProductEdit = (props) => {
       });
   };
 
-  return (
+  const initialValues = {
+    slug: product ? product.slug : '',
+    title: product ? product.title : '',
+    price: product ? product.price : '',
+    currency_id: product ? product.Currency.id : '',
+    category_ids: product ? product.categories.map((category) => category.id) : [],
+    tag_ids: product ? product.tags.map((tag) => tag.id) : [],
+    status: product ? product.status : '',
+    product_type_id: product ? product.ProductType.id : '',
+  }
+
+  return !product ? null : (
     <Form
       name="products_update"
       {...formItemLayout}
-      initialValues={{
-        slug: product ? product.slug : '',
-        title: product ? product.title : '',
-        price: product ? product.price : '',
-        currency_id: product.currency_id ? product.currency_id : '',
-        category_ids: product.categories ? product.categories.map((c) => c.id) : [],
-        tags_ids: product.tags ? product.tags.map((c) => c.id) : [],
-        status: product.status ? product.status : '',
-        productType: product.productType ? product.productType.id : '',
-      }}
+      initialValues={initialValues}
       onFinish={onFinish}
     >
       <Form.Item
@@ -151,7 +152,7 @@ const ProductEdit = (props) => {
           }
         >
           {currencies.length > 0
-            ? currencies.map((c) => <Option key={c.id}>{c.iso_code}</Option>)
+            ? currencies.map((currency) => <Select.Option key={currency.id} value={currency.id}>{currency.name}</Select.Option>)
             : []}
         </Select>
       </Form.Item>
@@ -180,7 +181,7 @@ const ProductEdit = (props) => {
         ]}
       >
         <Select
-          mode="tags"
+          mode="multiple"
           style={{ width: '100%' }}
           placeholder="Select categories"
           onChange={handleChange}
@@ -188,7 +189,9 @@ const ProductEdit = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {categories.length > 0 ? categories.map((c) => <Option key={c.id}>{c.slug}</Option>) : []}
+          {categories.length > 0
+            ? categories.map((category) => <Select.Option key={category.id} value={category.id}>{category.title}</Select.Option>)
+            : []}
         </Select>
       </Form.Item>
 
@@ -203,7 +206,7 @@ const ProductEdit = (props) => {
         ]}
       >
         <Select
-          mode="tags"
+          mode="multiple"
           style={{ width: '100%' }}
           placeholder="Select tags"
           onChange={handleChange}
@@ -211,7 +214,9 @@ const ProductEdit = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {tags.length > 0 ? tags.map((t) => <Option key={t.id}>{t.slug}</Option>) : []}
+          {tags.length > 0
+            ? tags.map((tag) => <Select.Option key={tag.id} value={tag.id}>{tag.title}</Select.Option>)
+            : []}
         </Select>
       </Form.Item>
 
@@ -234,7 +239,8 @@ const ProductEdit = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {status.length > 0 ? status.map((s) => <Option key={s.length}>{s.name}</Option>) : []}
+          <Option key={1}>Show</Option>
+          <Option key={2}>Hide</Option>
         </Select>
       </Form.Item>
 
@@ -258,7 +264,7 @@ const ProductEdit = (props) => {
           }
         >
           {productType.length > 0
-            ? productType.map((p) => <Option key={p.id}>{p.name}</Option>)
+            ? productType.map((product) => <Select.Option key={product.id} value={product.id}>{product.name}</Select.Option>)
             : []}
         </Select>
       </Form.Item>

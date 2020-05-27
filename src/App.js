@@ -38,8 +38,8 @@ function App() {
             <Route exact path={'/currencies'} component={Currencies} />
             <Route exact path={'/currencies/create'} component={CurrencyCreate} />
             <Route exact path={'/products'} component={Products} />
-            <Route exact path={'/products/create'} component={ProductCreate} />
             <Route exact path={'/products/:id'} component={ProductEdit} />
+            <Route exact path={'/products/create'} component={ProductCreate} />
             <Route exact path={'/types'} component={ProductTypes} />
             <Route exact path={'/types/create'} component={ProductTypeCreate} />
             <Route exact path={'/tags/create'} component={TagCreate} />
