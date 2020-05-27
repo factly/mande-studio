@@ -14,6 +14,8 @@ import Payments from "./pages/payments/index";
 import TagCreate from "./pages/tags/create";
 import Plans from "./pages/plans/index";
 import PlanCreate from "./pages/plans/create";
+import Orders from "./pages/orders/index";
+import OrderDetail from "./pages/orders/detail";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route exact path={process.env.PUBLIC_URL + "/plans"} component={Plans} />
             <Route exact path={process.env.PUBLIC_URL + "/memberships"} component={Memberships} />
             <Route exact path={process.env.PUBLIC_URL + "/payments"} component={Payments} />
+            <Route exact path={process.env.PUBLIC_URL + "/orders"} component={Orders} />
+            <Route path={process.env.PUBLIC_URL + "/orders/:id"} component={OrderDetail} />
           </Switch>
         </BasicLayout>
       </Router>
