@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Table, Form, Button } from 'antd';
 import moment from 'moment';
 
-
 const Orders = (props) => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
@@ -34,7 +33,9 @@ const Orders = (props) => {
     },
     {
       title: 'Amount',
-      render: (record) => <span>{`${record.Payment.amount} ${record.Payment.Currency.iso_code}`}</span>,
+      render: (record) => (
+        <span>{`${record.Payment.amount} ${record.Payment.Currency.iso_code}`}</span>
+      ),
       width: '20%',
     },
     {
@@ -60,20 +61,20 @@ const Orders = (props) => {
       dataIndex: 'operation',
       render: (_, record) => {
         return (
-        <span>
+          <span>
             <Button
               type="primary"
-              onClick={() => props.history.push(`${process.env.PUBLIC_URL}/orders/${record.ID}`)}
+              onClick={() => props.history.push(`/orders/${record.ID}`)}
               style={{
                 marginRight: 8,
               }}
-              >
+            >
               Details
             </Button>
-        </span>
-        )
-      }
-    }
+          </span>
+        );
+      },
+    },
   ];
 
   return (

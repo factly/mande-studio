@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import { Table, Form, Descriptions, Card } from 'antd';
-
 
 const Orders = () => {
   const [form] = Form.useForm();
@@ -35,7 +34,11 @@ const Orders = () => {
     },
     {
       title: 'Price',
-      render: (record) => <span>{record.Product.price} {record.Product.Currency.iso_code}</span>,
+      render: (record) => (
+        <span>
+          {record.Product.price} {record.Product.Currency.iso_code}
+        </span>
+      ),
       width: '20%',
     },
     {
@@ -45,20 +48,21 @@ const Orders = () => {
     },
   ];
 
-
   const Order = data.length && data[0].Order;
 
   return (
     <div>
       {Order && (
         <Card>
-        <Descriptions title="Order details">
-          <Descriptions.Item label="Order ID">{Order.ID}</Descriptions.Item>
-          <Descriptions.Item label="Order Status">{Order.status}</Descriptions.Item>
-          <Descriptions.Item label="Payment">{Order.Payment.amount} {Order.Payment.Currency.iso_code}</Descriptions.Item>
-          <Descriptions.Item label="Payment Gateway">{Order.Payment.gateway}</Descriptions.Item>
-          <Descriptions.Item label="Payment Status">{Order.Payment.status}</Descriptions.Item>
-        </Descriptions>
+          <Descriptions title="Order details">
+            <Descriptions.Item label="Order ID">{Order.ID}</Descriptions.Item>
+            <Descriptions.Item label="Order Status">{Order.status}</Descriptions.Item>
+            <Descriptions.Item label="Payment">
+              {Order.Payment.amount} {Order.Payment.Currency.iso_code}
+            </Descriptions.Item>
+            <Descriptions.Item label="Payment Gateway">{Order.Payment.gateway}</Descriptions.Item>
+            <Descriptions.Item label="Payment Status">{Order.Payment.status}</Descriptions.Item>
+          </Descriptions>
         </Card>
       )}
 

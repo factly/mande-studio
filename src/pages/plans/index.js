@@ -228,7 +228,7 @@ const Plans = () => {
 
   return (
     <div>
-      <Link to={process.env.PUBLIC_URL + '/plans/create'}>
+      <Link to={'/plans/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Plan
         </Button>

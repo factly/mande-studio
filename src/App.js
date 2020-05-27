@@ -1,39 +1,39 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import "antd/dist/antd.css";
+import 'antd/dist/antd.css';
 
-import BasicLayout from "./layout/basic";
-import Tags from "./pages/tags/index";
-import Memberships from "./pages/memberships/index";
-import Payments from "./pages/payments/index";
-import TagCreate from "./pages/tags/create";
-import Plans from "./pages/plans/index";
-import PlanCreate from "./pages/plans/create";
-import Orders from "./pages/orders/index";
-import OrderDetail from "./pages/orders/detail";
+import Login from './pages/login';
+import Registration from './pages/registration';
+import BasicLayout from './layout/basic';
+import Tags from './pages/tags/index';
+import Memberships from './pages/memberships/index';
+import Payments from './pages/payments/index';
+import TagCreate from './pages/tags/create';
+import Plans from './pages/plans/index';
+import PlanCreate from './pages/plans/create';
+import Orders from './pages/orders/index';
+import OrderDetail from './pages/orders/detail';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <BasicLayout>
-          <Switch>
-            <Route exact path={process.env.PUBLIC_URL + "/"} />
-            <Route exact path={process.env.PUBLIC_URL + "/tags/create"} component={TagCreate} />
-            <Route exact path={process.env.PUBLIC_URL + "/tags"} component={Tags} />
-            <Route exact path={process.env.PUBLIC_URL + "/plans/create"} component={PlanCreate} />
-            <Route exact path={process.env.PUBLIC_URL + "/plans"} component={Plans} />
-            <Route exact path={process.env.PUBLIC_URL + "/memberships"} component={Memberships} />
-            <Route exact path={process.env.PUBLIC_URL + "/payments"} component={Payments} />
-            <Route exact path={process.env.PUBLIC_URL + "/orders"} component={Orders} />
-            <Route path={process.env.PUBLIC_URL + "/orders/:id"} component={OrderDetail} />
-          </Switch>
-        </BasicLayout>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <Route path="/auth/login" component={Login} />
+          <Route path="/auth/registration" component={Registration} />
+          <BasicLayout>
+            <Route exact path={'/'} />
+            <Route exact path={'/tags/create'} component={TagCreate} />
+            <Route exact path={'/tags'} component={Tags} />
+            <Route exact path={'/plans/create'} component={PlanCreate} />
+            <Route exact path={'/plans'} component={Plans} />
+            <Route exact path={'/memberships'} component={Memberships} />
+            <Route exact path={'/payments'} component={Payments} />
+            <Route exact path={'/orders'} component={Orders} />
+            <Route path={'/orders/:id'} component={OrderDetail} />
+          </BasicLayout>
+        </Switch>
       </Router>
     </div>
   );

@@ -24,7 +24,7 @@ const PlanCreate = (props) => {
           message: 'Success',
           description: 'Plan added succesfully',
         });
-        props.history.push(`${process.env.PUBLIC_URL}/plans`);
+        props.history.push('/plans');
       })
       .catch((res) => {
         notification.error({
