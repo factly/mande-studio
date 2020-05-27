@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 
+import Login from './pages/login';
+import Registration from './pages/registration';
 import BasicLayout from './layout/basic';
 import Tags from './pages/tags/index';
 import Memberships from './pages/memberships/index';
@@ -10,8 +12,8 @@ import Payments from './pages/payments/index';
 import TagCreate from './pages/tags/create';
 import Plans from './pages/plans/index';
 import PlanCreate from './pages/plans/create';
-import Login from './pages/login';
-import Registration from './pages/registration';
+import Orders from './pages/orders/index';
+import OrderDetail from './pages/orders/detail';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route exact path={'/plans'} component={Plans} />
             <Route exact path={'/memberships'} component={Memberships} />
             <Route exact path={'/payments'} component={Payments} />
+            <Route exact path={'/orders'} component={Orders} />
+            <Route path={'/orders/:id'} component={OrderDetail} />
           </BasicLayout>
         </Switch>
       </Router>
