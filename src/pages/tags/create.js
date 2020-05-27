@@ -24,7 +24,7 @@ const TagCreate = (props) => {
           message: 'Success',
           description: 'Tag succesfully added',
         });
-        props.history.push(`${process.env.PUBLIC_URL}/tags`);
+        props.history.push('/tags');
       })
       .catch((res) => {
         notification.error({

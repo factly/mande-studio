@@ -222,7 +222,7 @@ const Tags = () => {
 
   return (
     <div>
-      <Link to={process.env.PUBLIC_URL + '/tags/create'}>
+      <Link to={'/tags/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Tag
         </Button>
