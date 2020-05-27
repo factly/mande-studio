@@ -29,14 +29,14 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Categories = () => {
+const Plans = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/categories')
+    fetch(process.env.REACT_APP_API_URL + '/plans')
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -46,7 +46,7 @@ const Categories = () => {
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/categories?page=' + page + '&limit=' + limit)
+    fetch(process.env.REACT_APP_API_URL + '/plans?page=' + page + '&limit=' + limit)
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -72,7 +72,7 @@ const Categories = () => {
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/categories/' + item.id, {
+        fetch(process.env.REACT_APP_API_URL + '/plans/' + item.id, {
           method: 'PUT',
           body: JSON.stringify(row),
         })
@@ -90,7 +90,7 @@ const Categories = () => {
             setEditingKey('');
             notification.success({
               message: 'Success',
-              description: 'Category succesfully updated',
+              description: 'Plan succesfully updated',
             });
           })
           .catch((err) => {
@@ -108,10 +108,10 @@ const Categories = () => {
     }
   };
 
-  const deleteCategory = (key) => {
+  const deletePlan = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/categories/' + key, {
+      fetch(process.env.REACT_APP_API_URL + '/plans/' + key, {
         method: 'DELETE',
       })
         .then((res) => {
@@ -121,7 +121,7 @@ const Categories = () => {
             setData(newData);
             notification.success({
               message: 'Success',
-              description: 'Category succesfully deleted',
+              description: 'Membership succesfully deleted',
             });
           }
         })
@@ -136,21 +136,27 @@ const Categories = () => {
 
   const columns = [
     {
-      title: 'Title',
-      dataIndex: 'title',
-      width: '25%',
+      title: 'Name',
+      dataIndex: 'plan_name',
+      width: '20%',
       editable: true,
     },
     {
-      title: 'Slug',
-      dataIndex: 'slug',
-      width: '25%',
+      title: 'Info',
+      dataIndex: 'plan_info',
+      width: '20%',
+      editable: true,
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      width: '20%',
       editable: true,
     },
     {
       title: 'Created At',
       dataIndex: 'CreatedAt',
-      width: '25%',
+      width: '20%',
       render: (_, record) => {
         return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
       },
@@ -192,7 +198,7 @@ const Categories = () => {
             <Popconfirm
               disabled={editingKey !== ''}
               title="Sure to delete?"
-              onConfirm={() => deleteCategory(record.id)}
+              onConfirm={() => deletePlan(record.id)}
             >
               <Button disabled={editingKey !== ''} icon={<DeleteOutlined />}>
                 Delete
@@ -222,9 +228,9 @@ const Categories = () => {
 
   return (
     <div>
-      <Link to={'/categories/create'}>
+      <Link to={'/plans/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
-          Add Category
+          Add Plan
         </Button>
       </Link>
       <Form form={form} component={false}>
@@ -249,4 +255,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default Plans;

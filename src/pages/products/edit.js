@@ -14,11 +14,22 @@ const ProductEdit = (props) => {
   const [categories, setCategories] = useState([]);
   const [currencies, setCurrencies] = useState([]);
   const [productType, setProductType] = useState([]);
+  const [product, setProduct] = useState({});
   const status = ['Hide', 'Unhide'];
 
   const { id } = useParams();
-  console.log(id);
   React.useEffect(() => {
+    fetch(process.env.REACT_APP_API_URL + `/products/${id}`)
+      .then((data) => data.json())
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((err) => {
+        notification.error({
+          message: 'Error',
+          description: 'Something went wrong',
+        });
+      });
     fetch(process.env.REACT_APP_API_URL + '/tags')
       .then((data) => data.json())
       .then((data) => {
@@ -51,6 +62,7 @@ const ProductEdit = (props) => {
     values.price = parseInt(values.price);
     values.category_ids = values.category_ids.map((c) => parseInt(c));
     values.tag_ids = values.tag_ids.map((t) => parseInt(t));
+
     fetch(process.env.REACT_APP_API_URL + `/products/${1}`, {
       method: 'PUT',
       body: JSON.stringify(values),
@@ -67,7 +79,7 @@ const ProductEdit = (props) => {
           message: 'Success',
           description: 'Product succesfully updated',
         });
-        props.history.push(`${process.env.PUBLIC_URL}/products`);
+        props.history.push('/products');
       })
       .catch((res) => {
         notification.error({
@@ -78,7 +90,21 @@ const ProductEdit = (props) => {
   };
 
   return (
-    <Form name="products_update" {...formItemLayout} onFinish={onFinish}>
+    <Form
+      name="products_update"
+      {...formItemLayout}
+      initialValues={{
+        slug: product ? product.slug : '',
+        title: product ? product.title : '',
+        price: product ? product.price : '',
+        currency_id: product.currency_id ? product.currency_id : '',
+        category_ids: product.categories ? product.categories.map((c) => c.id) : [],
+        tags_ids: product.tags ? product.tags.map((c) => c.id) : [],
+        status: product.status ? product.status : '',
+        productType: product.productType ? product.productType.id : '',
+      }}
+      onFinish={onFinish}
+    >
       <Form.Item
         label="Title"
         name="title"

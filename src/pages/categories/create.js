@@ -24,7 +24,7 @@ const CategoryCreate = (props) => {
           message: 'Success',
           description: 'Category succesfully added',
         });
-        props.history.push(`${process.env.PUBLIC_URL}/categories`);
+        props.history.push('/categories');
       })
       .catch((res) => {
         notification.error({

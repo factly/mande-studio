@@ -24,7 +24,7 @@ const CurrencyCreate = (props) => {
           message: 'Success',
           description: 'Currency succesfully added',
         });
-        props.history.push(`${process.env.PUBLIC_URL}/currencies`);
+        props.history.push('/currencies');
       })
       .catch((res) => {
         notification.error({

@@ -8,6 +8,10 @@ import {
   PieChartOutlined,
   LogoutOutlined,
   UserOutlined,
+  ContainerOutlined,
+  IdcardOutlined,
+  CreditCardOutlined,
+  ShoppingOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
@@ -54,39 +58,63 @@ function BasicLayout(props) {
         </div>
         <Menu theme="dark" mode="vertical" className="slider-menu">
           <Menu.Item key="1">
-            <Link to={process.env.PUBLIC_URL + '/'}>
+            <Link to={'/'}>
               <PieChartOutlined />
               <span>Dashboard</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to={process.env.PUBLIC_URL + '/categories'}>
+            <Link to={'/categories'}>
               <UserOutlined />
               <span>Categories</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="3">
-            <Link to={process.env.PUBLIC_URL + '/currencies'}>
+            <Link to={'/currencies'}>
               <UserOutlined />
               <span>Currencies</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to={process.env.PUBLIC_URL + '/products'}>
-              <UserOutlined />
-              <span>Products</span>
+            <Link to={'/memberships'}>
+              <IdcardOutlined />
+              <span>Memberships</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to={process.env.PUBLIC_URL + '/tags'}>
+            <Link to={'/orders'}>
+              <ShoppingOutlined />
+              <span>Orders</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="6">
+            <Link to={'/payments'}>
+              <CreditCardOutlined />
+              <span>Payments</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="7">
+            <Link to={'/plans'}>
+              <ContainerOutlined />
+              <span>Plans</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="8">
+            <Link to={'/products'}>
+              <ContainerOutlined />
+              <span>Products</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="9">
+            <Link to={'/tags'}>
               <UserOutlined />
               <span>Tags</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="6">
-            <Link to={process.env.PUBLIC_URL + '/products/type'}>
-              <UserOutlined />
-              <span>Product Type</span>
+          <Menu.Item key="10">
+            <Link to={'/types'}>
+              <IdcardOutlined />
+              <span>Product Types</span>
             </Link>
           </Menu.Item>
         </Menu>

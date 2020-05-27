@@ -24,7 +24,7 @@ const ProductTypeCreate = (props) => {
           message: 'Success',
           description: 'Product type succesfully added',
         });
-        props.history.push(`${process.env.PUBLIC_URL}/products/type`);
+        props.history.push('/types');
       })
       .catch((res) => {
         notification.error({

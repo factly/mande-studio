@@ -6,9 +6,9 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-const TagCreate = (props) => {
+const PlanCreate = (props) => {
   const onFinish = (values) => {
-    fetch(process.env.REACT_APP_API_URL + '/tags', {
+    fetch(process.env.REACT_APP_API_URL + '/plans', {
       method: 'POST',
       body: JSON.stringify(values),
     })
@@ -22,9 +22,9 @@ const TagCreate = (props) => {
       .then((_) => {
         notification.success({
           message: 'Success',
-          description: 'Tag succesfully added',
+          description: 'Plan added succesfully',
         });
-        props.history.push('/tags');
+        props.history.push('/plans');
       })
       .catch((res) => {
         notification.error({
@@ -35,31 +35,44 @@ const TagCreate = (props) => {
   };
 
   return (
-    <Form name="tags_create" {...formItemLayout} onFinish={onFinish}>
+    <Form name="plans_create" {...formItemLayout} onFinish={onFinish}>
       <Form.Item
         label="Name"
-        name="title"
+        name="plan_name"
         rules={[
           {
             required: true,
-            message: 'Please enter name!',
+            message: 'Please enter plan name!',
           },
         ]}
       >
-        <Input placeholder="Ex. Crime In India" />
+        <Input placeholder="Ex. Premium" />
       </Form.Item>
 
       <Form.Item
-        label="Slug"
-        name="slug"
+        label="Info"
+        name="plan_info"
         rules={[
           {
             required: true,
-            message: 'Please enter slug!',
+            message: 'Please enter plan info!',
           },
         ]}
       >
-        <Input placeholder="Ex. crime-in-india" />
+        <Input placeholder="Ex. Allows users to access premium content" />
+      </Form.Item>
+
+      <Form.Item
+        label="Status"
+        name="status"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter status!',
+          },
+        ]}
+      >
+        <Input placeholder="Ex. Pending" />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
@@ -71,4 +84,4 @@ const TagCreate = (props) => {
   );
 };
 
-export default TagCreate;
+export default PlanCreate;

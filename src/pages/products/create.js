@@ -13,7 +13,6 @@ const ProductCreate = (props) => {
   const [categories, setCategories] = useState([]);
   const [currencies, setCurrencies] = useState([]);
   const [productType, setProductType] = useState([]);
-  const status = ['Hide', 'Unhide'];
 
   React.useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + '/tags')
@@ -64,7 +63,7 @@ const ProductCreate = (props) => {
           message: 'Success',
           description: 'Product succesfully added',
         });
-        props.history.push(`${process.env.PUBLIC_URL}/products`);
+        props.history.push('/products');
       })
       .catch((res) => {
         notification.error({
@@ -200,12 +199,14 @@ const ProductCreate = (props) => {
           showSearch
           style={{ width: '100%' }}
           placeholder="Select status"
+          defaultValue={'Hide'}
           onChange={handleChange}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {status.length > 0 ? status.map((s) => <Option key={s.length}>{s.name}</Option>) : []}
+          <Option key={'Hide'}>Hide</Option>
+          <Option key={'Unhide'}>Unhide</Option>
         </Select>
       </Form.Item>
 

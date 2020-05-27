@@ -54,11 +54,11 @@ const Currencies = () => {
       });
   };
 
-  const isEditing = (record) => record.ID === editingKey;
+  const isEditing = (record) => record.id === editingKey;
 
   const edit = (record) => {
     form.setFieldsValue(record);
-    setEditingKey(record.ID);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
@@ -68,11 +68,11 @@ const Currencies = () => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      const index = data.findIndex((item) => item.ID === key);
+      const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/currencies/' + item.ID, {
+        fetch(process.env.REACT_APP_API_URL + '/currencies/' + item.id, {
           method: 'PUT',
           body: JSON.stringify(row),
         })
@@ -109,7 +109,7 @@ const Currencies = () => {
   };
 
   const deleteCurrency = (key) => {
-    const index = data.findIndex((item) => item.ID === key);
+    const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
       fetch(process.env.REACT_APP_API_URL + '/currencies/' + key, {
         method: 'DELETE',
@@ -165,7 +165,7 @@ const Currencies = () => {
             <Button
               type="primary"
               icon={<SaveOutlined />}
-              onClick={() => save(record.ID)}
+              onClick={() => save(record.id)}
               style={{
                 marginRight: 8,
               }}
@@ -192,7 +192,7 @@ const Currencies = () => {
             <Popconfirm
               disabled={editingKey !== ''}
               title="Sure to delete?"
-              onConfirm={() => deleteCurrency(record.ID)}
+              onConfirm={() => deleteCurrency(record.id)}
             >
               <Button disabled={editingKey !== ''} icon={<DeleteOutlined />}>
                 Delete
@@ -222,7 +222,7 @@ const Currencies = () => {
 
   return (
     <div>
-      <Link to={process.env.PUBLIC_URL + '/currencies/create'}>
+      <Link to={'/currencies/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Currency
         </Button>
@@ -235,7 +235,7 @@ const Currencies = () => {
             },
           }}
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={mergedColumns}
           rowClassName="editable-row"

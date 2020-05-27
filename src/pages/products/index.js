@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -54,57 +54,14 @@ const Products = (props) => {
       });
   };
 
-  const isEditing = (record) => record.ID === editingKey;
+  const isEditing = (record) => record.id === editingKey;
 
   const cancel = () => {
     setEditingKey('');
   };
 
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const index = data.findIndex((item) => item.ID === key);
-
-      if (index > -1) {
-        const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/products/' + item.ID, {
-          method: 'PUT',
-          body: JSON.stringify(row),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(res.status);
-            }
-          })
-          .then((res) => {
-            const newData = [...data];
-            newData.splice(index, 1, res);
-            setData(newData);
-            setEditingKey('');
-            notification.success({
-              message: 'Success',
-              description: 'Product succesfully updated',
-            });
-          })
-          .catch((err) => {
-            notification.error({
-              message: 'Error',
-              description: 'Something went wrong',
-            });
-          });
-      }
-    } catch (err) {
-      notification.warning({
-        message: 'Warning',
-        description: 'Validation failed',
-      });
-    }
-  };
-
   const deleteProduct = (key) => {
-    const index = data.findIndex((item) => item.ID === key);
+    const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
       fetch(process.env.REACT_APP_API_URL + '/products/' + key, {
         method: 'DELETE',
@@ -152,7 +109,7 @@ const Products = (props) => {
     },
     {
       title: 'Status',
-      render: (record) => record.Status.name,
+      render: (record) => record.status,
       width: '10%',
     },
     {
@@ -177,30 +134,15 @@ const Products = (props) => {
       title: 'Operation',
       dataIndex: 'operation',
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Button
-              type="primary"
-              icon={<SaveOutlined />}
-              onClick={() => save(record.ID)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </Button>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <Button icon={<CloseOutlined />}>Cancel</Button>
-            </Popconfirm>
-          </span>
-        ) : (
+        return (
           <span>
             <Button
               type="primary"
               icon={<EditOutlined />}
               disabled={editingKey !== ''}
-              onClick={() => props.history.push(`${process.env.PUBLIC_URL}/products/{record.id}`)}
+              onClick={() => {
+                props.history.push(`/products/${record.id}`);
+              }}
               style={{
                 marginRight: 8,
               }}
@@ -210,7 +152,7 @@ const Products = (props) => {
             <Popconfirm
               disabled={editingKey !== ''}
               title="Sure to delete?"
-              onConfirm={() => deleteProduct(record.ID)}
+              onConfirm={() => deleteProduct(record.id)}
             >
               <Button disabled={editingKey !== ''} icon={<DeleteOutlined />}>
                 Delete
@@ -240,7 +182,7 @@ const Products = (props) => {
 
   return (
     <div>
-      <Link to={process.env.PUBLIC_URL + '/products/create'}>
+      <Link to={'/products/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Product
         </Button>

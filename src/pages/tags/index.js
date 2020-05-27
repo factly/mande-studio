@@ -54,11 +54,11 @@ const Tags = () => {
       });
   };
 
-  const isEditing = (record) => record.ID === editingKey;
+  const isEditing = (record) => record.id === editingKey;
 
   const edit = (record) => {
     form.setFieldsValue(record);
-    setEditingKey(record.ID);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
@@ -68,11 +68,11 @@ const Tags = () => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      const index = data.findIndex((item) => item.ID === key);
+      const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/tags/' + item.ID, {
+        fetch(process.env.REACT_APP_API_URL + '/tags/' + item.id, {
           method: 'PUT',
           body: JSON.stringify(row),
         })
@@ -109,7 +109,7 @@ const Tags = () => {
   };
 
   const deleteTag = (key) => {
-    const index = data.findIndex((item) => item.ID === key);
+    const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
       fetch(process.env.REACT_APP_API_URL + '/tags/' + key, {
         method: 'DELETE',
@@ -165,7 +165,7 @@ const Tags = () => {
             <Button
               type="primary"
               icon={<SaveOutlined />}
-              onClick={() => save(record.ID)}
+              onClick={() => save(record.id)}
               style={{
                 marginRight: 8,
               }}
@@ -192,7 +192,7 @@ const Tags = () => {
             <Popconfirm
               disabled={editingKey !== ''}
               title="Sure to delete?"
-              onConfirm={() => deleteTag(record.ID)}
+              onConfirm={() => deleteTag(record.id)}
             >
               <Button disabled={editingKey !== ''} icon={<DeleteOutlined />}>
                 Delete
@@ -222,7 +222,7 @@ const Tags = () => {
 
   return (
     <div>
-      <Link to={process.env.PUBLIC_URL + '/tags/create'}>
+      <Link to={'/tags/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Tag
         </Button>
@@ -235,7 +235,7 @@ const Tags = () => {
             },
           }}
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={mergedColumns}
           rowClassName="editable-row"
