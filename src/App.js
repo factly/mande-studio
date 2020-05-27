@@ -12,10 +12,9 @@ import CategoryCreate from './pages/categories/create';
 import Categories from './pages/categories';
 import CurrencyCreate from './pages/currencies/create';
 import Currencies from './pages/currencies';
-import ProductStatus from './pages/statuses';
-import StatusCreate from './pages/statuses/create';
 import ProductTypes from './pages/product_types';
 import ProductTypeCreate from './pages/product_types/create';
+import ProductEdit from './pages/products/edit';
 
 function App() {
   return (
@@ -44,13 +43,8 @@ function App() {
             />
             <Route
               exact
-              path={process.env.PUBLIC_URL + '/products/status'}
-              component={ProductStatus}
-            />
-            <Route
-              exact
-              path={process.env.PUBLIC_URL + '/products/status/create'}
-              component={StatusCreate}
+              path={process.env.PUBLIC_URL + '/products/edit/:id'}
+              component={ProductEdit}
             />
             <Route
               exact

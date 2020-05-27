@@ -36,7 +36,7 @@ const ProductTypes = () => {
   const [editingKey, setEditingKey] = useState('');
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + `/products/{1}/type`)
+    fetch(process.env.REACT_APP_API_URL + `/types`)
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -46,7 +46,7 @@ const ProductTypes = () => {
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + `/products/{1}/type?page=` + page + '&limit=' + limit)
+    fetch(process.env.REACT_APP_API_URL + `/types?page=` + page + '&limit=' + limit)
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -72,7 +72,7 @@ const ProductTypes = () => {
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + `/products/{1}/type` + item.ID, {
+        fetch(process.env.REACT_APP_API_URL + `/types` + item.ID, {
           method: 'PUT',
           body: JSON.stringify(row),
         })
@@ -111,7 +111,7 @@ const ProductTypes = () => {
   const deleteProductType = (key) => {
     const index = data.findIndex((item) => item.ID === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + `/products/{1}/type/` + key, {
+      fetch(process.env.REACT_APP_API_URL + `/types/` + key, {
         method: 'DELETE',
       })
         .then((res) => {

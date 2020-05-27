@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, notification, Select } from 'antd';
+import { useParams } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -8,13 +9,15 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-const ProductCreate = (props) => {
+const ProductEdit = (props) => {
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [currencies, setCurrencies] = useState([]);
   const [productType, setProductType] = useState([]);
   const status = ['Hide', 'Unhide'];
 
+  const { id } = useParams();
+  console.log(id);
   React.useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + '/tags')
       .then((data) => data.json())
@@ -48,8 +51,8 @@ const ProductCreate = (props) => {
     values.price = parseInt(values.price);
     values.category_ids = values.category_ids.map((c) => parseInt(c));
     values.tag_ids = values.tag_ids.map((t) => parseInt(t));
-    fetch(process.env.REACT_APP_API_URL + '/products', {
-      method: 'POST',
+    fetch(process.env.REACT_APP_API_URL + `/products/${1}`, {
+      method: 'PUT',
       body: JSON.stringify(values),
     })
       .then((res) => {
@@ -62,7 +65,7 @@ const ProductCreate = (props) => {
       .then((_) => {
         notification.success({
           message: 'Success',
-          description: 'Product succesfully added',
+          description: 'Product succesfully updated',
         });
         props.history.push(`${process.env.PUBLIC_URL}/products`);
       })
@@ -75,7 +78,7 @@ const ProductCreate = (props) => {
   };
 
   return (
-    <Form name="products_create" {...formItemLayout} onFinish={onFinish}>
+    <Form name="products_update" {...formItemLayout} onFinish={onFinish}>
       <Form.Item
         label="Title"
         name="title"
@@ -243,4 +246,4 @@ const ProductCreate = (props) => {
   );
 };
 
-export default ProductCreate;
+export default ProductEdit;

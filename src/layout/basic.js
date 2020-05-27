@@ -89,12 +89,6 @@ function BasicLayout(props) {
               <span>Product Type</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="7">
-            <Link to={process.env.PUBLIC_URL + '/products/status'}>
-              <UserOutlined />
-              <span>Status</span>
-            </Link>
-          </Menu.Item>
         </Menu>
       </Sider>
       <Layout>

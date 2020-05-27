@@ -29,7 +29,7 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Products = () => {
+const Products = (props) => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
@@ -55,11 +55,6 @@ const Products = () => {
   };
 
   const isEditing = (record) => record.ID === editingKey;
-
-  const edit = (record) => {
-    form.setFieldsValue(record);
-    setEditingKey(record.ID);
-  };
 
   const cancel = () => {
     setEditingKey('');
@@ -147,7 +142,7 @@ const Products = () => {
     },
     {
       title: 'Currency',
-      dataIndex: 'currency',
+      render: (record) => record.Currency.iso_code,
       width: '10%',
     },
     {
@@ -157,17 +152,17 @@ const Products = () => {
     },
     {
       title: 'Status',
-      dataIndex: 'status',
+      render: (record) => record.Status.name,
       width: '10%',
     },
     {
       title: 'Categories',
-      dataIndex: 'category',
+      render: (record) => record.categories.map((c) => c.title).join(', '),
       width: '20%',
     },
     {
       title: 'Tags',
-      dataIndex: 'tag',
+      render: (record) => record.tags.map((t) => t.title).join(', '),
       width: '20%',
     },
     {
@@ -205,7 +200,7 @@ const Products = () => {
               type="primary"
               icon={<EditOutlined />}
               disabled={editingKey !== ''}
-              onClick={() => edit(record)}
+              onClick={() => props.history.push(`${process.env.PUBLIC_URL}/products/{record.id}`)}
               style={{
                 marginRight: 8,
               }}
@@ -258,7 +253,7 @@ const Products = () => {
             },
           }}
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={mergedColumns}
           rowClassName="editable-row"
