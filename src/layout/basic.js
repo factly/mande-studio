@@ -12,6 +12,7 @@ import {
   IdcardOutlined,
   CreditCardOutlined,
   ShoppingOutlined,
+  ShoppingCartOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
@@ -70,48 +71,54 @@ function BasicLayout(props) {
             </Link>
           </Menu.Item>
           <Menu.Item key="3">
+            <Link to={'/carts'}>
+              <ShoppingCartOutlined />
+              <span>Carts</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="4">
             <Link to={'/currencies'}>
               <UserOutlined />
               <span>Currencies</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="4">
+          <Menu.Item key="5">
             <Link to={'/memberships'}>
               <IdcardOutlined />
               <span>Memberships</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="5">
+          <Menu.Item key="6">
             <Link to={'/orders'}>
               <ShoppingOutlined />
               <span>Orders</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="6">
+          <Menu.Item key="7">
             <Link to={'/payments'}>
               <CreditCardOutlined />
               <span>Payments</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="7">
+          <Menu.Item key="8">
             <Link to={'/plans'}>
               <ContainerOutlined />
               <span>Plans</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="8">
+          <Menu.Item key="9">
             <Link to={'/products'}>
               <ContainerOutlined />
               <span>Products</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="9">
+          <Menu.Item key="10">
             <Link to={'/tags'}>
               <UserOutlined />
               <span>Tags</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="10">
+          <Menu.Item key="11">
             <Link to={'/types'}>
               <IdcardOutlined />
               <span>Product Types</span>
