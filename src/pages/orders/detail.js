@@ -55,7 +55,7 @@ const Orders = () => {
       {Order && (
         <Card>
           <Descriptions title="Order details">
-            <Descriptions.Item label="Order id">{Order.id}</Descriptions.Item>
+            <Descriptions.Item label="Order ID">{Order.id}</Descriptions.Item>
             <Descriptions.Item label="Order Status">{Order.status}</Descriptions.Item>
             <Descriptions.Item label="Payment">
               {Order.Payment.amount} {Order.Payment.Currency.iso_code}

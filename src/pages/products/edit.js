@@ -51,7 +51,7 @@ const ProductEdit = (props) => {
       });
   }, []);
 
-  function handleChange (value) {
+  function handleChange(value) {
     console.log(`selected ${value}`);
   }
 
@@ -62,7 +62,7 @@ const ProductEdit = (props) => {
     values.category_ids = values.category_ids.map((id) => parseInt(id));
     values.tag_ids = values.tag_ids.map((id) => parseInt(id));
 
-    fetch(process.env.REACT_APP_API_URL + `/products/${1}`, {
+    fetch(process.env.REACT_APP_API_URL + `/products/${id}`, {
       method: 'PUT',
       body: JSON.stringify(values),
     })
@@ -97,7 +97,7 @@ const ProductEdit = (props) => {
     tag_ids: product ? product.tags.map((tag) => tag.id) : [],
     status: product ? product.status : '',
     product_type_id: product ? product.ProductType.id : '',
-  }
+  };
 
   return !product ? null : (
     <Form
@@ -152,7 +152,11 @@ const ProductEdit = (props) => {
           }
         >
           {currencies.length > 0
-            ? currencies.map((currency) => <Select.Option key={currency.id} value={currency.id}>{currency.name}</Select.Option>)
+            ? currencies.map((currency) => (
+                <Select.Option key={currency.id} value={currency.id}>
+                  {currency.name}
+                </Select.Option>
+              ))
             : []}
         </Select>
       </Form.Item>
@@ -190,7 +194,11 @@ const ProductEdit = (props) => {
           }
         >
           {categories.length > 0
-            ? categories.map((category) => <Select.Option key={category.id} value={category.id}>{category.title}</Select.Option>)
+            ? categories.map((category) => (
+                <Select.Option key={category.id} value={category.id}>
+                  {category.title}
+                </Select.Option>
+              ))
             : []}
         </Select>
       </Form.Item>
@@ -215,7 +223,11 @@ const ProductEdit = (props) => {
           }
         >
           {tags.length > 0
-            ? tags.map((tag) => <Select.Option key={tag.id} value={tag.id}>{tag.title}</Select.Option>)
+            ? tags.map((tag) => (
+                <Select.Option key={tag.id} value={tag.id}>
+                  {tag.title}
+                </Select.Option>
+              ))
             : []}
         </Select>
       </Form.Item>
@@ -239,8 +251,12 @@ const ProductEdit = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          <Option key={1}>Show</Option>
-          <Option key={2}>Hide</Option>
+          <Option key={1} value={'Show'}>
+            Show
+          </Option>
+          <Option key={2} value={'Hide'}>
+            Hide
+          </Option>
         </Select>
       </Form.Item>
 
@@ -264,7 +280,11 @@ const ProductEdit = (props) => {
           }
         >
           {productType.length > 0
-            ? productType.map((product) => <Select.Option key={product.id} value={product.id}>{product.name}</Select.Option>)
+            ? productType.map((product) => (
+                <Select.Option key={product.id} value={product.id}>
+                  {product.name}
+                </Select.Option>
+              ))
             : []}
         </Select>
       </Form.Item>

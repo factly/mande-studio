@@ -121,7 +121,7 @@ const ProductCreate = (props) => {
           }
         >
           {currencies.length > 0
-            ? currencies.map((c) => <Option key={c.id}>{c.iso_code}</Option>)
+            ? currencies.map((currency) => <Option key={currency.id}>{currency.iso_code}</Option>)
             : []}
         </Select>
       </Form.Item>
@@ -158,7 +158,9 @@ const ProductCreate = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {categories.length > 0 ? categories.map((c) => <Option key={c.id}>{c.slug}</Option>) : []}
+          {categories.length > 0
+            ? categories.map((category) => <Option key={category.id}>{category.slug}</Option>)
+            : []}
         </Select>
       </Form.Item>
 
@@ -181,7 +183,7 @@ const ProductCreate = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {tags.length > 0 ? tags.map((t) => <Option key={t.id}>{t.slug}</Option>) : []}
+          {tags.length > 0 ? tags.map((tag) => <Option key={tag.id}>{tag.slug}</Option>) : []}
         </Select>
       </Form.Item>
 
@@ -199,14 +201,17 @@ const ProductCreate = (props) => {
           showSearch
           style={{ width: '100%' }}
           placeholder="Select status"
-          defaultValue={'Hide'}
           onChange={handleChange}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          <Option key={'Hide'}>Hide</Option>
-          <Option key={'Unhide'}>Unhide</Option>
+          <Option key={1} value={'Show'}>
+            Show
+          </Option>
+          <Option key={2} value={'Hide'}>
+            Hide
+          </Option>
         </Select>
       </Form.Item>
 

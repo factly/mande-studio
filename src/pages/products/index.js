@@ -141,7 +141,7 @@ const Products = (props) => {
               icon={<EditOutlined />}
               disabled={editingKey !== ''}
               onClick={() => {
-                props.history.push(`/products/${record.id}`);
+                props.history.push(`/products/detail/${record.id}`);
               }}
               style={{
                 marginRight: 8,

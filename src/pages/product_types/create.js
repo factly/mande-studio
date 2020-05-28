@@ -8,7 +8,7 @@ const formItemLayout = {
 
 const ProductTypeCreate = (props) => {
   const onFinish = (values) => {
-    fetch(process.env.REACT_APP_API_URL + `/products/${1}/type`, {
+    fetch(process.env.REACT_APP_API_URL + `/types`, {
       method: 'POST',
       body: JSON.stringify(values),
     })
