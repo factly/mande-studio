@@ -136,7 +136,7 @@ const ProductCreate = (props) => {
           },
         ]}
       >
-        <Input placeholder="Ex. 1999" />
+        <Input type="number" placeholder="Ex. 1999" />
       </Form.Item>
 
       <Form.Item

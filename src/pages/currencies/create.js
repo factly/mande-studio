@@ -38,7 +38,7 @@ const CurrencyCreate = (props) => {
     <Form name="currencies_create" {...formItemLayout} onFinish={onFinish}>
       <Form.Item
         label="Name"
-        name="title"
+        name="name"
         rules={[
           {
             required: true,
@@ -46,20 +46,20 @@ const CurrencyCreate = (props) => {
           },
         ]}
       >
-        <Input placeholder="Ex. Crime In India" />
+        <Input placeholder="Ex. Indian Rupee" />
       </Form.Item>
 
       <Form.Item
-        label="Slug"
-        name="slug"
+        label="ISO Code"
+        name="iso_code"
         rules={[
           {
             required: true,
-            message: 'Please enter slug!',
+            message: 'Please enter iso code!',
           },
         ]}
       >
-        <Input placeholder="Ex. crime-in-india" />
+        <Input placeholder="Ex. INR" />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

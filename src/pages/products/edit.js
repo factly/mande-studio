@@ -49,7 +49,7 @@ const ProductEdit = (props) => {
       .then((data) => {
         setProductType(data.nodes);
       });
-  }, []);
+  }, [id]);
 
   function handleChange(value) {
     console.log(`selected ${value}`);

@@ -216,7 +216,7 @@ const ProductTypes = () => {
 
   return (
     <div>
-      <Link to={'/products/type/create'}>
+      <Link to={'/types/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
           Add Product Type
         </Button>
