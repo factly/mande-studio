@@ -155,10 +155,10 @@ const Plans = () => {
     },
     {
       title: 'Created At',
-      dataIndex: 'CreatedAt',
+      dataIndex: 'created_at',
       width: '20%',
       render: (_, record) => {
-        return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
+        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
     },
     {
@@ -246,6 +246,7 @@ const Plans = () => {
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

@@ -34,7 +34,7 @@ const Orders = (props) => {
     {
       title: 'Amount',
       render: (record) => (
-        <span>{`${record.Payment.amount} ${record.Payment.Currency.iso_code}`}</span>
+        <span>{`${record.payment.amount} ${record.payment.currency.iso_code}`}</span>
       ),
       width: '20%',
     },
@@ -50,10 +50,10 @@ const Orders = (props) => {
     },
     {
       title: 'Created At',
-      dataIndex: 'CreatedAt',
+      dataIndex: 'created_at',
       width: '20%',
       render: (_, record) => {
-        return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
+        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
     },
     {
@@ -86,6 +86,7 @@ const Orders = (props) => {
           dataSource={data}
           columns={columns}
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

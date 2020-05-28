@@ -90,7 +90,7 @@ const ProductTypes = () => {
             setEditingKey('');
             notification.success({
               message: 'Success',
-              description: 'ProductType succesfully updated',
+              description: 'Product Type succesfully updated',
             });
           })
           .catch((err) => {
@@ -121,7 +121,7 @@ const ProductTypes = () => {
             setData(newData);
             notification.success({
               message: 'Success',
-              description: 'ProductType succesfully deleted',
+              description: 'Product Type succesfully deleted',
             });
           }
         })
@@ -143,10 +143,10 @@ const ProductTypes = () => {
     },
     {
       title: 'Created At',
-      dataIndex: 'CreatedAt',
+      dataIndex: 'created_at',
       width: '25%',
       render: (_, record) => {
-        return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
+        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
     },
     {
@@ -234,6 +234,7 @@ const ProductTypes = () => {
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

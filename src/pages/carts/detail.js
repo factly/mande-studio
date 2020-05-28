@@ -29,14 +29,14 @@ const CartDetail = () => {
   const columns = [
     {
       title: 'Product Item',
-      render: (record) => record.Product.title,
+      render: (record) => record.product.title,
       width: '40%',
     },
     {
       title: 'Price',
       render: (record) => (
         <span>
-          {record.Product.price} {record.Product.Currency.iso_code}
+          {record.product.price} {record.product.currency.iso_code}
         </span>
       ),
       width: '20%',
@@ -52,6 +52,7 @@ const CartDetail = () => {
           dataSource={data}
           columns={columns}
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

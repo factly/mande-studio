@@ -34,13 +34,13 @@ const Memberships = () => {
     },
     {
       title: 'Plan',
-      render: (record) => record.Plan.plan_name,
+      render: (record) => record.plan.plan_name,
       width: '15%',
       editable: true,
     },
     {
       title: 'User',
-      render: (record) => record.User.email,
+      render: (record) => record.user.email,
       width: '15%',
       editable: true,
     },
@@ -52,10 +52,10 @@ const Memberships = () => {
     },
     {
       title: 'Created At',
-      dataIndex: 'CreatedAt',
+      dataIndex: 'created_at',
       width: '15%',
       render: (_, record) => {
-        return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
+        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
     },
   ];
@@ -70,6 +70,7 @@ const Memberships = () => {
           columns={columns}
           rowClassName="editable-row"
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Table, Form, Descriptions, Card } from 'antd';
+import { Table, Form, Descriptions, Card, notification } from 'antd';
 
 const OrderDetail = () => {
   const [form] = Form.useForm();
@@ -10,14 +10,23 @@ const OrderDetail = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}`)
+      .then((data) => data.json())
+      .then((data) => {
+        setOrder(data);
+      })
+      .catch(() => {
+        notification.error({
+          message: 'Error',
+          description: 'Something went wrong',
+        });
+      });
+
     fetch(`${process.env.REACT_APP_API_URL}/orders/${id}/items`)
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
         setTotal(data.total);
-        if (data.total) {
-          setOrder(data.nodes[0].Order);
-        }
       });
   }, [id]);
 
@@ -33,14 +42,14 @@ const OrderDetail = () => {
   const columns = [
     {
       title: 'Product Item',
-      render: (record) => record.Product.title,
+      render: (record) => record.product.title,
       width: '40%',
     },
     {
       title: 'Price',
       render: (record) => (
         <span>
-          {record.Product.price} {record.Product.Currency.iso_code}
+          {record.product.price} {record.product.currency.iso_code}
         </span>
       ),
       width: '20%',
@@ -60,10 +69,10 @@ const OrderDetail = () => {
             <Descriptions.Item label="Order ID">{order.id}</Descriptions.Item>
             <Descriptions.Item label="Order Status">{order.status}</Descriptions.Item>
             <Descriptions.Item label="Payment">
-              {order.Payment.amount} {order.Payment.Currency.iso_code}
+              {order.payment.amount} {order.payment.currency.iso_code}
             </Descriptions.Item>
-            <Descriptions.Item label="Payment Gateway">{order.Payment.gateway}</Descriptions.Item>
-            <Descriptions.Item label="Payment Status">{order.Payment.status}</Descriptions.Item>
+            <Descriptions.Item label="Payment Gateway">{order.payment.gateway}</Descriptions.Item>
+            <Descriptions.Item label="Payment Status">{order.payment.status}</Descriptions.Item>
           </Descriptions>
         </Card>
       )}
@@ -75,8 +84,9 @@ const OrderDetail = () => {
           dataSource={data}
           columns={columns}
           pagination={{
-            onChange: get,
+            defaultPageSize: 5,
             total: total,
+            onChange: get,
           }}
         />
       </Form>

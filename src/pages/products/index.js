@@ -99,7 +99,7 @@ const Products = (props) => {
     },
     {
       title: 'Currency',
-      render: (record) => record.Currency.iso_code,
+      render: (record) => record.currency.iso_code,
       width: '10%',
     },
     {
@@ -124,10 +124,10 @@ const Products = (props) => {
     },
     {
       title: 'Created At',
-      dataIndex: 'CreatedAt',
+      dataIndex: 'created_at',
       width: '10%',
       render: (_, record) => {
-        return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
+        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
     },
     {
@@ -200,6 +200,7 @@ const Products = (props) => {
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}
