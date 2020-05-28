@@ -7,7 +7,6 @@ import logo from '../assets/logo.svg';
 import {
   PieChartOutlined,
   LogoutOutlined,
-  UserOutlined,
   ContainerOutlined,
   IdcardOutlined,
   CreditCardOutlined,
@@ -15,6 +14,9 @@ import {
   ShoppingCartOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  TagOutlined,
+  MoneyCollectFilled,
+  FilePptOutlined,
 } from '@ant-design/icons';
 
 const mockVal = (str, repeat = 1) => ({
@@ -66,7 +68,7 @@ function BasicLayout(props) {
           </Menu.Item>
           <Menu.Item key="2">
             <Link to={'/categories'}>
-              <UserOutlined />
+              <TagOutlined />
               <span>Categories</span>
             </Link>
           </Menu.Item>
@@ -78,7 +80,7 @@ function BasicLayout(props) {
           </Menu.Item>
           <Menu.Item key="4">
             <Link to={'/currencies'}>
-              <UserOutlined />
+              <MoneyCollectFilled />
               <span>Currencies</span>
             </Link>
           </Menu.Item>
@@ -114,13 +116,13 @@ function BasicLayout(props) {
           </Menu.Item>
           <Menu.Item key="10">
             <Link to={'/tags'}>
-              <UserOutlined />
+              <TagOutlined />
               <span>Tags</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="11">
             <Link to={'/types'}>
-              <IdcardOutlined />
+              <FilePptOutlined />
               <span>Product Types</span>
             </Link>
           </Menu.Item>
