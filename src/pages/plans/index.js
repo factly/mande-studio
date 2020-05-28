@@ -246,6 +246,7 @@ const Plans = () => {
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

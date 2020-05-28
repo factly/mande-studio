@@ -23,7 +23,7 @@ const ProductEdit = (props) => {
       .then((data) => {
         setProduct(data);
       })
-      .catch((err) => {
+      .catch(() => {
         notification.error({
           message: 'Error',
           description: 'Something went wrong',

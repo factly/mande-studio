@@ -93,7 +93,7 @@ const Tags = () => {
               description: 'Tag succesfully updated',
             });
           })
-          .catch((err) => {
+          .catch(() => {
             notification.error({
               message: 'Error',
               description: 'Something went wrong',
@@ -240,6 +240,7 @@ const Tags = () => {
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

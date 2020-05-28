@@ -86,6 +86,7 @@ const Orders = (props) => {
           dataSource={data}
           columns={columns}
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

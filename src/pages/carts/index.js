@@ -74,6 +74,7 @@ const Carts = (props) => {
           dataSource={data}
           columns={columns}
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}

@@ -64,6 +64,7 @@ const Payments = () => {
           columns={columns}
           rowClassName="editable-row"
           pagination={{
+            defaultPageSize: 5,
             onChange: get,
             total: total,
           }}
