@@ -36,7 +36,7 @@ const CartDetail = () => {
       title: 'Price',
       render: (record) => (
         <span>
-          {record.Product.price} {record.Product.Currency.iso_code}
+          {record.Product.price} {record.Product.currency.iso_code}
         </span>
       ),
       width: '20%',

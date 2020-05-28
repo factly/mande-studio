@@ -34,7 +34,7 @@ const Orders = (props) => {
     {
       title: 'Amount',
       render: (record) => (
-        <span>{`${record.Payment.amount} ${record.Payment.Currency.iso_code}`}</span>
+        <span>{`${record.payment.amount} ${record.payment.currency.iso_code}`}</span>
       ),
       width: '20%',
     },

@@ -90,7 +90,7 @@ const ProductTypes = () => {
             setEditingKey('');
             notification.success({
               message: 'Success',
-              description: 'ProductType succesfully updated',
+              description: 'Product Type succesfully updated',
             });
           })
           .catch((err) => {
@@ -121,7 +121,7 @@ const ProductTypes = () => {
             setData(newData);
             notification.success({
               message: 'Success',
-              description: 'ProductType succesfully deleted',
+              description: 'Product Type succesfully deleted',
             });
           }
         })

@@ -99,7 +99,7 @@ const Products = (props) => {
     },
     {
       title: 'Currency',
-      render: (record) => record.Currency.iso_code,
+      render: (record) => record.currency.iso_code,
       width: '10%',
     },
     {

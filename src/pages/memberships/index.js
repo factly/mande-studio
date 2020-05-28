@@ -34,13 +34,13 @@ const Memberships = () => {
     },
     {
       title: 'Plan',
-      render: (record) => record.Plan.plan_name,
+      render: (record) => record.plan.plan_name,
       width: '15%',
       editable: true,
     },
     {
       title: 'User',
-      render: (record) => record.User.email,
+      render: (record) => record.user.email,
       width: '15%',
       editable: true,
     },

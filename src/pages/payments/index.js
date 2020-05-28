@@ -28,7 +28,7 @@ const Payments = () => {
   const columns = [
     {
       title: 'Amount',
-      render: (record) => <span>{`${record.amount} ${record.Currency.iso_code}`}</span>,
+      render: (record) => <span>{`${record.amount} ${record.currency.iso_code}`}</span>,
       width: '25%',
       editable: true,
     },

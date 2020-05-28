@@ -40,7 +40,7 @@ const OrderDetail = () => {
       title: 'Price',
       render: (record) => (
         <span>
-          {record.Product.price} {record.Product.Currency.iso_code}
+          {record.Product.price} {record.Product.currency.iso_code}
         </span>
       ),
       width: '20%',
@@ -60,10 +60,10 @@ const OrderDetail = () => {
             <Descriptions.Item label="Order ID">{order.id}</Descriptions.Item>
             <Descriptions.Item label="Order Status">{order.status}</Descriptions.Item>
             <Descriptions.Item label="Payment">
-              {order.Payment.amount} {order.Payment.Currency.iso_code}
+              {order.payment.amount} {order.payment.currency.iso_code}
             </Descriptions.Item>
-            <Descriptions.Item label="Payment Gateway">{order.Payment.gateway}</Descriptions.Item>
-            <Descriptions.Item label="Payment Status">{order.Payment.status}</Descriptions.Item>
+            <Descriptions.Item label="Payment Gateway">{order.payment.gateway}</Descriptions.Item>
+            <Descriptions.Item label="Payment Status">{order.payment.status}</Descriptions.Item>
           </Descriptions>
         </Card>
       )}

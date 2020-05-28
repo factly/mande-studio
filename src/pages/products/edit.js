@@ -92,11 +92,11 @@ const ProductEdit = (props) => {
     slug: product ? product.slug : '',
     title: product ? product.title : '',
     price: product ? product.price : null,
-    currency_id: product ? product.Currency.id : '',
+    currency_id: product ? product.currency.id : '',
     category_ids: product ? product.categories.map((category) => category.id) : [],
     tag_ids: product ? product.tags.map((tag) => tag.id) : [],
     status: product ? product.status : '',
-    product_type_id: product ? product.ProductType.id : '',
+    product_type_id: product ? product.product_type.id : '',
   };
 
   return !product ? null : (
