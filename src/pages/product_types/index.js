@@ -72,7 +72,7 @@ const ProductTypes = () => {
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + `/types` + item.id, {
+        fetch(process.env.REACT_APP_API_URL + `/types/` + item.id, {
           method: 'PUT',
           body: JSON.stringify(row),
         })

@@ -91,7 +91,7 @@ const ProductEdit = (props) => {
   const initialValues = {
     slug: product ? product.slug : '',
     title: product ? product.title : '',
-    price: product ? product.price : '',
+    price: product ? product.price : null,
     currency_id: product ? product.Currency.id : '',
     category_ids: product ? product.categories.map((category) => category.id) : [],
     tag_ids: product ? product.tags.map((tag) => tag.id) : [],
@@ -171,7 +171,7 @@ const ProductEdit = (props) => {
           },
         ]}
       >
-        <Input placeholder="Ex. 1999" />
+        <Input type="number" placeholder="Ex. 1999" />
       </Form.Item>
 
       <Form.Item
