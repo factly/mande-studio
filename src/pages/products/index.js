@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -29,14 +29,14 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Plans = () => {
+const Products = (props) => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/plans')
+    fetch(process.env.REACT_APP_API_URL + '/products')
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -46,7 +46,7 @@ const Plans = () => {
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/plans?page=' + page + '&limit=' + limit)
+    fetch(process.env.REACT_APP_API_URL + '/products?page=' + page + '&limit=' + limit)
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -56,62 +56,14 @@ const Plans = () => {
 
   const isEditing = (record) => record.id === editingKey;
 
-  const edit = (record) => {
-    form.setFieldsValue(record);
-    setEditingKey(record.id);
-  };
-
   const cancel = () => {
     setEditingKey('');
   };
 
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const index = data.findIndex((item) => item.id === key);
-
-      if (index > -1) {
-        const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/plans/' + item.id, {
-          method: 'PUT',
-          body: JSON.stringify(row),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(res.status);
-            }
-          })
-          .then((res) => {
-            const newData = [...data];
-            newData.splice(index, 1, res);
-            setData(newData);
-            setEditingKey('');
-            notification.success({
-              message: 'Success',
-              description: 'Plan succesfully updated',
-            });
-          })
-          .catch((err) => {
-            notification.error({
-              message: 'Error',
-              description: 'Something went wrong',
-            });
-          });
-      }
-    } catch (err) {
-      notification.warning({
-        message: 'Warning',
-        description: 'Validation failed',
-      });
-    }
-  };
-
-  const deletePlan = (key) => {
+  const deleteProduct = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/plans/' + key, {
+      fetch(process.env.REACT_APP_API_URL + '/products/' + key, {
         method: 'DELETE',
       })
         .then((res) => {
@@ -121,7 +73,7 @@ const Plans = () => {
             setData(newData);
             notification.success({
               message: 'Success',
-              description: 'Membership succesfully deleted',
+              description: 'Product succesfully deleted',
             });
           }
         })
@@ -136,27 +88,44 @@ const Plans = () => {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'plan_name',
-      width: '20%',
-      editable: true,
+      title: 'Title',
+      dataIndex: 'title',
+      width: '10%',
     },
     {
-      title: 'Info',
-      dataIndex: 'plan_info',
-      width: '20%',
-      editable: true,
+      title: 'Slug',
+      dataIndex: 'slug',
+      width: '10%',
+    },
+    {
+      title: 'Currency',
+      render: (record) => record.Currency.iso_code,
+      width: '10%',
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      width: '10%',
     },
     {
       title: 'Status',
-      dataIndex: 'status',
+      render: (record) => record.status,
+      width: '10%',
+    },
+    {
+      title: 'Categories',
+      render: (record) => record.categories.map((c) => c.title).join(', '),
       width: '20%',
-      editable: true,
+    },
+    {
+      title: 'Tags',
+      render: (record) => record.tags.map((t) => t.title).join(', '),
+      width: '20%',
     },
     {
       title: 'Created At',
       dataIndex: 'CreatedAt',
-      width: '20%',
+      width: '10%',
       render: (_, record) => {
         return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
       },
@@ -165,30 +134,15 @@ const Plans = () => {
       title: 'Operation',
       dataIndex: 'operation',
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Button
-              type="primary"
-              icon={<SaveOutlined />}
-              onClick={() => save(record.id)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </Button>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <Button icon={<CloseOutlined />}>Cancel</Button>
-            </Popconfirm>
-          </span>
-        ) : (
+        return (
           <span>
             <Button
               type="primary"
               icon={<EditOutlined />}
               disabled={editingKey !== ''}
-              onClick={() => edit(record)}
+              onClick={() => {
+                props.history.push(`/products/detail/${record.id}`);
+              }}
               style={{
                 marginRight: 8,
               }}
@@ -198,7 +152,7 @@ const Plans = () => {
             <Popconfirm
               disabled={editingKey !== ''}
               title="Sure to delete?"
-              onConfirm={() => deletePlan(record.id)}
+              onConfirm={() => deleteProduct(record.id)}
             >
               <Button disabled={editingKey !== ''} icon={<DeleteOutlined />}>
                 Delete
@@ -228,9 +182,9 @@ const Plans = () => {
 
   return (
     <div>
-      <Link to={'/plans/create'}>
+      <Link to={'/products/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
-          Add Plan
+          Add Product
         </Button>
       </Link>
       <Form form={form} component={false}>
@@ -255,4 +209,4 @@ const Plans = () => {
   );
 };
 
-export default Plans;
+export default Products;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import { Table, Form } from 'antd';
-
 
 const CartDetail = () => {
   const [form] = Form.useForm();
@@ -35,7 +34,11 @@ const CartDetail = () => {
     },
     {
       title: 'Price',
-      render: (record) => <span>{record.Product.price} {record.Product.Currency.iso_code}</span>,
+      render: (record) => (
+        <span>
+          {record.Product.price} {record.Product.Currency.iso_code}
+        </span>
+      ),
       width: '20%',
     },
   ];

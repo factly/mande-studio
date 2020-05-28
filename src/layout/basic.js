@@ -7,7 +7,6 @@ import logo from '../assets/logo.svg';
 import {
   PieChartOutlined,
   LogoutOutlined,
-  UserOutlined,
   ContainerOutlined,
   IdcardOutlined,
   CreditCardOutlined,
@@ -15,6 +14,9 @@ import {
   ShoppingCartOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  TagOutlined,
+  MoneyCollectFilled,
+  FilePptOutlined,
 } from '@ant-design/icons';
 
 const mockVal = (str, repeat = 1) => ({
@@ -65,27 +67,27 @@ function BasicLayout(props) {
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to={'/tags'}>
-              <UserOutlined />
-              <span>Tags</span>
+            <Link to={'/categories'}>
+              <TagOutlined />
+              <span>Categories</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="3">
-            <Link to={'/plans'}>
-              <ContainerOutlined />
-              <span>Plans</span>
+            <Link to={'/carts'}>
+              <ShoppingCartOutlined />
+              <span>Carts</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to={'/memberships'}>
-              <IdcardOutlined />
-              <span>Memberships</span>
+            <Link to={'/currencies'}>
+              <MoneyCollectFilled />
+              <span>Currencies</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to={'/payments'}>
-              <CreditCardOutlined />
-              <span>Payments</span>
+            <Link to={'/memberships'}>
+              <IdcardOutlined />
+              <span>Memberships</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="6">
@@ -95,9 +97,33 @@ function BasicLayout(props) {
             </Link>
           </Menu.Item>
           <Menu.Item key="7">
-            <Link to={'/carts'}>
-              <ShoppingCartOutlined />
-              <span>Carts</span>
+            <Link to={'/payments'}>
+              <CreditCardOutlined />
+              <span>Payments</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="8">
+            <Link to={'/plans'}>
+              <ContainerOutlined />
+              <span>Plans</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="9">
+            <Link to={'/products'}>
+              <ContainerOutlined />
+              <span>Products</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="10">
+            <Link to={'/tags'}>
+              <TagOutlined />
+              <span>Tags</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="11">
+            <Link to={'/types'}>
+              <FilePptOutlined />
+              <span>Product Types</span>
             </Link>
           </Menu.Item>
         </Menu>

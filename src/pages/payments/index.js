@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Table, Form } from 'antd';
 import moment from 'moment';
 
-
 const Payments = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
@@ -35,7 +34,7 @@ const Payments = () => {
     },
     {
       title: 'Gateway',
-      dataIndex: "gateway",
+      dataIndex: 'gateway',
       width: '25%',
       editable: true,
     },
@@ -60,7 +59,7 @@ const Payments = () => {
       <Form form={form} component={false}>
         <Table
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={columns}
           rowClassName="editable-row"

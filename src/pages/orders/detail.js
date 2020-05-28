@@ -16,7 +16,7 @@ const OrderDetail = () => {
         setData(data.nodes);
         setTotal(data.total);
         if (data.total) {
-          setOrder(data.nodes[0].Order)
+          setOrder(data.nodes[0].Order);
         }
       });
   }, [id]);
@@ -54,10 +54,10 @@ const OrderDetail = () => {
 
   return (
     <div>
-      {!order ? (null) : (
+      {!order ? null : (
         <Card>
           <Descriptions title="Order details">
-            <Descriptions.Item label="Order ID">{order.ID}</Descriptions.Item>
+            <Descriptions.Item label="Order ID">{order.id}</Descriptions.Item>
             <Descriptions.Item label="Order Status">{order.status}</Descriptions.Item>
             <Descriptions.Item label="Payment">
               {order.Payment.amount} {order.Payment.Currency.iso_code}
@@ -71,7 +71,7 @@ const OrderDetail = () => {
       <Form form={form} component={false}>
         <Table
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={columns}
           pagination={{

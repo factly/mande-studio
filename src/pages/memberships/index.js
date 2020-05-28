@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Table, Form } from 'antd';
 import moment from 'moment';
 
-
 const Memberships = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
@@ -28,7 +27,7 @@ const Memberships = () => {
 
   const columns = [
     {
-      title: 'Payment ID',
+      title: 'Payment id',
       dataIndex: 'payment_id',
       width: '15%',
       editable: true,
@@ -66,7 +65,7 @@ const Memberships = () => {
       <Form form={form} component={false}>
         <Table
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={columns}
           rowClassName="editable-row"

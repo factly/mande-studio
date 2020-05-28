@@ -29,14 +29,14 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Plans = () => {
+const Currencies = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/plans')
+    fetch(process.env.REACT_APP_API_URL + '/currencies')
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -46,7 +46,7 @@ const Plans = () => {
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/plans?page=' + page + '&limit=' + limit)
+    fetch(process.env.REACT_APP_API_URL + '/currencies?page=' + page + '&limit=' + limit)
       .then((data) => data.json())
       .then((data) => {
         setData(data.nodes);
@@ -72,7 +72,7 @@ const Plans = () => {
 
       if (index > -1) {
         const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/plans/' + item.id, {
+        fetch(process.env.REACT_APP_API_URL + '/currencies/' + item.id, {
           method: 'PUT',
           body: JSON.stringify(row),
         })
@@ -90,7 +90,7 @@ const Plans = () => {
             setEditingKey('');
             notification.success({
               message: 'Success',
-              description: 'Plan succesfully updated',
+              description: 'Currency succesfully updated',
             });
           })
           .catch((err) => {
@@ -108,10 +108,10 @@ const Plans = () => {
     }
   };
 
-  const deletePlan = (key) => {
+  const deleteCurrency = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/plans/' + key, {
+      fetch(process.env.REACT_APP_API_URL + '/currencies/' + key, {
         method: 'DELETE',
       })
         .then((res) => {
@@ -121,7 +121,7 @@ const Plans = () => {
             setData(newData);
             notification.success({
               message: 'Success',
-              description: 'Membership succesfully deleted',
+              description: 'Currency succesfully deleted',
             });
           }
         })
@@ -137,26 +137,20 @@ const Plans = () => {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'plan_name',
-      width: '20%',
+      dataIndex: 'name',
+      width: '25%',
       editable: true,
     },
     {
-      title: 'Info',
-      dataIndex: 'plan_info',
-      width: '20%',
-      editable: true,
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      width: '20%',
+      title: 'ISO code',
+      dataIndex: 'iso_code',
+      width: '25%',
       editable: true,
     },
     {
       title: 'Created At',
       dataIndex: 'CreatedAt',
-      width: '20%',
+      width: '25%',
       render: (_, record) => {
         return <span title={record.CreatedAt}>{moment(record.CreatedAt).fromNow()}</span>;
       },
@@ -198,7 +192,7 @@ const Plans = () => {
             <Popconfirm
               disabled={editingKey !== ''}
               title="Sure to delete?"
-              onConfirm={() => deletePlan(record.id)}
+              onConfirm={() => deleteCurrency(record.id)}
             >
               <Button disabled={editingKey !== ''} icon={<DeleteOutlined />}>
                 Delete
@@ -228,9 +222,9 @@ const Plans = () => {
 
   return (
     <div>
-      <Link to={'/plans/create'}>
+      <Link to={'/currencies/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
-          Add Plan
+          Add Currency
         </Button>
       </Link>
       <Form form={form} component={false}>
@@ -255,4 +249,4 @@ const Plans = () => {
   );
 };
 
-export default Plans;
+export default Currencies;

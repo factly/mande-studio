@@ -3,13 +3,22 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 
-import Login from './pages/login';
-import Registration from './pages/registration';
 import BasicLayout from './layout/basic';
 import Tags from './pages/tags/index';
+import TagCreate from './pages/tags/create';
+import ProductCreate from './pages/products/create';
+import Products from './pages/products';
+import CategoryCreate from './pages/categories/create';
+import Categories from './pages/categories';
+import CurrencyCreate from './pages/currencies/create';
+import Currencies from './pages/currencies';
+import ProductTypes from './pages/product_types';
+import ProductTypeCreate from './pages/product_types/create';
+import ProductEdit from './pages/products/edit';
+import Login from './pages/login';
+import Registration from './pages/registration';
 import Memberships from './pages/memberships/index';
 import Payments from './pages/payments/index';
-import TagCreate from './pages/tags/create';
 import Plans from './pages/plans/index';
 import PlanCreate from './pages/plans/create';
 import Orders from './pages/orders/index';
@@ -26,6 +35,15 @@ function App() {
           <Route path="/auth/registration" component={Registration} />
           <BasicLayout>
             <Route exact path={'/'} />
+            <Route exact path={'/categories'} component={Categories} />
+            <Route exact path={'/categories/create'} component={CategoryCreate} />
+            <Route exact path={'/currencies'} component={Currencies} />
+            <Route exact path={'/currencies/create'} component={CurrencyCreate} />
+            <Route exact path={'/products'} component={Products} />
+            <Route exact path={'/products/detail/:id'} component={ProductEdit} />
+            <Route exact path={'/products/create'} component={ProductCreate} />
+            <Route exact path={'/types'} component={ProductTypes} />
+            <Route exact path={'/types/create'} component={ProductTypeCreate} />
             <Route exact path={'/tags/create'} component={TagCreate} />
             <Route exact path={'/tags'} component={Tags} />
             <Route exact path={'/plans/create'} component={PlanCreate} />

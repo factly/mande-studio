@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Table, Form, Button } from 'antd';
 import moment from 'moment';
 
-
 const Carts = (props) => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
@@ -50,20 +49,20 @@ const Carts = (props) => {
       dataIndex: 'operation',
       render: (_, record) => {
         return (
-        <span>
+          <span>
             <Button
               type="primary"
               onClick={() => props.history.push(`/carts/${record.ID}`)}
               style={{
                 marginRight: 8,
               }}
-              >
+            >
               Details
             </Button>
-        </span>
-        )
-      }
-    }
+          </span>
+        );
+      },
+    },
   ];
 
   return (
