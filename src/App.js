@@ -8,7 +8,7 @@ import Login from './pages/login';
 import Registration from './pages/registration';
 import routes from './routes';
 
-function App () {
+function App() {
   return (
     <div className="App">
       <Router basename={process.env.PUBLIC_URL}>
@@ -16,9 +16,16 @@ function App () {
           <Route path="/auth/login" component={Login} />
           <Route path="/auth/registration" component={Registration} />
           <BasicLayout>
-            {routes.map(route => (
-              <Route key={route.path} exact path={route.path} component={route.component} />
-            ))}
+            <Switch>
+              {routes.map((route) => (
+                <Route
+                  key={route.path}
+                  exact={route.exact}
+                  path={route.path}
+                  component={route.component}
+                />
+              ))}
+            </Switch>
           </BasicLayout>
         </Switch>
       </Router>

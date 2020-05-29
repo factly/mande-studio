@@ -3,21 +3,9 @@ import { Link } from 'react-router-dom';
 import { Layout, Menu, Button, AutoComplete, Divider } from 'antd';
 import './basic.css';
 import logo from '../assets/logo.svg';
+import routes from '../routes';
 
-import {
-  PieChartOutlined,
-  LogoutOutlined,
-  ContainerOutlined,
-  IdcardOutlined,
-  CreditCardOutlined,
-  ShoppingOutlined,
-  ShoppingCartOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  TagOutlined,
-  MoneyCollectFilled,
-  FilePptOutlined,
-} from '@ant-design/icons';
+import { LogoutOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 const mockVal = (str, repeat = 1) => ({
   value: str.repeat(repeat),
@@ -60,72 +48,16 @@ function BasicLayout(props) {
           </span>
         </div>
         <Menu theme="dark" mode="vertical" className="slider-menu">
-          <Menu.Item key="1">
-            <Link to={'/'}>
-              <PieChartOutlined />
-              <span>Dashboard</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Link to={'/categories'}>
-              <TagOutlined />
-              <span>Categories</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <Link to={'/carts'}>
-              <ShoppingCartOutlined />
-              <span>Carts</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="4">
-            <Link to={'/currencies'}>
-              <MoneyCollectFilled />
-              <span>Currencies</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="5">
-            <Link to={'/memberships'}>
-              <IdcardOutlined />
-              <span>Memberships</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="6">
-            <Link to={'/orders'}>
-              <ShoppingOutlined />
-              <span>Orders</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="7">
-            <Link to={'/payments'}>
-              <CreditCardOutlined />
-              <span>Payments</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="8">
-            <Link to={'/plans'}>
-              <ContainerOutlined />
-              <span>Plans</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="9">
-            <Link to={'/products'}>
-              <ContainerOutlined />
-              <span>Products</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="10">
-            <Link to={'/tags'}>
-              <TagOutlined />
-              <span>Tags</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="11">
-            <Link to={'/types'}>
-              <FilePptOutlined />
-              <span>Product Types</span>
-            </Link>
-          </Menu.Item>
+          {routes
+            .filter((route) => route.onNavigation)
+            .map((route) => (
+              <Menu.Item key={route.path}>
+                <Link to={route.path}>
+                  <route.icon />
+                  <span>{route.title}</span>
+                </Link>
+              </Menu.Item>
+            ))}
         </Menu>
       </Sider>
       <Layout>
