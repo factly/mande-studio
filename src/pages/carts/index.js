@@ -52,7 +52,7 @@ const Carts = (props) => {
           <span>
             <Button
               type="primary"
-              onClick={() => props.history.push(`/carts/${record.ID}`)}
+              onClick={() => props.history.push(`/carts/${record.id}`)}
               style={{
                 marginRight: 8,
               }}
@@ -70,7 +70,7 @@ const Carts = (props) => {
       <Form form={form} component={false}>
         <Table
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={columns}
           pagination={{

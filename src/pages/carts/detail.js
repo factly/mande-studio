@@ -48,7 +48,7 @@ const CartDetail = () => {
       <Form form={form} component={false}>
         <Table
           bordered
-          rowKey="ID"
+          rowKey="id"
           dataSource={data}
           columns={columns}
           pagination={{
