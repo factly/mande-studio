@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Form, Button } from 'antd';
 import moment from 'moment';
 
+import { loadOrders } from '../../actions/orders';
+import Loading from '../../components/loading';
+
 const Orders = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { loading, data, load } = props;
+  const total = data.length;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/orders')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    load();
+  }, [load]);
 
-  const get = (page, limit) => {
-    fetch(process.env.REACT_APP_API_URL + '/orders?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  };
+  const get = (page, limit) => load(page, limit);
 
   const columns = [
     {
@@ -77,7 +70,9 @@ const Orders = (props) => {
     },
   ];
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -96,4 +91,22 @@ const Orders = (props) => {
   );
 };
 
-export default Orders;
+Orders.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.orders;
+  return {
+    loading: list.loading,
+    data: list.items,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadOrders(page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

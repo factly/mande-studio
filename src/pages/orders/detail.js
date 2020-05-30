@@ -1,43 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { Table, Form, Descriptions, Card, notification } from 'antd';
+import { Table, Form, Descriptions, Card } from 'antd';
 
-const OrderDetail = () => {
+import Loading from '../../components/loading';
+import { getOrderDetails, getOrderItems } from '../../actions/orders';
+
+const OrderDetail = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [order, setOrder] = useState();
-  const [total, setTotal] = useState(0);
   const { id } = useParams();
+  const { loading, data, order, getOrder, loadItems } = props;
+  const total = data.length;
 
   React.useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}`)
-      .then((data) => data.json())
-      .then((data) => {
-        setOrder(data);
-      })
-      .catch(() => {
-        notification.error({
-          message: 'Error',
-          description: 'Something went wrong',
-        });
-      });
+    getOrder(id);
+    loadItems(id);
+  }, [getOrder, loadItems, id]);
 
-    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}/items`)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, [id]);
-
-  const get = (page, limit) => {
-    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}/items?page=${page}&limit=${limit}`)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  };
+  const get = (page, limit) => loadItems(id, page, limit);
 
   const columns = [
     {
@@ -61,9 +42,11 @@ const OrderDetail = () => {
     },
   ];
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
-      {!order ? null : (
+      {!order.id ? null : (
         <Card>
           <Descriptions title="Order details">
             <Descriptions.Item label="Order ID">{order.id}</Descriptions.Item>
@@ -94,4 +77,26 @@ const OrderDetail = () => {
   );
 };
 
-export default OrderDetail;
+OrderDetail.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  order: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
+  getOrder: PropTypes.func.isRequired,
+  loadItems: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { details } = state.orders;
+  return {
+    loading: details.loading,
+    order: details.order,
+    data: details.items,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getOrder: (id) => dispatch(getOrderDetails(id)),
+  loadItems: (id, page, limit) => dispatch(getOrderItems(id, page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderDetail);
