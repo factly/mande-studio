@@ -1,30 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Table, Form } from 'antd';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const CartDetail = () => {
+import Loading from '../../components/loading';
+import { getCartItems } from '../../actions/carts';
+
+const CartDetail = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const { id } = useParams();
+  const { loading, data, load } = props;
+  const total = data.length;
 
   React.useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/carts/${id}/items`)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, [id]);
+    load(id);
+  }, [load, id]);
 
-  const get = (page, limit) => {
-    fetch(`${process.env.REACT_APP_API_URL}/carts/${id}/items?page=${page}&limit=${limit}`)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  };
+  const get = (page, limit) => load(id, page, limit);
 
   const columns = [
     {
@@ -43,7 +36,9 @@ const CartDetail = () => {
     },
   ];
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -62,4 +57,22 @@ const CartDetail = () => {
   );
 };
 
-export default CartDetail;
+CartDetail.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { details } = state.carts;
+  return {
+    loading: details.loading,
+    data: details.items,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (id, page, limit) => dispatch(getCartItems(id, page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartDetail);
