@@ -1,0 +1,5 @@
+export const LOADING_MEMBERSHIPS = 'LOADING_MEMBERSHIPS';
+export const LOAD_MEMBERSHIPS_SUCCESS = 'LOAD_MEMBERSHIPS_SUCCESS';
+export const LOAD_MEMBERSHIPS_FAILURE = 'LOAD_MEMBERSHIPS_FAILURE';
+
+export const baseUrl = `${process.env.REACT_APP_API_URL}/memberships`;

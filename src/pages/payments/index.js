@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Form } from 'antd';
 import moment from 'moment';
 
-const Payments = () => {
+import Loading from '../../components/loading';
+import { loadPayments } from '../../actions/payments';
+
+const Payments = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { loading, data, load } = props;
+  const total = data.length;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/payments')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    load();
+  }, [load]);
 
-  const get = (page, limit) => {
-    fetch(process.env.REACT_APP_API_URL + '/payments?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  };
+  const get = (page, limit) => load(page, limit);
 
   const columns = [
     {
@@ -54,7 +47,9 @@ const Payments = () => {
     },
   ];
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -74,4 +69,22 @@ const Payments = () => {
   );
 };
 
-export default Payments;
+Payments.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.payments;
+  return {
+    loading: list.loading,
+    data: list.items,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadPayments(page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payments);

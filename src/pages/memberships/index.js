@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Form } from 'antd';
 import moment from 'moment';
 
-const Memberships = () => {
+import Loading from '../../components/loading';
+import { loadMemberships } from '../../actions/memberships';
+
+const Memberships = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { loading, data, load } = props;
+  const total = data.length;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/memberships')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    load();
+  }, [load]);
 
-  const get = (page, limit) => {
-    fetch(process.env.REACT_APP_API_URL + '/memberships?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  };
+  const get = (page, limit) => load(page, limit);
 
   const columns = [
     {
@@ -60,7 +53,9 @@ const Memberships = () => {
     },
   ];
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -80,4 +75,22 @@ const Memberships = () => {
   );
 };
 
-export default Memberships;
+Memberships.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.memberships;
+  return {
+    loading: list.loading,
+    data: list.items,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadMemberships(page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Memberships);
