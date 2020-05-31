@@ -12,7 +12,7 @@ import {
 } from '../constants/categories';
 
 const initialState = {
-  list: { loading: false, items: [] },
+  list: { loading: false, items: [], total: 0 },
 };
 
 export default function categoriesReducer(state = initialState, action = {}) {
@@ -25,15 +25,18 @@ export default function categoriesReducer(state = initialState, action = {}) {
           loading: true,
         },
       };
-    case LOAD_CATEGORIES_SUCCESS:
+    case LOAD_CATEGORIES_SUCCESS: {
+      const { items, total } = action.payload;
       return {
         ...state,
         list: {
           ...state.list,
           loading: false,
-          items: action.payload,
+          items,
+          total,
         },
       };
+    }
     case LOAD_CATEGORIES_FAILURE:
       return {
         ...state,
@@ -58,6 +61,7 @@ export default function categoriesReducer(state = initialState, action = {}) {
           ...list,
           loading: false,
           items: [...list.items, action.payload],
+          total: list.total + 1,
         },
       };
     }
@@ -91,15 +95,17 @@ export default function categoriesReducer(state = initialState, action = {}) {
         },
       };
     case DELETE_CATEGORY_SUCCESS: {
+      const { list } = state;
       const index = action.payload;
-      const newItems = [...state.list.items];
+      const newItems = [...list.items];
       newItems.splice(index, 1);
       return {
         ...state,
         list: {
-          ...state.list,
+          ...list,
           loading: false,
           items: newItems,
+          total: list.total - 1,
         },
       };
     }

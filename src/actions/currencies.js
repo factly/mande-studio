@@ -32,7 +32,7 @@ export const loadCurrencies = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadCurrenciesSuccess(response.data.nodes));
+      dispatch(loadCurrenciesSuccess(response.data));
     }
   };
 };
@@ -100,10 +100,13 @@ const loadingCurrencies = () => {
   };
 };
 
-const loadCurrenciesSuccess = (currencies) => {
+const loadCurrenciesSuccess = (data) => {
   return {
     type: LOAD_CURRENCIES_SUCCESS,
-    payload: currencies,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 

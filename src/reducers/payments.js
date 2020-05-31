@@ -5,7 +5,7 @@ import {
 } from '../constants/payments';
 
 const initialState = {
-  list: { loading: false, items: [] },
+  list: { loading: false, items: [], total: 0 },
 };
 
 export default function paymentsReducer(state = initialState, action = {}) {
@@ -18,15 +18,18 @@ export default function paymentsReducer(state = initialState, action = {}) {
           loading: true,
         },
       };
-    case LOAD_PAYMENTS_SUCCESS:
+    case LOAD_PAYMENTS_SUCCESS: {
+      const { items, total } = action.payload;
       return {
         ...state,
         list: {
           ...state.list,
           loading: false,
-          items: action.payload,
+          items,
+          total,
         },
       };
+    }
     case LOAD_PAYMENTS_FAILURE:
       return {
         ...state,

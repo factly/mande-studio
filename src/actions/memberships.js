@@ -23,7 +23,7 @@ export const loadMemberships = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadMembershipsSuccess(response.data.nodes));
+      dispatch(loadMembershipsSuccess(response.data));
     }
   };
 };
@@ -34,10 +34,13 @@ const loadingMemberships = () => {
   };
 };
 
-const loadMembershipsSuccess = (memberships) => {
+const loadMembershipsSuccess = (data) => {
   return {
     type: LOAD_MEMBERSHIPS_SUCCESS,
-    payload: memberships,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 

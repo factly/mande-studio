@@ -8,8 +8,8 @@ import {
 } from '../constants/carts';
 
 const initialState = {
-  list: { loading: false, items: [] },
-  details: { loading: false, items: [] },
+  list: { loading: false, items: [], total: 0 },
+  details: { loading: false, items: [], total: 0 },
 };
 
 export default function cartsReducer(state = initialState, action = {}) {
@@ -22,15 +22,18 @@ export default function cartsReducer(state = initialState, action = {}) {
           loading: true,
         },
       };
-    case LOAD_CARTS_SUCCESS:
+    case LOAD_CARTS_SUCCESS: {
+      const { items, total } = action.payload;
       return {
         ...state,
         list: {
           ...state.list,
           loading: false,
-          items: [...action.payload],
+          items,
+          total,
         },
       };
+    }
     case LOAD_CARTS_FAILURE:
       return {
         ...state,
@@ -55,15 +58,18 @@ export default function cartsReducer(state = initialState, action = {}) {
           loading: false,
         },
       };
-    case GET_CART_ITEMS_SUCCESS:
+    case GET_CART_ITEMS_SUCCESS: {
+      const { items, total } = action.payload;
       return {
         ...state,
         details: {
           ...state.details,
           loading: false,
-          items: [...action.payload],
+          items,
+          total,
         },
       };
+    }
     default:
       return state;
   }

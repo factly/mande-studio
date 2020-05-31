@@ -26,7 +26,7 @@ export const loadCarts = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadCartsSuccess(response.data.nodes));
+      dispatch(loadCartsSuccess(response.data));
     }
   };
 };
@@ -48,7 +48,7 @@ export const getCartItems = (id, page, limit) => {
     });
 
     if (response) {
-      dispatch(getCartItemsSuccess(response.data.nodes));
+      dispatch(getCartItemsSuccess(response.data));
     }
   };
 };
@@ -65,10 +65,13 @@ const loadingCartDetails = () => {
   };
 };
 
-const loadCartsSuccess = (carts) => {
+const loadCartsSuccess = (data) => {
   return {
     type: LOAD_CARTS_SUCCESS,
-    payload: carts,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 
@@ -79,10 +82,13 @@ const loadCartsFailure = (message) => {
   };
 };
 
-const getCartItemsSuccess = (cartItems) => {
+const getCartItemsSuccess = (data) => {
   return {
     type: GET_CART_ITEMS_SUCCESS,
-    payload: cartItems,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 

@@ -10,8 +10,7 @@ import { getOrderDetails, getOrderItems } from '../../actions/orders';
 const OrderDetail = (props) => {
   const [form] = Form.useForm();
   const { id } = useParams();
-  const { loading, data, order, getOrder, loadItems } = props;
-  const total = data.length;
+  const { loading, data, total, order, getOrder, loadItems } = props;
 
   React.useEffect(() => {
     getOrder(id);
@@ -81,6 +80,7 @@ OrderDetail.propTypes = {
   loading: PropTypes.bool.isRequired,
   order: PropTypes.object.isRequired,
   data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
   getOrder: PropTypes.func.isRequired,
   loadItems: PropTypes.func.isRequired,
 };
@@ -91,6 +91,7 @@ const mapStateToProps = (state) => {
     loading: details.loading,
     order: details.order,
     data: details.items,
+    total: details.total,
   };
 };
 

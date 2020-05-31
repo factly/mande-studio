@@ -23,7 +23,7 @@ export const loadPayments = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadPaymentsSuccess(response.data.nodes));
+      dispatch(loadPaymentsSuccess(response.data));
     }
   };
 };
@@ -34,10 +34,13 @@ const loadingPayments = () => {
   };
 };
 
-const loadPaymentsSuccess = (payments) => {
+const loadPaymentsSuccess = (data) => {
   return {
     type: LOAD_PAYMENTS_SUCCESS,
-    payload: payments,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 

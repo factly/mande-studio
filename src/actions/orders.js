@@ -29,7 +29,7 @@ export const loadOrders = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadOrdersSuccess(response.data.nodes));
+      dispatch(loadOrdersSuccess(response.data));
     }
   };
 };
@@ -70,7 +70,7 @@ export const getOrderItems = (id, page, limit) => {
     });
 
     if (response) {
-      dispatch(getOrderItemsSuccess(response.data.nodes));
+      dispatch(getOrderItemsSuccess(response.data));
     }
   };
 };
@@ -93,10 +93,13 @@ const loadingOrderItems = () => {
   };
 };
 
-const loadOrdersSuccess = (orders) => {
+const loadOrdersSuccess = (data) => {
   return {
     type: LOAD_ORDERS_SUCCESS,
-    payload: orders,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 
@@ -121,10 +124,13 @@ const getOrderDetailsFailure = (message) => {
   };
 };
 
-const getOrderItemsSuccess = (orderItems) => {
+const getOrderItemsSuccess = (data) => {
   return {
     type: GET_ORDER_ITEMS_SUCCESS,
-    payload: orderItems,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 

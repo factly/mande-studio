@@ -5,7 +5,7 @@ import {
 } from '../constants/memberships';
 
 const initialState = {
-  list: { loading: false, items: [] },
+  list: { loading: false, items: [], total: 0 },
 };
 
 export default function membershipsReducer(state = initialState, action = {}) {
@@ -18,15 +18,18 @@ export default function membershipsReducer(state = initialState, action = {}) {
           loading: true,
         },
       };
-    case LOAD_MEMBERSHIPS_SUCCESS:
+    case LOAD_MEMBERSHIPS_SUCCESS: {
+      const { items, total } = action.payload;
       return {
         ...state,
         list: {
           ...state.list,
           loading: false,
-          items: action.payload,
+          items,
+          total,
         },
       };
+    }
     case LOAD_MEMBERSHIPS_FAILURE:
       return {
         ...state,

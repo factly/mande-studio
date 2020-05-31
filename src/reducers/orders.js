@@ -11,8 +11,8 @@ import {
 } from '../constants/orders';
 
 const initialState = {
-  list: { loading: false, items: [] },
-  details: { loading: false, order: {}, items: [] },
+  list: { loading: false, items: [], total: 0 },
+  details: { loading: false, order: {}, items: [], total: 0 },
 };
 
 export default function ordersReducer(state = initialState, action = {}) {
@@ -25,15 +25,18 @@ export default function ordersReducer(state = initialState, action = {}) {
           loading: true,
         },
       };
-    case LOAD_ORDERS_SUCCESS:
+    case LOAD_ORDERS_SUCCESS: {
+      const { items, total } = action.payload;
       return {
         ...state,
         list: {
           ...state.list,
           loading: false,
-          items: [...action.payload],
+          items,
+          total,
         },
       };
+    }
     case LOAD_ORDERS_FAILURE:
       return {
         ...state,
@@ -83,15 +86,18 @@ export default function ordersReducer(state = initialState, action = {}) {
           loading: false,
         },
       };
-    case GET_ORDER_ITEMS_SUCCESS:
+    case GET_ORDER_ITEMS_SUCCESS: {
+      const { items, total } = action.payload;
       return {
         ...state,
         details: {
           ...state.details,
           loading: false,
-          items: [...action.payload],
+          items,
+          total,
         },
       };
+    }
     default:
       return state;
   }

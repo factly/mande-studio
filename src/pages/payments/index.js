@@ -9,8 +9,7 @@ import { loadPayments } from '../../actions/payments';
 
 const Payments = (props) => {
   const [form] = Form.useForm();
-  const { loading, data, load } = props;
-  const total = data.length;
+  const { loading, data, total, load } = props;
 
   React.useEffect(() => {
     load();
@@ -72,6 +71,7 @@ const Payments = (props) => {
 Payments.propTypes = {
   loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
 };
 
@@ -80,6 +80,7 @@ const mapStateToProps = (state) => {
   return {
     loading: list.loading,
     data: list.items,
+    total: list.total,
   };
 };
 

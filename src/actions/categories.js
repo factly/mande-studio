@@ -32,7 +32,7 @@ export const loadCategories = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadCategoriesSuccess(response.data.nodes));
+      dispatch(loadCategoriesSuccess(response.data));
     }
   };
 };
@@ -100,10 +100,13 @@ const loadingCategories = () => {
   };
 };
 
-const loadCategoriesSuccess = (categories) => {
+const loadCategoriesSuccess = (data) => {
   return {
     type: LOAD_CATEGORIES_SUCCESS,
-    payload: categories,
+    payload: {
+      items: data.nodes,
+      total: data.total,
+    },
   };
 };
 

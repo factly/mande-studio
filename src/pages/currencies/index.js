@@ -37,8 +37,7 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Currencies = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { loading, data, load, update, remove } = props;
-  const total = data.length;
+  const { loading, data, total, load, update, remove } = props;
 
   React.useEffect(() => {
     load();
@@ -229,6 +228,7 @@ const Currencies = (props) => {
 Currencies.propTypes = {
   loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
   update: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
@@ -239,6 +239,7 @@ const mapStateToProps = (state) => {
   return {
     loading: list.loading,
     data: list.items,
+    total: list.total,
   };
 };
 
