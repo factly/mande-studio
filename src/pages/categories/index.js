@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+
+import Loading from '../../components/loading';
+import { loadCategories, updateCategory, deleteCategory } from '../../actions/categories';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -29,29 +34,19 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Categories = () => {
+const Categories = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const { loading, data, load, update, remove } = props;
+  const total = data.length;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/categories')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    load();
+  }, [load]);
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/categories?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+    load(page, limit);
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -71,29 +66,15 @@ const Categories = () => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/categories/' + item.id, {
-          method: 'PUT',
-          body: JSON.stringify(row),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(res.status);
-            }
-          })
-          .then((res) => {
-            const newData = [...data];
-            newData.splice(index, 1, res);
-            setData(newData);
+        update(key, row, index)
+          .then(() => {
             setEditingKey('');
             notification.success({
               message: 'Success',
               description: 'Category succesfully updated',
             });
           })
-          .catch((err) => {
+          .catch(() => {
             notification.error({
               message: 'Error',
               description: 'Something went wrong',
@@ -111,21 +92,14 @@ const Categories = () => {
   const deleteCategory = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/categories/' + key, {
-        method: 'DELETE',
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            const newData = [...data];
-            newData.splice(index, 1);
-            setData(newData);
-            notification.success({
-              message: 'Success',
-              description: 'Category succesfully deleted',
-            });
-          }
+      remove(key, index)
+        .then(() => {
+          notification.success({
+            message: 'Success',
+            description: 'Category succesfully deleted',
+          });
         })
-        .catch((err) => {
+        .catch(() => {
           notification.error({
             message: 'Error',
             description: 'Something went wrong',
@@ -220,7 +194,9 @@ const Categories = () => {
     };
   });
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <Link to={'/categories/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
@@ -250,4 +226,26 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+Categories.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.categories;
+  return {
+    loading: list.loading,
+    data: list.items,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadCategories(page, limit)),
+  update: (id, data, index) => dispatch(updateCategory(id, data, index)),
+  remove: (id, index) => dispatch(deleteCategory(id, index)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
