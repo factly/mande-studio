@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+
+import Loading from '../../components/loading';
+import { loadPlans, updatePlan, deletePlan } from '../../actions/plans';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -29,29 +34,18 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Plans = () => {
+const Plans = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const { loading, data, total, load, update, remove } = props;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/plans')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    load();
+  }, [load]);
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/plans?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+    load(page, limit);
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -71,29 +65,15 @@ const Plans = () => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/plans/' + item.id, {
-          method: 'PUT',
-          body: JSON.stringify(row),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(res.status);
-            }
-          })
-          .then((res) => {
-            const newData = [...data];
-            newData.splice(index, 1, res);
-            setData(newData);
+        update(key, row, index)
+          .then(() => {
             setEditingKey('');
             notification.success({
               message: 'Success',
               description: 'Plan succesfully updated',
             });
           })
-          .catch((err) => {
+          .catch(() => {
             notification.error({
               message: 'Error',
               description: 'Something went wrong',
@@ -111,21 +91,14 @@ const Plans = () => {
   const deletePlan = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/plans/' + key, {
-        method: 'DELETE',
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            const newData = [...data];
-            newData.splice(index, 1);
-            setData(newData);
-            notification.success({
-              message: 'Success',
-              description: 'Membership succesfully deleted',
-            });
-          }
+      remove(key, index)
+        .then(() => {
+          notification.success({
+            message: 'Success',
+            description: 'Membership succesfully deleted',
+          });
         })
-        .catch((err) => {
+        .catch(() => {
           notification.error({
             message: 'Error',
             description: 'Something went wrong',
@@ -226,7 +199,9 @@ const Plans = () => {
     };
   });
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <Link to={'/plans/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
@@ -256,4 +231,28 @@ const Plans = () => {
   );
 };
 
-export default Plans;
+Plans.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.plans;
+  return {
+    loading: list.loading,
+    data: list.items,
+    total: list.total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadPlans(page, limit)),
+  update: (id, data, index) => dispatch(updatePlan(id, data, index)),
+  remove: (id, index) => dispatch(deletePlan(id, index)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Plans);
