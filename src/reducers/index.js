@@ -6,7 +6,8 @@ import membershipsReducer from './memberships';
 import paymentsReducer from './payments';
 import plansReducer from './plans';
 import tagsReducer from './tags';
-import typesReducer from './product_types';
+import productsReducer from './products';
+import productTypesReducer from './product_types';
 import categoriesReducer from './categories';
 import currenciesReducer from './currencies';
 
@@ -17,7 +18,8 @@ export default combineReducers({
   memberships: membershipsReducer,
   orders: ordersReducer,
   payments: paymentsReducer,
-  productTypes: typesReducer,
+  productTypes: productTypesReducer,
   tags: tagsReducer,
   plans: plansReducer,
+  products: productsReducer,
 });

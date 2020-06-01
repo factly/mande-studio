@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+
+import Loading from '../../components/loading';
+import { loadProducts, deleteProduct } from '../../actions/products';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -31,27 +36,16 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 
 const Products = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const { loading, data, total, load, remove } = props;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/products')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    load();
+  }, [load]);
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/products?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+    load(page, limit);
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -63,21 +57,14 @@ const Products = (props) => {
   const deleteProduct = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/products/' + key, {
-        method: 'DELETE',
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            const newData = [...data];
-            newData.splice(index, 1);
-            setData(newData);
-            notification.success({
-              message: 'Success',
-              description: 'Product succesfully deleted',
-            });
-          }
+      remove(key, index)
+        .then(() => {
+          notification.success({
+            message: 'Success',
+            description: 'Product succesfully deleted',
+          });
         })
-        .catch((err) => {
+        .catch(() => {
           notification.error({
             message: 'Error',
             description: 'Something went wrong',
@@ -180,7 +167,9 @@ const Products = (props) => {
     };
   });
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <Link to={'/products/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
@@ -210,4 +199,26 @@ const Products = (props) => {
   );
 };
 
-export default Products;
+Products.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.products;
+  return {
+    loading: list.loading,
+    data: list.items,
+    total: list.total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadProducts(page, limit)),
+  remove: (id, index) => dispatch(deleteProduct(id, index)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

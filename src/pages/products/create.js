@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Form, Input, Button, notification, Select } from 'antd';
+
+import { createProduct } from '../../actions/products';
+import { loadTags } from '../../actions/tags';
+import { loadProductTypes } from '../../actions/product_types';
+import { loadCategories } from '../../actions/categories';
+import { loadCurrencies } from '../../actions/currencies';
 
 const { Option } = Select;
 
@@ -9,32 +17,23 @@ const formItemLayout = {
 };
 
 const ProductCreate = (props) => {
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [currencies, setCurrencies] = useState([]);
-  const [productType, setProductType] = useState([]);
+  const {
+    tags,
+    categories,
+    currencies,
+    productTypes,
+    create,
+    loadTags,
+    loadCategories,
+    loadCurrencies,
+    loadProductTypes,
+  } = props;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/tags')
-      .then((data) => data.json())
-      .then((data) => {
-        setTags(data.nodes);
-      });
-    fetch(process.env.REACT_APP_API_URL + '/categories')
-      .then((data) => data.json())
-      .then((data) => {
-        setCategories(data.nodes);
-      });
-    fetch(process.env.REACT_APP_API_URL + '/currencies')
-      .then((data) => data.json())
-      .then((data) => {
-        setCurrencies(data.nodes);
-      });
-    fetch(process.env.REACT_APP_API_URL + '/types')
-      .then((data) => data.json())
-      .then((data) => {
-        setProductType(data.nodes);
-      });
+    loadTags();
+    loadCategories();
+    loadCurrencies();
+    loadProductTypes();
   }, []);
 
   function handleChange(value) {
@@ -47,25 +46,15 @@ const ProductCreate = (props) => {
     values.price = parseInt(values.price);
     values.category_ids = values.category_ids.map((c) => parseInt(c));
     values.tag_ids = values.tag_ids.map((t) => parseInt(t));
-    fetch(process.env.REACT_APP_API_URL + '/products', {
-      method: 'POST',
-      body: JSON.stringify(values),
-    })
-      .then((res) => {
-        if (res.status === 201) {
-          return res.json();
-        } else {
-          throw new Error(res.status);
-        }
-      })
-      .then((_) => {
+    create(values)
+      .then(() => {
         notification.success({
           message: 'Success',
           description: 'Product succesfully added',
         });
         props.history.push('/products');
       })
-      .catch((res) => {
+      .catch(() => {
         notification.error({
           message: 'Error',
           description: 'Something went wrong',
@@ -234,8 +223,8 @@ const ProductCreate = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {productType.length > 0
-            ? productType.map((p) => <Option key={p.id}>{p.name}</Option>)
+          {productTypes.length > 0
+            ? productTypes.map((p) => <Option key={p.id}>{p.name}</Option>)
             : []}
         </Select>
       </Form.Item>
@@ -249,4 +238,31 @@ const ProductCreate = (props) => {
   );
 };
 
-export default ProductCreate;
+ProductCreate.propTypes = {
+  create: PropTypes.func.isRequired,
+  loadTags: PropTypes.func.isRequired,
+  loadCategories: PropTypes.func.isRequired,
+  loadCurrencies: PropTypes.func.isRequired,
+  loadProductTypes: PropTypes.func.isRequired,
+  tags: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  currencies: PropTypes.array.isRequired,
+  productTypes: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  tags: state.tags.list.items,
+  categories: state.categories.list.items,
+  currencies: state.currencies.list.items,
+  productTypes: state.productTypes.list.items,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  create: (values) => dispatch(createProduct(values)),
+  loadTags: () => dispatch(loadTags()),
+  loadCategories: () => dispatch(loadCategories()),
+  loadCurrencies: () => dispatch(loadCurrencies()),
+  loadProductTypes: () => dispatch(loadProductTypes()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCreate);
