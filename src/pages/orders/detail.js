@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { Table, Form, Descriptions, Card } from 'antd';
 
-import Loading from '../../components/loading';
 import { getOrderDetails, getOrderItems } from '../../actions/orders';
 
 const OrderDetail = (props) => {
   const [form] = Form.useForm();
   const { id } = useParams();
-  const { loading, data, total, order, getOrder, loadItems } = props;
+  const { data, total, order, getOrder, loadItems } = props;
 
   React.useEffect(() => {
     getOrder(id);
@@ -41,9 +40,7 @@ const OrderDetail = (props) => {
     },
   ];
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div>
       {!order.id ? null : (
         <Card>
@@ -77,7 +74,6 @@ const OrderDetail = (props) => {
 };
 
 OrderDetail.propTypes = {
-  loading: PropTypes.bool.isRequired,
   order: PropTypes.object.isRequired,
   data: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
@@ -88,7 +84,6 @@ OrderDetail.propTypes = {
 const mapStateToProps = (state) => {
   const { details } = state.orders;
   return {
-    loading: details.loading,
     order: details.order,
     data: details.items,
     total: details.total,

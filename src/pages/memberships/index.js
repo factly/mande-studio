@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { Table, Form } from 'antd';
 import moment from 'moment';
 
-import Loading from '../../components/loading';
 import { loadMemberships } from '../../actions/memberships';
 
 const Memberships = (props) => {
   const [form] = Form.useForm();
-  const { loading, data, total, load } = props;
+  const { data, total, load } = props;
 
   React.useEffect(() => {
     load();
@@ -52,9 +51,7 @@ const Memberships = (props) => {
     },
   ];
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -75,7 +72,6 @@ const Memberships = (props) => {
 };
 
 Memberships.propTypes = {
-  loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
@@ -84,7 +80,6 @@ Memberships.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.memberships;
   return {
-    loading: list.loading,
     data: list.items,
     total: list.total,
   };

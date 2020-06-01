@@ -6,7 +6,6 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
 
-import Loading from '../../components/loading';
 import { loadPlans, updatePlan, deletePlan } from '../../actions/plans';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
@@ -37,7 +36,7 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Plans = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { loading, data, total, load, update, remove } = props;
+  const { data, total, load, update, remove } = props;
 
   React.useEffect(() => {
     load();
@@ -199,9 +198,7 @@ const Plans = (props) => {
     };
   });
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div>
       <Link to={'/plans/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
@@ -232,7 +229,6 @@ const Plans = (props) => {
 };
 
 Plans.propTypes = {
-  loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
@@ -243,7 +239,6 @@ Plans.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.plans;
   return {
-    loading: list.loading,
     data: list.items,
     total: list.total,
   };

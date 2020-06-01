@@ -4,12 +4,11 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Loading from '../../components/loading';
 import { loadCarts } from '../../actions/carts';
 
 const Carts = (props) => {
   const [form] = Form.useForm();
-  const { loading, data, load, total } = props;
+  const { data, load, total } = props;
 
   React.useEffect(() => {
     load();
@@ -57,9 +56,7 @@ const Carts = (props) => {
     },
   ];
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -79,7 +76,6 @@ const Carts = (props) => {
 };
 
 Carts.propTypes = {
-  loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
@@ -88,7 +84,6 @@ Carts.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.carts;
   return {
-    loading: list.loading,
     data: list.items,
     total: list.total,
   };

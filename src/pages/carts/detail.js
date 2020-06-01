@@ -4,13 +4,12 @@ import { Table, Form } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Loading from '../../components/loading';
 import { getCartItems } from '../../actions/carts';
 
 const CartDetail = (props) => {
   const [form] = Form.useForm();
   const { id } = useParams();
-  const { loading, data, load, total } = props;
+  const { data, load, total } = props;
 
   React.useEffect(() => {
     load(id);
@@ -35,9 +34,7 @@ const CartDetail = (props) => {
     },
   ];
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -57,7 +54,6 @@ const CartDetail = (props) => {
 };
 
 CartDetail.propTypes = {
-  loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
@@ -66,7 +62,6 @@ CartDetail.propTypes = {
 const mapStateToProps = (state) => {
   const { details } = state.carts;
   return {
-    loading: details.loading,
     data: details.items,
     total: details.total,
   };

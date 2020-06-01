@@ -5,11 +5,10 @@ import { Table, Form, Button } from 'antd';
 import moment from 'moment';
 
 import { loadOrders } from '../../actions/orders';
-import Loading from '../../components/loading';
 
 const Orders = (props) => {
   const [form] = Form.useForm();
-  const { loading, data, total, load } = props;
+  const { data, total, load } = props;
 
   React.useEffect(() => {
     load();
@@ -69,9 +68,7 @@ const Orders = (props) => {
     },
   ];
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div>
       <Form form={form} component={false}>
         <Table
@@ -91,7 +88,6 @@ const Orders = (props) => {
 };
 
 Orders.propTypes = {
-  loading: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
@@ -100,7 +96,6 @@ Orders.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.orders;
   return {
-    loading: list.loading,
     data: list.items,
     total: list.total,
   };
