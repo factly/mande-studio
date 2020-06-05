@@ -36,7 +36,7 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Products = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { data, total, load, remove } = props;
+  const { data, currencies, categories, tags, total, load, remove } = props;
 
   React.useEffect(() => {
     load();
@@ -56,7 +56,7 @@ const Products = (props) => {
   const deleteProduct = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      remove(key, index)
+      remove(key)
         .then(() => {
           notification.success({
             message: 'Success',
@@ -85,7 +85,7 @@ const Products = (props) => {
     },
     {
       title: 'Currency',
-      render: (record) => record.currency.iso_code,
+      render: (record) => currencies[record.currency_id].iso_code,
       width: '10%',
     },
     {
@@ -100,12 +100,12 @@ const Products = (props) => {
     },
     {
       title: 'Categories',
-      render: (record) => record.categories.map((c) => c.title).join(', '),
+      render: (record) => record.categories.map((id) => categories[id].title).join(', '),
       width: '20%',
     },
     {
       title: 'Tags',
-      render: (record) => record.tags.map((t) => t.title).join(', '),
+      render: (record) => record.tags.map((id) => tags[id].title).join(', '),
       width: '20%',
     },
     {
@@ -198,6 +198,9 @@ const Products = (props) => {
 
 Products.propTypes = {
   data: PropTypes.array.isRequired,
+  tags: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired,
+  currencies: PropTypes.object.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
@@ -206,14 +209,17 @@ Products.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.products;
   return {
-    data: list.items,
+    data: Object.values(list.items),
+    currencies: state.currencies.list.items,
+    tags: state.tags.list.items,
+    categories: state.categories.list.items,
     total: list.total,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   load: (page, limit) => dispatch(loadProducts(page, limit)),
-  remove: (id, index) => dispatch(deleteProduct(id, index)),
+  remove: (id) => dispatch(deleteProduct(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

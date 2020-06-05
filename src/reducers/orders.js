@@ -11,7 +11,6 @@ import {
   GET_ORDER_ITEMS_SUCCESS,
   GET_ORDER_ITEMS_FAILURE,
 } from '../constants/orders';
-import { unique } from '../utils/objects';
 
 const initialState = {
   list: { loading: false, ids: [], items: {}, total: 0 },

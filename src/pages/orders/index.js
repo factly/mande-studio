@@ -8,7 +8,7 @@ import { loadOrders } from '../../actions/orders';
 
 const Orders = (props) => {
   const [form] = Form.useForm();
-  const { data, total, load } = props;
+  const { data, currencies, payments, total, load } = props;
 
   React.useEffect(() => {
     load();
@@ -24,9 +24,11 @@ const Orders = (props) => {
     },
     {
       title: 'Amount',
-      render: (record) => (
-        <span>{`${record.payment.amount} ${record.payment.currency.iso_code}`}</span>
-      ),
+      render: (record) => {
+        const payment = payments[record.payment_id];
+        const currency = currencies[payment.currency_id];
+        return <span>{`${payment.amount} ${currency.iso_code}`}</span>;
+      },
       width: '20%',
     },
     {
@@ -89,6 +91,8 @@ const Orders = (props) => {
 
 Orders.propTypes = {
   data: PropTypes.array.isRequired,
+  payments: PropTypes.object.isRequired,
+  currencies: PropTypes.object.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
 };
@@ -96,7 +100,9 @@ Orders.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.orders;
   return {
-    data: list.items,
+    data: Object.values(list.items),
+    payments: state.payments.list.items,
+    currencies: state.currencies.list.items,
     total: list.total,
   };
 };

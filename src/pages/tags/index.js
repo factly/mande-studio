@@ -64,7 +64,7 @@ const Tags = (props) => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        update(key, row, index)
+        update(key, row)
           .then((res) => {
             setEditingKey('');
             notification.success({
@@ -90,7 +90,7 @@ const Tags = (props) => {
   const deleteTag = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      remove(key, index)
+      remove(key)
         .then((res) => {
           notification.success({
             message: 'Success',
@@ -233,15 +233,15 @@ Tags.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.tags;
   return {
-    data: list.items,
+    data: Object.values(list.items),
     total: list.total,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   load: (page, limit) => dispatch(loadTags(page, limit)),
-  update: (id, data, index) => dispatch(updateTag(id, data, index)),
-  remove: (id, index) => dispatch(deleteTag(id, index)),
+  update: (id, data) => dispatch(updateTag(id, data)),
+  remove: (id) => dispatch(deleteTag(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);

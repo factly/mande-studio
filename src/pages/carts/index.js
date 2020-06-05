@@ -84,7 +84,7 @@ Carts.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.carts;
   return {
-    data: list.items,
+    data: Object.values(list.items),
     total: list.total,
   };
 };

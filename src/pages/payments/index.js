@@ -8,7 +8,7 @@ import { loadPayments } from '../../actions/payments';
 
 const Payments = (props) => {
   const [form] = Form.useForm();
-  const { data, total, load } = props;
+  const { data, currencies, total, load } = props;
 
   React.useEffect(() => {
     load();
@@ -19,7 +19,9 @@ const Payments = (props) => {
   const columns = [
     {
       title: 'Amount',
-      render: (record) => <span>{`${record.amount} ${record.currency.iso_code}`}</span>,
+      render: (record) => (
+        <span>{`${record.amount} ${currencies[record.currency_id].iso_code}`}</span>
+      ),
       width: '25%',
       editable: true,
     },
@@ -67,6 +69,7 @@ const Payments = (props) => {
 
 Payments.propTypes = {
   data: PropTypes.array.isRequired,
+  currencies: PropTypes.object.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
 };
@@ -74,7 +77,8 @@ Payments.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.payments;
   return {
-    data: list.items,
+    data: Object.values(list.items),
+    currencies: state.currencies.list.items,
     total: list.total,
   };
 };

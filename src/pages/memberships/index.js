@@ -8,7 +8,7 @@ import { loadMemberships } from '../../actions/memberships';
 
 const Memberships = (props) => {
   const [form] = Form.useForm();
-  const { data, total, load } = props;
+  const { data, plans, users, total, load } = props;
 
   React.useEffect(() => {
     load();
@@ -25,13 +25,13 @@ const Memberships = (props) => {
     },
     {
       title: 'Plan',
-      render: (record) => record.plan.plan_name,
+      render: (record) => plans[record.plan_id].plan_name,
       width: '15%',
       editable: true,
     },
     {
       title: 'User',
-      render: (record) => record.user.email,
+      render: (record) => users[record.user_id].email,
       width: '15%',
       editable: true,
     },
@@ -73,6 +73,8 @@ const Memberships = (props) => {
 
 Memberships.propTypes = {
   data: PropTypes.array.isRequired,
+  plans: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
 };
@@ -80,7 +82,9 @@ Memberships.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.memberships;
   return {
-    data: list.items,
+    data: Object.values(list.items),
+    plans: state.plans.list.items,
+    users: state.users.list.items,
     total: list.total,
   };
 };

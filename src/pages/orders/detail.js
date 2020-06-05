@@ -9,7 +9,7 @@ import { getOrderDetails, getOrderItems } from '../../actions/orders';
 const OrderDetail = (props) => {
   const [form] = Form.useForm();
   const { id } = useParams();
-  const { data, total, order, getOrder, loadItems } = props;
+  const { data, products, currencies, total, order, getOrder, loadItems } = props;
 
   React.useEffect(() => {
     getOrder(id);
@@ -21,16 +21,20 @@ const OrderDetail = (props) => {
   const columns = [
     {
       title: 'Product Item',
-      render: (record) => record.product.title,
+      render: (record) => products[record.product_id].title || '',
       width: '40%',
     },
     {
       title: 'Price',
-      render: (record) => (
-        <span>
-          {record.product.price} {record.product.currency.iso_code}
-        </span>
-      ),
+      render: (record) => {
+        const product = products[record.product_id];
+        const currency = currencies[product.currency_id];
+        return (
+          <span>
+            {product.price} {currency.iso_code}
+          </span>
+        );
+      },
       width: '20%',
     },
     {
@@ -76,6 +80,8 @@ const OrderDetail = (props) => {
 OrderDetail.propTypes = {
   order: PropTypes.object.isRequired,
   data: PropTypes.array.isRequired,
+  products: PropTypes.object.isRequired,
+  currencies: PropTypes.object.isRequired,
   total: PropTypes.number.isRequired,
   getOrder: PropTypes.func.isRequired,
   loadItems: PropTypes.func.isRequired,
@@ -85,7 +91,9 @@ const mapStateToProps = (state) => {
   const { details } = state.orders;
   return {
     order: details.order,
-    data: details.items,
+    data: Object.values(details.items),
+    products: state.products.list.items,
+    currencies: state.currencies.list.items,
     total: details.total,
   };
 };

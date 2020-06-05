@@ -251,10 +251,10 @@ ProductCreate.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  tags: state.tags.list.items,
-  categories: state.categories.list.items,
-  currencies: state.currencies.list.items,
-  productTypes: state.productTypes.list.items,
+  tags: Object.values(state.tags.list.items),
+  categories: Object.values(state.categories.list.items),
+  currencies: Object.values(state.currencies.list.items),
+  productTypes: Object.values(state.productTypes.list.items),
 });
 
 const mapDispatchToProps = (dispatch) => ({

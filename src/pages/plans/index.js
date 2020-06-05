@@ -64,7 +64,7 @@ const Plans = (props) => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        update(key, row, index)
+        update(key, row)
           .then(() => {
             setEditingKey('');
             notification.success({
@@ -90,7 +90,7 @@ const Plans = (props) => {
   const deletePlan = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      remove(key, index)
+      remove(key)
         .then(() => {
           notification.success({
             message: 'Success',
@@ -239,15 +239,15 @@ Plans.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.plans;
   return {
-    data: list.items,
+    data: Object.values(list.items),
     total: list.total,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   load: (page, limit) => dispatch(loadPlans(page, limit)),
-  update: (id, data, index) => dispatch(updatePlan(id, data, index)),
-  remove: (id, index) => dispatch(deletePlan(id, index)),
+  update: (id, data) => dispatch(updatePlan(id, data)),
+  remove: (id) => dispatch(deletePlan(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Plans);

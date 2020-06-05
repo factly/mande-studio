@@ -64,7 +64,7 @@ const Currencies = (props) => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        update(key, row, index)
+        update(key, row)
           .then(() => {
             setEditingKey('');
             notification.success({
@@ -90,7 +90,7 @@ const Currencies = (props) => {
   const deleteCurrency = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      remove(key, index)
+      remove(key)
         .then(() => {
           notification.success({
             message: 'Success',
@@ -233,15 +233,15 @@ Currencies.propTypes = {
 const mapStateToProps = (state) => {
   const { list } = state.currencies;
   return {
-    data: list.items,
+    data: Object.values(list.items),
     total: list.total,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   load: (page, limit) => dispatch(loadCurrencies(page, limit)),
-  update: (id, data, index) => dispatch(updateCurrency(id, data, index)),
-  remove: (id, index) => dispatch(deleteCurrency(id, index)),
+  update: (id, data) => dispatch(updateCurrency(id, data)),
+  remove: (id) => dispatch(deleteCurrency(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Currencies);
