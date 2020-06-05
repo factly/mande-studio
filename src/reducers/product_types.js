@@ -1,6 +1,7 @@
 import {
   LOADING_PRODUCT_TYPES,
   LOAD_PRODUCT_TYPES_SUCCESS,
+  SET_PRODUCT_TYPES_LIST_TOTAL,
   LOAD_PRODUCT_TYPES_FAILURE,
   CREATING_PRODUCT_TYPE,
   CREATE_PRODUCT_TYPE_SUCCESS,
@@ -10,9 +11,10 @@ import {
   DELETE_PRODUCT_TYPE_SUCCESS,
   DELETE_PRODUCT_TYPE_FAILURE,
 } from '../constants/product_types';
+import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
 };
 
 export default function typesReducer(state = initialState, action = {}) {
@@ -26,14 +28,24 @@ export default function typesReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_PRODUCT_TYPES_SUCCESS: {
-      const { items, total } = action.payload;
+      const { ids, items } = action.payload;
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          loading: false,
+          ids: unique([...list.ids, ids]),
+          items: { ...list.items, ...items },
+        },
+      };
+    }
+    case SET_PRODUCT_TYPES_LIST_TOTAL: {
       return {
         ...state,
         list: {
           ...state.list,
-          loading: false,
-          items,
-          total,
+          total: action.payload,
         },
       };
     }
@@ -55,12 +67,14 @@ export default function typesReducer(state = initialState, action = {}) {
       };
     case CREATE_PRODUCT_TYPE_SUCCESS: {
       const { list } = state;
+      const productType = action.payload;
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          items: [...list.items, action.payload],
+          ids: [...list.ids, productType.id],
+          items: { ...list.items, [productType.id]: productType },
           total: list.total + 1,
         },
       };
@@ -74,15 +88,14 @@ export default function typesReducer(state = initialState, action = {}) {
         },
       };
     case UPDATE_PRODUCT_TYPE_SUCCESS: {
-      const { index, product_type } = action.payload;
-      const newItems = [...state.list.items];
-      newItems.splice(index, 1, product_type);
+      const { list } = state;
+      const productType = action.payload;
       return {
         ...state,
         list: {
-          ...state.list,
+          ...list,
           loading: false,
-          items: newItems,
+          items: { ...list.items, [productType.id]: productType },
         },
       };
     }
@@ -96,14 +109,18 @@ export default function typesReducer(state = initialState, action = {}) {
       };
     case DELETE_PRODUCT_TYPE_SUCCESS: {
       const { list } = state;
-      const index = action.payload;
-      const newItems = [...list.items];
-      newItems.splice(index, 1);
+      const id = action.payload;
+      const index = list.ids.indexOf(id);
+      const newIds = [...list.ids];
+      newIds.splice(index, 1);
+      const newItems = { ...list.items };
+      delete newItems[id];
       return {
         ...state,
         list: {
           ...list,
           loading: false,
+          ids: newIds,
           items: newItems,
           total: list.total - 1,
         },

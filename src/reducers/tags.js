@@ -1,6 +1,7 @@
 import {
   LOADING_TAGS,
   LOAD_TAGS_SUCCESS,
+  SET_TAGS_LIST_TOTAL,
   LOAD_TAGS_FAILURE,
   CREATING_TAG,
   CREATE_TAG_SUCCESS,
@@ -10,9 +11,10 @@ import {
   DELETE_TAG_SUCCESS,
   DELETE_TAG_FAILURE,
 } from '../constants/tags';
+import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
 };
 
 export default function tagsReducer(state = initialState, action = {}) {
@@ -26,17 +28,26 @@ export default function tagsReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_TAGS_SUCCESS: {
-      const { items, total } = action.payload;
+      const { ids, items } = action.payload;
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          loading: false,
+          ids: unique([...list.ids, ids]),
+          items: { ...list.items, ...items },
+        },
+      };
+    }
+    case SET_TAGS_LIST_TOTAL:
       return {
         ...state,
         list: {
           ...state.list,
-          loading: false,
-          items,
-          total,
+          total: action.payload,
         },
       };
-    }
     case LOAD_TAGS_FAILURE:
       return {
         ...state,
@@ -55,12 +66,14 @@ export default function tagsReducer(state = initialState, action = {}) {
       };
     case CREATE_TAG_SUCCESS: {
       const { list } = state;
+      const tag = action.payload;
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          items: [...list.items, action.payload],
+          ids: [...list.ids, tag.id],
+          items: { ...list.items, [tag.id]: tag },
           total: list.total + 1,
         },
       };
@@ -74,15 +87,15 @@ export default function tagsReducer(state = initialState, action = {}) {
         },
       };
     case UPDATE_TAG_SUCCESS: {
-      const { index, tag } = action.payload;
-      const newItems = [...state.list.items];
-      newItems.splice(index, 1, tag);
+      const tag = action.payload;
+      const { list } = state;
+
       return {
         ...state,
         list: {
-          ...state.list,
+          ...list,
           loading: false,
-          items: newItems,
+          items: { ...list.items, [tag.id]: tag },
         },
       };
     }
@@ -96,14 +109,18 @@ export default function tagsReducer(state = initialState, action = {}) {
       };
     case DELETE_TAG_SUCCESS: {
       const { list } = state;
-      const index = action.payload;
-      const newItems = [...list.items];
-      newItems.splice(index, 1);
+      const id = action.payload;
+      const index = list.ids.indexOf(id);
+      const newIds = [...list.ids];
+      newIds.splice(index, 1);
+      const newItems = { ...list.items };
+      delete newItems[id];
       return {
         ...state,
         list: {
           ...list,
           loading: false,
+          ids: newIds,
           items: newItems,
           total: list.total - 1,
         },

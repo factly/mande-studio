@@ -3,6 +3,7 @@ import {
   baseUrl,
   LOADING_CURRENCIES,
   LOAD_CURRENCIES_SUCCESS,
+  SET_CURRENCIES_LIST_TOTAL,
   LOAD_CURRENCIES_FAILURE,
   CREATING_CURRENCY,
   CREATE_CURRENCY_SUCCESS,
@@ -14,6 +15,7 @@ import {
   DELETE_CURRENCY_SUCCESS,
   DELETE_CURRENCY_FAILURE,
 } from '../constants/currencies';
+import { getIds, buildObjectOfItems } from '../utils/objects';
 
 export const loadCurrencies = (page, limit) => {
   return async (dispatch, getState) => {
@@ -32,7 +34,9 @@ export const loadCurrencies = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadCurrenciesSuccess(response.data));
+      const { nodes, total } = response.data;
+      dispatch(loadCurrenciesSuccess(nodes));
+      dispatch(setCurrenciesListTotal(total));
     }
   };
 };
@@ -55,7 +59,7 @@ export const createCurrency = (data) => {
   };
 };
 
-export const updateCurrency = (id, data, index) => {
+export const updateCurrency = (id, data) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -70,12 +74,12 @@ export const updateCurrency = (id, data, index) => {
     });
 
     if (response) {
-      dispatch(updateCurrencySuccess(index, response.data));
+      dispatch(updateCurrencySuccess(response.data));
     }
   };
 };
 
-export const deleteCurrency = (id, index) => {
+export const deleteCurrency = (id) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -89,7 +93,7 @@ export const deleteCurrency = (id, index) => {
     });
 
     if (response) {
-      dispatch(deleteCurrencySuccess(index));
+      dispatch(deleteCurrencySuccess(id));
     }
   };
 };
@@ -100,12 +104,19 @@ const loadingCurrencies = () => {
   };
 };
 
-const loadCurrenciesSuccess = (data) => {
+const setCurrenciesListTotal = (total) => {
+  return {
+    type: SET_CURRENCIES_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+export const loadCurrenciesSuccess = (currencies) => {
   return {
     type: LOAD_CURRENCIES_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(currencies),
+      items: buildObjectOfItems(currencies),
     },
   };
 };
@@ -143,10 +154,10 @@ const updatingCurrency = () => {
   };
 };
 
-const updateCurrencySuccess = (index, currency) => {
+const updateCurrencySuccess = (currency) => {
   return {
     type: UPDATE_CURRENCY_SUCCESS,
-    payload: { index, currency },
+    payload: currency,
   };
 };
 
@@ -163,10 +174,10 @@ const deletingCurrency = () => {
   };
 };
 
-const deleteCurrencySuccess = (index) => {
+const deleteCurrencySuccess = (id) => {
   return {
     type: DELETE_CURRENCY_SUCCESS,
-    payload: index,
+    payload: id,
   };
 };
 

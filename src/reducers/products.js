@@ -1,6 +1,7 @@
 import {
   LOADING_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
+  SET_PRODUCTS_LIST_TOTAL,
   LOAD_PRODUCTS_FAILURE,
   CREATING_PRODUCT,
   CREATE_PRODUCT_SUCCESS,
@@ -13,9 +14,10 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
 } from '../constants/products';
+import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
   details: { loading: false, product: {} },
 };
 
@@ -30,14 +32,24 @@ export default function productsReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_PRODUCTS_SUCCESS: {
-      const { items, total } = action.payload;
+      const { items, ids } = action.payload;
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          loading: false,
+          ids: unique([...list.ids, ...ids]),
+          items,
+        },
+      };
+    }
+    case SET_PRODUCTS_LIST_TOTAL: {
       return {
         ...state,
         list: {
           ...state.list,
-          loading: false,
-          items,
-          total,
+          total: action.payload,
         },
       };
     }
@@ -85,12 +97,15 @@ export default function productsReducer(state = initialState, action = {}) {
       };
     case CREATE_PRODUCT_SUCCESS: {
       const { list } = state;
+      const product = action.payload;
+
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          items: [...list.items, action.payload],
+          ids: [...list.ids, product.id],
+          items: { ...list.items, [product.id]: product },
           total: list.total + 1,
         },
       };
@@ -108,7 +123,6 @@ export default function productsReducer(state = initialState, action = {}) {
         ...state,
         list: {
           ...state.list,
-          product: {},
           loading: false,
         },
       };
@@ -123,14 +137,18 @@ export default function productsReducer(state = initialState, action = {}) {
       };
     case DELETE_PRODUCT_SUCCESS: {
       const { list } = state;
-      const index = action.payload;
-      const newItems = [...list.items];
-      newItems.splice(index, 1);
+      const id = action.payload;
+      const index = list.ids.indexOf(id);
+      const newIds = [...list.ids];
+      newIds.splice(index, 1);
+      const newItems = { ...list.items };
+      delete newItems[id];
       return {
         ...state,
         list: {
           ...list,
           loading: false,
+          ids: newIds,
           items: newItems,
           total: list.total - 1,
         },

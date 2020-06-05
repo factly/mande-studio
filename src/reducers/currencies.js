@@ -1,6 +1,7 @@
 import {
   LOADING_CURRENCIES,
   LOAD_CURRENCIES_SUCCESS,
+  SET_CURRENCIES_LIST_TOTAL,
   LOAD_CURRENCIES_FAILURE,
   CREATING_CURRENCY,
   CREATE_CURRENCY_SUCCESS,
@@ -10,9 +11,10 @@ import {
   DELETE_CURRENCY_SUCCESS,
   DELETE_CURRENCY_FAILURE,
 } from '../constants/currencies';
+import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
 };
 
 export default function currenciesReducer(state = initialState, action = {}) {
@@ -26,17 +28,26 @@ export default function currenciesReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_CURRENCIES_SUCCESS: {
-      const { items, total } = action.payload;
+      const { ids, items } = action.payload;
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          loading: false,
+          ids: unique([...list.ids, ids]),
+          items: { ...list.items, ...items },
+        },
+      };
+    }
+    case SET_CURRENCIES_LIST_TOTAL:
       return {
         ...state,
         list: {
           ...state.list,
-          loading: false,
-          items,
-          total,
+          total: action.payload,
         },
       };
-    }
     case LOAD_CURRENCIES_FAILURE:
       return {
         ...state,
@@ -55,12 +66,14 @@ export default function currenciesReducer(state = initialState, action = {}) {
       };
     case CREATE_CURRENCY_SUCCESS: {
       const { list } = state;
+      const currency = action.payload;
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          items: [...list.items, action.payload],
+          ids: [...list.ids, currency.id],
+          items: { ...list.items, [currency.id]: currency },
           total: list.total + 1,
         },
       };
@@ -74,15 +87,15 @@ export default function currenciesReducer(state = initialState, action = {}) {
         },
       };
     case UPDATE_CURRENCY_SUCCESS: {
-      const { index, currency } = action.payload;
-      const newItems = [...state.list.items];
-      newItems.splice(index, 1, currency);
+      const currency = action.payload;
+      const { list } = state;
+
       return {
         ...state,
         list: {
-          ...state.list,
+          ...list,
           loading: false,
-          items: newItems,
+          items: { ...list.items, [currency.id]: currency },
         },
       };
     }
@@ -96,14 +109,18 @@ export default function currenciesReducer(state = initialState, action = {}) {
       };
     case DELETE_CURRENCY_SUCCESS: {
       const { list } = state;
-      const index = action.payload;
-      const newItems = [...list.items];
-      newItems.splice(index, 1);
+      const id = action.payload;
+      const index = list.ids.indexOf(id);
+      const newIds = [...list.ids];
+      newIds.splice(index, 1);
+      const newItems = { ...list.items };
+      delete newItems[id];
       return {
         ...state,
         list: {
           ...list,
           loading: false,
+          ids: newIds,
           items: newItems,
           total: list.total - 1,
         },

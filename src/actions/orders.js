@@ -4,13 +4,21 @@ import {
   LOADING_ORDERS,
   LOADING_ORDER_DETAILS,
   LOADING_ORDER_ITEMS,
+  SET_ORDERS_LIST_TOTAL,
   LOAD_ORDERS_SUCCESS,
   LOAD_ORDERS_FAILURE,
   GET_ORDER_DETAILS_SUCCESS,
   GET_ORDER_DETAILS_FAILURE,
   GET_ORDER_ITEMS_SUCCESS,
+  SET_ORDER_ITEMS_LIST_TOTAL,
   GET_ORDER_ITEMS_FAILURE,
 } from '../constants/orders';
+import { loadCartsSuccess } from './carts';
+import { loadPaymentsSuccess } from './payments';
+import { loadProductTypesSuccess } from './product_types';
+import { loadCurrenciesSuccess } from './currencies';
+import { loadProductsSuccess } from './products';
+import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadOrders = (page, limit) => {
   return async (dispatch, getState) => {
@@ -29,7 +37,18 @@ export const loadOrders = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadOrdersSuccess(response.data));
+      const { nodes, total } = response.data;
+
+      const carts = getValues(nodes, 'cart');
+      dispatch(loadCartsSuccess(carts));
+
+      const payments = getValues(nodes, 'payment');
+      const currencies = getValues(payments, 'currency');
+      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(loadPaymentsSuccess(payments));
+
+      dispatch(loadOrdersSuccess(nodes));
+      dispatch(setOrdersListTotal(total));
     }
   };
 };
@@ -70,7 +89,17 @@ export const getOrderItems = (id, page, limit) => {
     });
 
     if (response) {
-      dispatch(getOrderItemsSuccess(response.data));
+      const { nodes, total } = response.data;
+
+      const products = getValues(nodes, 'product');
+      const productTypes = getValues(products, 'product_type');
+      const currencies = getValues(products, 'currency');
+      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(loadProductTypesSuccess(productTypes));
+      dispatch(loadProductsSuccess(products));
+
+      dispatch(getOrderItemsSuccess(nodes));
+      dispatch(setOrderItemsListTotal(total));
     }
   };
 };
@@ -93,12 +122,26 @@ const loadingOrderItems = () => {
   };
 };
 
-const loadOrdersSuccess = (data) => {
+const setOrdersListTotal = (total) => {
+  return {
+    type: SET_ORDERS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+const setOrderItemsListTotal = (total) => {
+  return {
+    type: SET_ORDER_ITEMS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+const loadOrdersSuccess = (orders) => {
   return {
     type: LOAD_ORDERS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(orders),
+      items: buildObjectOfItems(deleteKeys(orders, ['cart', 'payment'])),
     },
   };
 };
@@ -124,12 +167,12 @@ const getOrderDetailsFailure = (message) => {
   };
 };
 
-const getOrderItemsSuccess = (data) => {
+const getOrderItemsSuccess = (orderItems) => {
   return {
     type: GET_ORDER_ITEMS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(orderItems),
+      items: buildObjectOfItems(deleteKeys(orderItems, ['product'])),
     },
   };
 };

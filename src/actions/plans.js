@@ -3,6 +3,7 @@ import {
   baseUrl,
   LOADING_PLANS,
   LOAD_PLANS_SUCCESS,
+  SET_PLANS_LIST_TOTAL,
   LOAD_PLANS_FAILURE,
   CREATING_PLAN,
   CREATE_PLAN_SUCCESS,
@@ -14,6 +15,7 @@ import {
   DELETE_PLAN_SUCCESS,
   DELETE_PLAN_FAILURE,
 } from '../constants/plans';
+import { getIds, buildObjectOfItems } from '../utils/objects';
 
 export const loadPlans = (page, limit) => {
   return async (dispatch, getState) => {
@@ -32,7 +34,9 @@ export const loadPlans = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadPlansSuccess(response.data));
+      const { nodes, total } = response.data;
+      dispatch(loadPlansSuccess(nodes));
+      dispatch(setPlansListTotal(total));
     }
   };
 };
@@ -55,7 +59,7 @@ export const createPlan = (data) => {
   };
 };
 
-export const updatePlan = (id, data, index) => {
+export const updatePlan = (id, data) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -70,12 +74,12 @@ export const updatePlan = (id, data, index) => {
     });
 
     if (response) {
-      dispatch(updatePlanSuccess(index, response.data));
+      dispatch(updatePlanSuccess(response.data));
     }
   };
 };
 
-export const deletePlan = (id, index) => {
+export const deletePlan = (id) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -89,7 +93,7 @@ export const deletePlan = (id, index) => {
     });
 
     if (response) {
-      dispatch(deletePlanSuccess(index));
+      dispatch(deletePlanSuccess(id));
     }
   };
 };
@@ -100,12 +104,19 @@ const loadingPlans = () => {
   };
 };
 
-const loadPlansSuccess = (data) => {
+const setPlansListTotal = (total) => {
+  return {
+    type: SET_PLANS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+export const loadPlansSuccess = (plans) => {
   return {
     type: LOAD_PLANS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(plans),
+      items: buildObjectOfItems(plans),
     },
   };
 };
@@ -143,10 +154,10 @@ const updatingPlan = () => {
   };
 };
 
-const updatePlanSuccess = (index, plan) => {
+const updatePlanSuccess = (plan) => {
   return {
     type: UPDATE_PLAN_SUCCESS,
-    payload: { index, plan },
+    payload: plan,
   };
 };
 
@@ -163,10 +174,10 @@ const deletingPlan = () => {
   };
 };
 
-const deletePlanSuccess = (index) => {
+const deletePlanSuccess = (id) => {
   return {
     type: DELETE_PLAN_SUCCESS,
-    payload: index,
+    payload: id,
   };
 };
 

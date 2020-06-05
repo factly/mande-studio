@@ -2,17 +2,20 @@ import {
   LOADING_ORDERS,
   LOADING_ORDER_DETAILS,
   LOADING_ORDER_ITEMS,
+  SET_ORDERS_LIST_TOTAL,
   LOAD_ORDERS_SUCCESS,
   LOAD_ORDERS_FAILURE,
   GET_ORDER_DETAILS_SUCCESS,
   GET_ORDER_DETAILS_FAILURE,
+  SET_ORDER_ITEMS_LIST_TOTAL,
   GET_ORDER_ITEMS_SUCCESS,
   GET_ORDER_ITEMS_FAILURE,
 } from '../constants/orders';
+import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
-  details: { loading: false, order: {}, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
+  details: { loading: false, order: {}, ids: [], items: {}, total: 0 },
 };
 
 export default function ordersReducer(state = initialState, action = {}) {
@@ -26,17 +29,26 @@ export default function ordersReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_ORDERS_SUCCESS: {
-      const { items, total } = action.payload;
+      const { ids, items } = action.payload;
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          loading: false,
+          ids: [...list.ids, ...ids],
+          items,
+        },
+      };
+    }
+    case SET_ORDERS_LIST_TOTAL:
       return {
         ...state,
         list: {
           ...state.list,
-          loading: false,
-          items,
-          total,
+          total: action.payload,
         },
       };
-    }
     case LOAD_ORDERS_FAILURE:
       return {
         ...state,
@@ -87,14 +99,23 @@ export default function ordersReducer(state = initialState, action = {}) {
         },
       };
     case GET_ORDER_ITEMS_SUCCESS: {
-      const { items, total } = action.payload;
+      const { items, ids } = action.payload;
       return {
         ...state,
         details: {
           ...state.details,
           loading: false,
+          ids,
           items,
-          total,
+        },
+      };
+    }
+    case SET_ORDER_ITEMS_LIST_TOTAL: {
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          total: action.payload,
         },
       };
     }

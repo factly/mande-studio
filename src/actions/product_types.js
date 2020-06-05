@@ -3,6 +3,7 @@ import {
   baseUrl,
   LOADING_PRODUCT_TYPES,
   LOAD_PRODUCT_TYPES_SUCCESS,
+  SET_PRODUCT_TYPES_LIST_TOTAL,
   LOAD_PRODUCT_TYPES_FAILURE,
   CREATING_PRODUCT_TYPE,
   CREATE_PRODUCT_TYPE_SUCCESS,
@@ -14,6 +15,7 @@ import {
   DELETE_PRODUCT_TYPE_SUCCESS,
   DELETE_PRODUCT_TYPE_FAILURE,
 } from '../constants/product_types';
+import { getIds, buildObjectOfItems } from '../utils/objects';
 
 export const loadProductTypes = (page, limit) => {
   return async (dispatch, getState) => {
@@ -32,7 +34,9 @@ export const loadProductTypes = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadProductTypesSuccess(response.data));
+      const { nodes, total } = response.data;
+      dispatch(loadProductTypesSuccess(nodes));
+      dispatch(setProductTypesListTotal(total));
     }
   };
 };
@@ -55,7 +59,7 @@ export const createProductType = (data) => {
   };
 };
 
-export const updateProductType = (id, data, index) => {
+export const updateProductType = (id, data) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -70,12 +74,12 @@ export const updateProductType = (id, data, index) => {
     });
 
     if (response) {
-      dispatch(updateProductTypeSuccess(index, response.data));
+      dispatch(updateProductTypeSuccess(response.data));
     }
   };
 };
 
-export const deleteProductType = (id, index) => {
+export const deleteProductType = (id) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -89,7 +93,7 @@ export const deleteProductType = (id, index) => {
     });
 
     if (response) {
-      dispatch(deleteProductTypeSuccess(index));
+      dispatch(deleteProductTypeSuccess(id));
     }
   };
 };
@@ -100,12 +104,19 @@ const loadingProductTypes = () => {
   };
 };
 
-const loadProductTypesSuccess = (data) => {
+const setProductTypesListTotal = (total) => {
+  return {
+    type: SET_PRODUCT_TYPES_LIST_TOTAL,
+    total,
+  };
+};
+
+export const loadProductTypesSuccess = (productTypes) => {
   return {
     type: LOAD_PRODUCT_TYPES_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(productTypes),
+      items: buildObjectOfItems(productTypes),
     },
   };
 };
@@ -123,10 +134,10 @@ const creatingProductType = () => {
   };
 };
 
-const createProductTypeSuccess = (product_type) => {
+const createProductTypeSuccess = (productType) => {
   return {
     type: CREATE_PRODUCT_TYPE_SUCCESS,
-    payload: product_type,
+    payload: productType,
   };
 };
 
@@ -143,10 +154,10 @@ const updatingProductType = () => {
   };
 };
 
-const updateProductTypeSuccess = (index, product_type) => {
+const updateProductTypeSuccess = (productType) => {
   return {
     type: UPDATE_PRODUCT_TYPE_SUCCESS,
-    payload: { index, product_type },
+    payload: productType,
   };
 };
 
@@ -163,10 +174,10 @@ const deletingProductType = () => {
   };
 };
 
-const deleteProductTypeSuccess = (index) => {
+const deleteProductTypeSuccess = (id) => {
   return {
     type: DELETE_PRODUCT_TYPE_SUCCESS,
-    payload: index,
+    payload: id,
   };
 };
 

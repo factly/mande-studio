@@ -1,6 +1,7 @@
 import {
   LOADING_PLANS,
   LOAD_PLANS_SUCCESS,
+  SET_PLANS_LIST_TOTAL,
   LOAD_PLANS_FAILURE,
   CREATING_PLAN,
   CREATE_PLAN_SUCCESS,
@@ -10,9 +11,10 @@ import {
   DELETE_PLAN_SUCCESS,
   DELETE_PLAN_FAILURE,
 } from '../constants/plans';
+import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
 };
 
 export default function plansReducer(state = initialState, action = {}) {
@@ -26,17 +28,26 @@ export default function plansReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_PLANS_SUCCESS: {
-      const { items, total } = action.payload;
+      const { ids, items } = action.payload;
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          loading: false,
+          ids: unique([...list.ids, ...ids]),
+          items,
+        },
+      };
+    }
+    case SET_PLANS_LIST_TOTAL:
       return {
         ...state,
         list: {
           ...state.list,
-          loading: false,
-          items,
-          total,
+          total: action.payload,
         },
       };
-    }
     case LOAD_PLANS_FAILURE:
       return {
         ...state,
@@ -55,12 +66,14 @@ export default function plansReducer(state = initialState, action = {}) {
       };
     case CREATE_PLAN_SUCCESS: {
       const { list } = state;
+      const plan = action.payload;
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          items: [...list.items, action.payload],
+          ids: [...list.ids, plan.id],
+          items: { ...list.items, [plan.id]: plan },
           total: list.total + 1,
         },
       };
@@ -74,15 +87,14 @@ export default function plansReducer(state = initialState, action = {}) {
         },
       };
     case UPDATE_PLAN_SUCCESS: {
-      const { index, plan } = action.payload;
-      const newItems = [...state.list.items];
-      newItems.splice(index, 1, plan);
+      const { list } = state;
+      const plan = action.payload;
       return {
         ...state,
         list: {
-          ...state.list,
+          ...list,
           loading: false,
-          items: newItems,
+          items: { ...list.items, [plan.id]: plan },
         },
       };
     }
@@ -96,14 +108,18 @@ export default function plansReducer(state = initialState, action = {}) {
       };
     case DELETE_PLAN_SUCCESS: {
       const { list } = state;
-      const index = action.payload;
-      const newItems = [...list.items];
-      newItems.splice(index, 1);
+      const id = action.payload;
+      const index = list.ids.indexOf(id);
+      const newIds = [...list.ids];
+      newIds.splice(index, 1);
+      const newItems = { ...list.items };
+      delete newItems[id];
       return {
         ...state,
         list: {
           ...list,
           loading: false,
+          ids: newIds,
           items: newItems,
           total: list.total - 1,
         },

@@ -4,6 +4,7 @@ import {
   LOADING_CATEGORIES,
   LOAD_CATEGORIES_SUCCESS,
   LOAD_CATEGORIES_FAILURE,
+  SET_CATEGORIES_LIST_TOTAL,
   CREATING_CATEGORY,
   CREATE_CATEGORY_SUCCESS,
   CREATE_CATEGORY_FAILURE,
@@ -14,6 +15,7 @@ import {
   DELETE_CATEGORY_SUCCESS,
   DELETE_CATEGORY_FAILURE,
 } from '../constants/categories';
+import { getIds, buildObjectOfItems } from '../utils/objects';
 
 export const loadCategories = (page, limit) => {
   return async (dispatch, getState) => {
@@ -32,7 +34,9 @@ export const loadCategories = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadCategoriesSuccess(response.data));
+      const { nodes, total } = response.data;
+      dispatch(loadCategoriesSuccess(nodes));
+      dispatch(setCategoriesListTotal(total));
     }
   };
 };
@@ -55,7 +59,7 @@ export const createCategory = (data) => {
   };
 };
 
-export const updateCategory = (id, data, index) => {
+export const updateCategory = (id, data) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -70,12 +74,12 @@ export const updateCategory = (id, data, index) => {
     });
 
     if (response) {
-      dispatch(updateCategorySuccess(index, response.data));
+      dispatch(updateCategorySuccess(response.data));
     }
   };
 };
 
-export const deleteCategory = (id, index) => {
+export const deleteCategory = (id) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -89,7 +93,7 @@ export const deleteCategory = (id, index) => {
     });
 
     if (response) {
-      dispatch(deleteCategorySuccess(index));
+      dispatch(deleteCategorySuccess(id));
     }
   };
 };
@@ -100,12 +104,19 @@ const loadingCategories = () => {
   };
 };
 
-const loadCategoriesSuccess = (data) => {
+const setCategoriesListTotal = (total) => {
+  return {
+    type: SET_CATEGORIES_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+export const loadCategoriesSuccess = (categories) => {
   return {
     type: LOAD_CATEGORIES_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(categories),
+      items: buildObjectOfItems(categories),
     },
   };
 };
@@ -143,10 +154,10 @@ const updatingCategory = () => {
   };
 };
 
-const updateCategorySuccess = (index, category) => {
+const updateCategorySuccess = (category) => {
   return {
     type: UPDATE_CATEGORY_SUCCESS,
-    payload: { index, category },
+    payload: category,
   };
 };
 
@@ -163,10 +174,10 @@ const deletingCategory = () => {
   };
 };
 
-const deleteCategorySuccess = (index) => {
+const deleteCategorySuccess = (id) => {
   return {
     type: DELETE_CATEGORY_SUCCESS,
-    payload: index,
+    payload: id,
   };
 };
 

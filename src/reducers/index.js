@@ -10,6 +10,7 @@ import productsReducer from './products';
 import productTypesReducer from './product_types';
 import categoriesReducer from './categories';
 import currenciesReducer from './currencies';
+import usersReducer from './users';
 
 export default combineReducers({
   carts: cartsReducer,
@@ -22,4 +23,5 @@ export default combineReducers({
   tags: tagsReducer,
   plans: plansReducer,
   products: productsReducer,
+  users: usersReducer,
 });

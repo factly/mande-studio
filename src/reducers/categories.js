@@ -2,6 +2,7 @@ import {
   LOADING_CATEGORIES,
   LOAD_CATEGORIES_SUCCESS,
   LOAD_CATEGORIES_FAILURE,
+  SET_CATEGORIES_LIST_TOTAL,
   CREATING_CATEGORY,
   CREATE_CATEGORY_SUCCESS,
   CREATE_CATEGORY_FAILURE,
@@ -10,9 +11,10 @@ import {
   DELETE_CATEGORY_SUCCESS,
   DELETE_CATEGORY_FAILURE,
 } from '../constants/categories';
+import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
 };
 
 export default function categoriesReducer(state = initialState, action = {}) {
@@ -26,17 +28,26 @@ export default function categoriesReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_CATEGORIES_SUCCESS: {
-      const { items, total } = action.payload;
+      const { ids, items } = action.payload;
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          loading: false,
+          ids: unique([...list.ids, ids]),
+          items: { ...list.items, ...items },
+        },
+      };
+    }
+    case SET_CATEGORIES_LIST_TOTAL:
       return {
         ...state,
         list: {
           ...state.list,
-          loading: false,
-          items,
-          total,
+          total: action.payload,
         },
       };
-    }
     case LOAD_CATEGORIES_FAILURE:
       return {
         ...state,
@@ -55,12 +66,14 @@ export default function categoriesReducer(state = initialState, action = {}) {
       };
     case CREATE_CATEGORY_SUCCESS: {
       const { list } = state;
+      const category = action.payload;
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          items: [...list.items, action.payload],
+          ids: [...list.ids, category.id],
+          items: { ...list.items, [category.id]: category },
           total: list.total + 1,
         },
       };
@@ -74,15 +87,15 @@ export default function categoriesReducer(state = initialState, action = {}) {
         },
       };
     case UPDATE_CATEGORY_SUCCESS: {
-      const { index, category } = action.payload;
-      const newItems = [...state.list.items];
-      newItems.splice(index, 1, category);
+      const category = action.payload;
+      const { list } = state;
+
       return {
         ...state,
         list: {
-          ...state.list,
+          ...list,
           loading: false,
-          items: newItems,
+          items: { ...list.items, [category.id]: category },
         },
       };
     }
@@ -96,14 +109,18 @@ export default function categoriesReducer(state = initialState, action = {}) {
       };
     case DELETE_CATEGORY_SUCCESS: {
       const { list } = state;
-      const index = action.payload;
-      const newItems = [...list.items];
-      newItems.splice(index, 1);
+      const id = action.payload;
+      const index = list.ids.indexOf(id);
+      const newIds = [...list.ids];
+      newIds.splice(index, 1);
+      const newItems = { ...list.items };
+      delete newItems[id];
       return {
         ...state,
         list: {
           ...list,
           loading: false,
+          ids: newIds,
           items: newItems,
           total: list.total - 1,
         },

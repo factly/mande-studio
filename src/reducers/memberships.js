@@ -2,10 +2,11 @@ import {
   LOADING_MEMBERSHIPS,
   LOAD_MEMBERSHIPS_SUCCESS,
   LOAD_MEMBERSHIPS_FAILURE,
+  SET_MEMBERSHIPS_LIST_TOTAL,
 } from '../constants/memberships';
 
 const initialState = {
-  list: { loading: false, items: [], total: 0 },
+  list: { loading: false, ids: [], items: {}, total: 0 },
 };
 
 export default function membershipsReducer(state = initialState, action = {}) {
@@ -19,17 +20,25 @@ export default function membershipsReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_MEMBERSHIPS_SUCCESS: {
-      const { items, total } = action.payload;
+      const { ids, items } = action.payload;
       return {
         ...state,
         list: {
           ...state.list,
           loading: false,
+          ids,
           items,
-          total,
         },
       };
     }
+    case SET_MEMBERSHIPS_LIST_TOTAL:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          total: action.payload,
+        },
+      };
     case LOAD_MEMBERSHIPS_FAILURE:
       return {
         ...state,

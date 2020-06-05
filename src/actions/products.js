@@ -3,6 +3,7 @@ import {
   baseUrl,
   LOADING_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
+  SET_PRODUCTS_LIST_TOTAL,
   LOAD_PRODUCTS_FAILURE,
   CREATING_PRODUCT,
   CREATE_PRODUCT_SUCCESS,
@@ -17,6 +18,11 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
 } from '../constants/products';
+import { loadCategoriesSuccess } from './categories';
+import { loadCurrenciesSuccess } from './currencies';
+import { loadProductTypesSuccess } from './product_types';
+import { loadTagsSuccess } from './tags';
+import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadProducts = (page, limit) => {
   return async (dispatch, getState) => {
@@ -35,7 +41,27 @@ export const loadProducts = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadProductsSuccess(response.data));
+      const { nodes, total } = response.data;
+
+      const categories = getValues(nodes, 'categories');
+      dispatch(loadCategoriesSuccess(categories));
+
+      const currencies = getValues(nodes, 'currency');
+      dispatch(loadCurrenciesSuccess(currencies));
+
+      const productTypes = getValues(nodes, 'product_type');
+      dispatch(loadProductTypesSuccess(productTypes));
+
+      const tags = getValues(nodes, 'tags');
+      dispatch(loadTagsSuccess(tags));
+
+      nodes.forEach((product) => {
+        product.categories = getIds(product.categories);
+        product.tags = getIds(product.tags);
+      });
+
+      dispatch(loadProductsSuccess(nodes));
+      dispatch(setProductsListTotal(total));
     }
   };
 };
@@ -97,7 +123,7 @@ export const updateProduct = (id, data) => {
   };
 };
 
-export const deleteProduct = (id, index) => {
+export const deleteProduct = (id) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -111,7 +137,7 @@ export const deleteProduct = (id, index) => {
     });
 
     if (response) {
-      dispatch(deleteProductSuccess(index));
+      dispatch(deleteProductSuccess(id));
     }
   };
 };
@@ -122,12 +148,19 @@ const loadingProducts = () => {
   };
 };
 
-const loadProductsSuccess = (data) => {
+const setProductsListTotal = (total) => {
+  return {
+    type: SET_PRODUCTS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+export const loadProductsSuccess = (products) => {
   return {
     type: LOAD_PRODUCTS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(products),
+      items: buildObjectOfItems(deleteKeys(products, ['currency', 'product_type'])),
     },
   };
 };
@@ -204,10 +237,10 @@ const deletingProduct = () => {
   };
 };
 
-const deleteProductSuccess = (index) => {
+const deleteProductSuccess = (id) => {
   return {
     type: DELETE_PRODUCT_SUCCESS,
-    payload: index,
+    payload: id,
   };
 };
 

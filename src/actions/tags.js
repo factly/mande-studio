@@ -3,6 +3,7 @@ import {
   baseUrl,
   LOADING_TAGS,
   LOAD_TAGS_SUCCESS,
+  SET_TAGS_LIST_TOTAL,
   LOAD_TAGS_FAILURE,
   CREATING_TAG,
   CREATE_TAG_SUCCESS,
@@ -14,6 +15,7 @@ import {
   DELETE_TAG_SUCCESS,
   DELETE_TAG_FAILURE,
 } from '../constants/tags';
+import { getIds, buildObjectOfItems } from '../utils/objects';
 
 export const loadTags = (page, limit) => {
   return async (dispatch, getState) => {
@@ -32,7 +34,9 @@ export const loadTags = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadTagsSuccess(response.data));
+      const { nodes, total } = response.data;
+      dispatch(loadTagsSuccess(nodes));
+      dispatch(setTagsListTotal(total));
     }
   };
 };
@@ -55,7 +59,7 @@ export const createTag = (data) => {
   };
 };
 
-export const updateTag = (id, data, index) => {
+export const updateTag = (id, data) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -70,12 +74,12 @@ export const updateTag = (id, data, index) => {
     });
 
     if (response) {
-      dispatch(updateTagSuccess(index, response.data));
+      dispatch(updateTagSuccess(response.data));
     }
   };
 };
 
-export const deleteTag = (id, index) => {
+export const deleteTag = (id) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}`;
 
@@ -89,7 +93,7 @@ export const deleteTag = (id, index) => {
     });
 
     if (response) {
-      dispatch(deleteTagSuccess(index));
+      dispatch(deleteTagSuccess(id));
     }
   };
 };
@@ -100,12 +104,19 @@ const loadingTags = () => {
   };
 };
 
-const loadTagsSuccess = (data) => {
+const setTagsListTotal = (total) => {
+  return {
+    type: SET_TAGS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+export const loadTagsSuccess = (tags) => {
   return {
     type: LOAD_TAGS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(tags),
+      items: buildObjectOfItems(tags),
     },
   };
 };
@@ -143,10 +154,10 @@ const updatingTag = () => {
   };
 };
 
-const updateTagSuccess = (index, tag) => {
+const updateTagSuccess = (tag) => {
   return {
     type: UPDATE_TAG_SUCCESS,
-    payload: { index, tag },
+    payload: tag,
   };
 };
 
@@ -163,10 +174,10 @@ const deletingTag = () => {
   };
 };
 
-const deleteTagSuccess = (index) => {
+const deleteTagSuccess = (id) => {
   return {
     type: DELETE_TAG_SUCCESS,
-    payload: index,
+    payload: id,
   };
 };
 

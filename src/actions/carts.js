@@ -3,11 +3,17 @@ import {
   baseUrl,
   LOADING_CARTS,
   LOADING_CART_DETAILS,
+  SET_CART_LIST_TOTAL,
   LOAD_CARTS_SUCCESS,
   LOAD_CARTS_FAILURE,
   GET_CART_ITEMS_SUCCESS,
+  SET_CART_ITEMS_LIST_TOTAL,
   GET_CART_ITEMS_FAILURE,
 } from '../constants/carts';
+import { loadProductsSuccess } from './products';
+import { loadCurrenciesSuccess } from './currencies';
+import { loadProductTypesSuccess } from './product_types';
+import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadCarts = (page, limit) => {
   return async (dispatch, getState) => {
@@ -26,7 +32,9 @@ export const loadCarts = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadCartsSuccess(response.data));
+      const { nodes, total } = response.data;
+      dispatch(loadCartsSuccess(nodes));
+      dispatch(setCartsListTotal(total));
     }
   };
 };
@@ -48,7 +56,20 @@ export const getCartItems = (id, page, limit) => {
     });
 
     if (response) {
-      dispatch(getCartItemsSuccess(response.data));
+      const { nodes, total } = response.data;
+
+      const products = getValues(nodes, 'product');
+
+      const currencies = getValues(products, 'currency');
+      dispatch(loadCurrenciesSuccess(currencies));
+
+      const productTypes = getValues(products, 'product_type');
+      dispatch(loadProductTypesSuccess(productTypes));
+
+      dispatch(loadProductsSuccess(products));
+
+      dispatch(getCartItemsSuccess(nodes));
+      dispatch(setCartItemsListTotal(total));
     }
   };
 };
@@ -65,12 +86,19 @@ const loadingCartDetails = () => {
   };
 };
 
-const loadCartsSuccess = (data) => {
+const setCartsListTotal = (total) => {
+  return {
+    type: SET_CART_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+export const loadCartsSuccess = (carts) => {
   return {
     type: LOAD_CARTS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(carts),
+      items: buildObjectOfItems(carts),
     },
   };
 };
@@ -82,12 +110,19 @@ const loadCartsFailure = (message) => {
   };
 };
 
-const getCartItemsSuccess = (data) => {
+const setCartItemsListTotal = (total) => {
+  return {
+    type: SET_CART_ITEMS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+const getCartItemsSuccess = (cartItems) => {
   return {
     type: GET_CART_ITEMS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(cartItems),
+      items: buildObjectOfItems(deleteKeys(cartItems, ['product'])),
     },
   };
 };

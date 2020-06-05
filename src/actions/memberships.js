@@ -3,8 +3,14 @@ import {
   baseUrl,
   LOADING_MEMBERSHIPS,
   LOAD_MEMBERSHIPS_SUCCESS,
+  SET_MEMBERSHIPS_LIST_TOTAL,
   LOAD_MEMBERSHIPS_FAILURE,
 } from '../constants/memberships';
+import { loadPlansSuccess } from './plans';
+import { loadPaymentsSuccess } from './payments';
+import { loadCurrenciesSuccess } from './currencies';
+import { setUsers } from './users';
+import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadMemberships = (page, limit) => {
   return async (dispatch, getState) => {
@@ -23,7 +29,21 @@ export const loadMemberships = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadMembershipsSuccess(response.data));
+      const { nodes, total } = response.data;
+
+      const plans = getValues(nodes, 'plan');
+      dispatch(loadPlansSuccess(plans));
+
+      const payments = getValues(nodes, 'payment');
+      const currencies = getValues(payments, 'currency');
+      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(loadPaymentsSuccess(payments));
+
+      const users = getValues(nodes, 'user');
+      dispatch(setUsers(users));
+
+      dispatch(loadMembershipsSuccess(nodes));
+      dispatch(setMembershipListTotal(total));
     }
   };
 };
@@ -34,12 +54,19 @@ const loadingMemberships = () => {
   };
 };
 
-const loadMembershipsSuccess = (data) => {
+const setMembershipListTotal = (total) => {
+  return {
+    type: SET_MEMBERSHIPS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+const loadMembershipsSuccess = (memberships) => {
   return {
     type: LOAD_MEMBERSHIPS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(memberships),
+      items: buildObjectOfItems(deleteKeys(memberships, ['plan', 'payment', 'user'])),
     },
   };
 };

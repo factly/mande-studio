@@ -4,7 +4,10 @@ import {
   LOADING_PAYMENTS,
   LOAD_PAYMENTS_SUCCESS,
   LOAD_PAYMENTS_FAILURE,
+  SET_PAYMENTS_LIST_TOTAL,
 } from '../constants/payments';
+import { loadCurrenciesSuccess } from './currencies';
+import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadPayments = (page, limit) => {
   return async (dispatch, getState) => {
@@ -23,7 +26,13 @@ export const loadPayments = (page, limit) => {
     });
 
     if (response) {
-      dispatch(loadPaymentsSuccess(response.data));
+      const { nodes, total } = response.data;
+
+      const currencies = getValues(nodes, 'currency');
+      dispatch(loadCurrenciesSuccess(currencies));
+
+      dispatch(loadPaymentsSuccess(nodes));
+      dispatch(setPaymentsListTotal(total));
     }
   };
 };
@@ -34,12 +43,19 @@ const loadingPayments = () => {
   };
 };
 
-const loadPaymentsSuccess = (data) => {
+const setPaymentsListTotal = (total) => {
+  return {
+    type: SET_PAYMENTS_LIST_TOTAL,
+    payload: total,
+  };
+};
+
+export const loadPaymentsSuccess = (payments) => {
   return {
     type: LOAD_PAYMENTS_SUCCESS,
     payload: {
-      items: data.nodes,
-      total: data.total,
+      ids: getIds(payments),
+      items: buildObjectOfItems(deleteKeys(payments, ['currency'])),
     },
   };
 };
