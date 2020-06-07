@@ -107,7 +107,7 @@ const loadingProductTypes = () => {
 const setProductTypesListTotal = (total) => {
   return {
     type: SET_PRODUCT_TYPES_LIST_TOTAL,
-    total,
+    payload: total,
   };
 };
 

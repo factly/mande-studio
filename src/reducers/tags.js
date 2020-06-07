@@ -35,7 +35,7 @@ export default function tagsReducer(state = initialState, action = {}) {
         list: {
           ...list,
           loading: false,
-          ids: unique([...list.ids, ids]),
+          ids: unique([...list.ids, ...ids]),
           items: { ...list.items, ...items },
         },
       };
