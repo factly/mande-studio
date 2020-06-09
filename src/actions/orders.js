@@ -5,12 +5,14 @@ import {
   LOADING_ORDER_DETAILS,
   LOADING_ORDER_ITEMS,
   SET_ORDERS_LIST_TOTAL,
+  SET_ORDERS_LIST_CURRENT_PAGE,
   LOAD_ORDERS_SUCCESS,
   LOAD_ORDERS_FAILURE,
   GET_ORDER_DETAILS_SUCCESS,
   GET_ORDER_DETAILS_FAILURE,
   GET_ORDER_ITEMS_SUCCESS,
   SET_ORDER_ITEMS_LIST_TOTAL,
+  SET_ORDER_DETAILS_CURRENT_PAGE,
   GET_ORDER_ITEMS_FAILURE,
 } from '../constants/orders';
 import { loadCartsSuccess } from './carts';
@@ -20,11 +22,23 @@ import { loadCurrenciesSuccess } from './currencies';
 import { loadProductsSuccess } from './products';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadOrders = (page, limit) => {
+export const loadOrders = (page = 1, limit) => {
   return async (dispatch, getState) => {
     let url = baseUrl;
     if (page && limit) {
       url = `${url}?page=${page}&limit=${limit}`;
+    }
+
+    dispatch(setListCurrentPage(page));
+
+    const {
+      orders: {
+        list: { pagination },
+      },
+    } = getState();
+
+    if (pagination.pages[page]) {
+      return;
     }
 
     dispatch(loadingOrders());
@@ -72,12 +86,22 @@ export const getOrderDetails = (id) => {
   };
 };
 
-export const getOrderItems = (id, page, limit) => {
+export const getOrderItems = (id, page = 1, limit) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}/items`;
     if (page && limit) {
       url = `${url}?page=${page}&limit=${limit}`;
     }
+
+    dispatch(setDetailsCurrentPage(page));
+
+    const {
+      orders: {
+        details: { pagination },
+      },
+    } = getState();
+
+    if (pagination.pages[page]) return;
 
     dispatch(loadingOrderItems());
 
@@ -101,6 +125,20 @@ export const getOrderItems = (id, page, limit) => {
       dispatch(getOrderItemsSuccess(nodes));
       dispatch(setOrderItemsListTotal(total));
     }
+  };
+};
+
+const setListCurrentPage = (currentPage) => {
+  return {
+    type: SET_ORDERS_LIST_CURRENT_PAGE,
+    payload: currentPage,
+  };
+};
+
+const setDetailsCurrentPage = (currentPage) => {
+  return {
+    type: SET_ORDER_DETAILS_CURRENT_PAGE,
+    payload: currentPage,
   };
 };
 
