@@ -1,6 +1,7 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_MEMBERSHIPS_LIST_REQUEST,
   LOADING_MEMBERSHIPS,
   LOAD_MEMBERSHIPS_SUCCESS,
   SET_MEMBERSHIPS_LIST_TOTAL,
@@ -20,19 +21,27 @@ export const loadMemberships = (page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(setListCurrentPage(page));
+    dispatch(loadingMemberships());
 
     const {
       memberships: {
-        list: { pagination },
+        list: { req },
       },
     } = getState();
 
-    if (pagination.pages[page]) {
-      return;
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
     }
 
-    dispatch(loadingMemberships());
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
 
     const response = await axios({
       url: url,
@@ -55,7 +64,11 @@ export const loadMemberships = (page = 1, limit) => {
       const users = getValues(nodes, 'user');
       dispatch(setUsers(users));
 
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadMembershipsSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setMembershipListTotal(total));
     }
   };
@@ -74,10 +87,17 @@ const setMembershipListTotal = (total) => {
   };
 };
 
-const setListCurrentPage = (currentPage) => {
+const setListCurrentPage = (ids) => {
   return {
     type: SET_MEMEBERSHIPS_LIST_CURRENT_PAGE,
-    payload: currentPage,
+    payload: ids,
+  };
+};
+
+const addListRequest = (req) => {
+  return {
+    type: ADD_MEMBERSHIPS_LIST_REQUEST,
+    payload: req,
   };
 };
 
@@ -85,7 +105,6 @@ const loadMembershipsSuccess = (memberships) => {
   return {
     type: LOAD_MEMBERSHIPS_SUCCESS,
     payload: {
-      ids: getIds(memberships),
       items: buildObjectOfItems(deleteKeys(memberships, ['plan', 'payment', 'user'])),
     },
   };
