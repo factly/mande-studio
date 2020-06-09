@@ -1,6 +1,8 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_CATEGORIES_LIST_REQUEST,
+  SET_CATEGORIES_LIST_CURRENT_PAGE,
   LOADING_CATEGORIES,
   LOAD_CATEGORIES_SUCCESS,
   LOAD_CATEGORIES_FAILURE,
@@ -26,6 +28,26 @@ export const loadCategories = (page, limit) => {
 
     dispatch(loadingCategories());
 
+    const {
+      categories: {
+        list: { req },
+      },
+    } = getState();
+
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
+
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
+
     const response = await axios({
       url: url,
       method: 'get',
@@ -35,7 +57,11 @@ export const loadCategories = (page, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadCategoriesSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setCategoriesListTotal(total));
     }
   };
@@ -111,11 +137,24 @@ const setCategoriesListTotal = (total) => {
   };
 };
 
+const addListRequest = (req) => {
+  return {
+    type: ADD_CATEGORIES_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const setListCurrentPage = (ids) => {
+  return {
+    type: SET_CATEGORIES_LIST_CURRENT_PAGE,
+    payload: ids,
+  };
+};
+
 export const loadCategoriesSuccess = (categories) => {
   return {
     type: LOAD_CATEGORIES_SUCCESS,
     payload: {
-      ids: getIds(categories),
       items: buildObjectOfItems(categories),
     },
   };

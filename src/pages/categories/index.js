@@ -36,11 +36,11 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Categories = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { data, total, load, update, remove } = props;
+  const { req, data, total, load, update, remove } = props;
 
   React.useEffect(() => {
     load();
-  }, [load]);
+  }, [load, req]);
 
   const get = (page, limit) => {
     cancel();
@@ -225,6 +225,7 @@ const Categories = (props) => {
 
 Categories.propTypes = {
   data: PropTypes.array.isRequired,
+  req: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
   update: PropTypes.func.isRequired,
@@ -233,8 +234,11 @@ Categories.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.categories;
+  const { ids, req } = list;
+
   return {
-    data: Object.values(list.items),
+    req,
+    data: ids.map((id) => list.items[id]),
     total: list.total,
   };
 };
