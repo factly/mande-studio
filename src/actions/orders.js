@@ -1,6 +1,8 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_ORDERS_LIST_REQUEST,
+  ADD_ORDER_DETAILS_REQUEST,
   LOADING_ORDERS,
   LOADING_ORDER_DETAILS,
   LOADING_ORDER_ITEMS,
@@ -29,19 +31,27 @@ export const loadOrders = (page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(setListCurrentPage(page));
+    dispatch(loadingOrders());
 
     const {
       orders: {
-        list: { pagination },
+        list: { req },
       },
     } = getState();
 
-    if (pagination.pages[page]) {
-      return;
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
     }
 
-    dispatch(loadingOrders());
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
 
     const response = await axios({
       url: url,
@@ -61,7 +71,11 @@ export const loadOrders = (page = 1, limit) => {
       dispatch(loadCurrenciesSuccess(currencies));
       dispatch(loadPaymentsSuccess(payments));
 
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadOrdersSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setOrdersListTotal(total));
     }
   };
@@ -93,17 +107,27 @@ export const getOrderItems = (id, page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(setDetailsCurrentPage(page));
+    dispatch(loadingOrderItems());
 
     const {
       orders: {
-        details: { pagination },
+        details: { req },
       },
     } = getState();
 
-    if (pagination.pages[page]) return;
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.orderId === id && item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
 
-    dispatch(loadingOrderItems());
+    if (found) {
+      dispatch(setDetailsCurrentPage(ids));
+      return;
+    }
 
     const response = await axios({
       url: url,
@@ -122,23 +146,41 @@ export const getOrderItems = (id, page = 1, limit) => {
       dispatch(loadProductTypesSuccess(productTypes));
       dispatch(loadProductsSuccess(products));
 
+      const currentPageIds = getIds(nodes);
+      const req = { orderId: id, page, limit, ids: currentPageIds };
+      dispatch(addDetailsRequest(req));
       dispatch(getOrderItemsSuccess(nodes));
+      dispatch(setDetailsCurrentPage(currentPageIds));
       dispatch(setOrderItemsListTotal(total));
     }
   };
 };
 
-const setListCurrentPage = (currentPage) => {
+const setListCurrentPage = (ids) => {
   return {
     type: SET_ORDERS_LIST_CURRENT_PAGE,
-    payload: currentPage,
+    payload: ids,
   };
 };
 
-const setDetailsCurrentPage = (currentPage) => {
+const setDetailsCurrentPage = (ids) => {
   return {
     type: SET_ORDER_DETAILS_CURRENT_PAGE,
-    payload: currentPage,
+    payload: ids,
+  };
+};
+
+const addListRequest = (req) => {
+  return {
+    type: ADD_ORDERS_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const addDetailsRequest = (req) => {
+  return {
+    type: ADD_ORDER_DETAILS_REQUEST,
+    payload: req,
   };
 };
 
@@ -178,7 +220,6 @@ const loadOrdersSuccess = (orders) => {
   return {
     type: LOAD_ORDERS_SUCCESS,
     payload: {
-      ids: getIds(orders),
       items: buildObjectOfItems(deleteKeys(orders, ['cart', 'payment'])),
     },
   };
@@ -209,7 +250,6 @@ const getOrderItemsSuccess = (orderItems) => {
   return {
     type: GET_ORDER_ITEMS_SUCCESS,
     payload: {
-      ids: getIds(orderItems),
       items: buildObjectOfItems(deleteKeys(orderItems, ['product'])),
     },
   };

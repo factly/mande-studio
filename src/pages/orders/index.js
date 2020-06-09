@@ -99,11 +99,10 @@ Orders.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.orders;
-  const { pagination } = list;
-  const data = pagination.pages[pagination.currentPage];
+  const { ids } = list;
 
   return {
-    data: data ? data.map((id) => list.items[id]) : null,
+    data: ids.map((id) => list.items[id]),
     payments: state.payments.list.items,
     currencies: state.currencies.list.items,
     total: list.total,
