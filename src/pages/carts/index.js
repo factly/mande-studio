@@ -83,8 +83,11 @@ Carts.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.carts;
+  const { pagination } = list;
+  const data = pagination.pages[pagination.currentPage];
+
   return {
-    data: Object.values(list.items),
+    data: data ? data.map((id) => list.items[id]) : null,
     total: list.total,
   };
 };

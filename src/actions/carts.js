@@ -4,6 +4,8 @@ import {
   LOADING_CARTS,
   LOADING_CART_DETAILS,
   SET_CART_LIST_TOTAL,
+  SET_CARTS_LIST_CURRENT_PAGE,
+  SET_CARTS_DETAILS_CURRENT_PAGE,
   LOAD_CARTS_SUCCESS,
   LOAD_CARTS_FAILURE,
   GET_CART_ITEMS_SUCCESS,
@@ -15,11 +17,23 @@ import { loadCurrenciesSuccess } from './currencies';
 import { loadProductTypesSuccess } from './product_types';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadCarts = (page, limit) => {
+export const loadCarts = (page = 1, limit) => {
   return async (dispatch, getState) => {
     let url = baseUrl;
     if (page && limit) {
       url = `${url}?page=${page}&limit=${limit}`;
+    }
+
+    dispatch(setListCurrentPage(page));
+
+    const {
+      carts: {
+        list: { pagination },
+      },
+    } = getState();
+
+    if (pagination.pages[page]) {
+      return;
     }
 
     dispatch(loadingCarts());
@@ -39,12 +53,22 @@ export const loadCarts = (page, limit) => {
   };
 };
 
-export const getCartItems = (id, page, limit) => {
+export const getCartItems = (id, page = 1, limit) => {
   return async (dispatch, getState) => {
     let url = `${baseUrl}/${id}/items`;
     if (page && limit) {
       url = `${url}?page=${page}&limit=${limit}`;
     }
+
+    dispatch(setDetailsCurrentPage(page));
+
+    const {
+      carts: {
+        details: { pagination },
+      },
+    } = getState();
+
+    if (pagination.pages[page]) return;
 
     dispatch(loadingCartDetails());
 
@@ -90,6 +114,20 @@ const setCartsListTotal = (total) => {
   return {
     type: SET_CART_LIST_TOTAL,
     payload: total,
+  };
+};
+
+const setListCurrentPage = (currentPage) => {
+  return {
+    type: SET_CARTS_LIST_CURRENT_PAGE,
+    payload: currentPage,
+  };
+};
+
+const setDetailsCurrentPage = (currentPage) => {
+  return {
+    type: SET_CARTS_DETAILS_CURRENT_PAGE,
+    payload: currentPage,
   };
 };
 
