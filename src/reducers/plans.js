@@ -36,7 +36,7 @@ export default function plansReducer(state = initialState, action = {}) {
           ...list,
           loading: false,
           ids: unique([...list.ids, ...ids]),
-          items,
+          items: { ...list.items, ...items },
         },
       };
     }

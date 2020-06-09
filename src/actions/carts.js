@@ -1,6 +1,8 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_CARTS_LIST_REQUEST,
+  ADD_CART_DETAILS_REQUEST,
   LOADING_CARTS,
   LOADING_CART_DETAILS,
   SET_CART_LIST_TOTAL,
@@ -24,19 +26,27 @@ export const loadCarts = (page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(setListCurrentPage(page));
+    dispatch(loadingCarts());
 
     const {
       carts: {
-        list: { pagination },
+        list: { req },
       },
     } = getState();
 
-    if (pagination.pages[page]) {
-      return;
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
     }
 
-    dispatch(loadingCarts());
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
 
     const response = await axios({
       url: url,
@@ -47,7 +57,11 @@ export const loadCarts = (page = 1, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadCartsSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setCartsListTotal(total));
     }
   };
@@ -60,17 +74,27 @@ export const getCartItems = (id, page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(setDetailsCurrentPage(page));
+    dispatch(loadingCartDetails());
 
     const {
       carts: {
-        details: { pagination },
+        details: { req },
       },
     } = getState();
 
-    if (pagination.pages[page]) return;
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.cartId === id && item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
 
-    dispatch(loadingCartDetails());
+    if (found) {
+      dispatch(setDetailsCurrentPage(ids));
+      return;
+    }
 
     const response = await axios({
       url: url,
@@ -81,6 +105,7 @@ export const getCartItems = (id, page = 1, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
+      console.log(nodes);
 
       const products = getValues(nodes, 'product');
 
@@ -92,7 +117,11 @@ export const getCartItems = (id, page = 1, limit) => {
 
       dispatch(loadProductsSuccess(products));
 
+      const currentPageIds = getIds(nodes);
+      const req = { cartId: id, page, limit, ids: currentPageIds };
+      dispatch(addDetailsRequest(req));
       dispatch(getCartItemsSuccess(nodes));
+      dispatch(setDetailsCurrentPage(currentPageIds));
       dispatch(setCartItemsListTotal(total));
     }
   };
@@ -117,17 +146,31 @@ const setCartsListTotal = (total) => {
   };
 };
 
-const setListCurrentPage = (currentPage) => {
+const setListCurrentPage = (ids) => {
   return {
     type: SET_CARTS_LIST_CURRENT_PAGE,
-    payload: currentPage,
+    payload: ids,
   };
 };
 
-const setDetailsCurrentPage = (currentPage) => {
+const setDetailsCurrentPage = (ids) => {
   return {
     type: SET_CARTS_DETAILS_CURRENT_PAGE,
-    payload: currentPage,
+    payload: ids,
+  };
+};
+
+const addListRequest = (req) => {
+  return {
+    type: ADD_CARTS_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const addDetailsRequest = (req) => {
+  return {
+    type: ADD_CART_DETAILS_REQUEST,
+    payload: req,
   };
 };
 
@@ -135,7 +178,6 @@ export const loadCartsSuccess = (carts) => {
   return {
     type: LOAD_CARTS_SUCCESS,
     payload: {
-      ids: getIds(carts),
       items: buildObjectOfItems(carts),
     },
   };
@@ -159,7 +201,6 @@ const getCartItemsSuccess = (cartItems) => {
   return {
     type: GET_CART_ITEMS_SUCCESS,
     payload: {
-      ids: getIds(cartItems),
       items: buildObjectOfItems(deleteKeys(cartItems, ['product'])),
     },
   };
