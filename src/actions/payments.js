@@ -1,6 +1,8 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_PAYMENTS_LIST_REQUEST,
+  SET_PAYMENTS_LIST_CURRENT_PAGE,
   LOADING_PAYMENTS,
   LOAD_PAYMENTS_SUCCESS,
   LOAD_PAYMENTS_FAILURE,
@@ -18,6 +20,26 @@ export const loadPayments = (page, limit) => {
 
     dispatch(loadingPayments());
 
+    const {
+      payments: {
+        list: { req },
+      },
+    } = getState();
+
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
+
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
+
     const response = await axios({
       url: url,
       method: 'get',
@@ -31,7 +53,11 @@ export const loadPayments = (page, limit) => {
       const currencies = getValues(nodes, 'currency');
       dispatch(loadCurrenciesSuccess(currencies));
 
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadPaymentsSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setPaymentsListTotal(total));
     }
   };
@@ -47,6 +73,20 @@ const setPaymentsListTotal = (total) => {
   return {
     type: SET_PAYMENTS_LIST_TOTAL,
     payload: total,
+  };
+};
+
+const addListRequest = (req) => {
+  return {
+    type: ADD_PAYMENTS_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const setListCurrentPage = (ids) => {
+  return {
+    type: SET_PAYMENTS_LIST_CURRENT_PAGE,
+    payload: ids,
   };
 };
 

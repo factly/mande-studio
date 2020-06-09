@@ -76,8 +76,10 @@ Payments.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.payments;
+  const { ids } = list;
+
   return {
-    data: Object.values(list.items),
+    data: ids.map((id) => list.items[id]),
     currencies: state.currencies.list.items,
     total: list.total,
   };

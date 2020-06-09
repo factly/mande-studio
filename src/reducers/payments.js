@@ -1,4 +1,6 @@
 import {
+  ADD_PAYMENTS_LIST_REQUEST,
+  SET_PAYMENTS_LIST_CURRENT_PAGE,
   LOADING_PAYMENTS,
   LOAD_PAYMENTS_SUCCESS,
   LOAD_PAYMENTS_FAILURE,
@@ -7,7 +9,7 @@ import {
 import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, ids: [], items: {}, total: 0 },
+  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
 };
 
 export default function paymentsReducer(state = initialState, action = {}) {
@@ -21,18 +23,36 @@ export default function paymentsReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_PAYMENTS_SUCCESS: {
-      const { ids, items } = action.payload;
+      const { items } = action.payload;
       const { list } = state;
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          ids: unique([...list.ids, ...ids]),
-          items,
+          items: { ...list.items, ...items },
         },
       };
     }
+    case ADD_PAYMENTS_LIST_REQUEST: {
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          req: [...list.req, action.payload],
+        },
+      };
+    }
+    case SET_PAYMENTS_LIST_CURRENT_PAGE:
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          ids: action.payload,
+        },
+      };
     case SET_PAYMENTS_LIST_TOTAL:
       return {
         ...state,
