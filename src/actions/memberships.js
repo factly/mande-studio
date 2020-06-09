@@ -4,6 +4,7 @@ import {
   LOADING_MEMBERSHIPS,
   LOAD_MEMBERSHIPS_SUCCESS,
   SET_MEMBERSHIPS_LIST_TOTAL,
+  SET_MEMEBERSHIPS_LIST_CURRENT_PAGE,
   LOAD_MEMBERSHIPS_FAILURE,
 } from '../constants/memberships';
 import { loadPlansSuccess } from './plans';
@@ -12,11 +13,23 @@ import { loadCurrenciesSuccess } from './currencies';
 import { setUsers } from './users';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadMemberships = (page, limit) => {
+export const loadMemberships = (page = 1, limit) => {
   return async (dispatch, getState) => {
     let url = baseUrl;
     if (page && limit) {
       url = `${url}?page=${page}&limit=${limit}`;
+    }
+
+    dispatch(setListCurrentPage(page));
+
+    const {
+      memberships: {
+        list: { pagination },
+      },
+    } = getState();
+
+    if (pagination.pages[page]) {
+      return;
     }
 
     dispatch(loadingMemberships());
@@ -58,6 +71,13 @@ const setMembershipListTotal = (total) => {
   return {
     type: SET_MEMBERSHIPS_LIST_TOTAL,
     payload: total,
+  };
+};
+
+const setListCurrentPage = (currentPage) => {
+  return {
+    type: SET_MEMEBERSHIPS_LIST_CURRENT_PAGE,
+    payload: currentPage,
   };
 };
 

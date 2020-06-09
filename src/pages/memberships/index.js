@@ -81,8 +81,10 @@ Memberships.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.memberships;
+  const { pagination } = list;
+  const data = pagination.pages[pagination.currentPage];
   return {
-    data: Object.values(list.items),
+    data: data ? data.map((id) => list.items[id]) : [],
     plans: state.plans.list.items,
     users: state.users.list.items,
     total: list.total,
