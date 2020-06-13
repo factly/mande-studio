@@ -18,8 +18,6 @@ export const loadPayments = (page, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(loadingPayments());
-
     const {
       payments: {
         list: { req },
@@ -39,6 +37,8 @@ export const loadPayments = (page, limit) => {
       dispatch(setListCurrentPage(ids));
       return;
     }
+
+    dispatch(loadingPayments());
 
     const response = await axios({
       url: url,

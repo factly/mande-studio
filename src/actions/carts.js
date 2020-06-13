@@ -26,8 +26,6 @@ export const loadCarts = (page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(loadingCarts());
-
     const {
       carts: {
         list: { req },
@@ -47,6 +45,8 @@ export const loadCarts = (page = 1, limit) => {
       dispatch(setListCurrentPage(ids));
       return;
     }
+
+    dispatch(loadingCarts());
 
     const response = await axios({
       url: url,

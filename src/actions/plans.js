@@ -26,8 +26,6 @@ export const loadPlans = (page, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(loadingPlans());
-
     const {
       plans: {
         list: { req },
@@ -47,6 +45,8 @@ export const loadPlans = (page, limit) => {
       dispatch(setListCurrentPage(ids));
       return;
     }
+
+    dispatch(loadingPlans());
 
     const response = await axios({
       url: url,

@@ -26,8 +26,6 @@ export const loadCategories = (page, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(loadingCategories());
-
     const {
       categories: {
         list: { req },
@@ -47,6 +45,8 @@ export const loadCategories = (page, limit) => {
       dispatch(setListCurrentPage(ids));
       return;
     }
+
+    dispatch(loadingCategories());
 
     const response = await axios({
       url: url,

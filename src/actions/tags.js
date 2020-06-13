@@ -26,8 +26,6 @@ export const loadTags = (page, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(loadingTags());
-
     const {
       tags: {
         list: { req },
@@ -47,6 +45,8 @@ export const loadTags = (page, limit) => {
       dispatch(setListCurrentPage(ids));
       return;
     }
+
+    dispatch(loadingTags());
 
     const response = await axios({
       url: url,

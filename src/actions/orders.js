@@ -31,8 +31,6 @@ export const loadOrders = (page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(loadingOrders());
-
     const {
       orders: {
         list: { req },
@@ -52,6 +50,8 @@ export const loadOrders = (page = 1, limit) => {
       dispatch(setListCurrentPage(ids));
       return;
     }
+
+    dispatch(loadingOrders());
 
     const response = await axios({
       url: url,

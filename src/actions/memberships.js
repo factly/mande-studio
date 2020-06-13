@@ -21,8 +21,6 @@ export const loadMemberships = (page = 1, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
-    dispatch(loadingMemberships());
-
     const {
       memberships: {
         list: { req },
@@ -42,6 +40,8 @@ export const loadMemberships = (page = 1, limit) => {
       dispatch(setListCurrentPage(ids));
       return;
     }
+
+    dispatch(loadingMemberships());
 
     const response = await axios({
       url: url,
