@@ -1,6 +1,8 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_PRODUCTS_LIST_REQUEST,
+  SET_PRODUCTS_LIST_CURRENT_PAGE,
   LOADING_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
   SET_PRODUCTS_LIST_TOTAL,
@@ -33,6 +35,26 @@ export const loadProducts = (page, limit) => {
 
     dispatch(loadingProducts());
 
+    const {
+      products: {
+        list: { req },
+      },
+    } = getState();
+
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
+
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
+
     const response = await axios({
       url: url,
       method: 'get',
@@ -42,6 +64,8 @@ export const loadProducts = (page, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
 
       const categories = getValues(nodes, 'categories');
       dispatch(loadCategoriesSuccess(categories));
@@ -60,7 +84,9 @@ export const loadProducts = (page, limit) => {
         product.tags = getIds(product.tags);
       });
 
+      dispatch(addListRequest(req));
       dispatch(loadProductsSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setProductsListTotal(total));
     }
   };
@@ -118,7 +144,10 @@ export const updateProduct = (id, data) => {
     });
 
     if (response) {
-      dispatch(updateProductSuccess());
+      const product = response.data;
+      product.categories = getIds(product.categories);
+      product.tags = getIds(product.tags);
+      dispatch(updateProductSuccess(product));
     }
   };
 };
@@ -155,11 +184,24 @@ const setProductsListTotal = (total) => {
   };
 };
 
+const addListRequest = (req) => {
+  return {
+    type: ADD_PRODUCTS_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const setListCurrentPage = (ids) => {
+  return {
+    type: SET_PRODUCTS_LIST_CURRENT_PAGE,
+    payload: ids,
+  };
+};
+
 export const loadProductsSuccess = (products) => {
   return {
     type: LOAD_PRODUCTS_SUCCESS,
     payload: {
-      ids: getIds(products),
       items: buildObjectOfItems(deleteKeys(products, ['currency', 'product_type'])),
     },
   };
@@ -218,9 +260,10 @@ const updatingProduct = () => {
   };
 };
 
-const updateProductSuccess = () => {
+const updateProductSuccess = (product) => {
   return {
     type: UPDATE_PRODUCT_SUCCESS,
+    payload: deleteKeys([product], ['currency', 'product_type'])[0],
   };
 };
 

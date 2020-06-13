@@ -36,11 +36,11 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Products = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { data, currencies, categories, tags, total, load, remove } = props;
+  const { req, data, currencies, categories, tags, total, load, remove } = props;
 
   React.useEffect(() => {
     load();
-  }, [load]);
+  }, [load, req]);
 
   const get = (page, limit) => {
     cancel();
@@ -208,8 +208,10 @@ Products.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.products;
+  const { ids, req } = list;
   return {
-    data: Object.values(list.items),
+    req,
+    data: ids.map((id) => list.items[id]),
     currencies: state.currencies.list.items,
     tags: state.tags.list.items,
     categories: state.categories.list.items,
