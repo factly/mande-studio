@@ -19,9 +19,7 @@ export const loadPayments = (page, limit) => {
     }
 
     const {
-      payments: {
-        list: { req },
-      },
+      payments: { req },
     } = getState();
 
     let found = false;

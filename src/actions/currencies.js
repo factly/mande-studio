@@ -27,9 +27,7 @@ export const loadCurrencies = (page, limit) => {
     }
 
     const {
-      currencies: {
-        list: { req },
-      },
+      currencies: { req },
     } = getState();
 
     let found = false;

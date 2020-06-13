@@ -22,9 +22,7 @@ export const loadMemberships = (page = 1, limit) => {
     }
 
     const {
-      memberships: {
-        list: { req },
-      },
+      memberships: { req },
     } = getState();
 
     let found = false;

@@ -94,8 +94,8 @@ const mapStateToProps = (state) => {
   return {
     data: ids.map((id) => details.items[id]),
     order: details.order,
-    products: state.products.list.items,
-    currencies: state.currencies.list.items,
+    products: state.products.items,
+    currencies: state.currencies.items,
     total: details.total,
   };
 };

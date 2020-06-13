@@ -228,11 +228,10 @@ ProductTypes.propTypes = {
   remove: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { list } = state.productTypes;
+const mapStateToProps = ({ productTypes }) => {
   return {
-    data: Object.values(list.items),
-    total: list.total,
+    data: Object.values(productTypes.items),
+    total: productTypes.total,
   };
 };
 

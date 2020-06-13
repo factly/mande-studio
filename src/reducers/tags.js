@@ -16,7 +16,11 @@ import {
 import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
+  loading: false,
+  ids: [],
+  req: [],
+  items: {},
+  total: 0,
 };
 
 export default function tagsReducer(state = initialState, action = {}) {
@@ -24,133 +28,88 @@ export default function tagsReducer(state = initialState, action = {}) {
     case LOADING_TAGS:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case LOAD_TAGS_SUCCESS: {
       const { items } = action.payload;
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, ...items },
-        },
+        loading: false,
+        items: { ...state.items, ...items },
       };
     }
     case ADD_TAGS_LIST_REQUEST: {
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          req: [...list.req, action.payload],
-        },
+        req: [...state.req, action.payload],
       };
     }
     case SET_TAGS_LIST_CURRENT_PAGE:
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          ids: action.payload,
-        },
+        ids: action.payload,
       };
     case SET_TAGS_LIST_TOTAL:
       return {
         ...state,
-        list: {
-          ...state.list,
-          total: action.payload,
-        },
+        total: action.payload,
       };
     case LOAD_TAGS_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case CREATING_TAG:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case CREATE_TAG_SUCCESS: {
-      const { list } = state;
       const tag = action.payload;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          items: { ...list.items, [tag.id]: tag },
-          total: list.total + 1,
-        },
+        loading: false,
+        req: [],
+        items: { ...state.items, [tag.id]: tag },
+        total: state.total + 1,
       };
     }
     case CREATE_TAG_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case UPDATE_TAG_SUCCESS: {
       const tag = action.payload;
-      const { list } = state;
 
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, [tag.id]: tag },
-        },
+        loading: false,
+        items: { ...state.items, [tag.id]: tag },
       };
     }
     case UPDATE_TAG_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case DELETE_TAG_SUCCESS: {
-      const { list } = state;
       const id = action.payload;
-      const newItems = { ...list.items };
+      const newItems = { ...state.items };
       delete newItems[id];
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          ids: [],
-          items: newItems,
-          total: list.total - 1,
-        },
+        loading: false,
+        req: [],
+        ids: [],
+        items: newItems,
+        total: state.total - 1,
       };
     }
     case DELETE_TAG_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     default:
       return state;

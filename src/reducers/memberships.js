@@ -8,7 +8,11 @@ import {
 } from '../constants/memberships';
 
 const initialState = {
-  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
+  loading: false,
+  ids: [],
+  req: [],
+  items: {},
+  total: 0,
 };
 
 export default function membershipsReducer(state = initialState, action = {}) {
@@ -16,57 +20,36 @@ export default function membershipsReducer(state = initialState, action = {}) {
     case LOADING_MEMBERSHIPS:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case LOAD_MEMBERSHIPS_SUCCESS: {
-      const { list } = state;
       const { items } = action.payload;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, ...items },
-        },
+        loading: false,
+        items: { ...state.items, ...items },
       };
     }
     case SET_MEMBERSHIPS_LIST_TOTAL:
       return {
         ...state,
-        list: {
-          ...state.list,
-          total: action.payload,
-        },
+        total: action.payload,
       };
     case ADD_MEMBERSHIPS_LIST_REQUEST: {
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          req: [...list.req, action.payload],
-        },
+        req: [...state.req, action.payload],
       };
     }
     case SET_MEMEBERSHIPS_LIST_CURRENT_PAGE:
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          ids: action.payload,
-        },
+        ids: action.payload,
       };
     case LOAD_MEMBERSHIPS_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     default:
       return state;

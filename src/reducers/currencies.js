@@ -16,7 +16,11 @@ import {
 import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
+  loading: false,
+  ids: [],
+  req: [],
+  items: {},
+  total: 0,
 };
 
 export default function currenciesReducer(state = initialState, action = {}) {
@@ -24,133 +28,87 @@ export default function currenciesReducer(state = initialState, action = {}) {
     case LOADING_CURRENCIES:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case LOAD_CURRENCIES_SUCCESS: {
       const { ids, items } = action.payload;
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, ...items },
-        },
+        loading: false,
+        items: { ...state.items, ...items },
       };
     }
     case SET_CURRENCIES_LIST_TOTAL:
       return {
         ...state,
-        list: {
-          ...state.list,
-          total: action.payload,
-        },
+        total: action.payload,
       };
     case ADD_CURRENCIES_LIST_REQUEST: {
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          req: [...list.req, action.payload],
-        },
+        req: [...state.req, action.payload],
       };
     }
     case SET_CURRENCIES_LIST_CURRENT_PAGE:
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          ids: action.payload,
-        },
+        ids: action.payload,
       };
     case LOAD_CURRENCIES_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case CREATING_CURRENCY:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case CREATE_CURRENCY_SUCCESS: {
-      const { list } = state;
       const currency = action.payload;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          items: { ...list.items, [currency.id]: currency },
-          total: list.total + 1,
-        },
+        loading: false,
+        req: [],
+        items: { ...state.items, [currency.id]: currency },
+        total: state.total + 1,
       };
     }
     case CREATE_CURRENCY_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case UPDATE_CURRENCY_SUCCESS: {
       const currency = action.payload;
-      const { list } = state;
-
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, [currency.id]: currency },
-        },
+        loading: false,
+        items: { ...state.items, [currency.id]: currency },
       };
     }
     case UPDATE_CURRENCY_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case DELETE_CURRENCY_SUCCESS: {
-      const { list } = state;
       const id = action.payload;
-      const newItems = { ...list.items };
+      const newItems = { ...state.items };
       delete newItems[id];
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          ids: [],
-          items: newItems,
-          total: list.total - 1,
-        },
+        loading: false,
+        req: [],
+        ids: [],
+        items: newItems,
+        total: state.total - 1,
       };
     }
     case DELETE_CURRENCY_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     default:
       return state;

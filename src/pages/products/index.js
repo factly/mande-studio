@@ -206,16 +206,15 @@ Products.propTypes = {
   remove: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { list } = state.products;
-  const { ids, req } = list;
+const mapStateToProps = ({ products, currencies, categories, tags }) => {
+  const { ids, req, items, total } = products;
   return {
     req,
-    data: ids.map((id) => list.items[id]),
-    currencies: state.currencies.list.items,
-    tags: state.tags.list.items,
-    categories: state.categories.list.items,
-    total: list.total,
+    data: ids.map((id) => items[id]),
+    currencies: currencies.items,
+    tags: tags.items,
+    categories: categories.items,
+    total,
   };
 };
 

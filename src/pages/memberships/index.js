@@ -79,15 +79,14 @@ Memberships.propTypes = {
   load: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { list } = state.memberships;
-  const { ids } = list;
+const mapStateToProps = ({ plans, users, memberships }) => {
+  const { ids, items, total } = memberships;
 
   return {
-    data: ids.map((id) => list.items[id]),
-    plans: state.plans.list.items,
-    users: state.users.list.items,
-    total: list.total,
+    data: ids.map((id) => items[id]),
+    plans: plans.items,
+    users: users.items,
+    total,
   };
 };
 

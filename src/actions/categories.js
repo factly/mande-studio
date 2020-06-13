@@ -27,9 +27,7 @@ export const loadCategories = (page, limit) => {
     }
 
     const {
-      categories: {
-        list: { req },
-      },
+      categories: { req },
     } = getState();
 
     let found = false;

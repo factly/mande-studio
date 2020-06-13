@@ -16,7 +16,11 @@ import {
 import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
+  loading: false,
+  ids: [],
+  req: [],
+  items: {},
+  total: 0,
 };
 
 export default function plansReducer(state = initialState, action = {}) {
@@ -24,132 +28,87 @@ export default function plansReducer(state = initialState, action = {}) {
     case LOADING_PLANS:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case LOAD_PLANS_SUCCESS: {
       const { items } = action.payload;
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, ...items },
-        },
+        loading: false,
+        items: { ...state.items, ...items },
       };
     }
     case SET_PLANS_LIST_TOTAL:
       return {
         ...state,
-        list: {
-          ...state.list,
-          total: action.payload,
-        },
+        total: action.payload,
       };
     case ADD_PLANS_LIST_REQUEST: {
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          req: [...list.req, action.payload],
-        },
+        req: [...state.req, action.payload],
       };
     }
     case SET_PLANS_LIST_CURRENT_PAGE:
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          ids: action.payload,
-        },
+        ids: action.payload,
       };
     case LOAD_PLANS_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case CREATING_PLAN:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case CREATE_PLAN_SUCCESS: {
-      const { list } = state;
       const plan = action.payload;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          items: { ...list.items, [plan.id]: plan },
-          total: list.total + 1,
-        },
+        loading: false,
+        req: [],
+        items: { ...state.items, [plan.id]: plan },
+        total: state.total + 1,
       };
     }
     case CREATE_PLAN_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case UPDATE_PLAN_SUCCESS: {
-      const { list } = state;
       const plan = action.payload;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, [plan.id]: plan },
-        },
+        loading: false,
+        items: { ...state.items, [plan.id]: plan },
       };
     }
     case UPDATE_PLAN_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case DELETE_PLAN_SUCCESS: {
-      const { list } = state;
       const id = action.payload;
-      const newItems = { ...list.items };
+      const newItems = { ...state.items };
       delete newItems[id];
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          ids: [],
-          items: newItems,
-          total: list.total - 1,
-        },
+        loading: false,
+        req: [],
+        ids: [],
+        items: newItems,
+        total: state.total - 1,
       };
     }
     case DELETE_PLAN_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     default:
       return state;

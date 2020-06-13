@@ -236,13 +236,12 @@ Plans.propTypes = {
   remove: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { list } = state.plans;
-  const { ids, req } = list;
+const mapStateToProps = ({ plans }) => {
+  const { ids, req, items, total } = plans;
   return {
     req,
-    data: ids.map((id) => list.items[id]),
-    total: list.total,
+    data: ids.map((id) => items[id]),
+    total,
   };
 };
 

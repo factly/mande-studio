@@ -34,9 +34,7 @@ export const loadProducts = (page, limit) => {
     }
 
     const {
-      products: {
-        list: { req },
-      },
+      products: { req },
     } = getState();
 
     let found = false;

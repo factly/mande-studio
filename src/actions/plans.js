@@ -27,9 +27,7 @@ export const loadPlans = (page, limit) => {
     }
 
     const {
-      plans: {
-        list: { req },
-      },
+      plans: { req },
     } = getState();
 
     let found = false;

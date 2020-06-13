@@ -16,7 +16,11 @@ import {
 import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
+  loading: false,
+  ids: [],
+  req: [],
+  items: {},
+  total: 0,
 };
 
 export default function categoriesReducer(state = initialState, action = {}) {
@@ -24,133 +28,88 @@ export default function categoriesReducer(state = initialState, action = {}) {
     case LOADING_CATEGORIES:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case LOAD_CATEGORIES_SUCCESS: {
       const { items } = action.payload;
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, ...items },
-        },
+        loading: false,
+        items: { ...state.items, ...items },
       };
     }
     case SET_CATEGORIES_LIST_TOTAL:
       return {
         ...state,
-        list: {
-          ...state.list,
-          total: action.payload,
-        },
+        total: action.payload,
       };
     case ADD_CATEGORIES_LIST_REQUEST: {
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          req: [...list.req, action.payload],
-        },
+        req: [...state.req, action.payload],
       };
     }
     case SET_CATEGORIES_LIST_CURRENT_PAGE:
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          ids: action.payload,
-        },
+        ids: action.payload,
       };
     case LOAD_CATEGORIES_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case CREATING_CATEGORY:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case CREATE_CATEGORY_SUCCESS: {
-      const { list } = state;
       const category = action.payload;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          items: { ...list.items, [category.id]: category },
-          total: list.total + 1,
-        },
+        loading: false,
+        req: [],
+        items: { ...state.items, [category.id]: category },
+        total: state.total + 1,
       };
     }
     case CREATE_CATEGORY_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case UPDATE_CATEGORY_SUCCESS: {
       const category = action.payload;
-      const { list } = state;
 
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, [category.id]: category },
-        },
+        loading: false,
+        items: { ...state.items, [category.id]: category },
       };
     }
     case UPDATE_CATEGORY_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case DELETE_CATEGORY_SUCCESS: {
-      const { list } = state;
       const id = action.payload;
-      const newItems = { ...list.items };
+      const newItems = { ...state.items };
       delete newItems[id];
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          ids: [],
-          items: newItems,
-          total: list.total - 1,
-        },
+        loading: false,
+        req: [],
+        ids: [],
+        items: newItems,
+        total: state.total - 1,
       };
     }
     case DELETE_CATEGORY_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     default:
       return state;

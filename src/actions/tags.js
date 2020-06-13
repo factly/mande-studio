@@ -27,9 +27,7 @@ export const loadTags = (page, limit) => {
     }
 
     const {
-      tags: {
-        list: { req },
-      },
+      tags: { req },
     } = getState();
 
     let found = false;

@@ -74,14 +74,13 @@ Payments.propTypes = {
   load: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { list } = state.payments;
-  const { ids } = list;
+const mapStateToProps = ({ payments, currencies }) => {
+  const { ids, items, total } = payments;
 
   return {
-    data: ids.map((id) => list.items[id]),
-    currencies: state.currencies.list.items,
-    total: list.total,
+    data: ids.map((id) => items[id]),
+    currencies: currencies.items,
+    total,
   };
 };
 

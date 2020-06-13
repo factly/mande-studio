@@ -19,8 +19,12 @@ import {
 import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
-  details: { loading: false, product: {} },
+  loading: false,
+  ids: [],
+  req: [],
+  items: {},
+  total: 0,
+  product: {},
 };
 
 export default function productsReducer(state = initialState, action = {}) {
@@ -28,161 +32,107 @@ export default function productsReducer(state = initialState, action = {}) {
     case LOADING_PRODUCTS:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case LOAD_PRODUCTS_SUCCESS: {
       const { items } = action.payload;
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          items: { ...list.items, ...items },
-        },
+        loading: false,
+        items: { ...state.items, ...items },
       };
     }
     case SET_PRODUCTS_LIST_TOTAL: {
       return {
         ...state,
-        list: {
-          ...state.list,
-          total: action.payload,
-        },
+        total: action.payload,
       };
     }
     case ADD_PRODUCTS_LIST_REQUEST: {
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          req: [...list.req, action.payload],
-        },
+        req: [...state.req, action.payload],
       };
     }
     case SET_PRODUCTS_LIST_CURRENT_PAGE:
-      const { list } = state;
       return {
         ...state,
-        list: {
-          ...list,
-          ids: action.payload,
-        },
+        ids: action.payload,
       };
     case LOAD_PRODUCTS_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case LOADING_PRODUCT_DETAILS:
       return {
         ...state,
-        details: {
-          ...state.details,
-          product: {},
-          loading: true,
-        },
+        product: {},
+        loading: true,
       };
     case GET_PRODUCT_DETAILS_FAILURE:
       return {
         ...state,
-        details: {
-          ...state.details,
-          loading: false,
-        },
+        loading: false,
       };
     case GET_PRODUCT_DETAILS_SUCCESS:
       return {
         ...state,
-        details: {
-          ...state.details,
-          loading: false,
-          product: action.payload,
-        },
+        loading: false,
+        product: action.payload,
       };
     case CREATING_PRODUCT:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: true,
-        },
+        loading: true,
       };
     case CREATE_PRODUCT_SUCCESS: {
-      const { list } = state;
       const product = action.payload;
 
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          items: { ...list.items, [product.id]: product },
-          total: list.total + 1,
-        },
+        loading: false,
+        req: [],
+        items: { ...state.items, [product.id]: product },
+        total: state.total + 1,
       };
     }
     case CREATE_PRODUCT_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case UPDATE_PRODUCT_SUCCESS: {
       const product = action.payload;
-      const { list } = state;
 
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-          items: { ...list.items, [product.id]: product },
-        },
+        loading: false,
+        items: { ...state.items, [product.id]: product },
       };
     }
     case UPDATE_PRODUCT_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     case DELETE_PRODUCT_SUCCESS: {
-      const { list } = state;
       const id = action.payload;
-      const newItems = { ...list.items };
+      const newItems = { ...state.items };
       delete newItems[id];
       return {
         ...state,
-        list: {
-          ...list,
-          loading: false,
-          req: [],
-          ids: [],
-          items: newItems,
-          total: list.total - 1,
-        },
+        loading: false,
+        req: [],
+        ids: [],
+        items: newItems,
+        total: state.total - 1,
       };
     }
     case DELETE_PRODUCT_FAILURE:
       return {
         ...state,
-        list: {
-          ...state.list,
-          loading: false,
-        },
+        loading: false,
       };
     default:
       return state;
