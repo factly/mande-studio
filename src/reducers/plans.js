@@ -1,4 +1,6 @@
 import {
+  ADD_PLANS_LIST_REQUEST,
+  SET_PLANS_LIST_CURRENT_PAGE,
   LOADING_PLANS,
   LOAD_PLANS_SUCCESS,
   SET_PLANS_LIST_TOTAL,
@@ -14,7 +16,7 @@ import {
 import { unique } from '../utils/objects';
 
 const initialState = {
-  list: { loading: false, ids: [], items: {}, total: 0 },
+  list: { loading: false, ids: [], req: [], items: {}, total: 0 },
 };
 
 export default function plansReducer(state = initialState, action = {}) {
@@ -28,14 +30,13 @@ export default function plansReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_PLANS_SUCCESS: {
-      const { ids, items } = action.payload;
+      const { items } = action.payload;
       const { list } = state;
       return {
         ...state,
         list: {
           ...list,
           loading: false,
-          ids: unique([...list.ids, ...ids]),
           items: { ...list.items, ...items },
         },
       };
@@ -46,6 +47,25 @@ export default function plansReducer(state = initialState, action = {}) {
         list: {
           ...state.list,
           total: action.payload,
+        },
+      };
+    case ADD_PLANS_LIST_REQUEST: {
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          req: [...list.req, action.payload],
+        },
+      };
+    }
+    case SET_PLANS_LIST_CURRENT_PAGE:
+      const { list } = state;
+      return {
+        ...state,
+        list: {
+          ...list,
+          ids: action.payload,
         },
       };
     case LOAD_PLANS_FAILURE:
@@ -72,7 +92,7 @@ export default function plansReducer(state = initialState, action = {}) {
         list: {
           ...list,
           loading: false,
-          ids: [...list.ids, plan.id],
+          req: [],
           items: { ...list.items, [plan.id]: plan },
           total: list.total + 1,
         },
@@ -109,9 +129,6 @@ export default function plansReducer(state = initialState, action = {}) {
     case DELETE_PLAN_SUCCESS: {
       const { list } = state;
       const id = action.payload;
-      const index = list.ids.indexOf(id);
-      const newIds = [...list.ids];
-      newIds.splice(index, 1);
       const newItems = { ...list.items };
       delete newItems[id];
       return {
@@ -119,7 +136,8 @@ export default function plansReducer(state = initialState, action = {}) {
         list: {
           ...list,
           loading: false,
-          ids: newIds,
+          req: [],
+          ids: [],
           items: newItems,
           total: list.total - 1,
         },

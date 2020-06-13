@@ -1,6 +1,8 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_PLANS_LIST_REQUEST,
+  SET_PLANS_LIST_CURRENT_PAGE,
   LOADING_PLANS,
   LOAD_PLANS_SUCCESS,
   SET_PLANS_LIST_TOTAL,
@@ -26,6 +28,26 @@ export const loadPlans = (page, limit) => {
 
     dispatch(loadingPlans());
 
+    const {
+      plans: {
+        list: { req },
+      },
+    } = getState();
+
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
+
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
+
     const response = await axios({
       url: url,
       method: 'get',
@@ -35,7 +57,11 @@ export const loadPlans = (page, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadPlansSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setPlansListTotal(total));
     }
   };
@@ -111,11 +137,24 @@ const setPlansListTotal = (total) => {
   };
 };
 
+const addListRequest = (req) => {
+  return {
+    type: ADD_PLANS_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const setListCurrentPage = (ids) => {
+  return {
+    type: SET_PLANS_LIST_CURRENT_PAGE,
+    payload: ids,
+  };
+};
+
 export const loadPlansSuccess = (plans) => {
   return {
     type: LOAD_PLANS_SUCCESS,
     payload: {
-      ids: getIds(plans),
       items: buildObjectOfItems(plans),
     },
   };

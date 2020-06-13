@@ -36,11 +36,11 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Plans = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { data, total, load, update, remove } = props;
+  const { req, data, total, load, update, remove } = props;
 
   React.useEffect(() => {
     load();
-  }, [load]);
+  }, [load, req]);
 
   const get = (page, limit) => {
     cancel();
@@ -94,7 +94,7 @@ const Plans = (props) => {
         .then(() => {
           notification.success({
             message: 'Success',
-            description: 'Membership succesfully deleted',
+            description: 'Plan succesfully deleted',
           });
         })
         .catch(() => {
@@ -238,8 +238,10 @@ Plans.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.plans;
+  const { ids, req } = list;
   return {
-    data: Object.values(list.items),
+    req,
+    data: ids.map((id) => list.items[id]),
     total: list.total,
   };
 };
