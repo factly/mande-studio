@@ -1,6 +1,8 @@
 import axios from '../utils/axios';
 import {
   baseUrl,
+  ADD_CURRENCIES_LIST_REQUEST,
+  SET_CURRENCIES_LIST_CURRENT_PAGE,
   LOADING_CURRENCIES,
   LOAD_CURRENCIES_SUCCESS,
   SET_CURRENCIES_LIST_TOTAL,
@@ -24,6 +26,26 @@ export const loadCurrencies = (page, limit) => {
       url = `${url}?page=${page}&limit=${limit}`;
     }
 
+    const {
+      currencies: {
+        list: { req },
+      },
+    } = getState();
+
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
+
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
+
     dispatch(loadingCurrencies());
 
     const response = await axios({
@@ -35,7 +57,11 @@ export const loadCurrencies = (page, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadCurrenciesSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setCurrenciesListTotal(total));
     }
   };
@@ -111,11 +137,24 @@ const setCurrenciesListTotal = (total) => {
   };
 };
 
+const addListRequest = (req) => {
+  return {
+    type: ADD_CURRENCIES_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const setListCurrentPage = (ids) => {
+  return {
+    type: SET_CURRENCIES_LIST_CURRENT_PAGE,
+    payload: ids,
+  };
+};
+
 export const loadCurrenciesSuccess = (currencies) => {
   return {
     type: LOAD_CURRENCIES_SUCCESS,
     payload: {
-      ids: getIds(currencies),
       items: buildObjectOfItems(currencies),
     },
   };
