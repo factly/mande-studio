@@ -36,11 +36,11 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Tags = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { data, total, load, update, remove } = props;
+  const { req, data, total, load, update, remove } = props;
 
   React.useEffect(() => {
     load();
-  }, [load]);
+  }, [load, req]);
 
   const get = (page, limit) => {
     cancel();
@@ -232,8 +232,11 @@ Tags.propTypes = {
 
 const mapStateToProps = (state) => {
   const { list } = state.tags;
+  const { ids, req } = list;
+
   return {
-    data: Object.values(list.items),
+    req,
+    data: ids.map((id) => list.items[id]),
     total: list.total,
   };
 };

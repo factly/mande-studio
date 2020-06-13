@@ -4,6 +4,8 @@ import {
   LOADING_TAGS,
   LOAD_TAGS_SUCCESS,
   SET_TAGS_LIST_TOTAL,
+  ADD_TAGS_LIST_REQUEST,
+  SET_TAGS_LIST_CURRENT_PAGE,
   LOAD_TAGS_FAILURE,
   CREATING_TAG,
   CREATE_TAG_SUCCESS,
@@ -26,6 +28,26 @@ export const loadTags = (page, limit) => {
 
     dispatch(loadingTags());
 
+    const {
+      tags: {
+        list: { req },
+      },
+    } = getState();
+
+    let found = false;
+    let ids;
+    for (let item of req) {
+      if (item.page === page && item.limit === limit) {
+        ids = [...item.ids];
+        found = true;
+      }
+    }
+
+    if (found) {
+      dispatch(setListCurrentPage(ids));
+      return;
+    }
+
     const response = await axios({
       url: url,
       method: 'get',
@@ -35,7 +57,11 @@ export const loadTags = (page, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
+      const currentPageIds = getIds(nodes);
+      const req = { page: page, limit: limit, ids: currentPageIds };
+      dispatch(addListRequest(req));
       dispatch(loadTagsSuccess(nodes));
+      dispatch(setListCurrentPage(currentPageIds));
       dispatch(setTagsListTotal(total));
     }
   };
@@ -111,11 +137,24 @@ const setTagsListTotal = (total) => {
   };
 };
 
+const addListRequest = (req) => {
+  return {
+    type: ADD_TAGS_LIST_REQUEST,
+    payload: req,
+  };
+};
+
+const setListCurrentPage = (ids) => {
+  return {
+    type: SET_TAGS_LIST_CURRENT_PAGE,
+    payload: ids,
+  };
+};
+
 export const loadTagsSuccess = (tags) => {
   return {
     type: LOAD_TAGS_SUCCESS,
     payload: {
-      ids: getIds(tags),
       items: buildObjectOfItems(tags),
     },
   };

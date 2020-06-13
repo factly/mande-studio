@@ -30,7 +30,7 @@ export default function categoriesReducer(state = initialState, action = {}) {
         },
       };
     case LOAD_CATEGORIES_SUCCESS: {
-      const { ids, items } = action.payload;
+      const { items } = action.payload;
       const { list } = state;
       return {
         ...state,
