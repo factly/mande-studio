@@ -6,7 +6,6 @@ import {
   LOAD_PAYMENTS_FAILURE,
   SET_PAYMENTS_LIST_TOTAL,
 } from '../constants/payments';
-import { unique } from '../utils/objects';
 
 const initialState = {
   loading: false,

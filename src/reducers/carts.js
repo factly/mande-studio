@@ -12,7 +12,6 @@ import {
   SET_CARTS_DETAILS_CURRENT_PAGE,
   GET_CART_ITEMS_FAILURE,
 } from '../constants/carts';
-import { unique } from '../utils/objects';
 
 const initialState = {
   list: { loading: false, ids: [], req: [], items: {}, total: 0 },

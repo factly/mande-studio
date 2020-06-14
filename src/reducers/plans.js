@@ -13,7 +13,6 @@ import {
   DELETE_PLAN_SUCCESS,
   DELETE_PLAN_FAILURE,
 } from '../constants/plans';
-import { unique } from '../utils/objects';
 
 const initialState = {
   loading: false,
