@@ -19,7 +19,6 @@ import {
 } from '../constants/orders';
 import { loadCartsSuccess } from './carts';
 import { loadPaymentsSuccess } from './payments';
-import { loadProductTypesSuccess } from './product_types';
 import { loadCurrenciesSuccess } from './currencies';
 import { loadProductsSuccess } from './products';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
@@ -140,10 +139,8 @@ export const getOrderItems = (id, page = 1, limit) => {
       const { nodes, total } = response.data;
 
       const products = getValues(nodes, 'product');
-      const productTypes = getValues(products, 'product_type');
       const currencies = getValues(products, 'currency');
       dispatch(loadCurrenciesSuccess(currencies));
-      dispatch(loadProductTypesSuccess(productTypes));
       dispatch(loadProductsSuccess(products));
 
       const currentPageIds = getIds(nodes);

@@ -5,8 +5,6 @@ import { Form, Input, Button, notification, Select } from 'antd';
 
 import { createProduct } from '../../actions/products';
 import { loadTags } from '../../actions/tags';
-import { loadProductTypes } from '../../actions/product_types';
-import { loadCategories } from '../../actions/categories';
 import { loadCurrencies } from '../../actions/currencies';
 
 const { Option } = Select;
@@ -17,23 +15,11 @@ const formItemLayout = {
 };
 
 const ProductCreate = (props) => {
-  const {
-    tags,
-    categories,
-    currencies,
-    productTypes,
-    create,
-    loadTags,
-    loadCategories,
-    loadCurrencies,
-    loadProductTypes,
-  } = props;
+  const { tags, currencies, create, loadTags, loadCurrencies } = props;
 
   React.useEffect(() => {
     loadTags();
-    loadCategories();
     loadCurrencies();
-    loadProductTypes();
   }, []);
 
   function handleChange(value) {
@@ -42,9 +28,7 @@ const ProductCreate = (props) => {
 
   const onFinish = (values) => {
     values.currency_id = parseInt(values.currency_id);
-    values.product_type_id = parseInt(values.product_type_id);
     values.price = parseInt(values.price);
-    values.category_ids = values.category_ids.map((c) => parseInt(c));
     values.tag_ids = values.tag_ids.map((t) => parseInt(t));
     create(values)
       .then(() => {
@@ -129,31 +113,6 @@ const ProductCreate = (props) => {
       </Form.Item>
 
       <Form.Item
-        label="Category"
-        name="category_ids"
-        rules={[
-          {
-            required: true,
-            message: 'Please select atleast one category!',
-          },
-        ]}
-      >
-        <Select
-          mode="tags"
-          style={{ width: '100%' }}
-          placeholder="Select categories"
-          onChange={handleChange}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {categories.length > 0
-            ? categories.map((category) => <Option key={category.id}>{category.slug}</Option>)
-            : []}
-        </Select>
-      </Form.Item>
-
-      <Form.Item
         label="Tag"
         name="tag_ids"
         rules={[
@@ -204,31 +163,6 @@ const ProductCreate = (props) => {
         </Select>
       </Form.Item>
 
-      <Form.Item
-        label="Type"
-        name="product_type_id"
-        rules={[
-          {
-            required: true,
-            message: 'Please enter type!',
-          },
-        ]}
-      >
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          placeholder="Select type"
-          onChange={handleChange}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {productTypes.length > 0
-            ? productTypes.map((p) => <Option key={p.id}>{p.name}</Option>)
-            : []}
-        </Select>
-      </Form.Item>
-
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">
           Submit
@@ -241,28 +175,20 @@ const ProductCreate = (props) => {
 ProductCreate.propTypes = {
   create: PropTypes.func.isRequired,
   loadTags: PropTypes.func.isRequired,
-  loadCategories: PropTypes.func.isRequired,
   loadCurrencies: PropTypes.func.isRequired,
-  loadProductTypes: PropTypes.func.isRequired,
   tags: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
   currencies: PropTypes.array.isRequired,
-  productTypes: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   tags: Object.values(state.tags.items),
-  categories: Object.values(state.categories.items),
   currencies: Object.values(state.currencies.items),
-  productTypes: Object.values(state.productTypes.items),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   create: (values) => dispatch(createProduct(values)),
   loadTags: () => dispatch(loadTags()),
-  loadCategories: () => dispatch(loadCategories()),
   loadCurrencies: () => dispatch(loadCurrencies()),
-  loadProductTypes: () => dispatch(loadProductTypes()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCreate);

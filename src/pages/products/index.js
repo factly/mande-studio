@@ -36,7 +36,7 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Products = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { data, currencies, categories, tags, total, load, remove } = props;
+  const { data, currencies, tags, total, load, remove } = props;
   const [pagination, setPagination] = useState({
     current: 1,
     defaultPageSize: 5,
@@ -104,11 +104,6 @@ const Products = (props) => {
       title: 'Status',
       render: (record) => record.status,
       width: '10%',
-    },
-    {
-      title: 'Categories',
-      render: (record) => record.categories.map((id) => categories[id].title).join(', '),
-      width: '20%',
     },
     {
       title: 'Tags',
@@ -203,20 +198,18 @@ const Products = (props) => {
 Products.propTypes = {
   data: PropTypes.array.isRequired,
   tags: PropTypes.object.isRequired,
-  categories: PropTypes.object.isRequired,
   currencies: PropTypes.object.isRequired,
   total: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ products, currencies, categories, tags }) => {
+const mapStateToProps = ({ products, currencies, tags }) => {
   const { ids, items, total } = products;
   return {
     data: ids.map((id) => items[id]),
     currencies: currencies.items,
     tags: tags.items,
-    categories: categories.items,
     total,
   };
 };
