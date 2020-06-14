@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import { Table, Form, Button } from 'antd';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { loadCarts } from '../../actions/carts';
 
 const Carts = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { data, load, total } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/carts')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
-    fetch(process.env.REACT_APP_API_URL + '/carts?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+  const handleTableChange = ({ current, pageSize }) => {
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const columns = [
@@ -73,15 +73,32 @@ const Carts = (props) => {
           rowKey="id"
           dataSource={data}
           columns={columns}
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          onChange={handleTableChange}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default Carts;
+Carts.propTypes = {
+  data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.carts;
+  const { ids } = list;
+
+  return {
+    data: ids.map((id) => list.items[id]),
+    total: list.total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadCarts(page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Carts);

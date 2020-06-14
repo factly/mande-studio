@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Form } from 'antd';
 import moment from 'moment';
 
-const Memberships = () => {
+import { loadMemberships } from '../../actions/memberships';
+
+const Memberships = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { data, plans, users, total, load } = props;
+
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/memberships')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
-    fetch(process.env.REACT_APP_API_URL + '/memberships?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+  const handleTableChange = ({ current, pageSize }) => {
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const columns = [
@@ -34,13 +35,13 @@ const Memberships = () => {
     },
     {
       title: 'Plan',
-      render: (record) => record.plan.plan_name,
+      render: (record) => plans[record.plan_id].plan_name,
       width: '15%',
       editable: true,
     },
     {
       title: 'User',
-      render: (record) => record.user.email,
+      render: (record) => users[record.user_id].email,
       width: '15%',
       editable: true,
     },
@@ -66,18 +67,38 @@ const Memberships = () => {
         <Table
           bordered
           rowKey="id"
+          onChange={handleTableChange}
           dataSource={data}
           columns={columns}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default Memberships;
+Memberships.propTypes = {
+  data: PropTypes.array.isRequired,
+  plans: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ plans, users, memberships }) => {
+  const { ids, items, total } = memberships;
+
+  return {
+    data: ids.map((id) => items[id]),
+    plans: plans.items,
+    users: users.items,
+    total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadMemberships(page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Memberships);

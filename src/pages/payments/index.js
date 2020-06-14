@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Form } from 'antd';
 import moment from 'moment';
 
-const Payments = () => {
+import { loadPayments } from '../../actions/payments';
+
+const Payments = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { data, currencies, total, load } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/payments')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
-    fetch(process.env.REACT_APP_API_URL + '/payments?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+  const handleTableChange = ({ current, pageSize }) => {
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const columns = [
     {
       title: 'Amount',
-      render: (record) => <span>{`${record.amount} ${record.currency.iso_code}`}</span>,
+      render: (record) => (
+        <span>{`${record.amount} ${currencies[record.currency_id].iso_code}`}</span>
+      ),
       width: '25%',
       editable: true,
     },
@@ -60,18 +62,36 @@ const Payments = () => {
         <Table
           bordered
           rowKey="id"
+          onChange={handleTableChange}
           dataSource={data}
           columns={columns}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default Payments;
+Payments.propTypes = {
+  data: PropTypes.array.isRequired,
+  currencies: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ payments, currencies }) => {
+  const { ids, items, total } = payments;
+
+  return {
+    data: ids.map((id) => items[id]),
+    currencies: currencies.items,
+    total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadPayments(page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payments);

@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Form, Input, Button, notification, Select } from 'antd';
 import { useParams } from 'react-router-dom';
+
+import { updateProduct, getProductDetails } from '../../actions/products';
+import { loadTags } from '../../actions/tags';
+import { loadProductTypes } from '../../actions/product_types';
+import { loadCategories } from '../../actions/categories';
+import { loadCurrencies } from '../../actions/currencies';
 
 const { Option } = Select;
 
@@ -10,45 +18,27 @@ const formItemLayout = {
 };
 
 const ProductEdit = (props) => {
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [currencies, setCurrencies] = useState([]);
-  const [productType, setProductType] = useState([]);
-  const [product, setProduct] = useState();
-
   const { id } = useParams();
+  const {
+    product,
+    tags,
+    categories,
+    currencies,
+    productTypes,
+    getDetails,
+    update,
+    loadTags,
+    loadCategories,
+    loadCurrencies,
+    loadProductTypes,
+  } = props;
+
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + `/products/${id}`)
-      .then((data) => data.json())
-      .then((data) => {
-        setProduct(data);
-      })
-      .catch(() => {
-        notification.error({
-          message: 'Error',
-          description: 'Something went wrong',
-        });
-      });
-    fetch(process.env.REACT_APP_API_URL + '/tags')
-      .then((data) => data.json())
-      .then((data) => {
-        setTags(data.nodes);
-      });
-    fetch(process.env.REACT_APP_API_URL + '/categories')
-      .then((data) => data.json())
-      .then((data) => {
-        setCategories(data.nodes);
-      });
-    fetch(process.env.REACT_APP_API_URL + '/currencies')
-      .then((data) => data.json())
-      .then((data) => {
-        setCurrencies(data.nodes);
-      });
-    fetch(process.env.REACT_APP_API_URL + '/types')
-      .then((data) => data.json())
-      .then((data) => {
-        setProductType(data.nodes);
-      });
+    getDetails(id);
+    loadTags();
+    loadCategories();
+    loadCurrencies();
+    loadProductTypes();
   }, [id]);
 
   function handleChange(value) {
@@ -62,25 +52,15 @@ const ProductEdit = (props) => {
     values.category_ids = values.category_ids.map((id) => parseInt(id));
     values.tag_ids = values.tag_ids.map((id) => parseInt(id));
 
-    fetch(process.env.REACT_APP_API_URL + `/products/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(values),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error(res.status);
-        }
-      })
-      .then((_) => {
+    update(id, values)
+      .then(() => {
         notification.success({
           message: 'Success',
           description: 'Product succesfully updated',
         });
         props.history.push('/products');
       })
-      .catch((err) => {
+      .catch(() => {
         notification.error({
           message: 'Error',
           description: 'Something went wrong',
@@ -89,17 +69,17 @@ const ProductEdit = (props) => {
   };
 
   const initialValues = {
-    slug: product ? product.slug : '',
-    title: product ? product.title : '',
-    price: product ? product.price : null,
-    currency_id: product ? product.currency.id : '',
-    category_ids: product ? product.categories.map((category) => category.id) : [],
-    tag_ids: product ? product.tags.map((tag) => tag.id) : [],
-    status: product ? product.status : '',
-    product_type_id: product ? product.product_type.id : '',
+    slug: product.id ? product.slug : '',
+    title: product.id ? product.title : '',
+    price: product.id ? product.price : null,
+    currency_id: product.id ? product.currency.id : '',
+    category_ids: product.id ? product.categories.map((category) => category.id) : [],
+    tag_ids: product.id ? product.tags.map((tag) => tag.id) : [],
+    status: product.id ? product.status : '',
+    product_type_id: product.id ? product.product_type.id : '',
   };
 
-  return !product ? null : (
+  return !product.id ? null : (
     <Form
       name="products_update"
       {...formItemLayout}
@@ -279,8 +259,8 @@ const ProductEdit = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {productType.length > 0
-            ? productType.map((product) => (
+          {productTypes.length > 0
+            ? productTypes.map((product) => (
                 <Select.Option key={product.id} value={product.id}>
                   {product.name}
                 </Select.Option>
@@ -298,4 +278,35 @@ const ProductEdit = (props) => {
   );
 };
 
-export default ProductEdit;
+ProductEdit.propTypes = {
+  update: PropTypes.func.isRequired,
+  getDetails: PropTypes.func.isRequired,
+  loadTags: PropTypes.func.isRequired,
+  loadCategories: PropTypes.func.isRequired,
+  loadCurrencies: PropTypes.func.isRequired,
+  loadProductTypes: PropTypes.func.isRequired,
+  product: PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  currencies: PropTypes.array.isRequired,
+  productTypes: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  product: state.products.product,
+  tags: Object.values(state.tags.items),
+  categories: Object.values(state.categories.items),
+  currencies: Object.values(state.currencies.items),
+  productTypes: Object.values(state.productTypes.items),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  update: (id, values) => dispatch(updateProduct(id, values)),
+  getDetails: (id) => dispatch(getProductDetails(id)),
+  loadTags: () => dispatch(loadTags()),
+  loadCategories: () => dispatch(loadCategories()),
+  loadCurrencies: () => dispatch(loadCurrencies()),
+  loadProductTypes: () => dispatch(loadProductTypes()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductEdit);

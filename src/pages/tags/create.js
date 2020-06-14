@@ -1,5 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Form, Input, Button, notification } from 'antd';
+
+import { createTag } from '../../actions/tags';
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -7,26 +11,18 @@ const formItemLayout = {
 };
 
 const TagCreate = (props) => {
+  const { create } = props;
+
   const onFinish = (values) => {
-    fetch(process.env.REACT_APP_API_URL + '/tags', {
-      method: 'POST',
-      body: JSON.stringify(values),
-    })
-      .then((res) => {
-        if (res.status === 201) {
-          return res.json();
-        } else {
-          throw new Error(res.status);
-        }
-      })
-      .then((_) => {
+    create(values)
+      .then(() => {
         notification.success({
           message: 'Success',
           description: 'Tag succesfully added',
         });
         props.history.push('/tags');
       })
-      .catch((res) => {
+      .catch(() => {
         notification.error({
           message: 'Error',
           description: 'Something went wrong',
@@ -71,4 +67,12 @@ const TagCreate = (props) => {
   );
 };
 
-export default TagCreate;
+TagCreate.propTypes = {
+  create: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  create: (values) => dispatch(createTag(values)),
+});
+
+export default connect(null, mapDispatchToProps)(TagCreate);

@@ -1,57 +1,49 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { Table, Form, Descriptions, Card, notification } from 'antd';
+import { Table, Form, Descriptions, Card } from 'antd';
 
-const OrderDetail = () => {
+import { getOrderDetails, getOrderItems } from '../../actions/orders';
+
+const OrderDetail = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [order, setOrder] = useState();
-  const [total, setTotal] = useState(0);
   const { id } = useParams();
+  const { data, products, currencies, total, order, getOrder, loadItems } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}`)
-      .then((data) => data.json())
-      .then((data) => {
-        setOrder(data);
-      })
-      .catch(() => {
-        notification.error({
-          message: 'Error',
-          description: 'Something went wrong',
-        });
-      });
+    getOrder(id);
+    handleTableChange(pagination);
+  }, [total]);
 
-    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}/items`)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, [id]);
-
-  const get = (page, limit) => {
-    fetch(`${process.env.REACT_APP_API_URL}/orders/${id}/items?page=${page}&limit=${limit}`)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+  const handleTableChange = ({ current, pageSize }) => {
+    loadItems(id, current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const columns = [
     {
       title: 'Product Item',
-      render: (record) => record.product.title,
+      render: (record) => products[record.product_id].title || '',
       width: '40%',
     },
     {
       title: 'Price',
-      render: (record) => (
-        <span>
-          {record.product.price} {record.product.currency.iso_code}
-        </span>
-      ),
+      render: (record) => {
+        const product = products[record.product_id];
+        const currency = currencies[product.currency_id];
+        return (
+          <span>
+            {product.price} {currency.iso_code}
+          </span>
+        );
+      },
       width: '20%',
     },
     {
@@ -63,7 +55,7 @@ const OrderDetail = () => {
 
   return (
     <div>
-      {!order ? null : (
+      {!order.id ? null : (
         <Card>
           <Descriptions title="Order details">
             <Descriptions.Item label="Order ID">{order.id}</Descriptions.Item>
@@ -83,15 +75,40 @@ const OrderDetail = () => {
           rowKey="id"
           dataSource={data}
           columns={columns}
-          pagination={{
-            defaultPageSize: 5,
-            total: total,
-            onChange: get,
-          }}
+          onChange={handleTableChange}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default OrderDetail;
+OrderDetail.propTypes = {
+  order: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
+  products: PropTypes.object.isRequired,
+  currencies: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired,
+  getOrder: PropTypes.func.isRequired,
+  loadItems: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { details } = state.orders;
+  const { ids } = details;
+
+  return {
+    data: ids.map((id) => details.items[id]),
+    order: details.order,
+    products: state.products.items,
+    currencies: state.currencies.items,
+    total: details.total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getOrder: (id) => dispatch(getOrderDetails(id)),
+  loadItems: (id, page, limit) => dispatch(getOrderItems(id, page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderDetail);

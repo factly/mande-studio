@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+
+import { loadPlans, updatePlan, deletePlan } from '../../actions/plans';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -29,29 +33,25 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Plans = () => {
+const Plans = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const { data, total, load, update, remove } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/plans')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
+  const handleTableChange = ({ current, pageSize }) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/plans?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -71,29 +71,15 @@ const Plans = () => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/plans/' + item.id, {
-          method: 'PUT',
-          body: JSON.stringify(row),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(res.status);
-            }
-          })
-          .then((res) => {
-            const newData = [...data];
-            newData.splice(index, 1, res);
-            setData(newData);
+        update(key, row)
+          .then(() => {
             setEditingKey('');
             notification.success({
               message: 'Success',
               description: 'Plan succesfully updated',
             });
           })
-          .catch((err) => {
+          .catch(() => {
             notification.error({
               message: 'Error',
               description: 'Something went wrong',
@@ -111,21 +97,14 @@ const Plans = () => {
   const deletePlan = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/plans/' + key, {
-        method: 'DELETE',
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            const newData = [...data];
-            newData.splice(index, 1);
-            setData(newData);
-            notification.success({
-              message: 'Success',
-              description: 'Membership succesfully deleted',
-            });
-          }
+      remove(key)
+        .then(() => {
+          notification.success({
+            message: 'Success',
+            description: 'Plan succesfully deleted',
+          });
         })
-        .catch((err) => {
+        .catch(() => {
           notification.error({
             message: 'Error',
             description: 'Something went wrong',
@@ -243,17 +222,36 @@ const Plans = () => {
           bordered
           rowKey="id"
           dataSource={data}
+          onChange={handleTableChange}
           columns={mergedColumns}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default Plans;
+Plans.propTypes = {
+  data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ plans }) => {
+  const { ids, items, total } = plans;
+  return {
+    data: ids.map((id) => items[id]),
+    total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadPlans(page, limit)),
+  update: (id, data) => dispatch(updatePlan(id, data)),
+  remove: (id) => dispatch(deletePlan(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Plans);

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+
+import { loadTags, updateTag, deleteTag } from '../../actions/tags';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -29,29 +33,25 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const Tags = () => {
+const Tags = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const { data, total, load, update, remove } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/tags')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
+  const handleTableChange = ({ current, pageSize }) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/tags?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -71,22 +71,8 @@ const Tags = () => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + '/tags/' + item.id, {
-          method: 'PUT',
-          body: JSON.stringify(row),
-        })
+        update(key, row)
           .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(res.status);
-            }
-          })
-          .then((res) => {
-            const newData = [...data];
-            newData.splice(index, 1, res);
-            setData(newData);
             setEditingKey('');
             notification.success({
               message: 'Success',
@@ -111,19 +97,12 @@ const Tags = () => {
   const deleteTag = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/tags/' + key, {
-        method: 'DELETE',
-      })
+      remove(key)
         .then((res) => {
-          if (res.status === 200) {
-            const newData = [...data];
-            newData.splice(index, 1);
-            setData(newData);
-            notification.success({
-              message: 'Success',
-              description: 'Tag succesfully deleted',
-            });
-          }
+          notification.success({
+            message: 'Success',
+            description: 'Tag succesfully deleted',
+          });
         })
         .catch((err) => {
           notification.error({
@@ -238,16 +217,36 @@ const Tags = () => {
           rowKey="id"
           dataSource={data}
           columns={mergedColumns}
+          onChange={handleTableChange}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default Tags;
+Tags.propTypes = {
+  data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ tags }) => {
+  const { ids, items, total } = tags;
+
+  return {
+    data: ids.map((id) => items[id]),
+    total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadTags(page, limit)),
+  update: (id, data) => dispatch(updateTag(id, data)),
+  remove: (id) => dispatch(deleteTag(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tags);

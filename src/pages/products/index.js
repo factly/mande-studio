@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+
+import { loadProducts, deleteProduct } from '../../actions/products';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -31,27 +35,23 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 
 const Products = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const { data, currencies, categories, tags, total, load, remove } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/products')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
+  const handleTableChange = ({ current, pageSize }) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + '/products?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -63,21 +63,14 @@ const Products = (props) => {
   const deleteProduct = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + '/products/' + key, {
-        method: 'DELETE',
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            const newData = [...data];
-            newData.splice(index, 1);
-            setData(newData);
-            notification.success({
-              message: 'Success',
-              description: 'Product succesfully deleted',
-            });
-          }
+      remove(key)
+        .then(() => {
+          notification.success({
+            message: 'Success',
+            description: 'Product succesfully deleted',
+          });
         })
-        .catch((err) => {
+        .catch(() => {
           notification.error({
             message: 'Error',
             description: 'Something went wrong',
@@ -99,7 +92,7 @@ const Products = (props) => {
     },
     {
       title: 'Currency',
-      render: (record) => record.currency.iso_code,
+      render: (record) => currencies[record.currency_id].iso_code,
       width: '10%',
     },
     {
@@ -114,12 +107,12 @@ const Products = (props) => {
     },
     {
       title: 'Categories',
-      render: (record) => record.categories.map((c) => c.title).join(', '),
+      render: (record) => record.categories.map((id) => categories[id].title).join(', '),
       width: '20%',
     },
     {
       title: 'Tags',
-      render: (record) => record.tags.map((t) => t.title).join(', '),
+      render: (record) => record.tags.map((id) => tags[id].title).join(', '),
       width: '20%',
     },
     {
@@ -198,16 +191,39 @@ const Products = (props) => {
           rowKey="id"
           dataSource={data}
           columns={mergedColumns}
+          onChange={handleTableChange}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default Products;
+Products.propTypes = {
+  data: PropTypes.array.isRequired,
+  tags: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired,
+  currencies: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ products, currencies, categories, tags }) => {
+  const { ids, items, total } = products;
+  return {
+    data: ids.map((id) => items[id]),
+    currencies: currencies.items,
+    tags: tags.items,
+    categories: categories.items,
+    total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadProducts(page, limit)),
+  remove: (id) => dispatch(deleteProduct(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

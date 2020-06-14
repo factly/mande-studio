@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Input, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+
+import {
+  loadProductTypes,
+  updateProductType,
+  deleteProductType,
+} from '../../actions/product_types';
 
 const EditableCell = ({ editing, dataIndex, title, record, index, children, ...restProps }) => {
   return (
@@ -29,29 +37,18 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
   );
 };
 
-const ProductTypes = () => {
+const ProductTypes = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const { data, total, load, update, remove } = props;
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + `/types`)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    load();
+  }, [load]);
 
   const get = (page, limit) => {
     cancel();
-    fetch(process.env.REACT_APP_API_URL + `/types?page=` + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+    load(page, limit);
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -71,29 +68,15 @@ const ProductTypes = () => {
       const index = data.findIndex((item) => item.id === key);
 
       if (index > -1) {
-        const item = data[index];
-        fetch(process.env.REACT_APP_API_URL + `/types/` + item.id, {
-          method: 'PUT',
-          body: JSON.stringify(row),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(res.status);
-            }
-          })
-          .then((res) => {
-            const newData = [...data];
-            newData.splice(index, 1, res);
-            setData(newData);
+        update(key, row)
+          .then(() => {
             setEditingKey('');
             notification.success({
               message: 'Success',
               description: 'Product Type succesfully updated',
             });
           })
-          .catch((err) => {
+          .catch(() => {
             notification.error({
               message: 'Error',
               description: 'Something went wrong',
@@ -111,21 +94,14 @@ const ProductTypes = () => {
   const deleteProductType = (key) => {
     const index = data.findIndex((item) => item.id === key);
     if (index > -1) {
-      fetch(process.env.REACT_APP_API_URL + `/types/` + key, {
-        method: 'DELETE',
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            const newData = [...data];
-            newData.splice(index, 1);
-            setData(newData);
-            notification.success({
-              message: 'Success',
-              description: 'Product Type succesfully deleted',
-            });
-          }
+      remove(key)
+        .then(() => {
+          notification.success({
+            message: 'Success',
+            description: 'Product Type succesfully deleted',
+          });
         })
-        .catch((err) => {
+        .catch(() => {
           notification.error({
             message: 'Error',
             description: 'Something went wrong',
@@ -244,4 +220,25 @@ const ProductTypes = () => {
   );
 };
 
-export default ProductTypes;
+ProductTypes.propTypes = {
+  data: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ productTypes }) => {
+  return {
+    data: Object.values(productTypes.items),
+    total: productTypes.total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadProductTypes(page, limit)),
+  update: (id, data) => dispatch(updateProductType(id, data)),
+  remove: (id) => dispatch(deleteProductType(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductTypes);

@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Table, Form, Button } from 'antd';
 import moment from 'moment';
 
+import { loadOrders } from '../../actions/orders';
+
 const Orders = (props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { data, currencies, payments, total, load } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/orders')
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
-  }, []);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
-    fetch(process.env.REACT_APP_API_URL + '/orders?page=' + page + '&limit=' + limit)
-      .then((data) => data.json())
-      .then((data) => {
-        setData(data.nodes);
-        setTotal(data.total);
-      });
+  const handleTableChange = ({ current, pageSize }) => {
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const columns = [
@@ -33,9 +33,11 @@ const Orders = (props) => {
     },
     {
       title: 'Amount',
-      render: (record) => (
-        <span>{`${record.payment.amount} ${record.payment.currency.iso_code}`}</span>
-      ),
+      render: (record) => {
+        const payment = payments[record.payment_id];
+        const currency = currencies[payment.currency_id];
+        return <span>{`${payment.amount} ${currency.iso_code}`}</span>;
+      },
       width: '20%',
     },
     {
@@ -83,17 +85,38 @@ const Orders = (props) => {
         <Table
           bordered
           rowKey="id"
+          onChange={handleTableChange}
           dataSource={data}
           columns={columns}
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
   );
 };
 
-export default Orders;
+Orders.propTypes = {
+  data: PropTypes.array.isRequired,
+  payments: PropTypes.object.isRequired,
+  currencies: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired,
+  load: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { list } = state.orders;
+  const { ids } = list;
+
+  return {
+    data: ids.map((id) => list.items[id]),
+    payments: state.payments.items,
+    currencies: state.currencies.items,
+    total: list.total,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  load: (page, limit) => dispatch(loadOrders(page, limit)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);
