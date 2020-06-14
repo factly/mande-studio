@@ -36,15 +36,22 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Currencies = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { req, data, total, load, update, remove } = props;
+  const { data, total, load, update, remove } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    load();
-  }, [load, req]);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
+  const handleTableChange = ({ current, pageSize }) => {
     cancel();
-    load(page, limit);
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -210,12 +217,9 @@ const Currencies = (props) => {
           rowKey="id"
           dataSource={data}
           columns={mergedColumns}
+          onChange={handleTableChange}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
@@ -231,10 +235,9 @@ Currencies.propTypes = {
 };
 
 const mapStateToProps = ({ currencies }) => {
-  const { ids, req, items, total } = currencies;
+  const { ids, items, total } = currencies;
 
   return {
-    req,
     data: ids.map((id) => items[id]),
     total,
   };

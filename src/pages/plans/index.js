@@ -36,15 +36,22 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Plans = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { req, data, total, load, update, remove } = props;
+  const { data, total, load, update, remove } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    load();
-  }, [load, req]);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
+  const handleTableChange = ({ current, pageSize }) => {
     cancel();
-    load(page, limit);
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -215,13 +222,10 @@ const Plans = (props) => {
           bordered
           rowKey="id"
           dataSource={data}
+          onChange={handleTableChange}
           columns={mergedColumns}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
@@ -237,9 +241,8 @@ Plans.propTypes = {
 };
 
 const mapStateToProps = ({ plans }) => {
-  const { ids, req, items, total } = plans;
+  const { ids, items, total } = plans;
   return {
-    req,
     data: ids.map((id) => items[id]),
     total,
   };

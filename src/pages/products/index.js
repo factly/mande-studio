@@ -36,15 +36,22 @@ const EditableCell = ({ editing, dataIndex, title, record, index, children, ...r
 const Products = (props) => {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState('');
-  const { req, data, currencies, categories, tags, total, load, remove } = props;
+  const { data, currencies, categories, tags, total, load, remove } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    load();
-  }, [load, req]);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => {
+  const handleTableChange = ({ current, pageSize }) => {
     cancel();
-    load(page, limit);
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
   };
 
   const isEditing = (record) => record.id === editingKey;
@@ -184,12 +191,9 @@ const Products = (props) => {
           rowKey="id"
           dataSource={data}
           columns={mergedColumns}
+          onChange={handleTableChange}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
@@ -207,9 +211,8 @@ Products.propTypes = {
 };
 
 const mapStateToProps = ({ products, currencies, categories, tags }) => {
-  const { ids, req, items, total } = products;
+  const { ids, items, total } = products;
   return {
-    req,
     data: ids.map((id) => items[id]),
     currencies: currencies.items,
     tags: tags.items,
