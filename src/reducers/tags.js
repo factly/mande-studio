@@ -13,7 +13,6 @@ import {
   DELETE_TAG_SUCCESS,
   DELETE_TAG_FAILURE,
 } from '../constants/tags';
-import { unique } from '../utils/objects';
 
 const initialState = {
   loading: false,

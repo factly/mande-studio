@@ -16,7 +16,6 @@ import {
 } from '../constants/carts';
 import { loadProductsSuccess } from './products';
 import { loadCurrenciesSuccess } from './currencies';
-import { loadProductTypesSuccess } from './product_types';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadCarts = (page = 1, limit) => {
@@ -111,9 +110,6 @@ export const getCartItems = (id, page = 1, limit) => {
 
       const currencies = getValues(products, 'currency');
       dispatch(loadCurrenciesSuccess(currencies));
-
-      const productTypes = getValues(products, 'product_type');
-      dispatch(loadProductTypesSuccess(productTypes));
 
       dispatch(loadProductsSuccess(products));
 

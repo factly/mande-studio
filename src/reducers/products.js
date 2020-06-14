@@ -16,7 +16,6 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
 } from '../constants/products';
-import { unique } from '../utils/objects';
 
 const initialState = {
   loading: false,

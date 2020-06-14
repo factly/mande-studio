@@ -13,7 +13,6 @@ import {
   DELETE_CURRENCY_SUCCESS,
   DELETE_CURRENCY_FAILURE,
 } from '../constants/currencies';
-import { unique } from '../utils/objects';
 
 const initialState = {
   loading: false,

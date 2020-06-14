@@ -10,12 +10,8 @@ import Tags from './pages/tags/index';
 import TagCreate from './pages/tags/create';
 import ProductCreate from './pages/products/create';
 import Products from './pages/products';
-import CategoryCreate from './pages/categories/create';
-import Categories from './pages/categories';
 import CurrencyCreate from './pages/currencies/create';
 import Currencies from './pages/currencies';
-import ProductTypes from './pages/product_types';
-import ProductTypeCreate from './pages/product_types/create';
 import ProductEdit from './pages/products/edit';
 
 import {
@@ -61,17 +57,6 @@ const routes = [
   new Route({
     path: '/carts/:id',
     component: CartDetail,
-  }),
-  new Route({
-    path: '/categories',
-    component: Categories,
-    title: 'Categories',
-    icon: TagOutlined,
-    onNavigation: true,
-  }),
-  new Route({
-    path: '/categories/create',
-    component: CategoryCreate,
   }),
   new Route({
     path: '/currencies',
@@ -145,17 +130,6 @@ const routes = [
   new Route({
     path: '/tags/create',
     component: TagCreate,
-  }),
-  new Route({
-    path: '/types',
-    component: ProductTypes,
-    title: 'Product Types',
-    icon: FilePptOutlined,
-    onNavigation: true,
-  }),
-  new Route({
-    path: '/types/create',
-    component: ProductTypeCreate,
   }),
 ];
 

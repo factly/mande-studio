@@ -20,9 +20,7 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
 } from '../constants/products';
-import { loadCategoriesSuccess } from './categories';
 import { loadCurrenciesSuccess } from './currencies';
-import { loadProductTypesSuccess } from './product_types';
 import { loadTagsSuccess } from './tags';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
@@ -65,20 +63,13 @@ export const loadProducts = (page, limit) => {
       const currentPageIds = getIds(nodes);
       const req = { page: page, limit: limit, ids: currentPageIds };
 
-      const categories = getValues(nodes, 'categories');
-      dispatch(loadCategoriesSuccess(categories));
-
       const currencies = getValues(nodes, 'currency');
       dispatch(loadCurrenciesSuccess(currencies));
-
-      const productTypes = getValues(nodes, 'product_type');
-      dispatch(loadProductTypesSuccess(productTypes));
 
       const tags = getValues(nodes, 'tags');
       dispatch(loadTagsSuccess(tags));
 
       nodes.forEach((product) => {
-        product.categories = getIds(product.categories);
         product.tags = getIds(product.tags);
       });
 
@@ -143,7 +134,6 @@ export const updateProduct = (id, data) => {
 
     if (response) {
       const product = response.data;
-      product.categories = getIds(product.categories);
       product.tags = getIds(product.tags);
       dispatch(updateProductSuccess(product));
     }
@@ -200,7 +190,7 @@ export const loadProductsSuccess = (products) => {
   return {
     type: LOAD_PRODUCTS_SUCCESS,
     payload: {
-      items: buildObjectOfItems(deleteKeys(products, ['currency', 'product_type'])),
+      items: buildObjectOfItems(deleteKeys(products, ['currency'])),
     },
   };
 };
@@ -261,7 +251,7 @@ const updatingProduct = () => {
 const updateProductSuccess = (product) => {
   return {
     type: UPDATE_PRODUCT_SUCCESS,
-    payload: deleteKeys([product], ['currency', 'product_type'])[0],
+    payload: deleteKeys([product], ['currency'])[0],
   };
 };
 

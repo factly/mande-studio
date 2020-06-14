@@ -6,8 +6,6 @@ import { useParams } from 'react-router-dom';
 
 import { updateProduct, getProductDetails } from '../../actions/products';
 import { loadTags } from '../../actions/tags';
-import { loadProductTypes } from '../../actions/product_types';
-import { loadCategories } from '../../actions/categories';
 import { loadCurrencies } from '../../actions/currencies';
 
 const { Option } = Select;
@@ -19,26 +17,12 @@ const formItemLayout = {
 
 const ProductEdit = (props) => {
   const { id } = useParams();
-  const {
-    product,
-    tags,
-    categories,
-    currencies,
-    productTypes,
-    getDetails,
-    update,
-    loadTags,
-    loadCategories,
-    loadCurrencies,
-    loadProductTypes,
-  } = props;
+  const { product, tags, currencies, getDetails, update, loadTags, loadCurrencies } = props;
 
   React.useEffect(() => {
     getDetails(id);
     loadTags();
-    loadCategories();
     loadCurrencies();
-    loadProductTypes();
   }, [id]);
 
   function handleChange(value) {
@@ -47,9 +31,7 @@ const ProductEdit = (props) => {
 
   const onFinish = (values) => {
     values.currency_id = parseInt(values.currency_id);
-    values.product_type_id = parseInt(values.product_type_id);
     values.price = parseInt(values.price);
-    values.category_ids = values.category_ids.map((id) => parseInt(id));
     values.tag_ids = values.tag_ids.map((id) => parseInt(id));
 
     update(id, values)
@@ -73,10 +55,8 @@ const ProductEdit = (props) => {
     title: product.id ? product.title : '',
     price: product.id ? product.price : null,
     currency_id: product.id ? product.currency.id : '',
-    category_ids: product.id ? product.categories.map((category) => category.id) : [],
     tag_ids: product.id ? product.tags.map((tag) => tag.id) : [],
     status: product.id ? product.status : '',
-    product_type_id: product.id ? product.product_type.id : '',
   };
 
   return !product.id ? null : (
@@ -155,35 +135,6 @@ const ProductEdit = (props) => {
       </Form.Item>
 
       <Form.Item
-        label="Category"
-        name="category_ids"
-        rules={[
-          {
-            required: true,
-            message: 'Please select atleast one category!',
-          },
-        ]}
-      >
-        <Select
-          mode="multiple"
-          style={{ width: '100%' }}
-          placeholder="Select categories"
-          onChange={handleChange}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {categories.length > 0
-            ? categories.map((category) => (
-                <Select.Option key={category.id} value={category.id}>
-                  {category.title}
-                </Select.Option>
-              ))
-            : []}
-        </Select>
-      </Form.Item>
-
-      <Form.Item
         label="Tag"
         name="tag_ids"
         rules={[
@@ -240,35 +191,6 @@ const ProductEdit = (props) => {
         </Select>
       </Form.Item>
 
-      <Form.Item
-        label="Type"
-        name="product_type_id"
-        rules={[
-          {
-            required: true,
-            message: 'Please enter type!',
-          },
-        ]}
-      >
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          placeholder="Select type"
-          onChange={handleChange}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {productTypes.length > 0
-            ? productTypes.map((product) => (
-                <Select.Option key={product.id} value={product.id}>
-                  {product.name}
-                </Select.Option>
-              ))
-            : []}
-        </Select>
-      </Form.Item>
-
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">
           Submit
@@ -282,31 +204,23 @@ ProductEdit.propTypes = {
   update: PropTypes.func.isRequired,
   getDetails: PropTypes.func.isRequired,
   loadTags: PropTypes.func.isRequired,
-  loadCategories: PropTypes.func.isRequired,
   loadCurrencies: PropTypes.func.isRequired,
-  loadProductTypes: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired,
   tags: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
   currencies: PropTypes.array.isRequired,
-  productTypes: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   product: state.products.product,
   tags: Object.values(state.tags.items),
-  categories: Object.values(state.categories.items),
   currencies: Object.values(state.currencies.items),
-  productTypes: Object.values(state.productTypes.items),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   update: (id, values) => dispatch(updateProduct(id, values)),
   getDetails: (id) => dispatch(getProductDetails(id)),
   loadTags: () => dispatch(loadTags()),
-  loadCategories: () => dispatch(loadCategories()),
   loadCurrencies: () => dispatch(loadCurrencies()),
-  loadProductTypes: () => dispatch(loadProductTypes()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductEdit);
