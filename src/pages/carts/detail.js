@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table, Form } from 'antd';
 import { connect } from 'react-redux';
@@ -10,12 +10,21 @@ const CartDetail = (props) => {
   const [form] = Form.useForm();
   const { id } = useParams();
   const { data, products, currencies, load, total } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    load(id);
-  }, [load, id]);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => load(id, page, limit);
+  const handleTableChange = ({ current, pageSize }) => {
+    load(id, current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
+  };
 
   const columns = [
     {
@@ -46,11 +55,8 @@ const CartDetail = (props) => {
           rowKey="id"
           dataSource={data}
           columns={columns}
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          onChange={handleTableChange}
+          pagination={pagination}
         />
       </Form>
     </div>

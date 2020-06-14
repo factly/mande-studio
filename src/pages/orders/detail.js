@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -10,13 +10,22 @@ const OrderDetail = (props) => {
   const [form] = Form.useForm();
   const { id } = useParams();
   const { data, products, currencies, total, order, getOrder, loadItems } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
     getOrder(id);
-    loadItems(id);
-  }, [getOrder, loadItems, id]);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => loadItems(id, page, limit);
+  const handleTableChange = ({ current, pageSize }) => {
+    loadItems(id, current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
+  };
 
   const columns = [
     {
@@ -66,11 +75,8 @@ const OrderDetail = (props) => {
           rowKey="id"
           dataSource={data}
           columns={columns}
-          pagination={{
-            defaultPageSize: 5,
-            total: total,
-            onChange: get,
-          }}
+          onChange={handleTableChange}
+          pagination={pagination}
         />
       </Form>
     </div>

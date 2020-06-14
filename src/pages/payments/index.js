@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Table, Form } from 'antd';
@@ -9,12 +9,21 @@ import { loadPayments } from '../../actions/payments';
 const Payments = (props) => {
   const [form] = Form.useForm();
   const { data, currencies, total, load } = props;
+  const [pagination, setPagination] = useState({
+    current: 1,
+    defaultPageSize: 5,
+    pageSize: 5,
+    total,
+  });
 
   React.useEffect(() => {
-    load();
-  }, [load]);
+    handleTableChange(pagination);
+  }, [total]);
 
-  const get = (page, limit) => load(page, limit);
+  const handleTableChange = ({ current, pageSize }) => {
+    load(current, pageSize);
+    setPagination({ ...pagination, current, pageSize, total });
+  };
 
   const columns = [
     {
@@ -53,14 +62,11 @@ const Payments = (props) => {
         <Table
           bordered
           rowKey="id"
+          onChange={handleTableChange}
           dataSource={data}
           columns={columns}
           rowClassName="editable-row"
-          pagination={{
-            defaultPageSize: 5,
-            onChange: get,
-            total: total,
-          }}
+          pagination={pagination}
         />
       </Form>
     </div>
