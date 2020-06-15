@@ -8,10 +8,12 @@ import plansReducer from './plans';
 import tagsReducer from './tags';
 import productsReducer from './products';
 import currenciesReducer from './currencies';
+import catalogsReducer from './catalogs';
 import usersReducer from './users';
 
 export default combineReducers({
   carts: cartsReducer,
+  catalogs: catalogsReducer,
   currencies: currenciesReducer,
   memberships: membershipsReducer,
   orders: ordersReducer,
