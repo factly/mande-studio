@@ -13,6 +13,8 @@ import Products from './pages/products';
 import CurrencyCreate from './pages/currencies/create';
 import Currencies from './pages/currencies';
 import ProductEdit from './pages/products/edit';
+import Formats from './pages/formats/index';
+import FormatCreate from './pages/formats/create';
 
 import {
   PieChartOutlined,
@@ -23,7 +25,6 @@ import {
   ShoppingCartOutlined,
   TagOutlined,
   MoneyCollectFilled,
-  FilePptOutlined,
 } from '@ant-design/icons';
 
 class Route {
@@ -68,6 +69,17 @@ const routes = [
   new Route({
     path: '/currencies/create',
     component: CurrencyCreate,
+  }),
+  new Route({
+    path: '/formats',
+    component: Formats,
+    title: 'Formats',
+    icon: MoneyCollectFilled,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/formats/create',
+    component: FormatCreate,
   }),
   new Route({
     path: '/memberships',
