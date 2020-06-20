@@ -6,6 +6,8 @@ import Orders from './pages/orders/index';
 import OrderDetail from './pages/orders/detail';
 import Carts from './pages/carts/index';
 import CartDetail from './pages/carts/detail';
+import Catalogs from './pages/catalogs/index';
+import CatalogCreate from './pages/catalogs/create';
 import Tags from './pages/tags/index';
 import TagCreate from './pages/tags/create';
 import ProductCreate from './pages/products/create';
@@ -58,6 +60,17 @@ const routes = [
   new Route({
     path: '/carts/:id',
     component: CartDetail,
+  }),
+  new Route({
+    path: '/catalogs',
+    component: Catalogs,
+    title: 'Catalogs',
+    icon: ShoppingCartOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/catalogs/create',
+    component: CatalogCreate,
   }),
   new Route({
     path: '/currencies',
