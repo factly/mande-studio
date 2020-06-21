@@ -88,7 +88,6 @@ export const getCartItems = (id, page = 1, limit) => {
         break;
       }
     }
-    console.log(reqObj);
 
     if (reqObj) {
       dispatch(setDetailsCurrentPage(reqObj.ids));

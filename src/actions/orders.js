@@ -114,17 +114,17 @@ export const getOrderItems = (id, page = 1, limit) => {
       },
     } = getState();
 
-    let found = false;
-    let ids;
+    let reqObj;
     for (let item of req) {
       if (item.orderId === id && item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-        found = true;
+        reqObj = item;
+        break;
       }
     }
 
-    if (found) {
-      dispatch(setDetailsCurrentPage(ids));
+    if (reqObj) {
+      dispatch(setDetailsCurrentPage(reqObj.ids));
+      dispatch(setOrderItemsListTotal(reqObj.total));
       return;
     }
 
@@ -144,7 +144,7 @@ export const getOrderItems = (id, page = 1, limit) => {
       dispatch(loadProductsSuccess(products));
 
       const currentPageIds = getIds(nodes);
-      const req = { orderId: id, page, limit, ids: currentPageIds };
+      const req = { orderId: id, page, limit, ids: currentPageIds, total };
       dispatch(addDetailsRequest(req));
       dispatch(getOrderItemsSuccess(nodes));
       dispatch(setDetailsCurrentPage(currentPageIds));
