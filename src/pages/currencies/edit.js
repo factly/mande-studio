@@ -20,7 +20,7 @@ const EditCurrency = () => {
 
   const onUpdate = async (values) => {
     await dispatch(updateCurrency(id, values));
-    history.push('/categories');
+    history.push('/currencies');
   };
 
   return <CurrencyCreateForm data={currency} onSubmit={onUpdate} />;

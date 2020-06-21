@@ -49,7 +49,7 @@ export default function currenciesReducer(state = initialState, action = {}) {
         loading: true,
       };
     case LOAD_CURRENCIES_SUCCESS: {
-      const { ids, items } = action.payload;
+      const { items } = action.payload;
       return {
         ...state,
         loading: false,

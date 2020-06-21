@@ -20,7 +20,7 @@ const EditCatalog = () => {
 
   const onUpdate = async (values) => {
     await dispatch(updateCatalog(id, values));
-    history.push('/categories');
+    history.push('/catalogs');
   };
 
   return <CatalogCreate data={catalog} onSubmit={onUpdate} />;

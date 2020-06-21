@@ -12,6 +12,7 @@ import CatalogCreate from './pages/catalogs/create';
 import CatalogEdit from './pages/catalogs/edit';
 import Tags from './pages/tags/index';
 import TagCreate from './pages/tags/create';
+import TagEdit from './pages/tags/edit';
 import ProductCreate from './pages/products/create';
 import Products from './pages/products';
 import CurrencyCreate from './pages/currencies/create';
@@ -175,6 +176,10 @@ const routes = [
   new Route({
     path: '/tags/create',
     component: TagCreate,
+  }),
+  new Route({
+    path: '/tags/:id/edit',
+    component: TagEdit,
   }),
 ];
 
