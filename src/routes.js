@@ -163,7 +163,7 @@ const routes = [
     component: ProductCreate,
   }),
   new Route({
-    path: '/products/:id',
+    path: '/products/:id/edit',
     component: ProductEdit,
   }),
   new Route({

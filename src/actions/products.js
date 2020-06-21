@@ -101,6 +101,15 @@ export const createProduct = (data) => {
 
 export const getProductDetails = (id) => {
   return async (dispatch, getState) => {
+    const {
+      products: { items },
+    } = getState();
+
+    // if (items[id]) {
+    //   dispatch(getProductDetailsSuccess({ ...items[id] }));
+    //   return;
+    // }
+
     let url = `${baseUrl}/${id}`;
 
     dispatch(loadingProductDetails());
@@ -113,7 +122,16 @@ export const getProductDetails = (id) => {
     });
 
     if (response) {
-      dispatch(getProductDetailsSuccess(response.data));
+      const product = response.data;
+
+      const currencies = getValues([product], 'currency');
+      dispatch(loadCurrenciesSuccess(currencies));
+
+      const tags = getValues([product], 'tags');
+      dispatch(loadTagsSuccess(tags));
+
+      product.tags = getIds(product.tags);
+      dispatch(getProductDetailsSuccess(product));
     }
   };
 };
@@ -231,7 +249,7 @@ const loadingProductDetails = () => {
 const getProductDetailsSuccess = (product) => {
   return {
     type: GET_PRODUCT_DETAILS_SUCCESS,
-    payload: product,
+    payload: deleteKeys([product], ['currency'])[0],
   };
 };
 

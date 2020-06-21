@@ -59,7 +59,6 @@ export const loadCurrencies = (page, limit) => {
       const { nodes, total } = response.data;
       const currentPageIds = getIds(nodes);
       const req = { page: page, limit: limit, ids: currentPageIds };
-      console.log(nodes, currentPageIds, req);
       dispatch(addListRequest(req));
       dispatch(loadCurrenciesSuccess(nodes));
       dispatch(setListCurrentPage(currentPageIds));
