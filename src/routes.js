@@ -19,6 +19,7 @@ import CurrencyEdit from './pages/currencies/edit';
 import ProductEdit from './pages/products/edit';
 import Formats from './pages/formats/index';
 import FormatCreate from './pages/formats/create';
+import FormatEdit from './pages/formats/edit';
 
 import {
   PieChartOutlined,
@@ -103,6 +104,10 @@ const routes = [
   new Route({
     path: '/formats/create',
     component: FormatCreate,
+  }),
+  new Route({
+    path: '/formats/:id/edit',
+    component: FormatEdit,
   }),
   new Route({
     path: '/memberships',

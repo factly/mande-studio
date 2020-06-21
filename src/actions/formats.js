@@ -7,6 +7,8 @@ import {
   LOAD_FORMATS_SUCCESS,
   SET_FORMATS_LIST_TOTAL,
   LOAD_FORMATS_FAILURE,
+  GET_FORMAT_SUCCESS,
+  GET_FORMAT_FAILURE,
   CREATING_FORMAT,
   CREATE_FORMAT_SUCCESS,
   CREATE_FORMAT_FAILURE,
@@ -119,6 +121,46 @@ export const deleteFormat = (id) => {
     if (response) {
       dispatch(deleteFormatSuccess(id));
     }
+  };
+};
+
+export const getFormat = (id) => {
+  return async (dispatch, getState) => {
+    const {
+      formats: { items },
+    } = getState();
+
+    if (items[id]) {
+      dispatch(getFormatSuccess({ ...items[id] }));
+      return;
+    }
+
+    dispatch(loadingFormats());
+
+    const response = await axios({
+      url: `${baseUrl}/${id}`,
+      method: 'get',
+    }).catch((error) => {
+      dispatch(getFormatFailure(error.message));
+    });
+
+    if (response) {
+      dispatch(getFormatSuccess(response.data));
+    }
+  };
+};
+
+const getFormatSuccess = (format) => {
+  return {
+    type: GET_FORMAT_SUCCESS,
+    payload: format,
+  };
+};
+
+const getFormatFailure = (message) => {
+  return {
+    type: GET_FORMAT_FAILURE,
+    payload: message,
   };
 };
 

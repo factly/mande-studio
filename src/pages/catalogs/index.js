@@ -8,7 +8,7 @@ const Catalogs = () => {
     <>
       <Link to={'/catalogs/create'}>
         <Button type="primary" style={{ marginBottom: 16 }}>
-          Add Catalogs
+          Add Catalog
         </Button>
       </Link>
       <CatalogsList />
