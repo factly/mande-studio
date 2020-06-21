@@ -7,6 +7,8 @@ import {
   LOAD_PLANS_SUCCESS,
   SET_PLANS_LIST_TOTAL,
   LOAD_PLANS_FAILURE,
+  GET_PLAN_SUCCESS,
+  GET_PLAN_FAILURE,
   CREATING_PLAN,
   CREATE_PLAN_SUCCESS,
   CREATE_PLAN_FAILURE,
@@ -119,6 +121,46 @@ export const deletePlan = (id) => {
     if (response) {
       dispatch(deletePlanSuccess(id));
     }
+  };
+};
+
+export const getPlan = (id) => {
+  return async (dispatch, getState) => {
+    const {
+      plans: { items },
+    } = getState();
+
+    if (items[id]) {
+      dispatch(getPlanSuccess({ ...items[id] }));
+      return;
+    }
+
+    dispatch(loadingPlans());
+
+    const response = await axios({
+      url: `${baseUrl}/${id}`,
+      method: 'get',
+    }).catch((error) => {
+      dispatch(getPlanFailure(error.message));
+    });
+
+    if (response) {
+      dispatch(getPlanSuccess(response.data));
+    }
+  };
+};
+
+const getPlanSuccess = (plan) => {
+  return {
+    type: GET_PLAN_SUCCESS,
+    payload: plan,
+  };
+};
+
+const getPlanFailure = (message) => {
+  return {
+    type: GET_PLAN_FAILURE,
+    payload: message,
   };
 };
 

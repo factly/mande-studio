@@ -13,5 +13,7 @@ export const UPDATE_TAG_FAILURE = 'UPDATE_TAG_FAILURE';
 export const DELETING_TAG = 'DELETING_TAG';
 export const DELETE_TAG_SUCCESS = 'DELETE_TAG_SUCCESS';
 export const DELETE_TAG_FAILURE = 'DELETE_TAG_FAILURE';
+export const GET_TAG_SUCCESS = 'GET_TAG_SUCCESS';
+export const GET_TAG_FAILURE = 'GET_TAG_FAILURE';
 
 export const baseUrl = `${process.env.REACT_APP_API_URL}/tags`;

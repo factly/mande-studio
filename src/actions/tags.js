@@ -7,6 +7,8 @@ import {
   ADD_TAGS_LIST_REQUEST,
   SET_TAGS_LIST_CURRENT_PAGE,
   LOAD_TAGS_FAILURE,
+  GET_TAG_SUCCESS,
+  GET_TAG_FAILURE,
   CREATING_TAG,
   CREATE_TAG_SUCCESS,
   CREATE_TAG_FAILURE,
@@ -119,6 +121,46 @@ export const deleteTag = (id) => {
     if (response) {
       dispatch(deleteTagSuccess(id));
     }
+  };
+};
+
+export const getTag = (id) => {
+  return async (dispatch, getState) => {
+    const {
+      tags: { items },
+    } = getState();
+
+    if (items[id]) {
+      dispatch(getTagSuccess({ ...items[id] }));
+      return;
+    }
+
+    dispatch(loadingTags());
+
+    const response = await axios({
+      url: `${baseUrl}/${id}`,
+      method: 'get',
+    }).catch((error) => {
+      dispatch(getTagFailure(error.message));
+    });
+
+    if (response) {
+      dispatch(getTagSuccess(response.data));
+    }
+  };
+};
+
+const getTagSuccess = (tag) => {
+  return {
+    type: GET_TAG_SUCCESS,
+    payload: tag,
+  };
+};
+
+const getTagFailure = (message) => {
+  return {
+    type: GET_TAG_FAILURE,
+    payload: message,
   };
 };
 

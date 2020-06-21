@@ -1,57 +1,20 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Table, Form, Descriptions, Card } from 'antd';
+import { Descriptions, Card } from 'antd';
 
-import { getOrderDetails, getOrderItems } from '../../actions/orders';
+import { getOrderDetails } from '../../actions/orders';
+import OrderDetails from './components/OrderDetails';
 
-const OrderDetail = (props) => {
-  const [form] = Form.useForm();
+const OrderDetail = () => {
   const { id } = useParams();
-  const { data, products, currencies, total, order, getOrder, loadItems } = props;
-  const [pagination, setPagination] = useState({
-    current: 1,
-    defaultPageSize: 5,
-    pageSize: 5,
-    total,
-  });
+
+  const dispatch = useDispatch();
+  const { order } = useSelector(({ orders }) => orders.details);
 
   React.useEffect(() => {
-    getOrder(id);
-    handleTableChange(pagination);
-  }, [total]);
-
-  const handleTableChange = ({ current, pageSize }) => {
-    loadItems(id, current, pageSize);
-    setPagination({ ...pagination, current, pageSize, total });
-  };
-
-  const columns = [
-    {
-      title: 'Product Item',
-      render: (record) => products[record.product_id].title || '',
-      width: '40%',
-    },
-    {
-      title: 'Price',
-      render: (record) => {
-        const product = products[record.product_id];
-        const currency = currencies[product.currency_id];
-        return (
-          <span>
-            {product.price} {currency.iso_code}
-          </span>
-        );
-      },
-      width: '20%',
-    },
-    {
-      title: 'Extra Info',
-      dataIndex: 'extra_info',
-      width: '30%',
-    },
-  ];
+    dispatch(getOrderDetails(id));
+  }, []);
 
   return (
     <div>
@@ -69,46 +32,9 @@ const OrderDetail = (props) => {
         </Card>
       )}
 
-      <Form form={form} component={false}>
-        <Table
-          bordered
-          rowKey="id"
-          dataSource={data}
-          columns={columns}
-          onChange={handleTableChange}
-          pagination={pagination}
-        />
-      </Form>
+      <OrderDetails />
     </div>
   );
 };
 
-OrderDetail.propTypes = {
-  order: PropTypes.object.isRequired,
-  data: PropTypes.array.isRequired,
-  products: PropTypes.object.isRequired,
-  currencies: PropTypes.object.isRequired,
-  total: PropTypes.number.isRequired,
-  getOrder: PropTypes.func.isRequired,
-  loadItems: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  const { details } = state.orders;
-  const { ids } = details;
-
-  return {
-    data: ids.map((id) => details.items[id]),
-    order: details.order,
-    products: state.products.items,
-    currencies: state.currencies.items,
-    total: details.total,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  getOrder: (id) => dispatch(getOrderDetails(id)),
-  loadItems: (id, page, limit) => dispatch(getOrderItems(id, page, limit)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(OrderDetail);
+export default OrderDetail;

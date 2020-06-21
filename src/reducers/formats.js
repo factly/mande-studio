@@ -5,6 +5,8 @@ import {
   LOAD_FORMATS_SUCCESS,
   SET_FORMATS_LIST_TOTAL,
   LOAD_FORMATS_FAILURE,
+  GET_FORMAT_SUCCESS,
+  GET_FORMAT_FAILURE,
   CREATING_FORMAT,
   CREATE_FORMAT_SUCCESS,
   CREATE_FORMAT_FAILURE,
@@ -19,6 +21,7 @@ const initialState = {
   ids: [],
   req: [],
   items: {},
+  format: {},
   total: 0,
 };
 
@@ -58,6 +61,16 @@ export default function formatsReducer(state = initialState, action = {}) {
         ...state,
         loading: false,
       };
+    case GET_FORMAT_SUCCESS:
+      return {
+        ...state,
+        format: action.payload,
+      };
+    case GET_FORMAT_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
     case CREATING_FORMAT:
       return {
         ...state,
@@ -83,6 +96,7 @@ export default function formatsReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
+        format: {},
         items: { ...state.items, [format.id]: format },
       };
     }

@@ -2,21 +2,26 @@ import Memberships from './pages/memberships/index';
 import Payments from './pages/payments/index';
 import Plans from './pages/plans/index';
 import PlanCreate from './pages/plans/create';
+import PlanEdit from './pages/plans/edit';
 import Orders from './pages/orders/index';
 import OrderDetail from './pages/orders/detail';
 import Carts from './pages/carts/index';
 import CartDetail from './pages/carts/detail';
 import Catalogs from './pages/catalogs/index';
 import CatalogCreate from './pages/catalogs/create';
+import CatalogEdit from './pages/catalogs/edit';
 import Tags from './pages/tags/index';
 import TagCreate from './pages/tags/create';
+import TagEdit from './pages/tags/edit';
 import ProductCreate from './pages/products/create';
 import Products from './pages/products';
 import CurrencyCreate from './pages/currencies/create';
 import Currencies from './pages/currencies';
+import CurrencyEdit from './pages/currencies/edit';
 import ProductEdit from './pages/products/edit';
 import Formats from './pages/formats/index';
 import FormatCreate from './pages/formats/create';
+import FormatEdit from './pages/formats/edit';
 
 import {
   PieChartOutlined,
@@ -73,6 +78,10 @@ const routes = [
     component: CatalogCreate,
   }),
   new Route({
+    path: '/catalogs/:id/edit',
+    component: CatalogEdit,
+  }),
+  new Route({
     path: '/currencies',
     component: Currencies,
     title: 'Currencies',
@@ -84,6 +93,10 @@ const routes = [
     component: CurrencyCreate,
   }),
   new Route({
+    path: '/currencies/:id/edit',
+    component: CurrencyEdit,
+  }),
+  new Route({
     path: '/formats',
     component: Formats,
     title: 'Formats',
@@ -93,6 +106,10 @@ const routes = [
   new Route({
     path: '/formats/create',
     component: FormatCreate,
+  }),
+  new Route({
+    path: '/formats/:id/edit',
+    component: FormatEdit,
   }),
   new Route({
     path: '/memberships',
@@ -131,6 +148,10 @@ const routes = [
     component: PlanCreate,
   }),
   new Route({
+    path: '/plans/:id/edit',
+    component: PlanEdit,
+  }),
+  new Route({
     path: '/products',
     component: Products,
     title: 'Products',
@@ -142,7 +163,7 @@ const routes = [
     component: ProductCreate,
   }),
   new Route({
-    path: '/products/:id',
+    path: '/products/:id/edit',
     component: ProductEdit,
   }),
   new Route({
@@ -155,6 +176,10 @@ const routes = [
   new Route({
     path: '/tags/create',
     component: TagCreate,
+  }),
+  new Route({
+    path: '/tags/:id/edit',
+    component: TagEdit,
   }),
 ];
 

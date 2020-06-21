@@ -5,6 +5,8 @@ import {
   LOAD_PLANS_SUCCESS,
   SET_PLANS_LIST_TOTAL,
   LOAD_PLANS_FAILURE,
+  GET_PLAN_SUCCESS,
+  GET_PLAN_FAILURE,
   CREATING_PLAN,
   CREATE_PLAN_SUCCESS,
   CREATE_PLAN_FAILURE,
@@ -19,6 +21,7 @@ const initialState = {
   ids: [],
   req: [],
   items: {},
+  plan: {},
   total: 0,
 };
 
@@ -58,6 +61,16 @@ export default function plansReducer(state = initialState, action = {}) {
         ...state,
         loading: false,
       };
+    case GET_PLAN_SUCCESS:
+      return {
+        ...state,
+        plan: action.payload,
+      };
+    case GET_PLAN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
     case CREATING_PLAN:
       return {
         ...state,
@@ -83,6 +96,7 @@ export default function plansReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
+        plan: {},
         items: { ...state.items, [plan.id]: plan },
       };
     }

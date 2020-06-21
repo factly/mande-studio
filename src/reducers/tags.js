@@ -5,6 +5,8 @@ import {
   ADD_TAGS_LIST_REQUEST,
   SET_TAGS_LIST_CURRENT_PAGE,
   LOAD_TAGS_FAILURE,
+  GET_TAG_SUCCESS,
+  GET_TAG_FAILURE,
   CREATING_TAG,
   CREATE_TAG_SUCCESS,
   CREATE_TAG_FAILURE,
@@ -19,6 +21,7 @@ const initialState = {
   ids: [],
   req: [],
   items: {},
+  tag: {},
   total: 0,
 };
 
@@ -58,6 +61,16 @@ export default function tagsReducer(state = initialState, action = {}) {
         ...state,
         loading: false,
       };
+    case GET_TAG_SUCCESS:
+      return {
+        ...state,
+        tag: action.payload,
+      };
+    case GET_TAG_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
     case CREATING_TAG:
       return {
         ...state,
@@ -84,6 +97,7 @@ export default function tagsReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
+        tag: {},
         items: { ...state.items, [tag.id]: tag },
       };
     }

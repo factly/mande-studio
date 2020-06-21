@@ -81,17 +81,17 @@ export const getCartItems = (id, page = 1, limit) => {
       },
     } = getState();
 
-    let found = false;
-    let ids;
+    let reqObj;
     for (let item of req) {
       if (item.cartId === id && item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-        found = true;
+        reqObj = item;
+        break;
       }
     }
 
-    if (found) {
-      dispatch(setDetailsCurrentPage(ids));
+    if (reqObj) {
+      dispatch(setDetailsCurrentPage(reqObj.ids));
+      dispatch(setCartItemsListTotal(reqObj.total));
       return;
     }
 
@@ -104,7 +104,6 @@ export const getCartItems = (id, page = 1, limit) => {
 
     if (response) {
       const { nodes, total } = response.data;
-      console.log(nodes);
 
       const products = getValues(nodes, 'product');
 
@@ -114,7 +113,7 @@ export const getCartItems = (id, page = 1, limit) => {
       dispatch(loadProductsSuccess(products));
 
       const currentPageIds = getIds(nodes);
-      const req = { cartId: id, page, limit, ids: currentPageIds };
+      const req = { cartId: id, page, limit, ids: currentPageIds, total };
       dispatch(addDetailsRequest(req));
       dispatch(getCartItemsSuccess(nodes));
       dispatch(setDetailsCurrentPage(currentPageIds));
