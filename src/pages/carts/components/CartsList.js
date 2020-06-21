@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Table, Form, Button } from 'antd';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,9 +7,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadCarts } from '../../../actions/carts';
 
 const Carts = () => {
+  const history = useHistory();
   const [form] = Form.useForm();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
-  const { dispatch } = useDispatch();
+  const dispatch = useDispatch();
 
   const { data, total } = useSelector((state) => {
     const { list } = state.carts;
@@ -51,7 +53,7 @@ const Carts = () => {
           <span>
             <Button
               type="primary"
-              onClick={() => props.history.push(`/carts/${record.id}`)}
+              onClick={() => history.push(`/carts/${record.id}`)}
               style={{
                 marginRight: 8,
               }}

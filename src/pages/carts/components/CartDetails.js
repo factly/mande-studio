@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCartItems } from '../../../actions/carts';
 
 const CartDetail = () => {
-  const { dispatch } = useDispatch;
-  const { data, products, currencies, total } = useSelector(({ carts }) => {
-    const { details } = carts;
+  const dispatch = useDispatch;
+  const { data, products, currencies, total } = useSelector((state) => {
+    const { details } = state.carts;
     const { ids } = details;
 
     return {

@@ -8,6 +8,7 @@ import Carts from './pages/carts/index';
 import CartDetail from './pages/carts/detail';
 import Catalogs from './pages/catalogs/index';
 import CatalogCreate from './pages/catalogs/create';
+import CatalogEdit from './pages/catalogs/edit';
 import Tags from './pages/tags/index';
 import TagCreate from './pages/tags/create';
 import ProductCreate from './pages/products/create';
@@ -71,6 +72,10 @@ const routes = [
   new Route({
     path: '/catalogs/create',
     component: CatalogCreate,
+  }),
+  new Route({
+    path: '/catalogs/:id/edit',
+    component: CatalogEdit,
   }),
   new Route({
     path: '/currencies',

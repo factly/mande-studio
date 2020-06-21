@@ -3,6 +3,8 @@ import {
   baseUrl,
   ADD_CATALOGS_LIST_REQUEST,
   SET_CATALOGS_LIST_CURRENT_PAGE,
+  GET_CATALOG_SUCCESS,
+  GET_CATALOG_FAILURE,
   LOADING_CATALOGS,
   LOAD_CATALOGS_SUCCESS,
   SET_CATALOGS_LIST_TOTAL,
@@ -17,7 +19,8 @@ import {
   DELETE_CATALOG_SUCCESS,
   DELETE_CATALOG_FAILURE,
 } from '../constants/catalogs';
-import { getIds, buildObjectOfItems } from '../utils/objects';
+import { loadProductsSuccess } from './products';
+import { getIds, buildObjectOfItems, getValues } from '../utils/objects';
 
 export const loadCatalogs = (page, limit) => {
   return async (dispatch, getState) => {
@@ -57,6 +60,14 @@ export const loadCatalogs = (page, limit) => {
       const { nodes, total } = response.data;
       const currentPageIds = getIds(nodes);
       const req = { page: page, limit: limit, ids: currentPageIds };
+
+      const products = getValues(nodes, 'products').filter((product) => product);
+      products && dispatch(loadProductsSuccess(products));
+
+      nodes.forEach((catalog) => {
+        catalog.products = getIds(catalog.products || []);
+      });
+
       dispatch(addListRequest(req));
       dispatch(loadCatalogsSuccess(nodes));
       dispatch(setListCurrentPage(currentPageIds));
@@ -122,6 +133,35 @@ export const deleteCatalog = (id) => {
   };
 };
 
+export const getCatalog = (id) => {
+  return async (dispatch, getState) => {
+    const {
+      catalogs: { items },
+    } = getState();
+
+    if (items[id]) {
+      const catalog = { ...items[id] };
+      dispatch(getCatalogSuccess(catalog));
+      return;
+    }
+
+    dispatch(loadingCatalogs());
+
+    const response = await axios({
+      url: `${baseUrl}/${id}`,
+      method: 'get',
+    }).catch((error) => {
+      dispatch(getCatalogFailure(error.message));
+    });
+
+    if (response) {
+      const catalog = response.data;
+      catalog.products = getIds(catalog.products || []);
+      dispatch(getCatalogSuccess(catalog));
+    }
+  };
+};
+
 const loadingCatalogs = () => {
   return {
     type: LOADING_CATALOGS,
@@ -146,6 +186,20 @@ const setListCurrentPage = (ids) => {
   return {
     type: SET_CATALOGS_LIST_CURRENT_PAGE,
     payload: ids,
+  };
+};
+
+const getCatalogSuccess = (catalog) => {
+  return {
+    type: GET_CATALOG_SUCCESS,
+    payload: catalog,
+  };
+};
+
+const getCatalogFailure = (message) => {
+  return {
+    type: GET_CATALOG_FAILURE,
+    payload: message,
   };
 };
 

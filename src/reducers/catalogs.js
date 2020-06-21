@@ -1,6 +1,8 @@
 import {
   ADD_CATALOGS_LIST_REQUEST,
   SET_CATALOGS_LIST_CURRENT_PAGE,
+  GET_CATALOG_SUCCESS,
+  GET_CATALOG_FAILURE,
   LOADING_CATALOGS,
   LOAD_CATALOGS_SUCCESS,
   SET_CATALOGS_LIST_TOTAL,
@@ -18,25 +20,13 @@ const initialState = {
   loading: false,
   ids: [],
   req: [],
+  catalog: {},
   items: {},
   total: 0,
 };
 
 export default function catalogsReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOADING_CATALOGS:
-      return {
-        ...state,
-        loading: true,
-      };
-    case LOAD_CATALOGS_SUCCESS: {
-      const { items } = action.payload;
-      return {
-        ...state,
-        loading: false,
-        items: { ...state.items, ...items },
-      };
-    }
     case SET_CATALOGS_LIST_TOTAL:
       return {
         ...state,
@@ -53,7 +43,30 @@ export default function catalogsReducer(state = initialState, action = {}) {
         ...state,
         ids: action.payload,
       };
+    case LOADING_CATALOGS:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOAD_CATALOGS_SUCCESS: {
+      const { items } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        items: { ...state.items, ...items },
+      };
+    }
     case LOAD_CATALOGS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case GET_CATALOG_SUCCESS:
+      return {
+        ...state,
+        catalog: action.payload,
+      };
+    case GET_CATALOG_FAILURE:
       return {
         ...state,
         loading: false,
@@ -83,6 +96,7 @@ export default function catalogsReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
+        catalog: {},
         items: { ...state.items, [catalog.id]: catalog },
       };
     }
