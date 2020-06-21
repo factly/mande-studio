@@ -5,16 +5,16 @@ import { Table, Button, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
-import { loadCatalogs, deleteCatalog } from '../../../actions/catalogs';
+import { loadCurrencies, deleteCurrency } from '../../../actions/currencies';
 
-const CatalogsList = () => {
+const CurrenciesList = () => {
   const [form] = Form.useForm();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const { data, total } = useSelector(({ catalogs }) => {
-    const { ids, items, total } = catalogs;
+  const { data, total } = useSelector(({ currencies }) => {
+    const { ids, items, total } = currencies;
     return {
       data: ids.map((id) => items[id]),
       total,
@@ -22,17 +22,18 @@ const CatalogsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadCatalogs(pagination.page, pagination.limit));
+    dispatch(loadCurrencies(pagination.page, pagination.limit));
   }, [pagination]);
 
+  console.log(pagination);
   const remove = (key) => {
-    dispatch(deleteCatalog(key))
+    dispatch(deleteCurrency(key))
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Catalog succesfully deleted',
+          description: 'Currency succesfully deleted',
         });
-        dispatch(loadCatalogs(pagination.page, pagination.limit));
+        dispatch(loadCurrencies(pagination.page, pagination.limit));
       })
       .catch(() => {
         notification.error({
@@ -44,24 +45,21 @@ const CatalogsList = () => {
 
   const columns = [
     {
-      title: 'Title',
-      dataIndex: 'title',
-      width: '20%',
+      title: 'Name',
+      dataIndex: 'name',
+      width: '25%',
+      editable: true,
     },
     {
-      title: 'Description',
-      dataIndex: 'description',
-      width: '20%',
+      title: 'ISO code',
+      dataIndex: 'iso_code',
+      width: '25%',
+      editable: true,
     },
     {
-      title: 'Price',
-      dataIndex: 'price',
-      width: '20%',
-    },
-    {
-      title: 'Published At',
-      dataIndex: 'published_date',
-      width: '20%',
+      title: 'Created At',
+      dataIndex: 'created_at',
+      width: '25%',
       render: (_, record) => {
         return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
@@ -75,7 +73,7 @@ const CatalogsList = () => {
             <Button
               type="primary"
               icon={<EditOutlined />}
-              onClick={() => history.push(`/catalogs/${record.id}/edit`)}
+              onClick={() => history.push(`/currencies/${record.id}/edit`)}
               style={{
                 marginRight: 8,
               }}
@@ -110,4 +108,4 @@ const CatalogsList = () => {
   );
 };
 
-export default CatalogsList;
+export default CurrenciesList;

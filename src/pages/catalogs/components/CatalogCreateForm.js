@@ -13,7 +13,7 @@ const formItemLayout = {
   wrapperCol: { span: 14 },
 };
 
-const CatalogCreateForm = ({ onSubmit, data }) => {
+const CatalogCreateForm = ({ onSubmit, data = {} }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { products } = useSelector(({ products }) => ({

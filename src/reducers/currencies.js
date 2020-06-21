@@ -1,6 +1,8 @@
 import {
   ADD_CURRENCIES_LIST_REQUEST,
   SET_CURRENCIES_LIST_CURRENT_PAGE,
+  GET_CURRENCY_SUCCESS,
+  GET_CURRENCY_FAILURE,
   LOADING_CURRENCIES,
   LOAD_CURRENCIES_SUCCESS,
   SET_CURRENCIES_LIST_TOTAL,
@@ -19,24 +21,12 @@ const initialState = {
   ids: [],
   req: [],
   items: {},
+  currency: {},
   total: 0,
 };
 
 export default function currenciesReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOADING_CURRENCIES:
-      return {
-        ...state,
-        loading: true,
-      };
-    case LOAD_CURRENCIES_SUCCESS: {
-      const { ids, items } = action.payload;
-      return {
-        ...state,
-        loading: false,
-        items: { ...state.items, ...items },
-      };
-    }
     case SET_CURRENCIES_LIST_TOTAL:
       return {
         ...state,
@@ -53,7 +43,30 @@ export default function currenciesReducer(state = initialState, action = {}) {
         ...state,
         ids: action.payload,
       };
+    case LOADING_CURRENCIES:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOAD_CURRENCIES_SUCCESS: {
+      const { ids, items } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        items: { ...state.items, ...items },
+      };
+    }
     case LOAD_CURRENCIES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case GET_CURRENCY_SUCCESS:
+      return {
+        ...state,
+        currency: action.payload,
+      };
+    case GET_CURRENCY_FAILURE:
       return {
         ...state,
         loading: false,
@@ -101,6 +114,7 @@ export default function currenciesReducer(state = initialState, action = {}) {
         req: [],
         ids: [],
         items: newItems,
+        currency: {},
         total: state.total - 1,
       };
     }

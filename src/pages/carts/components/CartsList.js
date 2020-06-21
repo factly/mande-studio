@@ -23,7 +23,7 @@ const Carts = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadCarts(...pagination));
+    dispatch(loadCarts(pagination.page, pagination.limit));
   }, [pagination]);
 
   const columns = [
@@ -75,9 +75,9 @@ const Carts = () => {
           dataSource={data}
           columns={columns}
           pagination={{
-            current: 1,
+            current: pagination.page,
             defaultPageSize: 5,
-            pageSize: 5,
+            pageSize: pagination.limit,
             total,
             onChange: (page, limit) => setPagination({ page, limit }),
           }}

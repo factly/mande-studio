@@ -3,6 +3,8 @@ import {
   baseUrl,
   ADD_CURRENCIES_LIST_REQUEST,
   SET_CURRENCIES_LIST_CURRENT_PAGE,
+  GET_CURRENCY_SUCCESS,
+  GET_CURRENCY_FAILURE,
   LOADING_CURRENCIES,
   LOAD_CURRENCIES_SUCCESS,
   SET_CURRENCIES_LIST_TOTAL,
@@ -57,6 +59,7 @@ export const loadCurrencies = (page, limit) => {
       const { nodes, total } = response.data;
       const currentPageIds = getIds(nodes);
       const req = { page: page, limit: limit, ids: currentPageIds };
+      console.log(nodes, currentPageIds, req);
       dispatch(addListRequest(req));
       dispatch(loadCurrenciesSuccess(nodes));
       dispatch(setListCurrentPage(currentPageIds));
@@ -119,6 +122,46 @@ export const deleteCurrency = (id) => {
     if (response) {
       dispatch(deleteCurrencySuccess(id));
     }
+  };
+};
+
+export const getCurrency = (id) => {
+  return async (dispatch, getState) => {
+    const {
+      currencies: { items },
+    } = getState();
+
+    if (items[id]) {
+      dispatch(getCurrencySuccess({ ...items[id] }));
+      return;
+    }
+
+    dispatch(loadingCurrencies());
+
+    const response = await axios({
+      url: `${baseUrl}/${id}`,
+      method: 'get',
+    }).catch((error) => {
+      dispatch(getCurrencyFailure(error.message));
+    });
+
+    if (response) {
+      dispatch(getCurrencySuccess(response.data));
+    }
+  };
+};
+
+const getCurrencySuccess = (currency) => {
+  return {
+    type: GET_CURRENCY_SUCCESS,
+    payload: currency,
+  };
+};
+
+const getCurrencyFailure = (message) => {
+  return {
+    type: GET_CURRENCY_FAILURE,
+    payload: message,
   };
 };
 

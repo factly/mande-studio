@@ -15,6 +15,7 @@ import ProductCreate from './pages/products/create';
 import Products from './pages/products';
 import CurrencyCreate from './pages/currencies/create';
 import Currencies from './pages/currencies';
+import CurrencyEdit from './pages/currencies/edit';
 import ProductEdit from './pages/products/edit';
 import Formats from './pages/formats/index';
 import FormatCreate from './pages/formats/create';
@@ -87,6 +88,10 @@ const routes = [
   new Route({
     path: '/currencies/create',
     component: CurrencyCreate,
+  }),
+  new Route({
+    path: '/currencies/:id/edit',
+    component: CurrencyEdit,
   }),
   new Route({
     path: '/formats',

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCartItems } from '../../../actions/carts';
 
 const CartDetail = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const { data, products, currencies, total } = useSelector((state) => {
     const { details } = state.carts;
     const { ids } = details;
@@ -24,7 +24,7 @@ const CartDetail = () => {
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
   React.useEffect(() => {
-    dispatch(getCartItems(id, ...pagination));
+    dispatch(getCartItems(id, pagination.page, pagination.limit));
   }, [pagination]);
 
   const columns = [
@@ -57,9 +57,9 @@ const CartDetail = () => {
           dataSource={data}
           columns={columns}
           pagination={{
-            current: 1,
+            current: pagination.page,
             defaultPageSize: 5,
-            pageSize: 5,
+            pageSize: pagination.limit,
             total,
             onChange: (page, limit) => setPagination({ page, limit }),
           }}
