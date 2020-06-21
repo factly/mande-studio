@@ -13,5 +13,7 @@ export const UPDATE_PLAN_FAILURE = 'UPDATE_PLAN_FAILURE';
 export const DELETING_PLAN = 'DELETING_PLAN';
 export const DELETE_PLAN_SUCCESS = 'DELETE_PLAN_SUCCESS';
 export const DELETE_PLAN_FAILURE = 'DELETE_PLAN_FAILURE';
+export const GET_PLAN_SUCCESS = 'GET_PLAN_SUCCESS';
+export const GET_PLAN_FAILURE = 'GET_PLAN_FAILURE';
 
 export const baseUrl = `${process.env.REACT_APP_API_URL}/plans`;

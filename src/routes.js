@@ -2,6 +2,7 @@ import Memberships from './pages/memberships/index';
 import Payments from './pages/payments/index';
 import Plans from './pages/plans/index';
 import PlanCreate from './pages/plans/create';
+import PlanEdit from './pages/plans/edit';
 import Orders from './pages/orders/index';
 import OrderDetail from './pages/orders/detail';
 import Carts from './pages/carts/index';
@@ -144,6 +145,10 @@ const routes = [
   new Route({
     path: '/plans/create',
     component: PlanCreate,
+  }),
+  new Route({
+    path: '/plans/:id/edit',
+    component: PlanEdit,
   }),
   new Route({
     path: '/products',
