@@ -10,30 +10,35 @@ import '@uppy/url/dist/style.css';
 
 import { Button } from 'antd';
 
-const uppy = Uppy({
-  id: 'uppy-media',
-  meta: { type: 'avatar' },
-  allowedFileTypes: ['image/*'],
-  autoProceed: false,
-  onBeforeUpload: (files) => {
-    const updatedFiles = files.filter((file) => file.extension);
-    if (updatedFiles.length === 0) {
-      return Promise.reject('File must have a valid file extension');
-    }
-
-    return updatedFiles;
-  },
-})
-  .use(AwsS3, { companionUrl: 'http://localhost:3020' })
-  .use(Url, { companionUrl: 'http://localhost:3020' })
-  .use(GoogleDrive, { companionUrl: 'http://localhost:3020' });
-
 const Uploader = ({ onUploadSuccess }) => {
   const [show, setShow] = React.useState(false);
 
-  uppy.on('complete', (result) => {
-    onUploadSuccess(result.successful[0]);
-  });
+  const uppy = Uppy({
+    id: 'uppy-media',
+    meta: { type: 'avatar' },
+    allowedFileTypes: ['image/*'],
+    autoProceed: false,
+    onBeforeUpload: (files) => {
+      const updatedFiles = {};
+      Object.keys(files)
+        .filter((fileId) => files[fileId].extension)
+        .forEach((fileId) => {
+          updatedFiles[fileId] = files[fileId];
+        });
+      if (Object.keys(updatedFiles).length === 0) {
+        uppy.info('File must have a valid file extension');
+        return false;
+      }
+
+      return updatedFiles;
+    },
+  })
+    .use(AwsS3, { companionUrl: 'http://localhost:3020' })
+    .use(Url, { companionUrl: 'http://localhost:3020' })
+    .use(GoogleDrive, { companionUrl: 'http://localhost:3020' })
+    .on('complete', (result) => {
+      onUploadSuccess(result.successful);
+    });
 
   return (
     <div>

@@ -3,6 +3,8 @@ import {
   SET_DATASETS_LIST_CURRENT_PAGE,
   LOADING_DATASETS,
   LOAD_DATASETS_SUCCESS,
+  GET_DATASET_SUCCESS,
+  GET_DATASET_FAILURE,
   SET_DATASETS_LIST_TOTAL,
   LOAD_DATASETS_FAILURE,
   CREATING_DATASET,
@@ -12,6 +14,10 @@ import {
   UPDATE_DATASET_FAILURE,
   DELETE_DATASET_SUCCESS,
   DELETE_DATASET_FAILURE,
+  CREATE_DATASET_FORMAT_SUCCESS,
+  CREATE_DATASET_FORMAT_FAILURE,
+  DELETE_DATASET_FORMAT_SUCCESS,
+  DELETE_DATASET_FORMAT_FAILURE,
 } from '../constants/datasets';
 
 const initialState = {
@@ -19,6 +25,7 @@ const initialState = {
   ids: [],
   req: [],
   items: {},
+  dataset: {},
   total: 0,
 };
 
@@ -58,6 +65,16 @@ export default function datasetsReducer(state = initialState, action = {}) {
         ...state,
         loading: false,
       };
+    case GET_DATASET_SUCCESS:
+      return {
+        ...state,
+        dataset: action.payload,
+      };
+    case GET_DATASET_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
     case CREATING_DATASET:
       return {
         ...state,
@@ -78,6 +95,25 @@ export default function datasetsReducer(state = initialState, action = {}) {
         ...state,
         loading: false,
       };
+    case CREATE_DATASET_FORMAT_SUCCESS: {
+      const { datasetId, datasetFormat } = action.payload;
+      let updatedDataset = { ...state.items[datasetId] };
+      console.log(updatedDataset);
+      updatedDataset.formats
+        ? updatedDataset.formats.push(datasetFormat)
+        : (updatedDataset.formats = [datasetFormat]);
+
+      return {
+        ...state,
+        loading: false,
+        items: { ...state.items, [datasetId]: updatedDataset },
+      };
+    }
+    case CREATE_DATASET_FORMAT_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
     case UPDATE_DATASET_SUCCESS: {
       const dataset = action.payload;
       return {
@@ -87,6 +123,30 @@ export default function datasetsReducer(state = initialState, action = {}) {
       };
     }
     case UPDATE_DATASET_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case DELETE_DATASET_FORMAT_SUCCESS: {
+      const { datasetId, id } = action.payload;
+      console.log(datasetId, id);
+      let datasetFormats = [...state.items[datasetId].formats];
+      console.log('dataset', datasetFormats);
+      const index = datasetFormats.findIndex((format) => format.id === id);
+      console.log('index', index);
+      delete datasetFormats[index];
+      console.log('delete', datasetFormats);
+
+      return {
+        ...state,
+        loading: false,
+        items: {
+          ...state.items,
+          [datasetId]: { ...state.items[datasetId], formats: datasetFormats },
+        },
+      };
+    }
+    case DELETE_DATASET_FORMAT_FAILURE:
       return {
         ...state,
         loading: false,

@@ -3,6 +3,8 @@ import {
   baseUrl,
   ADD_DATASETS_LIST_REQUEST,
   SET_DATASETS_LIST_CURRENT_PAGE,
+  GET_DATASET_SUCCESS,
+  GET_DATASET_FAILURE,
   LOADING_DATASETS,
   LOAD_DATASETS_SUCCESS,
   SET_DATASETS_LIST_TOTAL,
@@ -10,12 +12,17 @@ import {
   CREATING_DATASET,
   CREATE_DATASET_SUCCESS,
   CREATE_DATASET_FAILURE,
+  CREATE_DATASET_FORMAT_SUCCESS,
+  CREATE_DATASET_FORMAT_FAILURE,
   UPDATING_DATASET,
   UPDATE_DATASET_SUCCESS,
   UPDATE_DATASET_FAILURE,
   DELETING_DATASET,
   DELETE_DATASET_SUCCESS,
   DELETE_DATASET_FAILURE,
+  DELETE_DATASET_FORMAT_SUCCESS,
+  DELETE_DATASET_FORMAT_FAILURE,
+  DELETING_DATASET_FORMAT,
 } from '../constants/datasets';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
@@ -94,11 +101,11 @@ export const createDatasetFormat = (datasetId, data) => {
       method: 'post',
       data: data,
     }).catch((error) => {
-      dispatch(createDatasetFailure(error.message));
+      dispatch(createDatasetFormatFailure(error.message));
     });
 
     if (response) {
-      dispatch(createDatasetSuccess(response.data));
+      dispatch(createDatasetFormatSuccess(datasetId, response.data));
     }
   };
 };
@@ -119,6 +126,7 @@ export const updateDataset = (id, data) => {
 
     if (response) {
       dispatch(updateDatasetSuccess(response.data));
+      return response.data;
     }
   };
 };
@@ -139,6 +147,65 @@ export const deleteDataset = (id) => {
     if (response) {
       dispatch(deleteDatasetSuccess(id));
     }
+  };
+};
+
+export const deleteDatasetFormat = (datasetId, id) => {
+  return async (dispatch, getState) => {
+    let url = `${baseUrl}/${datasetId}/format/${id}`;
+
+    dispatch(deletingDatasetFormat());
+
+    const response = await axios({
+      url: url,
+      method: 'delete',
+    }).catch((error) => {
+      dispatch(deleteDatasetFormatFailure(error.message));
+    });
+
+    if (response) {
+      dispatch(deleteDatasetFormatSuccess(datasetId, id));
+    }
+  };
+};
+
+export const getDataset = (id) => {
+  return async (dispatch, getState) => {
+    const {
+      datasets: { items },
+    } = getState();
+
+    if (items[id]) {
+      dispatch(getDatasetSuccess({ ...items[id] }));
+      return;
+    }
+
+    dispatch(loadingDatasets());
+
+    const response = await axios({
+      url: `${baseUrl}/${id}`,
+      method: 'get',
+    }).catch((error) => {
+      dispatch(getDatasetFailure(error.message));
+    });
+
+    if (response) {
+      dispatch(getDatasetSuccess(response.data));
+    }
+  };
+};
+
+const getDatasetSuccess = (dataset) => {
+  return {
+    type: GET_DATASET_SUCCESS,
+    payload: dataset,
+  };
+};
+
+const getDatasetFailure = (message) => {
+  return {
+    type: GET_DATASET_FAILURE,
+    payload: message,
   };
 };
 
@@ -205,6 +272,20 @@ const createDatasetFailure = (message) => {
   };
 };
 
+const createDatasetFormatSuccess = (datasetId, datasetFormat) => {
+  return {
+    type: CREATE_DATASET_FORMAT_SUCCESS,
+    payload: { datasetId, datasetFormat },
+  };
+};
+
+const createDatasetFormatFailure = (message) => {
+  return {
+    type: CREATE_DATASET_FORMAT_FAILURE,
+    payload: message,
+  };
+};
+
 const updatingDataset = () => {
   return {
     type: UPDATING_DATASET,
@@ -241,6 +322,26 @@ const deleteDatasetSuccess = (id) => {
 const deleteDatasetFailure = (message) => {
   return {
     type: DELETE_DATASET_FAILURE,
+    payload: message,
+  };
+};
+
+const deletingDatasetFormat = () => {
+  return {
+    type: DELETING_DATASET_FORMAT,
+  };
+};
+
+const deleteDatasetFormatSuccess = (datasetId, id) => {
+  return {
+    type: DELETE_DATASET_FORMAT_SUCCESS,
+    payload: { datasetId, id },
+  };
+};
+
+const deleteDatasetFormatFailure = (message) => {
+  return {
+    type: DELETE_DATASET_FORMAT_FAILURE,
     payload: message,
   };
 };
