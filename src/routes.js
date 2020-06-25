@@ -25,6 +25,8 @@ import FormatEdit from './pages/formats/edit';
 import DatasetCreate from './pages/datasets/create';
 import DatasetEdit from './pages/datasets/edit';
 import Datasets from './pages/datasets/index';
+import MediaEdit from './pages/media/edit';
+import Media from './pages/media/index';
 
 import {
   PieChartOutlined,
@@ -135,6 +137,17 @@ const routes = [
     title: 'Memberships',
     icon: IdcardOutlined,
     onNavigation: true,
+  }),
+  new Route({
+    path: '/media',
+    component: Media,
+    title: 'Media',
+    icon: IdcardOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/media/:id/edit',
+    component: MediaEdit,
   }),
   new Route({
     path: '/orders',
