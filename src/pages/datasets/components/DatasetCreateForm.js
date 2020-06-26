@@ -9,7 +9,6 @@ const { Step } = Steps;
 const DatasetCreateForm = ({ dataset, datasetFormats, onSubmitDataset, onSubmitDatasetFormat }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [datasetId, setDatasetId] = useState(dataset?.id);
-  console.log(datasetId);
 
   const next = () => {
     setCurrentStep(currentStep + 1);

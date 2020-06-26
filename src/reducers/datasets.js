@@ -98,7 +98,6 @@ export default function datasetsReducer(state = initialState, action = {}) {
     case CREATE_DATASET_FORMAT_SUCCESS: {
       const { datasetId, datasetFormat } = action.payload;
       let updatedDataset = { ...state.items[datasetId] };
-      console.log(updatedDataset);
       updatedDataset.formats
         ? updatedDataset.formats.push(datasetFormat)
         : (updatedDataset.formats = [datasetFormat]);
@@ -129,13 +128,9 @@ export default function datasetsReducer(state = initialState, action = {}) {
       };
     case DELETE_DATASET_FORMAT_SUCCESS: {
       const { datasetId, id } = action.payload;
-      console.log(datasetId, id);
       let datasetFormats = [...state.items[datasetId].formats];
-      console.log('dataset', datasetFormats);
       const index = datasetFormats.findIndex((format) => format.id === id);
-      console.log('index', index);
       delete datasetFormats[index];
-      console.log('delete', datasetFormats);
 
       return {
         ...state,
