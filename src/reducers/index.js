@@ -10,11 +10,13 @@ import productsReducer from './products';
 import formatsReducer from './formats';
 import currenciesReducer from './currencies';
 import catalogsReducer from './catalogs';
+import datasetsReducer from './datasets';
 import usersReducer from './users';
 
 export default combineReducers({
   carts: cartsReducer,
   catalogs: catalogsReducer,
+  datasets: datasetsReducer,
   currencies: currenciesReducer,
   memberships: membershipsReducer,
   orders: ordersReducer,

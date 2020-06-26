@@ -22,6 +22,9 @@ import ProductEdit from './pages/products/edit';
 import Formats from './pages/formats/index';
 import FormatCreate from './pages/formats/create';
 import FormatEdit from './pages/formats/edit';
+import DatasetCreate from './pages/datasets/create';
+import DatasetEdit from './pages/datasets/edit';
+import Datasets from './pages/datasets/index';
 
 import {
   PieChartOutlined,
@@ -95,6 +98,21 @@ const routes = [
   new Route({
     path: '/currencies/:id/edit',
     component: CurrencyEdit,
+  }),
+  new Route({
+    path: '/datasets',
+    component: Datasets,
+    title: 'Datasets',
+    icon: MoneyCollectFilled,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/datasets/create',
+    component: DatasetCreate,
+  }),
+  new Route({
+    path: '/datasets/:id/edit',
+    component: DatasetEdit,
   }),
   new Route({
     path: '/formats',
