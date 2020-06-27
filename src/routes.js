@@ -37,6 +37,7 @@ import {
   ShoppingCartOutlined,
   TagOutlined,
   MoneyCollectFilled,
+  FileImageOutlined,
 } from '@ant-design/icons';
 
 class Route {
@@ -142,7 +143,7 @@ const routes = [
     path: '/media',
     component: Media,
     title: 'Media',
-    icon: IdcardOutlined,
+    icon: FileImageOutlined,
     onNavigation: true,
   }),
   new Route({
