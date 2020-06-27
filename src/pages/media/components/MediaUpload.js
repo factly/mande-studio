@@ -14,7 +14,7 @@ function MediaUploader() {
         const data = {};
         data['alt_text'] = file.meta.caption;
         data['caption'] = file.meta.caption;
-        data['description'] = file.meta.caption;
+        data['description'] = file.meta.description;
         data['dimensions'] = '100x100';
         data['file_size'] = file.size;
         data['name'] = file.meta.name;
@@ -44,9 +44,18 @@ function MediaUploader() {
     }
   };
 
+  const metaFields = [
+    { id: 'name', name: 'Name', placeholder: 'file name' },
+    { id: 'caption', name: 'Caption', placeholder: 'add a caption' },
+    {
+      id: 'description',
+      name: 'Description',
+      placeholder: 'describe what the image is about',
+    },
+  ];
   return (
     <div>
-      <Uploader onUploadSuccess={onFinish} />
+      <Uploader onUploadSuccess={onFinish} metaFields={metaFields} />
     </div>
   );
 }

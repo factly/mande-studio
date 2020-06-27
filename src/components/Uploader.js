@@ -10,7 +10,7 @@ import '@uppy/url/dist/style.css';
 
 import { Button } from 'antd';
 
-const Uploader = ({ onUploadSuccess }) => {
+const Uploader = ({ onUploadSuccess, metaFields }) => {
   const [show, setShow] = React.useState(false);
 
   const uppy = Uppy({
@@ -49,10 +49,7 @@ const Uploader = ({ onUploadSuccess }) => {
         open={show}
         onRequestClose={() => setShow(false)}
         plugins={['GoogleDrive', 'Url']}
-        metaFields={[
-          { id: 'name', name: 'Name', placeholder: 'file name' },
-          { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' },
-        ]}
+        metaFields={metaFields}
       />
     </div>
   );
