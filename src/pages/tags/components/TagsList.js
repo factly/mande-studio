@@ -31,7 +31,6 @@ const TagsList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Tag succesfully deleted',
         });
         dispatch(loadTags(pagination.page, pagination.limit));
       })

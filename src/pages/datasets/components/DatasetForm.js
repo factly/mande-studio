@@ -41,7 +41,6 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
         setDatasetId(data.id);
         notification.success({
           message: 'Success',
-          description: 'Dataset succesfully added',
         });
         next();
       })

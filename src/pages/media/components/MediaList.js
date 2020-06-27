@@ -29,7 +29,6 @@ const MediaList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Medium succesfully deleted',
         });
         dispatch(loadMedia(pagination.page, pagination.limit));
       })

@@ -31,7 +31,6 @@ const FormatsList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Format succesfully deleted',
         });
         dispatch(loadFormats(pagination.page, pagination.limit));
       })

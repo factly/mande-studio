@@ -15,7 +15,6 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Plan succesfully added',
         });
         history.push('/plans');
       })

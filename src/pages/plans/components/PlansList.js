@@ -30,7 +30,6 @@ const PlansList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Plan succesfully deleted',
         });
         dispatch(loadPlans(pagination.page, pagination.limit));
       })

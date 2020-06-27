@@ -30,7 +30,6 @@ const CatalogsList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Catalog succesfully deleted',
         });
         dispatch(loadCatalogs(pagination.page, pagination.limit));
       })

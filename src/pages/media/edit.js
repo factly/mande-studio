@@ -41,7 +41,7 @@ function MediaEdit() {
     dispatch(updateMedium(id, data))
       .then(() => {
         notification.success({
-          message: 'Updated successfully',
+          message: 'Success',
         });
         history.push('/media');
       })

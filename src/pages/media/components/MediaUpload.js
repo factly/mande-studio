@@ -27,7 +27,6 @@ function MediaUploader() {
           .then(() => {
             notification.success({
               message: 'Success',
-              description: 'Media succesfully added',
             });
           })
           .catch((error) => {

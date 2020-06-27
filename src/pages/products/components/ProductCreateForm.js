@@ -38,7 +38,6 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Product added succesfully',
         });
         history.push('/products');
       })
