@@ -1,14 +1,42 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
+import { Descriptions, List, Card, Popconfirm, notification } from 'antd';
 import moment from 'moment';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import { loadDatasets, deleteDataset } from '../../../actions/datasets';
 
+// "featured_media_id": 0,
+// "format": 0,
+// "format_ids": [
+//   0
+// ],
+
+const DatasetItem = ({ dataset, actions }) => {
+  return (
+    <Card actions={actions}>
+      <Descriptions title={dataset.title}>
+        <Descriptions.Item label="Contact email">{dataset.contact_email}</Descriptions.Item>
+        <Descriptions.Item label="Contact name">{dataset.contact_name}</Descriptions.Item>
+        <Descriptions.Item label="Data standard">{dataset.data_standard}</Descriptions.Item>
+        <Descriptions.Item label="Description">{dataset.description}</Descriptions.Item>
+        <Descriptions.Item label="Frequency">{dataset.frequency}</Descriptions.Item>
+        <Descriptions.Item label="Granularity">{dataset.granularity}</Descriptions.Item>
+        <Descriptions.Item label="License">{dataset.license}</Descriptions.Item>
+        <Descriptions.Item label="Related articles">{dataset.related_articles}</Descriptions.Item>
+        <Descriptions.Item label="Source">{dataset.source}</Descriptions.Item>
+        <Descriptions.Item label="Temporal coverage">{dataset.temporal_coverage}</Descriptions.Item>
+        <Descriptions.Item label="Time saved">{dataset.time_saved}</Descriptions.Item>
+        <Descriptions.Item label="Created At">
+          {moment(dataset.created_at).fromNow()}
+        </Descriptions.Item>
+      </Descriptions>
+    </Card>
+  );
+};
+
 const DatasetsList = () => {
-  const [form] = Form.useForm();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
   const history = useHistory();
@@ -41,74 +69,42 @@ const DatasetsList = () => {
       });
   };
 
-  const columns = [
-    {
-      title: 'Title',
-      width: '20%',
-      editable: true,
-      render: (_, record) => <Link to={`/datasets/${record.id}`}>{record.title}</Link>,
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      width: '20%',
-      editable: true,
-    },
-    {
-      title: 'Source',
-      dataIndex: 'source',
-      width: '20%',
-      editable: true,
-    },
-    {
-      title: 'Created At',
-      dataIndex: 'created_at',
-      width: '20%',
-      render: (_, record) => {
-        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
-      },
-    },
-    {
-      title: 'Operation',
-      dataIndex: 'operation',
-      render: (_, record) => {
-        return (
-          <span>
-            <Button
-              type="primary"
-              icon={<EditOutlined />}
-              onClick={() => history.push(`/datasets/${record.id}/edit`)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Edit
-            </Button>
-            <Popconfirm title="Sure to delete?" onConfirm={() => remove(record.id)}>
-              <Button icon={<DeleteOutlined />}>Delete</Button>
-            </Popconfirm>
-          </span>
-        );
-      },
-    },
+  const actions = (id) => [
+    <EditOutlined key="edit" onClick={() => history.push(`/datasets/${id}/edit`)} />,
+    <Popconfirm title="Sure to delete?" onConfirm={() => remove(id)}>
+      <DeleteOutlined key="delete" />
+    </Popconfirm>,
   ];
 
   return (
-    <Form form={form} component={false}>
-      <Table
-        bordered
-        rowKey="id"
-        dataSource={data}
-        columns={columns}
-        pagination={{
-          current: pagination.page,
-          defaultPageSize: 5,
-          pageSize: pagination.limit,
-          total,
-          onChange: (page, limit) => setPagination({ page, limit }),
-        }}
-      />
-    </Form>
+    <List
+      bordered
+      itemLayout="vertical"
+      dataSource={data}
+      pagination={{
+        current: pagination.page,
+        defaultPageSize: 5,
+        pageSize: pagination.limit,
+        total,
+        onChange: (page, limit) => setPagination({ page, limit }),
+      }}
+      renderItem={(dataset) => (
+        <List.Item
+          key={dataset.id}
+          actions={actions(dataset.id)}
+          extra={
+            <img
+              width={272}
+              alt="logo"
+              src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            />
+          }
+        >
+          <List.Item.Meta title={dataset.title} description={dataset.description} />
+          {/* <DatasetItem dataset={dataset} actions={actions(dataset.id)} /> */}
+        </List.Item>
+      )}
+    />
   );
 };
 
