@@ -25,6 +25,8 @@ import FormatEdit from './pages/formats/edit';
 import DatasetCreate from './pages/datasets/create';
 import DatasetEdit from './pages/datasets/edit';
 import Datasets from './pages/datasets/index';
+import MediaEdit from './pages/media/edit';
+import Media from './pages/media/index';
 
 import {
   PieChartOutlined,
@@ -35,6 +37,11 @@ import {
   ShoppingCartOutlined,
   TagOutlined,
   MoneyCollectFilled,
+  FileImageOutlined,
+  FolderOpenOutlined,
+  SolutionOutlined,
+  FileUnknownOutlined,
+  DatabaseOutlined,
 } from '@ant-design/icons';
 
 class Route {
@@ -73,7 +80,7 @@ const routes = [
     path: '/catalogs',
     component: Catalogs,
     title: 'Catalogs',
-    icon: ShoppingCartOutlined,
+    icon: DatabaseOutlined,
     onNavigation: true,
   }),
   new Route({
@@ -103,7 +110,7 @@ const routes = [
     path: '/datasets',
     component: Datasets,
     title: 'Datasets',
-    icon: MoneyCollectFilled,
+    icon: FolderOpenOutlined,
     onNavigation: true,
   }),
   new Route({
@@ -118,7 +125,7 @@ const routes = [
     path: '/formats',
     component: Formats,
     title: 'Formats',
-    icon: MoneyCollectFilled,
+    icon: FileUnknownOutlined,
     onNavigation: true,
   }),
   new Route({
@@ -135,6 +142,17 @@ const routes = [
     title: 'Memberships',
     icon: IdcardOutlined,
     onNavigation: true,
+  }),
+  new Route({
+    path: '/media',
+    component: Media,
+    title: 'Media',
+    icon: FileImageOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/media/:id/edit',
+    component: MediaEdit,
   }),
   new Route({
     path: '/orders',
@@ -158,7 +176,7 @@ const routes = [
     path: '/plans',
     component: Plans,
     title: 'Plans',
-    icon: ContainerOutlined,
+    icon: SolutionOutlined,
     onNavigation: true,
   }),
   new Route({

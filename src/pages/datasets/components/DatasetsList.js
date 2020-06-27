@@ -30,7 +30,6 @@ const DatasetsList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Dataset succesfully deleted',
         });
         dispatch(loadDatasets(pagination.page, pagination.limit));
       })

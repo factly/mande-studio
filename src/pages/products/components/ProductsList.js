@@ -32,7 +32,6 @@ const ProductsList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Product deleted',
         });
         dispatch(loadProducts(pagination.page, pagination.limit));
       })

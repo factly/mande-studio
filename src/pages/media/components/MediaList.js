@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
-import moment from 'moment';
+import { Avatar, Table, Button, Popconfirm, Form, notification } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 
-import { loadFormats, deleteFormat } from '../../../actions/formats';
+import { loadMedia, deleteMedium } from '../../../actions/media';
 
-const FormatsList = () => {
+const MediaList = () => {
   const [form] = Form.useForm();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const { data, total } = useSelector(({ formats }) => {
-    const { ids, items, total } = formats;
+  const { data, total } = useSelector(({ media }) => {
+    const { ids, items, total } = media;
     return {
       data: ids.map((id) => items[id]),
       total,
@@ -23,16 +21,16 @@ const FormatsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadFormats(pagination.page, pagination.limit));
-  }, [pagination]);
+    dispatch(loadMedia(pagination.page, pagination.limit));
+  }, [pagination, total]);
 
   const remove = (key) => {
-    dispatch(deleteFormat(key))
+    dispatch(deleteMedium(key))
       .then(() => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadFormats(pagination.page, pagination.limit));
+        dispatch(loadMedia(pagination.page, pagination.limit));
       })
       .catch(() => {
         notification.error({
@@ -44,34 +42,31 @@ const FormatsList = () => {
 
   const columns = [
     {
+      title: 'Display',
+      key: 'display',
+      render: (_, record) => <Avatar shape="square" size={174} src={record.url} />,
+      width: '15%',
+    },
+    {
       title: 'Name',
       dataIndex: 'name',
-      width: '20%',
+      key: 'name',
+    },
+    {
+      title: 'File size',
+      dataIndex: 'file_size',
+      key: 'file_size',
+      render: (_, record) => record.file_size + ' KB',
+    },
+    {
+      title: 'Caption',
+      dataIndex: 'caption',
+      key: 'caption',
     },
     {
       title: 'Description',
       dataIndex: 'description',
-      width: '20%',
-    },
-    {
-      title: 'Is default',
-      dataIndex: 'is_default',
-      width: '20%',
-      render: (_, record) => {
-        return (
-          <span title={record.is_default}>
-            {record.is_default ? <CheckOutlined /> : <CloseOutlined />}
-          </span>
-        );
-      },
-    },
-    {
-      title: 'Created At',
-      dataIndex: 'created_at',
-      width: '20%',
-      render: (_, record) => {
-        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
-      },
+      key: 'description',
     },
     {
       title: 'Operation',
@@ -82,7 +77,7 @@ const FormatsList = () => {
             <Button
               type="primary"
               icon={<EditOutlined />}
-              onClick={() => history.push(`/formats/${record.id}/edit`)}
+              onClick={() => history.push(`/media/${record.id}/edit`)}
               style={{
                 marginRight: 8,
               }}
@@ -117,4 +112,4 @@ const FormatsList = () => {
   );
 };
 
-export default FormatsList;
+export default MediaList;

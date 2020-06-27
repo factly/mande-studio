@@ -16,7 +16,6 @@ const CurrencyCreateForm = ({ onSubmit, data = {} }) => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Format added succesfully',
         });
         history.push('/formats');
       })

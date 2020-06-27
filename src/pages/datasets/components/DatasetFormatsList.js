@@ -19,7 +19,6 @@ const DatasetFormatsList = ({ datasetId, datasetFormatsL }) => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Dataset format succesfully deleted',
         });
       })
       .catch((error) => {

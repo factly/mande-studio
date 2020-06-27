@@ -30,7 +30,6 @@ const CurrenciesList = () => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Currency succesfully deleted',
         });
         dispatch(loadCurrencies(pagination.page, pagination.limit));
       })

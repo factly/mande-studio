@@ -15,7 +15,6 @@ const TagCreateForm = ({ onSubmit, data = {} }) => {
       .then(() => {
         notification.success({
           message: 'Success',
-          description: 'Tag succesfully added',
         });
         history.push('/tags');
       })

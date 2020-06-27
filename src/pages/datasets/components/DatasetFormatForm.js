@@ -30,7 +30,6 @@ const DatasetFormatForm = ({ datasetFormats, datasetId, onSubmit, prev }) => {
           .then(() => {
             notification.success({
               message: 'Success',
-              description: 'Dataset Format succesfully added',
             });
           })
           .catch((error) => {
