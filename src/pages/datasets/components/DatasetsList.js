@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Descriptions, List, Card, Popconfirm, notification } from 'antd';
 import moment from 'moment';
@@ -71,7 +71,12 @@ const DatasetsList = () => {
       }}
       renderItem={(dataset) => (
         <List.Item key={dataset.id}>
-          <Card hoverable actions={actions(dataset.id)} title={dataset.title} bordered={false}>
+          <Card
+            hoverable
+            actions={actions(dataset.id)}
+            title={<Link to={`/datasets/${dataset.id}`}>{dataset.title}</Link>}
+            bordered={false}
+          >
             <DatasetItem dataset={dataset} />
           </Card>
         </List.Item>

@@ -16,6 +16,7 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
       name: 'contact_email',
       placeholder: 'shashi@factly.in',
       required: true,
+      type: 'email',
     },
     { label: 'Contact Name', name: 'contact_name', placeholder: 'Shashi', required: true },
     { label: 'Description', name: 'description', placeholder: 'description' },
@@ -98,7 +99,7 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
               </Form.Item>
             </Input.Group>
           ) : (
-            <Input placeholder={field.placeholder} />
+            <Input placeholder={field.placeholder} type={field.type || ''} />
           )}
         </Form.Item>
       ))}

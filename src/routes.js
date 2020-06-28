@@ -24,6 +24,7 @@ import FormatCreate from './pages/formats/create';
 import FormatEdit from './pages/formats/edit';
 import DatasetCreate from './pages/datasets/create';
 import DatasetEdit from './pages/datasets/edit';
+import DatasetDetail from './pages/datasets/detail';
 import Datasets from './pages/datasets/index';
 import MediaEdit from './pages/media/edit';
 import Media from './pages/media/index';
@@ -112,6 +113,10 @@ const routes = [
     title: 'Datasets',
     icon: FolderOpenOutlined,
     onNavigation: true,
+  }),
+  new Route({
+    path: '/datasets/:id',
+    component: DatasetDetail,
   }),
   new Route({
     path: '/datasets/create',
