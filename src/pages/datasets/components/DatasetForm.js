@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, InputNumber, Button, Select, notification } from 'antd';
+
+import MediaUploader from '../../media/components/MediaUpload';
 
 const { Option } = Select;
 
@@ -9,6 +11,8 @@ const formItemLayout = {
 };
 
 const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
+  const [media, setMedia] = useState(data?.feature_media);
+
   const formFields = [
     { label: 'Title', name: 'title', placeholder: 'Dataset title', required: true },
     {
@@ -34,8 +38,13 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
     { label: 'Time Saved', type: 'number', name: 'time_saved', placeholder: '12' },
   ];
 
+  const onUploadSuccess = (media) => {
+    setMedia(media);
+  };
+
   const onFinish = (values) => {
     values.frequency = `${values.frequency.count} ${values.frequency.units}`;
+    if (media) values.featured_media_id = media.id;
 
     onSubmit(values)
       .then((data) => {
@@ -104,6 +113,8 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
         </Form.Item>
       ))}
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+        {media && media.name}
+        <MediaUploader onUploadSuccess={onUploadSuccess} />
         <Button type="primary" htmlType="submit">
           Submit
         </Button>

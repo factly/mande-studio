@@ -7,7 +7,7 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import { loadDatasets, deleteDataset } from '../../../actions/datasets';
 
-const DatasetItem = ({ dataset, actions }) => {
+const DatasetItem = ({ dataset }) => {
   return (
     <Descriptions layout="horizontal" column={1}>
       <Descriptions.Item label="Contact email">{dataset.contact_email}</Descriptions.Item>
@@ -76,6 +76,7 @@ const DatasetsList = () => {
             actions={actions(dataset.id)}
             title={<Link to={`/datasets/${dataset.id}`}>{dataset.title}</Link>}
             bordered={false}
+            cover={<img alt={dataset.featured_media?.alt_text} src={dataset.featured_media?.url} />}
           >
             <DatasetItem dataset={dataset} />
           </Card>

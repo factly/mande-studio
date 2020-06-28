@@ -5,7 +5,7 @@ import { notification } from 'antd';
 import { createMedium } from '../../../actions/media';
 import Uploader from '../../../components/Uploader';
 
-function MediaUploader() {
+function MediaUploader({ onUploadSuccess = () => {} }) {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
@@ -24,10 +24,11 @@ function MediaUploader() {
         data['url'] = file.uploadURL;
 
         dispatch(createMedium(data))
-          .then(() => {
+          .then((data) => {
             notification.success({
               message: 'Success',
             });
+            onUploadSuccess(data);
           })
           .catch((error) => {
             console.log(error);

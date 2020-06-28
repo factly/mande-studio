@@ -81,6 +81,7 @@ export const createMedium = (data) => {
 
     if (response) {
       dispatch(createMediumSuccess(response.data));
+      return response.data;
     }
   };
 };

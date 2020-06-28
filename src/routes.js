@@ -116,12 +116,12 @@ const routes = [
     onNavigation: true,
   }),
   new Route({
-    path: '/datasets/:id',
-    component: DatasetDetail,
-  }),
-  new Route({
     path: '/datasets/create',
     component: DatasetCreate,
+  }),
+  new Route({
+    path: '/datasets/:id',
+    component: DatasetDetail,
   }),
   new Route({
     path: '/datasets/:id/edit',
@@ -201,12 +201,12 @@ const routes = [
     onNavigation: true,
   }),
   new Route({
-    path: '/products/:id',
-    component: ProductDetail,
-  }),
-  new Route({
     path: '/products/create',
     component: ProductCreate,
+  }),
+  new Route({
+    path: '/products/:id',
+    component: ProductDetail,
   }),
   new Route({
     path: '/products/:id/edit',
