@@ -14,6 +14,7 @@ import Tags from './pages/tags/index';
 import TagCreate from './pages/tags/create';
 import TagEdit from './pages/tags/edit';
 import ProductCreate from './pages/products/create';
+import ProductDetail from './pages/products/detail';
 import Products from './pages/products';
 import CurrencyCreate from './pages/currencies/create';
 import Currencies from './pages/currencies';
@@ -198,6 +199,10 @@ const routes = [
     title: 'Products',
     icon: ContainerOutlined,
     onNavigation: true,
+  }),
+  new Route({
+    path: '/products/:id',
+    component: ProductDetail,
   }),
   new Route({
     path: '/products/create',

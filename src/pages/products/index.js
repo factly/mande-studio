@@ -1,7 +1,8 @@
 import React from 'react';
-import ProductsList from './components/ProductsList';
-import { Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { Button } from 'antd';
+
+import ProductsList from './components/ProductsList';
 
 const Products = () => {
   return (

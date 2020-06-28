@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Descriptions, List, Card, Tag, Popconfirm, notification } from 'antd';
 import moment from 'moment';
@@ -10,7 +10,7 @@ import { loadProducts, deleteProduct } from '../../../actions/products';
 const ProductItem = ({ product, currencies, tags, actions }) => {
   return (
     <Card actions={actions}>
-      <Descriptions title={product.title}>
+      <Descriptions title={<Link to={`/products/${product.id}`}>{product.title}</Link>}>
         <Descriptions.Item label="Slug">{product.slug}</Descriptions.Item>
         <Descriptions.Item label="Price">
           {product.price} {currencies[product.currency_id].iso_code}
