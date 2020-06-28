@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Descriptions, List, Card, Popconfirm, notification } from 'antd';
-import moment from 'moment';
+import { Descriptions, List, Card, Popconfirm, Empty, notification } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
+import '../../styles.css';
 import { loadDatasets, deleteDataset } from '../../../actions/datasets';
 
 const DatasetItem = ({ dataset }) => {
@@ -58,10 +58,14 @@ const DatasetsList = () => {
     </Popconfirm>,
   ];
 
-  return (
+  return !data ? (
+    <Card>
+      <Empty />
+    </Card>
+  ) : (
     <List
       dataSource={data}
-      grid={{ gutter: 16, column: 2 }}
+      grid={{ gutter: 16, column: 4 }}
       pagination={{
         current: pagination.page,
         defaultPageSize: 4,
@@ -76,7 +80,13 @@ const DatasetsList = () => {
             actions={actions(dataset.id)}
             title={<Link to={`/datasets/${dataset.id}`}>{dataset.title}</Link>}
             bordered={false}
-            cover={<img alt={dataset.featured_media?.alt_text} src={dataset.featured_media?.url} />}
+            cover={
+              <img
+                className="photo"
+                alt={dataset.featured_media?.alt_text || 'No image added'}
+                src={dataset.featured_media?.url}
+              />
+            }
           >
             <DatasetItem dataset={dataset} />
           </Card>

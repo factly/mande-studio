@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { List, Card, Popconfirm, notification } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
+import '../../styles.css';
 import { loadMedia, deleteMedium } from '../../../actions/media';
 
 const MediaList = () => {
@@ -62,7 +63,7 @@ const MediaList = () => {
           <Card
             hoverable
             actions={actions(medium.id)}
-            cover={<img width={272} alt={medium.alt_text} src={medium.url} />}
+            cover={<img className="photo" alt={medium.alt_text} src={medium.url} />}
           >
             <Card.Meta
               title={<a href={medium.href}>{medium.title}</a>}
