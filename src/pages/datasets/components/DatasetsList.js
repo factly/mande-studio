@@ -7,37 +7,19 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import { loadDatasets, deleteDataset } from '../../../actions/datasets';
 
-// "featured_media_id": 0,
-// "format": 0,
-// "format_ids": [
-//   0
-// ],
-
 const DatasetItem = ({ dataset, actions }) => {
   return (
-    <Card actions={actions}>
-      <Descriptions title={dataset.title}>
-        <Descriptions.Item label="Contact email">{dataset.contact_email}</Descriptions.Item>
-        <Descriptions.Item label="Contact name">{dataset.contact_name}</Descriptions.Item>
-        <Descriptions.Item label="Data standard">{dataset.data_standard}</Descriptions.Item>
-        <Descriptions.Item label="Description">{dataset.description}</Descriptions.Item>
-        <Descriptions.Item label="Frequency">{dataset.frequency}</Descriptions.Item>
-        <Descriptions.Item label="Granularity">{dataset.granularity}</Descriptions.Item>
-        <Descriptions.Item label="License">{dataset.license}</Descriptions.Item>
-        <Descriptions.Item label="Related articles">{dataset.related_articles}</Descriptions.Item>
-        <Descriptions.Item label="Source">{dataset.source}</Descriptions.Item>
-        <Descriptions.Item label="Temporal coverage">{dataset.temporal_coverage}</Descriptions.Item>
-        <Descriptions.Item label="Time saved">{dataset.time_saved}</Descriptions.Item>
-        <Descriptions.Item label="Created At">
-          {moment(dataset.created_at).fromNow()}
-        </Descriptions.Item>
-      </Descriptions>
-    </Card>
+    <Descriptions layout="horizontal" column={1}>
+      <Descriptions.Item label="Contact email">{dataset.contact_email}</Descriptions.Item>
+      <Descriptions.Item label="Contact name">{dataset.contact_name}</Descriptions.Item>
+      <Descriptions.Item label="License">{dataset.license}</Descriptions.Item>
+      <Descriptions.Item label="Source">{dataset.source}</Descriptions.Item>
+    </Descriptions>
   );
 };
 
 const DatasetsList = () => {
-  const [pagination, setPagination] = useState({ page: 1, limit: 5 });
+  const [pagination, setPagination] = useState({ page: 1, limit: 4 });
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -78,30 +60,20 @@ const DatasetsList = () => {
 
   return (
     <List
-      bordered
-      itemLayout="vertical"
       dataSource={data}
+      grid={{ gutter: 16, column: 2 }}
       pagination={{
         current: pagination.page,
-        defaultPageSize: 5,
+        defaultPageSize: 4,
         pageSize: pagination.limit,
         total,
         onChange: (page, limit) => setPagination({ page, limit }),
       }}
       renderItem={(dataset) => (
-        <List.Item
-          key={dataset.id}
-          actions={actions(dataset.id)}
-          extra={
-            <img
-              width={272}
-              alt="logo"
-              src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-            />
-          }
-        >
-          <List.Item.Meta title={dataset.title} description={dataset.description} />
-          {/* <DatasetItem dataset={dataset} actions={actions(dataset.id)} /> */}
+        <List.Item key={dataset.id}>
+          <Card hoverable actions={actions(dataset.id)} title={dataset.title} bordered={false}>
+            <DatasetItem dataset={dataset} />
+          </Card>
         </List.Item>
       )}
     />
