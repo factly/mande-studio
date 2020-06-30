@@ -9,8 +9,8 @@ const FormatCreate = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const onCreate = async (values) => {
-    await dispatch(createFormat(values));
+  const onCreate = (values) => {
+    dispatch(createFormat(values));
     history.push('/formats');
   };
 
