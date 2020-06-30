@@ -18,7 +18,6 @@ const Uploader = ({ onUploadSuccess, metaFields }) => {
     meta: { type: 'avatar' },
     restrictions: {
       maxNumberOfFiles: 1,
-      allowedFileTypes: ['image/*'],
     },
     autoProceed: false,
     onBeforeUpload: (files) => {
