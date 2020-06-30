@@ -20,7 +20,7 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
 } from '../constants/products';
-import { loadCurrenciesSuccess } from './currencies';
+import { addCurrencies } from './currencies';
 import { addTags } from './tags';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
@@ -64,7 +64,7 @@ export const loadProducts = (page, limit) => {
       const req = { page: page, limit: limit, ids: currentPageIds };
 
       const currencies = getValues(nodes, 'currency');
-      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(addCurrencies(currencies));
 
       const tags = getValues(nodes, 'tags');
       dispatch(addTags(tags));
@@ -125,7 +125,7 @@ export const getProductDetails = (id) => {
       const product = response.data;
 
       const currencies = getValues([product], 'currency');
-      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(addCurrencies(currencies));
 
       const tags = getValues([product], 'tags');
       dispatch(addTags(tags));

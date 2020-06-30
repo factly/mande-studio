@@ -1,126 +1,96 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  ADD_CURRENCIES_LIST_REQUEST,
-  SET_CURRENCIES_LIST_CURRENT_PAGE,
-  GET_CURRENCY_SUCCESS,
-  GET_CURRENCY_FAILURE,
-  LOADING_CURRENCIES,
-  LOAD_CURRENCIES_SUCCESS,
-  SET_CURRENCIES_LIST_TOTAL,
-  LOAD_CURRENCIES_FAILURE,
-  CREATING_CURRENCY,
-  CREATE_CURRENCY_SUCCESS,
-  CREATE_CURRENCY_FAILURE,
-  UPDATING_CURRENCY,
-  UPDATE_CURRENCY_SUCCESS,
-  UPDATE_CURRENCY_FAILURE,
-  DELETING_CURRENCY,
-  DELETE_CURRENCY_SUCCESS,
-  DELETE_CURRENCY_FAILURE,
+  ADD_CURRENCY,
+  ADD_CURRENCIES,
+  SET_CURRENCY_LOADING,
+  SET_CURRENCY_REQUEST,
+  SET_CURRENCY_IDS,
+  RESET_CURRENCY,
+  CURRENCY_API,
 } from '../constants/currencies';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadCurrencies = (page, limit) => {
+export const loadCurrencies = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
       currencies: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setCurrencyIds(ids));
       return;
     }
 
-    dispatch(loadingCurrencies());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${CURRENCY_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadCurrenciesFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
-      dispatch(addListRequest(req));
-      dispatch(loadCurrenciesSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setCurrenciesListTotal(total));
-    }
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setCurrencyRequest(currentReq, total));
+    dispatch(addCurrencies(nodes));
+    dispatch(setCurrencyIds(currentPageIds));
+
+    dispatch(setLoading(false));
   };
 };
 
 export const createCurrency = (data) => {
   return async (dispatch, getState) => {
-    dispatch(creatingCurrency());
+    dispatch(setLoading(true));
 
-    const response = await axios({
-      url: baseUrl,
+    await axios({
+      url: CURRENCY_API,
       method: 'post',
       data: data,
-    }).catch((error) => {
-      dispatch(createCurrencyFailure(error.message));
     });
 
-    if (response) {
-      dispatch(createCurrencySuccess(response.data));
-    }
+    dispatch(resetCurrency());
+    dispatch(setLoading(false));
   };
 };
 
 export const updateCurrency = (id, data) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${CURRENCY_API}/${id}`;
 
-    dispatch(updatingCurrency());
+    dispatch(setLoading(true));
 
     const response = await axios({
       url: url,
       method: 'put',
       data: data,
-    }).catch((error) => {
-      dispatch(updateCurrencyFailure(error.message));
     });
 
-    if (response) {
-      dispatch(updateCurrencySuccess(response.data));
-    }
+    dispatch(addCurrency(response.data));
+    dispatch(setLoading(false));
   };
 };
 
 export const deleteCurrency = (id) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${CURRENCY_API}/${id}`;
 
-    dispatch(deletingCurrency());
+    dispatch(setLoading(true));
 
-    const response = await axios({
+    await axios({
       url: url,
       method: 'delete',
-    }).catch((error) => {
-      dispatch(deleteCurrencyFailure(error.message));
     });
 
-    if (response) {
-      dispatch(deleteCurrencySuccess(id));
-    }
+    dispatch(resetCurrency());
+    dispatch(setLoading(false));
   };
 };
 
@@ -131,138 +101,60 @@ export const getCurrency = (id) => {
     } = getState();
 
     if (items[id]) {
-      dispatch(getCurrencySuccess({ ...items[id] }));
       return;
     }
 
-    dispatch(loadingCurrencies());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${baseUrl}/${id}`,
+      url: `${CURRENCY_API}/${id}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(getCurrencyFailure(error.message));
     });
+    dispatch(addCurrency(response.data));
 
-    if (response) {
-      dispatch(getCurrencySuccess(response.data));
-    }
+    dispatch(setLoading(false));
   };
 };
 
-const getCurrencySuccess = (currency) => {
+const setLoading = (loading) => {
   return {
-    type: GET_CURRENCY_SUCCESS,
-    payload: currency,
+    type: SET_CURRENCY_LOADING,
+    payload: { loading },
   };
 };
 
-const getCurrencyFailure = (message) => {
+const addCurrency = (currency) => {
   return {
-    type: GET_CURRENCY_FAILURE,
-    payload: message,
+    type: ADD_CURRENCY,
+    payload: { currency },
   };
 };
 
-const loadingCurrencies = () => {
+export const addCurrencies = (currencies) => {
   return {
-    type: LOADING_CURRENCIES,
-  };
-};
-
-const setCurrenciesListTotal = (total) => {
-  return {
-    type: SET_CURRENCIES_LIST_TOTAL,
-    payload: total,
-  };
-};
-
-const addListRequest = (req) => {
-  return {
-    type: ADD_CURRENCIES_LIST_REQUEST,
-    payload: req,
-  };
-};
-
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_CURRENCIES_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
-
-export const loadCurrenciesSuccess = (currencies) => {
-  return {
-    type: LOAD_CURRENCIES_SUCCESS,
+    type: ADD_CURRENCIES,
     payload: {
-      items: buildObjectOfItems(currencies),
+      currencies: buildObjectOfItems(currencies),
     },
   };
 };
 
-const loadCurrenciesFailure = (message) => {
+const setCurrencyRequest = (req, total) => {
   return {
-    type: LOAD_CURRENCIES_FAILURE,
-    payload: message,
+    type: SET_CURRENCY_REQUEST,
+    payload: { req, total },
   };
 };
 
-const creatingCurrency = () => {
+const setCurrencyIds = (ids) => {
   return {
-    type: CREATING_CURRENCY,
+    type: SET_CURRENCY_IDS,
+    payload: { ids },
   };
 };
 
-const createCurrencySuccess = (currency) => {
+const resetCurrency = () => {
   return {
-    type: CREATE_CURRENCY_SUCCESS,
-    payload: currency,
-  };
-};
-
-const createCurrencyFailure = (message) => {
-  return {
-    type: CREATE_CURRENCY_FAILURE,
-    payload: message,
-  };
-};
-
-const updatingCurrency = () => {
-  return {
-    type: UPDATING_CURRENCY,
-  };
-};
-
-const updateCurrencySuccess = (currency) => {
-  return {
-    type: UPDATE_CURRENCY_SUCCESS,
-    payload: currency,
-  };
-};
-
-const updateCurrencyFailure = (message) => {
-  return {
-    type: UPDATE_CURRENCY_FAILURE,
-    payload: message,
-  };
-};
-
-const deletingCurrency = () => {
-  return {
-    type: DELETING_CURRENCY,
-  };
-};
-
-const deleteCurrencySuccess = (id) => {
-  return {
-    type: DELETE_CURRENCY_SUCCESS,
-    payload: id,
-  };
-};
-
-const deleteCurrencyFailure = (message) => {
-  return {
-    type: DELETE_CURRENCY_FAILURE,
-    payload: message,
+    type: RESET_CURRENCY,
   };
 };

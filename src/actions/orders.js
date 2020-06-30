@@ -19,7 +19,7 @@ import {
 } from '../constants/orders';
 import { loadCartsSuccess } from './carts';
 import { loadPaymentsSuccess } from './payments';
-import { loadCurrenciesSuccess } from './currencies';
+import { addCurrencies } from './currencies';
 import { loadProductsSuccess } from './products';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
@@ -67,7 +67,7 @@ export const loadOrders = (page = 1, limit) => {
 
       const payments = getValues(nodes, 'payment');
       const currencies = getValues(payments, 'currency');
-      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(addCurrencies(currencies));
       dispatch(loadPaymentsSuccess(payments));
 
       const currentPageIds = getIds(nodes);
@@ -140,7 +140,7 @@ export const getOrderItems = (id, page = 1, limit) => {
 
       const products = getValues(nodes, 'product');
       const currencies = getValues(products, 'currency');
-      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(addCurrencies(currencies));
       dispatch(loadProductsSuccess(products));
 
       const currentPageIds = getIds(nodes);

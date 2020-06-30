@@ -15,7 +15,7 @@ import {
   GET_CART_ITEMS_FAILURE,
 } from '../constants/carts';
 import { loadProductsSuccess } from './products';
-import { loadCurrenciesSuccess } from './currencies';
+import { addCurrencies } from './currencies';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadCarts = (page = 1, limit) => {
@@ -108,7 +108,7 @@ export const getCartItems = (id, page = 1, limit) => {
       const products = getValues(nodes, 'product');
 
       const currencies = getValues(products, 'currency');
-      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(addCurrencies(currencies));
 
       dispatch(loadProductsSuccess(products));
 

@@ -8,7 +8,7 @@ import {
   LOAD_PAYMENTS_FAILURE,
   SET_PAYMENTS_LIST_TOTAL,
 } from '../constants/payments';
-import { loadCurrenciesSuccess } from './currencies';
+import { addCurrencies } from './currencies';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadPayments = (page, limit) => {
@@ -49,7 +49,7 @@ export const loadPayments = (page, limit) => {
       const { nodes, total } = response.data;
 
       const currencies = getValues(nodes, 'currency');
-      dispatch(loadCurrenciesSuccess(currencies));
+      dispatch(addCurrencies(currencies));
 
       const currentPageIds = getIds(nodes);
       const req = { page: page, limit: limit, ids: currentPageIds };
