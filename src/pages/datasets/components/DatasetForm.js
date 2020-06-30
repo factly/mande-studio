@@ -112,9 +112,11 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
           )}
         </Form.Item>
       ))}
-      <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-        {media && media.name}
+      <Form.Item key={'medium'} label={'Medium'}>
+        {/* {media && media.name} */}
         <MediaUploader onUploadSuccess={onUploadSuccess} />
+      </Form.Item>
+      <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>

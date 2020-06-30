@@ -118,6 +118,7 @@ export default function datasetsReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
+        dataset: {},
         items: { ...state.items, [dataset.id]: dataset },
       };
     }
@@ -130,7 +131,7 @@ export default function datasetsReducer(state = initialState, action = {}) {
       const { datasetId, id } = action.payload;
       let datasetFormats = [...state.items[datasetId].formats];
       const index = datasetFormats.findIndex((format) => format.id === id);
-      delete datasetFormats[index];
+      datasetFormats.splice(index, 1);
 
       return {
         ...state,

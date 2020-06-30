@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
+import { Table, Button, Skeleton, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { DeleteOutlined } from '@ant-design/icons';
 
@@ -11,7 +11,15 @@ const DatasetFormatsList = ({ datasetId, showOperations = true }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
-  const datasetFormats = useSelector(({ datasets }) => datasets.items[datasetId]?.formats);
+  const [datasetFormats, setDatasetFormats] = useState([]);
+  const { loading, formats } = useSelector(({ datasets }) => ({
+    formats: datasets.items[datasetId]?.formats,
+    loading: datasets.loading,
+  }));
+
+  React.useEffect(() => {
+    setDatasetFormats(formats);
+  }, [formats]);
 
   const total = datasetFormats?.length;
 
@@ -70,7 +78,9 @@ const DatasetFormatsList = ({ datasetId, showOperations = true }) => {
       },
     });
 
-  return (
+  return loading ? (
+    <Skeleton />
+  ) : (
     <Form form={form} component={false}>
       <Table
         bordered
