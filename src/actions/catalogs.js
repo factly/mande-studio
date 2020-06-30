@@ -109,7 +109,9 @@ export const updateCatalog = (id, data) => {
     });
 
     if (response) {
-      dispatch(updateCatalogSuccess(response.data));
+      const catalog = response.data;
+      catalog.products = getIds(catalog.products);
+      dispatch(updateCatalogSuccess(catalog));
     }
   };
 };

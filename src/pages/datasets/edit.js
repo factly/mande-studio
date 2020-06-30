@@ -10,7 +10,7 @@ const EditDataset = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { dataset } = useSelector(({ datasets }) => datasets);
+  const dataset = { ...useSelector(({ datasets }) => datasets.items[id]) };
 
   React.useEffect(() => {
     dispatch(getDataset(id));
@@ -20,7 +20,6 @@ const EditDataset = () => {
 
   const onUpdateDataset = (values) => {
     return dispatch(updateDataset(id, values));
-    // history.push('/datasets');
   };
 
   const onCreateDatasetFormat = (datasetId, data) => {

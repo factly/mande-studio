@@ -1,5 +1,6 @@
 import React from 'react';
-import { notification } from 'antd';
+import { Button, Space, notification } from 'antd';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loadFormats } from '../../../actions/formats';
@@ -8,6 +9,7 @@ import DatasetFormatsList from './DatasetFormatsList';
 
 const DatasetFormatForm = ({ datasetFormats, datasetId, onSubmit, prev }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const formats = useSelector(({ formats }) => Object.values(formats.items));
 
   React.useEffect(() => {
@@ -48,7 +50,10 @@ const DatasetFormatForm = ({ datasetFormats, datasetId, onSubmit, prev }) => {
 
   return (
     <>
-      <Uploader onUploadSuccess={onFinish} />
+      <Space>
+        <Uploader onUploadSuccess={onFinish} />
+        <Button onClick={() => history.push('/datasets')}>Done</Button>
+      </Space>
       <DatasetFormatsList datasetId={datasetId} datasetFormats={datasetFormats} />
     </>
   );

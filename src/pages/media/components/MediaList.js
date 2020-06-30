@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Table, Button, Popconfirm, Form, notification } from 'antd';
+import { List, Card, Popconfirm, notification } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
+import '../../styles.css';
 import { loadMedia, deleteMedium } from '../../../actions/media';
 
 const MediaList = () => {
-  const [form] = Form.useForm();
-  const [pagination, setPagination] = useState({ page: 1, limit: 5 });
+  const [pagination, setPagination] = useState({ page: 1, limit: 4 });
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -40,75 +40,39 @@ const MediaList = () => {
       });
   };
 
-  const columns = [
-    {
-      title: 'Display',
-      key: 'display',
-      render: (_, record) => <Avatar shape="square" size={174} src={record.url} />,
-      width: '15%',
-    },
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'File size',
-      dataIndex: 'file_size',
-      key: 'file_size',
-      render: (_, record) => record.file_size + ' KB',
-    },
-    {
-      title: 'Caption',
-      dataIndex: 'caption',
-      key: 'caption',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-    },
-    {
-      title: 'Operation',
-      dataIndex: 'operation',
-      render: (_, record) => {
-        return (
-          <span>
-            <Button
-              type="primary"
-              icon={<EditOutlined />}
-              onClick={() => history.push(`/media/${record.id}/edit`)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Edit
-            </Button>
-            <Popconfirm title="Sure to delete?" onConfirm={() => remove(record.id)}>
-              <Button icon={<DeleteOutlined />}>Delete</Button>
-            </Popconfirm>
-          </span>
-        );
-      },
-    },
+  const actions = (id) => [
+    <EditOutlined key="edit" onClick={() => history.push(`/media/${id}/edit`)} />,
+    <Popconfirm title="Sure to delete?" onConfirm={() => remove(id)}>
+      <DeleteOutlined key="delete" />
+    </Popconfirm>,
   ];
 
   return (
-    <Form form={form} component={false}>
-      <Table
-        bordered
-        rowKey="id"
-        dataSource={data}
-        columns={columns}
-        pagination={{
-          current: pagination.page,
-          defaultPageSize: 5,
-          pageSize: pagination.limit,
-          total,
-          onChange: (page, limit) => setPagination({ page, limit }),
-        }}
-      />
-    </Form>
+    <List
+      grid={{ gutter: 16, column: 4 }}
+      dataSource={data}
+      pagination={{
+        current: pagination.page,
+        defaultPageSize: 4,
+        pageSize: pagination.limit,
+        total,
+        onChange: (page, limit) => setPagination({ page, limit }),
+      }}
+      renderItem={(medium) => (
+        <List.Item key={medium.id}>
+          <Card
+            hoverable
+            actions={actions(medium.id)}
+            cover={<img className="photo" alt={medium.alt_text} src={medium.url} />}
+          >
+            <Card.Meta
+              title={<a href={medium.href}>{medium.title}</a>}
+              description={medium.caption}
+            />
+          </Card>
+        </List.Item>
+      )}
+    />
   );
 };
 

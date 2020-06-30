@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
-import moment from 'moment';
+import { Descriptions, List, Card, Popconfirm, Empty, notification } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
+import '../../styles.css';
 import { loadDatasets, deleteDataset } from '../../../actions/datasets';
 
+const DatasetItem = ({ dataset }) => {
+  return (
+    <Descriptions layout="horizontal" column={1}>
+      <Descriptions.Item label="Contact email">{dataset.contact_email}</Descriptions.Item>
+      <Descriptions.Item label="Contact name">{dataset.contact_name}</Descriptions.Item>
+      <Descriptions.Item label="License">{dataset.license}</Descriptions.Item>
+      <Descriptions.Item label="Source">{dataset.source}</Descriptions.Item>
+    </Descriptions>
+  );
+};
+
 const DatasetsList = () => {
-  const [form] = Form.useForm();
-  const [pagination, setPagination] = useState({ page: 1, limit: 5 });
+  const [pagination, setPagination] = useState({ page: 1, limit: 4 });
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -41,74 +51,48 @@ const DatasetsList = () => {
       });
   };
 
-  const columns = [
-    {
-      title: 'Title',
-      width: '20%',
-      editable: true,
-      render: (_, record) => <Link to={`/datasets/${record.id}`}>{record.title}</Link>,
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      width: '20%',
-      editable: true,
-    },
-    {
-      title: 'Source',
-      dataIndex: 'source',
-      width: '20%',
-      editable: true,
-    },
-    {
-      title: 'Created At',
-      dataIndex: 'created_at',
-      width: '20%',
-      render: (_, record) => {
-        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
-      },
-    },
-    {
-      title: 'Operation',
-      dataIndex: 'operation',
-      render: (_, record) => {
-        return (
-          <span>
-            <Button
-              type="primary"
-              icon={<EditOutlined />}
-              onClick={() => history.push(`/datasets/${record.id}/edit`)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Edit
-            </Button>
-            <Popconfirm title="Sure to delete?" onConfirm={() => remove(record.id)}>
-              <Button icon={<DeleteOutlined />}>Delete</Button>
-            </Popconfirm>
-          </span>
-        );
-      },
-    },
+  const actions = (id) => [
+    <EditOutlined key="edit" onClick={() => history.push(`/datasets/${id}/edit`)} />,
+    <Popconfirm title="Sure to delete?" onConfirm={() => remove(id)}>
+      <DeleteOutlined key="delete" />
+    </Popconfirm>,
   ];
 
-  return (
-    <Form form={form} component={false}>
-      <Table
-        bordered
-        rowKey="id"
-        dataSource={data}
-        columns={columns}
-        pagination={{
-          current: pagination.page,
-          defaultPageSize: 5,
-          pageSize: pagination.limit,
-          total,
-          onChange: (page, limit) => setPagination({ page, limit }),
-        }}
-      />
-    </Form>
+  return !data ? (
+    <Card>
+      <Empty />
+    </Card>
+  ) : (
+    <List
+      dataSource={data}
+      grid={{ gutter: 16, column: 4 }}
+      pagination={{
+        current: pagination.page,
+        defaultPageSize: 4,
+        pageSize: pagination.limit,
+        total,
+        onChange: (page, limit) => setPagination({ page, limit }),
+      }}
+      renderItem={(dataset) => (
+        <List.Item key={dataset.id}>
+          <Card
+            hoverable
+            actions={actions(dataset.id)}
+            title={<Link to={`/datasets/${dataset.id}`}>{dataset.title}</Link>}
+            bordered={false}
+            cover={
+              <img
+                className="photo"
+                alt={dataset.featured_media?.alt_text || 'No image added'}
+                src={dataset.featured_media?.url}
+              />
+            }
+          >
+            <DatasetItem dataset={dataset} />
+          </Card>
+        </List.Item>
+      )}
+    />
   );
 };
 

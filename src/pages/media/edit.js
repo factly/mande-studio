@@ -73,6 +73,12 @@ function MediaEdit() {
           <Form.Item name="name" label="Name">
             <Input />
           </Form.Item>
+          <Form.Item name="title" label="Title">
+            <Input />
+          </Form.Item>
+          <Form.Item name="slug" label="Slug">
+            <Input />
+          </Form.Item>
           <Form.Item name="alt_text" label="Alt Text">
             <Input />
           </Form.Item>

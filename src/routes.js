@@ -14,6 +14,7 @@ import Tags from './pages/tags/index';
 import TagCreate from './pages/tags/create';
 import TagEdit from './pages/tags/edit';
 import ProductCreate from './pages/products/create';
+import ProductDetail from './pages/products/detail';
 import Products from './pages/products';
 import CurrencyCreate from './pages/currencies/create';
 import Currencies from './pages/currencies';
@@ -24,6 +25,7 @@ import FormatCreate from './pages/formats/create';
 import FormatEdit from './pages/formats/edit';
 import DatasetCreate from './pages/datasets/create';
 import DatasetEdit from './pages/datasets/edit';
+import DatasetDetail from './pages/datasets/detail';
 import Datasets from './pages/datasets/index';
 import MediaEdit from './pages/media/edit';
 import Media from './pages/media/index';
@@ -118,6 +120,10 @@ const routes = [
     component: DatasetCreate,
   }),
   new Route({
+    path: '/datasets/:id',
+    component: DatasetDetail,
+  }),
+  new Route({
     path: '/datasets/:id/edit',
     component: DatasetEdit,
   }),
@@ -197,6 +203,10 @@ const routes = [
   new Route({
     path: '/products/create',
     component: ProductCreate,
+  }),
+  new Route({
+    path: '/products/:id',
+    component: ProductDetail,
   }),
   new Route({
     path: '/products/:id/edit',

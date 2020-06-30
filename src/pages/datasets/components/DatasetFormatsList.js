@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
+import { Table, Button, Skeleton, Popconfirm, Form, notification } from 'antd';
 import moment from 'moment';
 import { DeleteOutlined } from '@ant-design/icons';
 
 import { deleteDatasetFormat } from '../../../actions/datasets';
 
-const DatasetFormatsList = ({ datasetId, datasetFormatsL }) => {
+const DatasetFormatsList = ({ datasetId, showOperations = true }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
-  const datasetFormats = useSelector(({ datasets }) => datasets.items[datasetId]?.formats);
+  const [datasetFormats, setDatasetFormats] = useState([]);
+  const { loading, formats } = useSelector(({ datasets }) => ({
+    formats: datasets.items[datasetId]?.formats,
+    loading: datasets.loading,
+  }));
+
+  React.useEffect(() => {
+    setDatasetFormats(formats);
+  }, [formats]);
 
   const total = datasetFormats?.length;
 
@@ -34,6 +43,7 @@ const DatasetFormatsList = ({ datasetId, datasetFormatsL }) => {
     {
       title: 'URL',
       dataIndex: 'url',
+      render: (_, record) => <Link>{record.url}</Link>,
       width: '30%',
       editable: true,
     },
@@ -51,7 +61,10 @@ const DatasetFormatsList = ({ datasetId, datasetFormatsL }) => {
         return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
     },
-    {
+  ];
+
+  showOperations &&
+    columns.push({
       title: 'Operation',
       dataIndex: 'operation',
       render: (_, record) => {
@@ -63,14 +76,16 @@ const DatasetFormatsList = ({ datasetId, datasetFormatsL }) => {
           </span>
         );
       },
-    },
-  ];
+    });
 
-  return (
+  return loading ? (
+    <Skeleton />
+  ) : (
     <Form form={form} component={false}>
       <Table
         bordered
         rowKey="id"
+        title={() => 'Dataset Formats'}
         dataSource={datasetFormats}
         columns={columns}
         pagination={{

@@ -16,7 +16,9 @@ const Uploader = ({ onUploadSuccess, metaFields }) => {
   const uppy = Uppy({
     id: 'uppy-media',
     meta: { type: 'avatar' },
-    allowedFileTypes: ['image/*'],
+    restrictions: {
+      maxNumberOfFiles: 1,
+    },
     autoProceed: false,
     onBeforeUpload: (files) => {
       const updatedFiles = {};
@@ -38,6 +40,7 @@ const Uploader = ({ onUploadSuccess, metaFields }) => {
     .use(GoogleDrive, { companionUrl: 'http://localhost:3020' })
     .on('complete', (result) => {
       onUploadSuccess(result.successful);
+      setShow(false);
     });
 
   return (
