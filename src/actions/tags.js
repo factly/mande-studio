@@ -1,126 +1,96 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  LOADING_TAGS,
-  LOAD_TAGS_SUCCESS,
-  SET_TAGS_LIST_TOTAL,
-  ADD_TAGS_LIST_REQUEST,
-  SET_TAGS_LIST_CURRENT_PAGE,
-  LOAD_TAGS_FAILURE,
-  GET_TAG_SUCCESS,
-  GET_TAG_FAILURE,
-  CREATING_TAG,
-  CREATE_TAG_SUCCESS,
-  CREATE_TAG_FAILURE,
-  UPDATING_TAG,
-  UPDATE_TAG_SUCCESS,
-  UPDATE_TAG_FAILURE,
-  DELETING_TAG,
-  DELETE_TAG_SUCCESS,
-  DELETE_TAG_FAILURE,
+  ADD_TAG,
+  ADD_TAGS,
+  SET_TAG_LOADING,
+  SET_TAG_REQUEST,
+  SET_TAG_IDS,
+  RESET_TAG,
+  TAG_API,
 } from '../constants/tags';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadTags = (page, limit) => {
+export const loadTags = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
       tags: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setTagIds(ids));
       return;
     }
 
-    dispatch(loadingTags());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${TAG_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadTagsFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
-      dispatch(addListRequest(req));
-      dispatch(loadTagsSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setTagsListTotal(total));
-    }
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setTagRequest(currentReq, total));
+    dispatch(addTags(nodes));
+    dispatch(setTagIds(currentPageIds));
+
+    dispatch(setLoading(false));
   };
 };
 
 export const createTag = (data) => {
   return async (dispatch, getState) => {
-    dispatch(creatingTag());
+    dispatch(setLoading(true));
 
-    const response = await axios({
-      url: baseUrl,
+    await axios({
+      url: TAG_API,
       method: 'post',
       data: data,
-    }).catch((error) => {
-      dispatch(createTagFailure(error.message));
     });
 
-    if (response) {
-      dispatch(createTagSuccess(response.data));
-    }
+    dispatch(resetTag());
+    dispatch(setLoading(false));
   };
 };
 
 export const updateTag = (id, data) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${TAG_API}/${id}`;
 
-    dispatch(updatingTag());
+    dispatch(setLoading(true));
 
     const response = await axios({
       url: url,
       method: 'put',
       data: data,
-    }).catch((error) => {
-      dispatch(updateTagFailure(error.message));
     });
 
-    if (response) {
-      dispatch(updateTagSuccess(response.data));
-    }
+    dispatch(addTag(response.data));
+    dispatch(setLoading(false));
   };
 };
 
 export const deleteTag = (id) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${TAG_API}/${id}`;
 
-    dispatch(deletingTag());
+    dispatch(setLoading(true));
 
-    const response = await axios({
+    await axios({
       url: url,
       method: 'delete',
-    }).catch((error) => {
-      dispatch(deleteTagFailure(error.message));
     });
 
-    if (response) {
-      dispatch(deleteTagSuccess(id));
-    }
+    dispatch(resetTag());
+    dispatch(setLoading(false));
   };
 };
 
@@ -131,138 +101,60 @@ export const getTag = (id) => {
     } = getState();
 
     if (items[id]) {
-      dispatch(getTagSuccess({ ...items[id] }));
       return;
     }
 
-    dispatch(loadingTags());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${baseUrl}/${id}`,
+      url: `${TAG_API}/${id}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(getTagFailure(error.message));
     });
+    dispatch(addTag(response.data));
 
-    if (response) {
-      dispatch(getTagSuccess(response.data));
-    }
+    dispatch(setLoading(false));
   };
 };
 
-const getTagSuccess = (tag) => {
+const setLoading = (loading) => {
   return {
-    type: GET_TAG_SUCCESS,
-    payload: tag,
+    type: SET_TAG_LOADING,
+    payload: { loading },
   };
 };
 
-const getTagFailure = (message) => {
+const addTag = (tag) => {
   return {
-    type: GET_TAG_FAILURE,
-    payload: message,
+    type: ADD_TAG,
+    payload: { tag },
   };
 };
 
-const loadingTags = () => {
+export const addTags = (tags) => {
   return {
-    type: LOADING_TAGS,
-  };
-};
-
-const setTagsListTotal = (total) => {
-  return {
-    type: SET_TAGS_LIST_TOTAL,
-    payload: total,
-  };
-};
-
-const addListRequest = (req) => {
-  return {
-    type: ADD_TAGS_LIST_REQUEST,
-    payload: req,
-  };
-};
-
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_TAGS_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
-
-export const loadTagsSuccess = (tags) => {
-  return {
-    type: LOAD_TAGS_SUCCESS,
+    type: ADD_TAGS,
     payload: {
-      items: buildObjectOfItems(tags),
+      tags: buildObjectOfItems(tags),
     },
   };
 };
 
-const loadTagsFailure = (message) => {
+const setTagRequest = (req, total) => {
   return {
-    type: LOAD_TAGS_FAILURE,
-    payload: message,
+    type: SET_TAG_REQUEST,
+    payload: { req, total },
   };
 };
 
-const creatingTag = () => {
+const setTagIds = (ids) => {
   return {
-    type: CREATING_TAG,
+    type: SET_TAG_IDS,
+    payload: { ids },
   };
 };
 
-const createTagSuccess = (tag) => {
+const resetTag = () => {
   return {
-    type: CREATE_TAG_SUCCESS,
-    payload: tag,
-  };
-};
-
-const createTagFailure = (message) => {
-  return {
-    type: CREATE_TAG_FAILURE,
-    payload: message,
-  };
-};
-
-const updatingTag = () => {
-  return {
-    type: UPDATING_TAG,
-  };
-};
-
-const updateTagSuccess = (tag) => {
-  return {
-    type: UPDATE_TAG_SUCCESS,
-    payload: tag,
-  };
-};
-
-const updateTagFailure = (message) => {
-  return {
-    type: UPDATE_TAG_FAILURE,
-    payload: message,
-  };
-};
-
-const deletingTag = () => {
-  return {
-    type: DELETING_TAG,
-  };
-};
-
-const deleteTagSuccess = (id) => {
-  return {
-    type: DELETE_TAG_SUCCESS,
-    payload: id,
-  };
-};
-
-const deleteTagFailure = (message) => {
-  return {
-    type: DELETE_TAG_FAILURE,
-    payload: message,
+    type: RESET_TAG,
   };
 };

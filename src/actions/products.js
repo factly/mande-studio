@@ -21,7 +21,7 @@ import {
   DELETE_PRODUCT_FAILURE,
 } from '../constants/products';
 import { loadCurrenciesSuccess } from './currencies';
-import { loadTagsSuccess } from './tags';
+import { addTags } from './tags';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadProducts = (page, limit) => {
@@ -67,7 +67,7 @@ export const loadProducts = (page, limit) => {
       dispatch(loadCurrenciesSuccess(currencies));
 
       const tags = getValues(nodes, 'tags');
-      dispatch(loadTagsSuccess(tags));
+      dispatch(addTags(tags));
 
       nodes.forEach((product) => {
         product.tags = getIds(product.tags);
@@ -128,7 +128,7 @@ export const getProductDetails = (id) => {
       dispatch(loadCurrenciesSuccess(currencies));
 
       const tags = getValues([product], 'tags');
-      dispatch(loadTagsSuccess(tags));
+      dispatch(addTags(tags));
 
       product.tags = getIds(product.tags);
       dispatch(getProductDetailsSuccess(product));
