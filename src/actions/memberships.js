@@ -8,7 +8,7 @@ import {
   SET_MEMEBERSHIPS_LIST_CURRENT_PAGE,
   LOAD_MEMBERSHIPS_FAILURE,
 } from '../constants/memberships';
-import { loadPlansSuccess } from './plans';
+import { addPlans } from './plans';
 import { loadPaymentsSuccess } from './payments';
 import { loadCurrenciesSuccess } from './currencies';
 import { setUsers } from './users';
@@ -52,7 +52,7 @@ export const loadMemberships = (page = 1, limit) => {
       const { nodes, total } = response.data;
 
       const plans = getValues(nodes, 'plan');
-      dispatch(loadPlansSuccess(plans));
+      dispatch(addPlans(plans));
 
       const payments = getValues(nodes, 'payment');
       const currencies = getValues(payments, 'currency');
