@@ -1,11 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { Form, Input, Button, notification, Select } from 'antd';
 
-import { loadTags } from '../../../actions/tags';
-import { loadCurrencies } from '../../../actions/currencies';
+import Selector from '../../../components/Selector';
 
 const { Option } = Select;
 
@@ -16,18 +14,6 @@ const formItemLayout = {
 
 const ProductCreateForm = ({ onSubmit, data = {} }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const { tags, currencies } = useSelector(({ tags, currencies }) => {
-    return {
-      tags: Object.values(tags.items),
-      currencies: Object.values(currencies.items),
-    };
-  });
-
-  React.useEffect(() => {
-    dispatch(loadTags());
-    dispatch(loadCurrencies());
-  }, []);
 
   const onFinish = (values) => {
     values.currency_id = parseInt(values.currency_id);
@@ -87,22 +73,7 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          placeholder="Select currency"
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {currencies.length > 0
-            ? currencies.map((currency) => (
-                <Option key={currency.id} value={currency.id}>
-                  {currency.iso_code}
-                </Option>
-              ))
-            : []}
-        </Select>
+        <Selector action="Currencies" field="iso_code" />
       </Form.Item>
 
       <Form.Item
@@ -128,22 +99,7 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Select
-          mode="multiple"
-          style={{ width: '100%' }}
-          placeholder="Select tags"
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {tags.length > 0
-            ? tags.map((tag) => (
-                <Option key={tag.id} value={tag.id}>
-                  {tag.slug}
-                </Option>
-              ))
-            : []}
-        </Select>
+        <Selector action="Tags" multiple={true} field="title" />
       </Form.Item>
 
       <Form.Item

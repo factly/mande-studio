@@ -1,12 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { Form, Input, InputNumber, DatePicker, Select, Button, notification } from 'antd';
+import { Form, Input, InputNumber, DatePicker, Button, notification } from 'antd';
 
-import { loadProducts } from '../../../actions/products';
-
-const { Option } = Select;
+import Selector from '../../../components/Selector';
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -15,19 +12,11 @@ const formItemLayout = {
 
 const CatalogCreateForm = ({ onSubmit, data = {} }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const { products } = useSelector(({ products }) => ({
-    products: Object.values(products.items),
-  }));
 
   if (data.id) {
     data.product_ids = data.products;
     data.published_date = moment(data.published_date);
   }
-
-  React.useEffect(() => {
-    dispatch(loadProducts());
-  }, []);
 
   const onFinish = (values) => {
     onSubmit(values)
@@ -96,22 +85,7 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Select
-          mode="multiple"
-          style={{ width: '100%' }}
-          placeholder="Select products"
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {products.length > 0
-            ? products.map((product) => (
-                <Option key={product.id} value={parseInt(product.id)}>
-                  {product.title}
-                </Option>
-              ))
-            : []}
-        </Select>
+        <Selector action="Products" multiple={true} field="title" />
       </Form.Item>
 
       <Form.Item
