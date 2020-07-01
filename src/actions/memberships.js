@@ -9,7 +9,7 @@ import {
   LOAD_MEMBERSHIPS_FAILURE,
 } from '../constants/memberships';
 import { addPlans } from './plans';
-import { loadPaymentsSuccess } from './payments';
+import { addPayments } from './payments';
 import { addCurrencies } from './currencies';
 import { setUsers } from './users';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
@@ -57,7 +57,7 @@ export const loadMemberships = (page = 1, limit) => {
       const payments = getValues(nodes, 'payment');
       const currencies = getValues(payments, 'currency');
       dispatch(addCurrencies(currencies));
-      dispatch(loadPaymentsSuccess(payments));
+      dispatch(addPayments(payments));
 
       const users = getValues(nodes, 'user');
       dispatch(setUsers(users));

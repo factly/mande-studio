@@ -1,10 +1,9 @@
+import produce from 'immer';
 import {
-  ADD_PAYMENTS_LIST_REQUEST,
-  SET_PAYMENTS_LIST_CURRENT_PAGE,
-  LOADING_PAYMENTS,
-  LOAD_PAYMENTS_SUCCESS,
-  LOAD_PAYMENTS_FAILURE,
-  SET_PAYMENTS_LIST_TOTAL,
+  ADD_PAYMENTS,
+  SET_PAYMENT_LOADING,
+  SET_PAYMENT_REQUEST,
+  SET_PAYMENT_IDS,
 } from '../constants/payments';
 
 const initialState = {
@@ -15,43 +14,26 @@ const initialState = {
   total: 0,
 };
 
-export default function paymentsReducer(state = initialState, action = {}) {
+const paymentsReducer = produce((draft, action = {}) => {
   switch (action.type) {
-    case LOADING_PAYMENTS:
-      return {
-        ...state,
-        loading: true,
-      };
-    case LOAD_PAYMENTS_SUCCESS: {
-      const { items } = action.payload;
-      return {
-        ...state,
-        loading: false,
-        items: { ...state.items, ...items },
-      };
+    case SET_PAYMENT_LOADING:
+      draft.loading = action.payload.loading;
+      return;
+    case ADD_PAYMENTS: {
+      const { payments } = action.payload;
+      Object.assign(draft.items, payments);
+      return;
     }
-    case ADD_PAYMENTS_LIST_REQUEST: {
-      return {
-        ...state,
-        req: [...state.req, action.payload],
-      };
+    case SET_PAYMENT_IDS:
+      draft.ids = action.payload.ids;
+      return;
+    case SET_PAYMENT_REQUEST: {
+      const { req, total } = action.payload;
+      draft.req.push(req);
+      draft.total = total;
+      return;
     }
-    case SET_PAYMENTS_LIST_CURRENT_PAGE:
-      return {
-        ...state,
-        ids: action.payload,
-      };
-    case SET_PAYMENTS_LIST_TOTAL:
-      return {
-        ...state,
-        total: action.payload,
-      };
-    case LOAD_PAYMENTS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    default:
-      return state;
   }
-}
+}, initialState);
+
+export default paymentsReducer;

@@ -1,106 +1,79 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  ADD_PAYMENTS_LIST_REQUEST,
-  SET_PAYMENTS_LIST_CURRENT_PAGE,
-  LOADING_PAYMENTS,
-  LOAD_PAYMENTS_SUCCESS,
-  LOAD_PAYMENTS_FAILURE,
-  SET_PAYMENTS_LIST_TOTAL,
+  ADD_PAYMENTS,
+  SET_PAYMENT_LOADING,
+  SET_PAYMENT_REQUEST,
+  SET_PAYMENT_IDS,
+  PAYMENT_API,
 } from '../constants/payments';
 import { addCurrencies } from './currencies';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadPayments = (page, limit) => {
+export const loadPayments = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
       payments: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setPaymentIds(ids));
       return;
     }
 
-    dispatch(loadingPayments());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${PAYMENT_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadPaymentsFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setPaymentRequest(currentReq, total));
+    dispatch(addPayments(nodes));
+    dispatch(setPaymentIds(currentPageIds));
 
-      const currencies = getValues(nodes, 'currency');
-      dispatch(addCurrencies(currencies));
-
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
-      dispatch(addListRequest(req));
-      dispatch(loadPaymentsSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setPaymentsListTotal(total));
-    }
+    dispatch(setLoading(false));
   };
 };
 
-const loadingPayments = () => {
+const setLoading = (loading) => {
   return {
-    type: LOADING_PAYMENTS,
+    type: SET_PAYMENT_LOADING,
+    payload: { loading },
   };
 };
 
-const setPaymentsListTotal = (total) => {
-  return {
-    type: SET_PAYMENTS_LIST_TOTAL,
-    payload: total,
-  };
-};
+export const addPayments = (payments) => (dispatch) => {
+  const currencies = getValues(payments, 'currency');
+  dispatch(addCurrencies(currencies));
 
-const addListRequest = (req) => {
-  return {
-    type: ADD_PAYMENTS_LIST_REQUEST,
-    payload: req,
-  };
-};
-
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_PAYMENTS_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
-
-export const loadPaymentsSuccess = (payments) => {
-  return {
-    type: LOAD_PAYMENTS_SUCCESS,
+  dispatch({
+    type: ADD_PAYMENTS,
     payload: {
-      ids: getIds(payments),
-      items: buildObjectOfItems(deleteKeys(payments, ['currency'])),
+      payments: buildObjectOfItems(deleteKeys(payments, ['currency'])),
     },
+  });
+};
+
+const setPaymentRequest = (req, total) => {
+  return {
+    type: SET_PAYMENT_REQUEST,
+    payload: { req, total },
   };
 };
 
-const loadPaymentsFailure = (message) => {
+const setPaymentIds = (ids) => {
   return {
-    type: LOAD_PAYMENTS_FAILURE,
-    payload: message,
+    type: SET_PAYMENT_IDS,
+    payload: { ids },
   };
 };

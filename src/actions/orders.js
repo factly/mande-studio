@@ -18,7 +18,7 @@ import {
   GET_ORDER_ITEMS_FAILURE,
 } from '../constants/orders';
 import { loadCartsSuccess } from './carts';
-import { loadPaymentsSuccess } from './payments';
+import { addPayments } from './payments';
 import { addCurrencies } from './currencies';
 import { loadProductsSuccess } from './products';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
@@ -68,7 +68,7 @@ export const loadOrders = (page = 1, limit) => {
       const payments = getValues(nodes, 'payment');
       const currencies = getValues(payments, 'currency');
       dispatch(addCurrencies(currencies));
-      dispatch(loadPaymentsSuccess(payments));
+      dispatch(addPayments(payments));
 
       const currentPageIds = getIds(nodes);
       const req = { page: page, limit: limit, ids: currentPageIds };
