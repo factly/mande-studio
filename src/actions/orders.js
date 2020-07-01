@@ -20,7 +20,7 @@ import {
 import { loadCartsSuccess } from './carts';
 import { addPayments } from './payments';
 import { addCurrencies } from './currencies';
-import { loadProductsSuccess } from './products';
+import { addProducts } from './products';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadOrders = (page = 1, limit) => {
@@ -141,7 +141,7 @@ export const getOrderItems = (id, page = 1, limit) => {
       const products = getValues(nodes, 'product');
       const currencies = getValues(products, 'currency');
       dispatch(addCurrencies(currencies));
-      dispatch(loadProductsSuccess(products));
+      dispatch(addProducts(products));
 
       const currentPageIds = getIds(nodes);
       const req = { orderId: id, page, limit, ids: currentPageIds, total };

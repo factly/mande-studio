@@ -19,7 +19,7 @@ import {
   DELETE_CATALOG_SUCCESS,
   DELETE_CATALOG_FAILURE,
 } from '../constants/catalogs';
-import { loadProductsSuccess } from './products';
+import { addProducts } from './products';
 import { getIds, buildObjectOfItems, getValues } from '../utils/objects';
 
 export const loadCatalogs = (page, limit) => {
@@ -62,7 +62,7 @@ export const loadCatalogs = (page, limit) => {
       const req = { page: page, limit: limit, ids: currentPageIds };
 
       const products = getValues(nodes, 'products').filter((product) => product);
-      products && dispatch(loadProductsSuccess(products));
+      products && dispatch(addProducts(products));
 
       nodes.forEach((catalog) => {
         catalog.products = getIds(catalog.products || []);

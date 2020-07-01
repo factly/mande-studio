@@ -4,19 +4,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Skeleton } from 'antd';
 
 import ProductCreateForm from './components/ProductCreateForm';
-import { updateProduct, getProductDetails } from '../../actions/products';
+import { updateProduct, getProduct } from '../../actions/products';
 
-const ProductEdit = (props) => {
+const ProductEdit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { product } = useSelector(({ products }) => products);
+  const { loading, product } = useSelector(({ products }) => ({
+    loading: products.loading,
+    product: products.items[id],
+  }));
   product.tag_ids = product.tags;
 
   React.useEffect(() => {
-    dispatch(getProductDetails(id));
+    dispatch(getProduct(id));
   }, []);
 
-  if (!product.id) return <Skeleton />;
+  if (loading) return <Skeleton />;
 
   const onUpdate = async (values) => {
     await dispatch(updateProduct(id, values));
