@@ -1,10 +1,11 @@
+import produce from 'immer';
 import {
-  ADD_MEMBERSHIPS_LIST_REQUEST,
-  LOADING_MEMBERSHIPS,
-  LOAD_MEMBERSHIPS_SUCCESS,
-  LOAD_MEMBERSHIPS_FAILURE,
-  SET_MEMBERSHIPS_LIST_TOTAL,
-  SET_MEMEBERSHIPS_LIST_CURRENT_PAGE,
+  ADD_MEMBERSHIP,
+  ADD_MEMBERSHIPS,
+  SET_MEMBERSHIP_LOADING,
+  SET_MEMBERSHIP_REQUEST,
+  SET_MEMBERSHIP_IDS,
+  RESET_MEMBERSHIP,
 } from '../constants/memberships';
 
 const initialState = {
@@ -15,43 +16,33 @@ const initialState = {
   total: 0,
 };
 
-export default function membershipsReducer(state = initialState, action = {}) {
+const membershipsReducer = produce((draft, action = {}) => {
   switch (action.type) {
-    case LOADING_MEMBERSHIPS:
-      return {
-        ...state,
-        loading: true,
-      };
-    case LOAD_MEMBERSHIPS_SUCCESS: {
-      const { items } = action.payload;
-      return {
-        ...state,
-        loading: false,
-        items: { ...state.items, ...items },
-      };
+    case SET_MEMBERSHIP_LOADING:
+      draft.loading = action.payload.loading;
+      return;
+    case ADD_MEMBERSHIP: {
+      const { membership } = action.payload;
+      draft.items[membership.id] = membership;
+      return;
     }
-    case SET_MEMBERSHIPS_LIST_TOTAL:
-      return {
-        ...state,
-        total: action.payload,
-      };
-    case ADD_MEMBERSHIPS_LIST_REQUEST: {
-      return {
-        ...state,
-        req: [...state.req, action.payload],
-      };
+    case ADD_MEMBERSHIPS: {
+      const { memberships } = action.payload;
+      Object.assign(draft.items, memberships);
+      return;
     }
-    case SET_MEMEBERSHIPS_LIST_CURRENT_PAGE:
-      return {
-        ...state,
-        ids: action.payload,
-      };
-    case LOAD_MEMBERSHIPS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    default:
-      return state;
+    case SET_MEMBERSHIP_IDS:
+      draft.ids = action.payload.ids;
+      return;
+    case SET_MEMBERSHIP_REQUEST: {
+      const { req, total } = action.payload;
+      draft.req.push(req);
+      draft.total = total;
+      return;
+    }
+    case RESET_MEMBERSHIP:
+      return initialState;
   }
-}
+}, initialState);
+
+export default membershipsReducer;

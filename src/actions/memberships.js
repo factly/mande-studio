@@ -1,116 +1,87 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  ADD_MEMBERSHIPS_LIST_REQUEST,
-  LOADING_MEMBERSHIPS,
-  LOAD_MEMBERSHIPS_SUCCESS,
-  SET_MEMBERSHIPS_LIST_TOTAL,
-  SET_MEMEBERSHIPS_LIST_CURRENT_PAGE,
-  LOAD_MEMBERSHIPS_FAILURE,
+  ADD_MEMBERSHIPS,
+  SET_MEMBERSHIP_LOADING,
+  SET_MEMBERSHIP_REQUEST,
+  SET_MEMBERSHIP_IDS,
+  MEMBERSHIP_API,
 } from '../constants/memberships';
 import { addPlans } from './plans';
 import { addPayments } from './payments';
-import { addCurrencies } from './currencies';
 import { setUsers } from './users';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadMemberships = (page = 1, limit) => {
+export const loadMemberships = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
       memberships: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setMembershipIds(ids));
       return;
     }
 
-    dispatch(loadingMemberships());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${MEMBERSHIP_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadMembershipsFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setMembershipRequest(currentReq, total));
+    dispatch(addMemberships(nodes));
+    dispatch(setMembershipIds(currentPageIds));
 
-      const plans = getValues(nodes, 'plan');
-      dispatch(addPlans(plans));
-
-      const payments = getValues(nodes, 'payment');
-      const currencies = getValues(payments, 'currency');
-      dispatch(addCurrencies(currencies));
-      dispatch(addPayments(payments));
-
-      const users = getValues(nodes, 'user');
-      dispatch(setUsers(users));
-
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
-      dispatch(addListRequest(req));
-      dispatch(loadMembershipsSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setMembershipListTotal(total));
-    }
+    dispatch(setLoading(false));
   };
 };
 
-const loadingMemberships = () => {
+const setLoading = (loading) => {
   return {
-    type: LOADING_MEMBERSHIPS,
+    type: SET_MEMBERSHIP_LOADING,
+    payload: { loading },
   };
 };
 
-const setMembershipListTotal = (total) => {
-  return {
-    type: SET_MEMBERSHIPS_LIST_TOTAL,
-    payload: total,
-  };
-};
+export const addMemberships = (memberships) => (dispatch) => {
+  const payments = getValues(memberships, 'payment');
+  dispatch(addPayments(payments));
 
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_MEMEBERSHIPS_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
+  const plans = getValues(memberships, 'plan');
+  dispatch(addPlans(plans));
 
-const addListRequest = (req) => {
-  return {
-    type: ADD_MEMBERSHIPS_LIST_REQUEST,
-    payload: req,
-  };
-};
+  const users = getValues(memberships, 'user');
+  dispatch(setUsers(users));
 
-const loadMembershipsSuccess = (memberships) => {
-  return {
-    type: LOAD_MEMBERSHIPS_SUCCESS,
+  dispatch({
+    type: ADD_MEMBERSHIPS,
     payload: {
-      items: buildObjectOfItems(deleteKeys(memberships, ['plan', 'payment', 'user'])),
+      memberships: buildObjectOfItems(deleteKeys(memberships, ['payment', 'plan', 'user'])),
     },
+  });
+};
+
+const setMembershipRequest = (req, total) => {
+  return {
+    type: SET_MEMBERSHIP_REQUEST,
+    payload: { req, total },
   };
 };
 
-const loadMembershipsFailure = (message) => {
+const setMembershipIds = (ids) => {
   return {
-    type: LOAD_MEMBERSHIPS_FAILURE,
-    payload: message,
+    type: SET_MEMBERSHIP_IDS,
+    payload: { ids },
   };
 };
