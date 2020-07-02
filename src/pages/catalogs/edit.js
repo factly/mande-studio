@@ -10,13 +10,16 @@ const EditCatalog = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { catalog } = useSelector(({ catalogs }) => catalogs);
+  const { loading, catalog } = useSelector(({ catalogs }) => ({
+    loading: catalogs.loading,
+    catalog: catalogs.items[id],
+  }));
 
   React.useEffect(() => {
     dispatch(getCatalog(id));
   }, []);
 
-  if (!catalog.id) return <Skeleton />;
+  if (loading) return <Skeleton />;
 
   const onUpdate = async (values) => {
     await dispatch(updateCatalog(id, values));

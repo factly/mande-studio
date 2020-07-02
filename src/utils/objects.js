@@ -3,7 +3,10 @@ export const getIds = (objectsList = []) => {
 };
 
 export const getValues = (objectsList = [], key = '') => {
-  return objectsList.map((obj) => obj[key]).flat();
+  return objectsList
+    .map((obj) => obj[key])
+    .flat()
+    .filter((item) => item);
 };
 
 export const deleteKeys = (objectsList = [], keys = []) => {
