@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import cartsReducer from './carts';
 import cartItemsReducer from './cartItems';
 import ordersReducer from './orders';
+import orderItemsReducer from './orderItems';
 import membershipsReducer from './memberships';
 import paymentsReducer from './payments';
 import plansReducer from './plans';
@@ -23,6 +24,7 @@ export default combineReducers({
   currencies: currenciesReducer,
   memberships: membershipsReducer,
   orders: ordersReducer,
+  orderItems: orderItemsReducer,
   payments: paymentsReducer,
   tags: tagsReducer,
   plans: plansReducer,

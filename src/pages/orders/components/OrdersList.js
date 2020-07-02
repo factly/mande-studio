@@ -12,15 +12,14 @@ const Orders = () => {
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
   const dispatch = useDispatch();
 
-  const { data, payments, currencies, total } = useSelector((state) => {
-    const { list } = state.orders;
-    const { ids } = list;
+  const { data, payments, currencies, total } = useSelector(({ orders, payments, currencies }) => {
+    const { ids, items, total } = orders;
 
     return {
-      data: ids.map((id) => list.items[id]),
-      payments: state.payments.items,
-      currencies: state.currencies.items,
-      total: list.total,
+      data: ids.map((id) => items[id]),
+      payments: payments.items,
+      currencies: currencies.items,
+      total: total,
     };
   });
 

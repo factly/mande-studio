@@ -3,28 +3,30 @@ import { useParams } from 'react-router-dom';
 import { Table, Form } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getOrderItems } from '../../../actions/orders';
+import { loadOrderItems } from '../../../actions/orderItems';
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
-  const { data, products, currencies, total } = useSelector((state) => {
-    const { details } = state.orders;
-    const { ids } = details;
-
-    return {
-      data: ids.map((id) => details.items[id]),
-      products: state.products.items,
-      currencies: state.currencies.items,
-      total: details.total,
-    };
-  });
 
   const [form] = Form.useForm();
   const { id } = useParams();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
+  const { data, products, currencies, total } = useSelector(
+    ({ orderItems, products, currencies }) => {
+      const { ids, items, total } = orderItems;
+
+      return {
+        data: ids.map((id) => items[id]),
+        products: products.items,
+        currencies: currencies.items,
+        total: total,
+      };
+    },
+  );
+
   React.useEffect(() => {
-    dispatch(getOrderItems(id, pagination.page, pagination.limit));
+    dispatch(loadOrderItems(id, pagination.page, pagination.limit));
   }, [pagination]);
 
   const columns = [
