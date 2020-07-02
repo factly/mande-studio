@@ -3,28 +3,29 @@ import { useParams } from 'react-router-dom';
 import { Table, Form } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getCartItems } from '../../../actions/carts';
+import { loadCartItems } from '../../../actions/cartItems';
 
 const CartDetail = () => {
   const dispatch = useDispatch();
-  const { data, products, currencies, total } = useSelector((state) => {
-    const { details } = state.carts;
-    const { ids } = details;
+  const { data, products, currencies, total } = useSelector(
+    ({ cartItems, products, currencies }) => {
+      const { ids } = cartItems;
 
-    return {
-      data: ids.map((id) => details.items[id]),
-      products: state.products.items,
-      currencies: state.currencies.items,
-      total: details.total,
-    };
-  });
+      return {
+        data: ids.map((id) => cartItems.items[id]),
+        products: products.items,
+        currencies: currencies.items,
+        total: cartItems.total,
+      };
+    },
+  );
 
   const [form] = Form.useForm();
   const { id } = useParams();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
   React.useEffect(() => {
-    dispatch(getCartItems(id, pagination.page, pagination.limit));
+    dispatch(loadCartItems(id, pagination.page, pagination.limit));
   }, [pagination]);
 
   const columns = [

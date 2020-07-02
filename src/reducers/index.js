@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import cartsReducer from './carts';
+import cartItemsReducer from './cartItems';
 import ordersReducer from './orders';
 import membershipsReducer from './memberships';
 import paymentsReducer from './payments';
@@ -16,6 +17,7 @@ import usersReducer from './users';
 
 export default combineReducers({
   carts: cartsReducer,
+  cartItems: cartItemsReducer,
   catalogs: catalogsReducer,
   datasets: datasetsReducer,
   currencies: currenciesReducer,

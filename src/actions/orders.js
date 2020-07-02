@@ -17,7 +17,7 @@ import {
   SET_ORDER_DETAILS_CURRENT_PAGE,
   GET_ORDER_ITEMS_FAILURE,
 } from '../constants/orders';
-import { loadCartsSuccess } from './carts';
+import { addCarts } from './carts';
 import { addPayments } from './payments';
 import { addCurrencies } from './currencies';
 import { addProducts } from './products';
@@ -63,7 +63,7 @@ export const loadOrders = (page = 1, limit) => {
       const { nodes, total } = response.data;
 
       const carts = getValues(nodes, 'cart');
-      dispatch(loadCartsSuccess(carts));
+      dispatch(addCarts(carts));
 
       const payments = getValues(nodes, 'payment');
       const currencies = getValues(payments, 'currency');
