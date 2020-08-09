@@ -11,15 +11,10 @@ const DatasetFormatsList = ({ datasetId, showOperations = true }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
-  const [datasetFormats, setDatasetFormats] = useState([]);
-  const { loading, formats } = useSelector(({ datasets }) => ({
-    formats: datasets.items[datasetId]?.formats,
+  const { loading, datasetFormats } = useSelector(({ datasets }) => ({
+    datasetFormats: datasets.items[datasetId]?.formats,
     loading: datasets.loading,
   }));
-
-  React.useEffect(() => {
-    setDatasetFormats(formats);
-  }, [formats]);
 
   const total = datasetFormats?.length;
 

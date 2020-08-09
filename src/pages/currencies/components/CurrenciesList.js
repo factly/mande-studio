@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
+import { Table, Button, Popconfirm, Skeleton, Form, notification } from 'antd';
 import moment from 'moment';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
@@ -13,7 +13,7 @@ const CurrenciesList = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const { data, total } = useSelector(({ currencies }) => {
+  const { loading, data, total } = useSelector(({ currencies }) => {
     const { ids, items, total } = currencies;
     return {
       data: ids.map((id) => items[id]),
@@ -23,7 +23,7 @@ const CurrenciesList = () => {
 
   React.useEffect(() => {
     dispatch(loadCurrencies(pagination.page, pagination.limit));
-  }, [pagination]);
+  }, [pagination, total]);
 
   const remove = (key) => {
     dispatch(deleteCurrency(key))
@@ -87,7 +87,9 @@ const CurrenciesList = () => {
     },
   ];
 
-  return (
+  return loading ? (
+    <Skeleton />
+  ) : (
     <Form form={form} component={false}>
       <Table
         bordered

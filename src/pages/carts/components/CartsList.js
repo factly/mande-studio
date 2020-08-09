@@ -12,13 +12,12 @@ const Carts = () => {
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
   const dispatch = useDispatch();
 
-  const { data, total } = useSelector((state) => {
-    const { list } = state.carts;
-    const { ids } = list;
+  const { data, total } = useSelector(({ carts }) => {
+    const { ids, items, total } = carts;
 
     return {
-      data: ids.map((id) => list.items[id]),
-      total: list.total,
+      data: ids.map((id) => items[id]),
+      total,
     };
   });
 

@@ -10,16 +10,19 @@ const EditTag = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { tag } = useSelector(({ tags }) => tags);
+  const { loading, tag } = useSelector(({ tags }) => ({
+    loading: tags.loading,
+    tag: tags.items[id],
+  }));
 
   React.useEffect(() => {
     dispatch(getTag(id));
   }, []);
 
-  if (!tag.id) return <Skeleton />;
+  if (loading) return <Skeleton />;
 
-  const onUpdate = async (values) => {
-    await dispatch(updateTag(id, values));
+  const onUpdate = (values) => {
+    dispatch(updateTag(id, values));
     history.push('/tags');
   };
 

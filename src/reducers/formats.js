@@ -1,19 +1,11 @@
+import produce from 'immer';
 import {
-  ADD_FORMATS_LIST_REQUEST,
-  SET_FORMATS_LIST_CURRENT_PAGE,
-  LOADING_FORMATS,
-  LOAD_FORMATS_SUCCESS,
-  SET_FORMATS_LIST_TOTAL,
-  LOAD_FORMATS_FAILURE,
-  GET_FORMAT_SUCCESS,
-  GET_FORMAT_FAILURE,
-  CREATING_FORMAT,
-  CREATE_FORMAT_SUCCESS,
-  CREATE_FORMAT_FAILURE,
-  UPDATE_FORMAT_SUCCESS,
-  UPDATE_FORMAT_FAILURE,
-  DELETE_FORMAT_SUCCESS,
-  DELETE_FORMAT_FAILURE,
+  ADD_FORMAT,
+  ADD_FORMATS,
+  SET_FORMAT_LOADING,
+  SET_FORMAT_REQUEST,
+  SET_FORMAT_IDS,
+  RESET_FORMAT,
 } from '../constants/formats';
 
 const initialState = {
@@ -21,109 +13,36 @@ const initialState = {
   ids: [],
   req: [],
   items: {},
-  format: {},
   total: 0,
 };
 
-export default function formatsReducer(state = initialState, action = {}) {
+const formatsReducer = produce((draft, action = {}) => {
   switch (action.type) {
-    case LOADING_FORMATS:
-      return {
-        ...state,
-        loading: true,
-      };
-    case LOAD_FORMATS_SUCCESS: {
-      const { items } = action.payload;
-      return {
-        ...state,
-        loading: false,
-        items: { ...state.items, ...items },
-      };
+    case SET_FORMAT_LOADING:
+      draft.loading = action.payload.loading;
+      return;
+    case ADD_FORMAT: {
+      const { format } = action.payload;
+      draft.items[format.id] = format;
+      return;
     }
-    case SET_FORMATS_LIST_TOTAL:
-      return {
-        ...state,
-        total: action.payload,
-      };
-    case ADD_FORMATS_LIST_REQUEST: {
-      return {
-        ...state,
-        req: [...state.req, action.payload],
-      };
+    case ADD_FORMATS: {
+      const { formats } = action.payload;
+      Object.assign(draft.items, formats);
+      return;
     }
-    case SET_FORMATS_LIST_CURRENT_PAGE:
-      return {
-        ...state,
-        ids: action.payload,
-      };
-    case LOAD_FORMATS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case GET_FORMAT_SUCCESS:
-      return {
-        ...state,
-        format: action.payload,
-      };
-    case GET_FORMAT_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case CREATING_FORMAT:
-      return {
-        ...state,
-        loading: true,
-      };
-    case CREATE_FORMAT_SUCCESS: {
-      const format = action.payload;
-      return {
-        ...state,
-        loading: false,
-        req: [],
-        items: { ...state.items, [format.id]: format },
-        total: state.total + 1,
-      };
+    case SET_FORMAT_IDS:
+      draft.ids = action.payload.ids;
+      return;
+    case SET_FORMAT_REQUEST: {
+      const { req, total } = action.payload;
+      draft.req.push(req);
+      draft.total = total;
+      return;
     }
-    case CREATE_FORMAT_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case UPDATE_FORMAT_SUCCESS: {
-      const format = action.payload;
-      return {
-        ...state,
-        loading: false,
-        format: {},
-        items: { ...state.items, [format.id]: format },
-      };
-    }
-    case UPDATE_FORMAT_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case DELETE_FORMAT_SUCCESS: {
-      const id = action.payload;
-      const newItems = { ...state.items };
-      delete newItems[id];
-      return {
-        ...state,
-        loading: false,
-        req: [],
-        ids: [],
-        items: newItems,
-        total: state.total - 1,
-      };
-    }
-    case DELETE_FORMAT_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    default:
-      return state;
+    case RESET_FORMAT:
+      return initialState;
   }
-}
+}, initialState);
+
+export default formatsReducer;

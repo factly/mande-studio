@@ -8,15 +8,15 @@ import { getDataset, updateDataset, createDatasetFormat } from '../../actions/da
 
 const EditDataset = () => {
   const { id } = useParams();
-  const history = useHistory();
   const dispatch = useDispatch();
-  const dataset = { ...useSelector(({ datasets }) => datasets.items[id]) };
+  const { loading, dataset } = useSelector(({ datasets }) => ({
+    loading: datasets.loading,
+    dataset: { ...datasets.items[id] },
+  }));
 
   React.useEffect(() => {
     dispatch(getDataset(id));
   }, []);
-
-  if (!dataset.id) return <Skeleton />;
 
   const onUpdateDataset = (values) => {
     return dispatch(updateDataset(id, values));
@@ -26,12 +26,12 @@ const EditDataset = () => {
     return dispatch(createDatasetFormat(datasetId, data));
   };
 
-  if (typeof dataset.frequency === 'string') {
-    dataset.frequency = {
-      count: dataset.frequency?.split(' ')[0],
-      units: dataset.frequency?.split(' ')[1],
-    };
-  }
+  if (loading && !dataset.id) return <Skeleton />;
+
+  dataset.frequency = {
+    count: dataset.frequency?.split(' ')[0],
+    units: dataset.frequency?.split(' ')[1],
+  };
 
   return (
     <DatasetCreateForm

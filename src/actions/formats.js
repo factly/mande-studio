@@ -1,126 +1,96 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  ADD_FORMATS_LIST_REQUEST,
-  SET_FORMATS_LIST_CURRENT_PAGE,
-  LOADING_FORMATS,
-  LOAD_FORMATS_SUCCESS,
-  SET_FORMATS_LIST_TOTAL,
-  LOAD_FORMATS_FAILURE,
-  GET_FORMAT_SUCCESS,
-  GET_FORMAT_FAILURE,
-  CREATING_FORMAT,
-  CREATE_FORMAT_SUCCESS,
-  CREATE_FORMAT_FAILURE,
-  UPDATING_FORMAT,
-  UPDATE_FORMAT_SUCCESS,
-  UPDATE_FORMAT_FAILURE,
-  DELETING_FORMAT,
-  DELETE_FORMAT_SUCCESS,
-  DELETE_FORMAT_FAILURE,
+  ADD_FORMAT,
+  ADD_FORMATS,
+  SET_FORMAT_LOADING,
+  SET_FORMAT_REQUEST,
+  SET_FORMAT_IDS,
+  RESET_FORMAT,
+  FORMAT_API,
 } from '../constants/formats';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadFormats = (page, limit) => {
+export const loadFormats = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
       formats: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setFormatIds(ids));
       return;
     }
 
-    dispatch(loadingFormats());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${FORMAT_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadFormatsFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
-      dispatch(addListRequest(req));
-      dispatch(loadFormatsSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setFormatsListTotal(total));
-    }
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setFormatRequest(currentReq, total));
+    dispatch(addFormats(nodes));
+    dispatch(setFormatIds(currentPageIds));
+
+    dispatch(setLoading(false));
   };
 };
 
 export const createFormat = (data) => {
   return async (dispatch, getState) => {
-    dispatch(creatingFormat());
+    dispatch(setLoading(true));
 
-    const response = await axios({
-      url: baseUrl,
+    await axios({
+      url: FORMAT_API,
       method: 'post',
       data: data,
-    }).catch((error) => {
-      dispatch(createFormatFailure(error.message));
     });
 
-    if (response) {
-      dispatch(createFormatSuccess(response.data));
-    }
+    dispatch(resetFormat());
+    dispatch(setLoading(false));
   };
 };
 
 export const updateFormat = (id, data) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${FORMAT_API}/${id}`;
 
-    dispatch(updatingFormat());
+    dispatch(setLoading(true));
 
     const response = await axios({
       url: url,
       method: 'put',
       data: data,
-    }).catch((error) => {
-      dispatch(updateFormatFailure(error.message));
     });
 
-    if (response) {
-      dispatch(updateFormatSuccess(response.data));
-    }
+    dispatch(addFormat(response.data));
+    dispatch(setLoading(false));
   };
 };
 
 export const deleteFormat = (id) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${FORMAT_API}/${id}`;
 
-    dispatch(deletingFormat());
+    dispatch(setLoading(true));
 
-    const response = await axios({
+    await axios({
       url: url,
       method: 'delete',
-    }).catch((error) => {
-      dispatch(deleteFormatFailure(error.message));
     });
 
-    if (response) {
-      dispatch(deleteFormatSuccess(id));
-    }
+    dispatch(resetFormat());
+    dispatch(setLoading(false));
   };
 };
 
@@ -131,138 +101,60 @@ export const getFormat = (id) => {
     } = getState();
 
     if (items[id]) {
-      dispatch(getFormatSuccess({ ...items[id] }));
       return;
     }
 
-    dispatch(loadingFormats());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${baseUrl}/${id}`,
+      url: `${FORMAT_API}/${id}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(getFormatFailure(error.message));
     });
+    dispatch(addFormat(response.data));
 
-    if (response) {
-      dispatch(getFormatSuccess(response.data));
-    }
+    dispatch(setLoading(false));
   };
 };
 
-const getFormatSuccess = (format) => {
+const setLoading = (loading) => {
   return {
-    type: GET_FORMAT_SUCCESS,
-    payload: format,
+    type: SET_FORMAT_LOADING,
+    payload: { loading },
   };
 };
 
-const getFormatFailure = (message) => {
+const addFormat = (format) => {
   return {
-    type: GET_FORMAT_FAILURE,
-    payload: message,
+    type: ADD_FORMAT,
+    payload: { format },
   };
 };
 
-const loadingFormats = () => {
+export const addFormats = (formats) => {
   return {
-    type: LOADING_FORMATS,
-  };
-};
-
-const setFormatsListTotal = (total) => {
-  return {
-    type: SET_FORMATS_LIST_TOTAL,
-    payload: total,
-  };
-};
-
-const addListRequest = (req) => {
-  return {
-    type: ADD_FORMATS_LIST_REQUEST,
-    payload: req,
-  };
-};
-
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_FORMATS_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
-
-export const loadFormatsSuccess = (formats) => {
-  return {
-    type: LOAD_FORMATS_SUCCESS,
+    type: ADD_FORMATS,
     payload: {
-      items: buildObjectOfItems(formats),
+      formats: buildObjectOfItems(formats),
     },
   };
 };
 
-const loadFormatsFailure = (message) => {
+const setFormatRequest = (req, total) => {
   return {
-    type: LOAD_FORMATS_FAILURE,
-    payload: message,
+    type: SET_FORMAT_REQUEST,
+    payload: { req, total },
   };
 };
 
-const creatingFormat = () => {
+const setFormatIds = (ids) => {
   return {
-    type: CREATING_FORMAT,
+    type: SET_FORMAT_IDS,
+    payload: { ids },
   };
 };
 
-const createFormatSuccess = (format) => {
+const resetFormat = () => {
   return {
-    type: CREATE_FORMAT_SUCCESS,
-    payload: format,
-  };
-};
-
-const createFormatFailure = (message) => {
-  return {
-    type: CREATE_FORMAT_FAILURE,
-    payload: message,
-  };
-};
-
-const updatingFormat = () => {
-  return {
-    type: UPDATING_FORMAT,
-  };
-};
-
-const updateFormatSuccess = (format) => {
-  return {
-    type: UPDATE_FORMAT_SUCCESS,
-    payload: format,
-  };
-};
-
-const updateFormatFailure = (message) => {
-  return {
-    type: UPDATE_FORMAT_FAILURE,
-    payload: message,
-  };
-};
-
-const deletingFormat = () => {
-  return {
-    type: DELETING_FORMAT,
-  };
-};
-
-const deleteFormatSuccess = (id) => {
-  return {
-    type: DELETE_FORMAT_SUCCESS,
-    payload: id,
-  };
-};
-
-const deleteFormatFailure = (message) => {
-  return {
-    type: DELETE_FORMAT_FAILURE,
-    payload: message,
+    type: RESET_FORMAT,
   };
 };

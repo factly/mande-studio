@@ -23,7 +23,9 @@ function Selector({ action, value = [], onChange, multiple = false, field = 'nam
       }
     }
 
-    const selectedValues = value.map((id) => state[entity].items[id]);
+    const selectedValues = value
+      .filter((id) => state[entity].items[id])
+      .map((id) => state[entity].items[id]);
     const unselectedValues = ids
       .filter((id) => state[entity].items[id] && !value.includes(id))
       .map((id) => state[entity].items[id]);

@@ -1,19 +1,11 @@
+import produce from 'immer';
 import {
-  ADD_CURRENCIES_LIST_REQUEST,
-  SET_CURRENCIES_LIST_CURRENT_PAGE,
-  GET_CURRENCY_SUCCESS,
-  GET_CURRENCY_FAILURE,
-  LOADING_CURRENCIES,
-  LOAD_CURRENCIES_SUCCESS,
-  SET_CURRENCIES_LIST_TOTAL,
-  LOAD_CURRENCIES_FAILURE,
-  CREATING_CURRENCY,
-  CREATE_CURRENCY_SUCCESS,
-  CREATE_CURRENCY_FAILURE,
-  UPDATE_CURRENCY_SUCCESS,
-  UPDATE_CURRENCY_FAILURE,
-  DELETE_CURRENCY_SUCCESS,
-  DELETE_CURRENCY_FAILURE,
+  ADD_CURRENCY,
+  ADD_CURRENCIES,
+  SET_CURRENCY_LOADING,
+  SET_CURRENCY_REQUEST,
+  SET_CURRENCY_IDS,
+  RESET_CURRENCY,
 } from '../constants/currencies';
 
 const initialState = {
@@ -21,109 +13,36 @@ const initialState = {
   ids: [],
   req: [],
   items: {},
-  currency: {},
   total: 0,
 };
 
-export default function currenciesReducer(state = initialState, action = {}) {
+const currenciesReducer = produce((draft, action = {}) => {
   switch (action.type) {
-    case SET_CURRENCIES_LIST_TOTAL:
-      return {
-        ...state,
-        total: action.payload,
-      };
-    case ADD_CURRENCIES_LIST_REQUEST: {
-      return {
-        ...state,
-        req: [...state.req, action.payload],
-      };
+    case SET_CURRENCY_LOADING:
+      draft.loading = action.payload.loading;
+      return;
+    case ADD_CURRENCY: {
+      const { currency } = action.payload;
+      draft.items[currency.id] = currency;
+      return;
     }
-    case SET_CURRENCIES_LIST_CURRENT_PAGE:
-      return {
-        ...state,
-        ids: action.payload,
-      };
-    case LOADING_CURRENCIES:
-      return {
-        ...state,
-        loading: true,
-      };
-    case LOAD_CURRENCIES_SUCCESS: {
-      const { items } = action.payload;
-      return {
-        ...state,
-        loading: false,
-        items: { ...state.items, ...items },
-      };
+    case ADD_CURRENCIES: {
+      const { currencies } = action.payload;
+      Object.assign(draft.items, currencies);
+      return;
     }
-    case LOAD_CURRENCIES_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case GET_CURRENCY_SUCCESS:
-      return {
-        ...state,
-        currency: action.payload,
-      };
-    case GET_CURRENCY_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case CREATING_CURRENCY:
-      return {
-        ...state,
-        loading: true,
-      };
-    case CREATE_CURRENCY_SUCCESS: {
-      const currency = action.payload;
-      return {
-        ...state,
-        loading: false,
-        req: [],
-        items: { ...state.items, [currency.id]: currency },
-        total: state.total + 1,
-      };
+    case SET_CURRENCY_IDS:
+      draft.ids = action.payload.ids;
+      return;
+    case SET_CURRENCY_REQUEST: {
+      const { req, total } = action.payload;
+      draft.req.push(req);
+      draft.total = total;
+      return;
     }
-    case CREATE_CURRENCY_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case UPDATE_CURRENCY_SUCCESS: {
-      const currency = action.payload;
-      return {
-        ...state,
-        loading: false,
-        items: { ...state.items, [currency.id]: currency },
-      };
-    }
-    case UPDATE_CURRENCY_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    case DELETE_CURRENCY_SUCCESS: {
-      const id = action.payload;
-      const newItems = { ...state.items };
-      delete newItems[id];
-      return {
-        ...state,
-        loading: false,
-        req: [],
-        ids: [],
-        items: newItems,
-        currency: {},
-        total: state.total - 1,
-      };
-    }
-    case DELETE_CURRENCY_FAILURE:
-      return {
-        ...state,
-        loading: false,
-      };
-    default:
-      return state;
+    case RESET_CURRENCY:
+      return initialState;
   }
-}
+}, initialState);
+
+export default currenciesReducer;

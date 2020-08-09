@@ -1,171 +1,130 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  ADD_DATASETS_LIST_REQUEST,
-  SET_DATASETS_LIST_CURRENT_PAGE,
-  GET_DATASET_SUCCESS,
-  GET_DATASET_FAILURE,
-  LOADING_DATASETS,
-  LOAD_DATASETS_SUCCESS,
-  SET_DATASETS_LIST_TOTAL,
-  LOAD_DATASETS_FAILURE,
-  CREATING_DATASET,
-  CREATE_DATASET_SUCCESS,
-  CREATE_DATASET_FAILURE,
-  CREATE_DATASET_FORMAT_SUCCESS,
-  CREATE_DATASET_FORMAT_FAILURE,
-  UPDATING_DATASET,
-  UPDATE_DATASET_SUCCESS,
-  UPDATE_DATASET_FAILURE,
-  DELETING_DATASET,
-  DELETE_DATASET_SUCCESS,
-  DELETE_DATASET_FAILURE,
-  DELETE_DATASET_FORMAT_SUCCESS,
-  DELETE_DATASET_FORMAT_FAILURE,
-  DELETING_DATASET_FORMAT,
+  ADD_DATASET,
+  ADD_DATASET_FORMAT,
+  REMOVE_DATASET_FORMAT,
+  ADD_DATASETS,
+  SET_DATASET_LOADING,
+  SET_DATASET_REQUEST,
+  SET_DATASET_IDS,
+  RESET_DATASET,
+  DATASET_API,
 } from '../constants/datasets';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadDatasets = (page, limit) => {
+export const loadDatasets = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
       datasets: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setDatasetIds(ids));
       return;
     }
 
-    dispatch(loadingDatasets());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${DATASET_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadDatasetsFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
-      dispatch(addListRequest(req));
-      dispatch(loadDatasetsSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setDatasetsListTotal(total));
-    }
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setDatasetRequest(currentReq, total));
+    dispatch(addDatasets(nodes));
+    dispatch(setDatasetIds(currentPageIds));
+
+    dispatch(setLoading(false));
   };
 };
 
 export const createDataset = (data) => {
-  return async (dispatch, getState) => {
-    dispatch(creatingDataset());
+  return async (dispatch) => {
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: baseUrl,
+      url: DATASET_API,
       method: 'post',
       data: data,
-    }).catch((error) => {
-      dispatch(createDatasetFailure(error.message));
     });
 
-    if (response) {
-      dispatch(createDatasetSuccess(response.data));
-    }
+    dispatch(addDataset(response.data));
+    dispatch(setLoading(false));
 
     return response.data;
   };
 };
 
 export const createDatasetFormat = (datasetId, data) => {
-  return async (dispatch, getState) => {
-    dispatch(creatingDataset());
+  return async (dispatch) => {
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${baseUrl}/${datasetId}/format`,
+      url: `${DATASET_API}/${datasetId}/format`,
       method: 'post',
       data: data,
-    }).catch((error) => {
-      dispatch(createDatasetFormatFailure(error.message));
     });
 
-    if (response) {
-      dispatch(createDatasetFormatSuccess(datasetId, response.data));
-    }
+    dispatch(addDatasetFormat(datasetId, response.data));
+    dispatch(setLoading(false));
   };
 };
 
 export const updateDataset = (id, data) => {
-  return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
-
-    dispatch(updatingDataset());
+  return async (dispatch) => {
+    let url = `${DATASET_API}/${id}`;
 
     const response = await axios({
       url: url,
       method: 'put',
       data: data,
-    }).catch((error) => {
-      dispatch(updateDatasetFailure(error.message));
     });
 
-    if (response) {
-      dispatch(updateDatasetSuccess(response.data));
-      return response.data;
-    }
+    dispatch(addDataset(response.data));
+
+    return response.data;
   };
 };
 
 export const deleteDataset = (id) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${DATASET_API}/${id}`;
 
-    dispatch(deletingDataset());
+    dispatch(setLoading(true));
 
-    const response = await axios({
+    await axios({
       url: url,
       method: 'delete',
-    }).catch((error) => {
-      dispatch(deleteDatasetFailure(error.message));
     });
 
-    if (response) {
-      dispatch(deleteDatasetSuccess(id));
-    }
+    dispatch(resetDataset());
+    dispatch(setLoading(false));
   };
 };
 
 export const deleteDatasetFormat = (datasetId, id) => {
-  return async (dispatch, getState) => {
-    let url = `${baseUrl}/${datasetId}/format/${id}`;
+  return async (dispatch) => {
+    let url = `${DATASET_API}/${datasetId}/format/${id}`;
 
-    dispatch(deletingDatasetFormat());
+    dispatch(setLoading(true));
 
-    const response = await axios({
+    await axios({
       url: url,
       method: 'delete',
-    }).catch((error) => {
-      dispatch(deleteDatasetFormatFailure(error.message));
     });
 
-    if (response) {
-      dispatch(deleteDatasetFormatSuccess(datasetId, id));
-    }
+    dispatch(removeDatasetFormat(datasetId, id));
+    dispatch(setLoading(false));
   };
 };
 
@@ -176,172 +135,74 @@ export const getDataset = (id) => {
     } = getState();
 
     if (items[id]) {
-      dispatch(getDatasetSuccess({ ...items[id] }));
       return;
     }
 
-    dispatch(loadingDatasets());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${baseUrl}/${id}`,
+      url: `${DATASET_API}/${id}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(getDatasetFailure(error.message));
     });
+    dispatch(addDataset(response.data));
 
-    if (response) {
-      dispatch(getDatasetSuccess(response.data));
-    }
+    dispatch(setLoading(false));
   };
 };
 
-const getDatasetSuccess = (dataset) => {
+const setLoading = (loading) => {
   return {
-    type: GET_DATASET_SUCCESS,
-    payload: dataset,
+    type: SET_DATASET_LOADING,
+    payload: { loading },
   };
 };
 
-const getDatasetFailure = (message) => {
+const addDataset = (dataset) => {
   return {
-    type: GET_DATASET_FAILURE,
-    payload: message,
+    type: ADD_DATASET,
+    payload: { dataset },
   };
 };
 
-const loadingDatasets = () => {
+export const addDatasets = (datasets) => {
   return {
-    type: LOADING_DATASETS,
-  };
-};
-
-const setDatasetsListTotal = (total) => {
-  return {
-    type: SET_DATASETS_LIST_TOTAL,
-    payload: total,
-  };
-};
-
-const addListRequest = (req) => {
-  return {
-    type: ADD_DATASETS_LIST_REQUEST,
-    payload: req,
-  };
-};
-
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_DATASETS_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
-
-export const loadDatasetsSuccess = (datasets) => {
-  return {
-    type: LOAD_DATASETS_SUCCESS,
+    type: ADD_DATASETS,
     payload: {
-      items: buildObjectOfItems(datasets),
+      datasets: buildObjectOfItems(datasets),
     },
   };
 };
 
-const loadDatasetsFailure = (message) => {
+const addDatasetFormat = (datasetId, datasetFormat) => {
   return {
-    type: LOAD_DATASETS_FAILURE,
-    payload: message,
-  };
-};
-
-const creatingDataset = () => {
-  return {
-    type: CREATING_DATASET,
-  };
-};
-
-const createDatasetSuccess = (dataset) => {
-  return {
-    type: CREATE_DATASET_SUCCESS,
-    payload: dataset,
-  };
-};
-
-const createDatasetFailure = (message) => {
-  return {
-    type: CREATE_DATASET_FAILURE,
-    payload: message,
-  };
-};
-
-const createDatasetFormatSuccess = (datasetId, datasetFormat) => {
-  return {
-    type: CREATE_DATASET_FORMAT_SUCCESS,
+    type: ADD_DATASET_FORMAT,
     payload: { datasetId, datasetFormat },
   };
 };
 
-const createDatasetFormatFailure = (message) => {
+const removeDatasetFormat = (datasetId, datasetFormatId) => {
   return {
-    type: CREATE_DATASET_FORMAT_FAILURE,
-    payload: message,
+    type: REMOVE_DATASET_FORMAT,
+    payload: { datasetId, datasetFormatId },
   };
 };
 
-const updatingDataset = () => {
+const setDatasetRequest = (req, total) => {
   return {
-    type: UPDATING_DATASET,
+    type: SET_DATASET_REQUEST,
+    payload: { req, total },
   };
 };
 
-const updateDatasetSuccess = (dataset) => {
+const setDatasetIds = (ids) => {
   return {
-    type: UPDATE_DATASET_SUCCESS,
-    payload: dataset,
+    type: SET_DATASET_IDS,
+    payload: { ids },
   };
 };
 
-const updateDatasetFailure = (message) => {
+const resetDataset = () => {
   return {
-    type: UPDATE_DATASET_FAILURE,
-    payload: message,
-  };
-};
-
-const deletingDataset = () => {
-  return {
-    type: DELETING_DATASET,
-  };
-};
-
-const deleteDatasetSuccess = (id) => {
-  return {
-    type: DELETE_DATASET_SUCCESS,
-    payload: id,
-  };
-};
-
-const deleteDatasetFailure = (message) => {
-  return {
-    type: DELETE_DATASET_FAILURE,
-    payload: message,
-  };
-};
-
-const deletingDatasetFormat = () => {
-  return {
-    type: DELETING_DATASET_FORMAT,
-  };
-};
-
-const deleteDatasetFormatSuccess = (datasetId, id) => {
-  return {
-    type: DELETE_DATASET_FORMAT_SUCCESS,
-    payload: { datasetId, id },
-  };
-};
-
-const deleteDatasetFormatFailure = (message) => {
-  return {
-    type: DELETE_DATASET_FORMAT_FAILURE,
-    payload: message,
+    type: RESET_DATASET,
   };
 };

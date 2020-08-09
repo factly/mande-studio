@@ -10,16 +10,19 @@ const EditFormat = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { format } = useSelector(({ formats }) => formats);
+  const { loading, format } = useSelector(({ formats }) => ({
+    loading: formats.loading,
+    format: formats.items[id],
+  }));
 
   React.useEffect(() => {
     dispatch(getFormat(id));
   }, []);
 
-  if (!format.id) return <Skeleton />;
+  if (loading) return <Skeleton />;
 
-  const onUpdate = async (values) => {
-    await dispatch(updateFormat(id, values));
+  const onUpdate = (values) => {
+    dispatch(updateFormat(id, values));
     history.push('/formats');
   };
 

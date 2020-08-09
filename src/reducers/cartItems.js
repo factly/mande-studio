@@ -1,10 +1,10 @@
 import produce from 'immer';
 import {
-  ADD_PAYMENTS,
-  SET_PAYMENT_LOADING,
-  SET_PAYMENT_REQUEST,
-  SET_PAYMENT_IDS,
-} from '../constants/payments';
+  ADD_CARTITEMS,
+  SET_CARTITEM_LOADING,
+  SET_CARTITEM_REQUEST,
+  SET_CARTITEM_IDS,
+} from '../constants/cartItems';
 
 const initialState = {
   loading: false,
@@ -14,20 +14,20 @@ const initialState = {
   total: 0,
 };
 
-const paymentsReducer = produce((draft, action = {}) => {
+const cartItemsReducer = produce((draft, action = {}) => {
   switch (action.type) {
-    case SET_PAYMENT_LOADING:
+    case SET_CARTITEM_LOADING:
       draft.loading = action.payload.loading;
       return;
-    case ADD_PAYMENTS: {
-      const { payments } = action.payload;
-      Object.assign(draft.items, payments);
+    case ADD_CARTITEMS: {
+      const { cartItems } = action.payload;
+      Object.assign(draft.items, cartItems);
       return;
     }
-    case SET_PAYMENT_IDS:
+    case SET_CARTITEM_IDS:
       draft.ids = action.payload.ids;
       return;
-    case SET_PAYMENT_REQUEST: {
+    case SET_CARTITEM_REQUEST: {
       const { req, total } = action.payload;
       draft.req.push(req);
       draft.total = total;
@@ -36,4 +36,4 @@ const paymentsReducer = produce((draft, action = {}) => {
   }
 }, initialState);
 
-export default paymentsReducer;
+export default cartItemsReducer;

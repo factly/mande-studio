@@ -9,9 +9,9 @@ const CurrencyCreate = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const onCreate = async (values) => {
-    await dispatch(createCurrency(values));
-    history.push('/categories');
+  const onCreate = (values) => {
+    dispatch(createCurrency(values));
+    history.push('/currencies');
   };
 
   return <CurrencyCreateForm onSubmit={onCreate} />;

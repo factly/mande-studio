@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
+import { Table, Button, Popconfirm, Form, notification, Skeleton } from 'antd';
 import moment from 'moment';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
@@ -14,9 +14,10 @@ const FormatsList = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const { data, total } = useSelector(({ formats }) => {
+  const { loading, data, total } = useSelector(({ formats }) => {
     const { ids, items, total } = formats;
     return {
+      loading: formats.loading,
       data: ids.map((id) => items[id]),
       total,
     };
@@ -24,7 +25,7 @@ const FormatsList = () => {
 
   React.useEffect(() => {
     dispatch(loadFormats(pagination.page, pagination.limit));
-  }, [pagination]);
+  }, [pagination, total]);
 
   const remove = (key) => {
     dispatch(deleteFormat(key))
@@ -98,7 +99,9 @@ const FormatsList = () => {
     },
   ];
 
-  return (
+  return loading ? (
+    <Skeleton />
+  ) : (
     <Form form={form} component={false}>
       <Table
         bordered

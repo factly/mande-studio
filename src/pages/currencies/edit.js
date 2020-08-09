@@ -10,16 +10,19 @@ const EditCurrency = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { currency } = useSelector(({ currencies }) => currencies);
+  const { loading, currency } = useSelector(({ currencies }) => ({
+    loading: currencies.loading,
+    currency: currencies.items[id],
+  }));
 
   React.useEffect(() => {
     dispatch(getCurrency(id));
   }, []);
 
-  if (!currency.id) return <Skeleton />;
+  if (loading) return <Skeleton />;
 
-  const onUpdate = async (values) => {
-    await dispatch(updateCurrency(id, values));
+  const onUpdate = (values) => {
+    dispatch(updateCurrency(id, values));
     history.push('/currencies');
   };
 

@@ -1,137 +1,97 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  ADD_CATALOGS_LIST_REQUEST,
-  SET_CATALOGS_LIST_CURRENT_PAGE,
-  GET_CATALOG_SUCCESS,
-  GET_CATALOG_FAILURE,
-  LOADING_CATALOGS,
-  LOAD_CATALOGS_SUCCESS,
-  SET_CATALOGS_LIST_TOTAL,
-  LOAD_CATALOGS_FAILURE,
-  CREATING_CATALOG,
-  CREATE_CATALOG_SUCCESS,
-  CREATE_CATALOG_FAILURE,
-  UPDATING_CATALOG,
-  UPDATE_CATALOG_SUCCESS,
-  UPDATE_CATALOG_FAILURE,
-  DELETING_CATALOG,
-  DELETE_CATALOG_SUCCESS,
-  DELETE_CATALOG_FAILURE,
+  ADD_CATALOG,
+  ADD_CATALOGS,
+  SET_CATALOG_LOADING,
+  SET_CATALOG_REQUEST,
+  SET_CATALOG_IDS,
+  RESET_CATALOG,
+  CATALOG_API,
 } from '../constants/catalogs';
-import { loadProductsSuccess } from './products';
-import { getIds, buildObjectOfItems, getValues } from '../utils/objects';
+import { addProducts } from './products';
+import { getIds, getValues, buildObjectOfItems } from '../utils/objects';
 
-export const loadCatalogs = (page, limit) => {
+export const loadCatalogs = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
       catalogs: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setCatalogIds(ids));
       return;
     }
 
-    dispatch(loadingCatalogs());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${CATALOG_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadCatalogsFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setCatalogRequest(currentReq, total));
+    dispatch(addCatalogs(nodes));
+    dispatch(setCatalogIds(currentPageIds));
 
-      const products = getValues(nodes, 'products').filter((product) => product);
-      products && dispatch(loadProductsSuccess(products));
-
-      nodes.forEach((catalog) => {
-        catalog.products = getIds(catalog.products || []);
-      });
-
-      dispatch(addListRequest(req));
-      dispatch(loadCatalogsSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setCatalogsListTotal(total));
-    }
+    dispatch(setLoading(false));
   };
 };
 
 export const createCatalog = (data) => {
   return async (dispatch, getState) => {
-    dispatch(creatingCatalog());
+    dispatch(setLoading(true));
 
-    const response = await axios({
-      url: baseUrl,
+    await axios({
+      url: CATALOG_API,
       method: 'post',
       data: data,
-    }).catch((error) => {
-      dispatch(createCatalogFailure(error.message));
     });
 
-    if (response) {
-      dispatch(createCatalogSuccess(response.data));
-    }
+    dispatch(resetCatalog());
+    dispatch(setLoading(false));
   };
 };
 
 export const updateCatalog = (id, data) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${CATALOG_API}/${id}`;
 
-    dispatch(updatingCatalog());
+    dispatch(setLoading(true));
 
     const response = await axios({
       url: url,
       method: 'put',
       data: data,
-    }).catch((error) => {
-      dispatch(updateCatalogFailure(error.message));
     });
 
-    if (response) {
-      const catalog = response.data;
-      catalog.products = getIds(catalog.products);
-      dispatch(updateCatalogSuccess(catalog));
-    }
+    dispatch(addCatalog(response.data));
+    dispatch(setLoading(false));
   };
 };
 
 export const deleteCatalog = (id) => {
   return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}`;
+    let url = `${CATALOG_API}/${id}`;
 
-    dispatch(deletingCatalog());
+    dispatch(setLoading(true));
 
-    const response = await axios({
+    await axios({
       url: url,
       method: 'delete',
-    }).catch((error) => {
-      dispatch(deleteCatalogFailure(error.message));
     });
 
-    if (response) {
-      dispatch(deleteCatalogSuccess(id));
-    }
+    dispatch(resetCatalog());
+    dispatch(setLoading(false));
   };
 };
 
@@ -142,141 +102,72 @@ export const getCatalog = (id) => {
     } = getState();
 
     if (items[id]) {
-      const catalog = { ...items[id] };
-      dispatch(getCatalogSuccess(catalog));
       return;
     }
 
-    dispatch(loadingCatalogs());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${baseUrl}/${id}`,
+      url: `${CATALOG_API}/${id}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(getCatalogFailure(error.message));
     });
+    dispatch(addCatalog(response.data));
 
-    if (response) {
-      const catalog = response.data;
-      catalog.products = getIds(catalog.products || []);
-      dispatch(getCatalogSuccess(catalog));
-    }
+    dispatch(setLoading(false));
   };
 };
 
-const loadingCatalogs = () => {
+const setLoading = (loading) => {
   return {
-    type: LOADING_CATALOGS,
+    type: SET_CATALOG_LOADING,
+    payload: { loading },
   };
 };
 
-const setCatalogsListTotal = (total) => {
-  return {
-    type: SET_CATALOGS_LIST_TOTAL,
-    payload: total,
-  };
+const addCatalog = (catalog) => (dispatch) => {
+  const products = getValues([catalog], 'products');
+  dispatch(addProducts(products));
+
+  catalog.products = getIds(catalog.products);
+
+  dispatch({
+    type: ADD_CATALOG,
+    payload: { catalog },
+  });
 };
 
-const addListRequest = (req) => {
-  return {
-    type: ADD_CATALOGS_LIST_REQUEST,
-    payload: req,
-  };
-};
+export const addCatalogs = (catalogs) => (dispatch) => {
+  const products = getValues(catalogs, 'products');
+  dispatch(addProducts(products));
 
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_CATALOGS_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
+  catalogs.forEach((catalog) => {
+    catalog.products = getIds(catalog.products);
+  });
 
-const getCatalogSuccess = (catalog) => {
-  return {
-    type: GET_CATALOG_SUCCESS,
-    payload: catalog,
-  };
-};
-
-const getCatalogFailure = (message) => {
-  return {
-    type: GET_CATALOG_FAILURE,
-    payload: message,
-  };
-};
-
-export const loadCatalogsSuccess = (catalogs) => {
-  return {
-    type: LOAD_CATALOGS_SUCCESS,
+  dispatch({
+    type: ADD_CATALOGS,
     payload: {
-      items: buildObjectOfItems(catalogs),
+      catalogs: buildObjectOfItems(catalogs),
     },
+  });
+};
+
+const setCatalogRequest = (req, total) => {
+  return {
+    type: SET_CATALOG_REQUEST,
+    payload: { req, total },
   };
 };
 
-const loadCatalogsFailure = (message) => {
+const setCatalogIds = (ids) => {
   return {
-    type: LOAD_CATALOGS_FAILURE,
-    payload: message,
+    type: SET_CATALOG_IDS,
+    payload: { ids },
   };
 };
 
-const creatingCatalog = () => {
+const resetCatalog = () => {
   return {
-    type: CREATING_CATALOG,
-  };
-};
-
-const createCatalogSuccess = (catalog) => {
-  return {
-    type: CREATE_CATALOG_SUCCESS,
-    payload: catalog,
-  };
-};
-
-const createCatalogFailure = (message) => {
-  return {
-    type: CREATE_CATALOG_FAILURE,
-    payload: message,
-  };
-};
-
-const updatingCatalog = () => {
-  return {
-    type: UPDATING_CATALOG,
-  };
-};
-
-const updateCatalogSuccess = (catalog) => {
-  return {
-    type: UPDATE_CATALOG_SUCCESS,
-    payload: catalog,
-  };
-};
-
-const updateCatalogFailure = (message) => {
-  return {
-    type: UPDATE_CATALOG_FAILURE,
-    payload: message,
-  };
-};
-
-const deletingCatalog = () => {
-  return {
-    type: DELETING_CATALOG,
-  };
-};
-
-const deleteCatalogSuccess = (id) => {
-  return {
-    type: DELETE_CATALOG_SUCCESS,
-    payload: id,
-  };
-};
-
-const deleteCatalogFailure = (message) => {
-  return {
-    type: DELETE_CATALOG_FAILURE,
-    payload: message,
+    type: RESET_CATALOG,
   };
 };

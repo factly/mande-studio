@@ -1,209 +1,75 @@
 import axios from '../utils/axios';
 import {
-  baseUrl,
-  ADD_CARTS_LIST_REQUEST,
-  ADD_CART_DETAILS_REQUEST,
-  LOADING_CARTS,
-  LOADING_CART_DETAILS,
-  SET_CART_LIST_TOTAL,
-  SET_CARTS_LIST_CURRENT_PAGE,
-  SET_CARTS_DETAILS_CURRENT_PAGE,
-  LOAD_CARTS_SUCCESS,
-  LOAD_CARTS_FAILURE,
-  GET_CART_ITEMS_SUCCESS,
-  SET_CART_ITEMS_LIST_TOTAL,
-  GET_CART_ITEMS_FAILURE,
+  ADD_CARTS,
+  SET_CART_LOADING,
+  SET_CART_REQUEST,
+  SET_CART_IDS,
+  CART_API,
 } from '../constants/carts';
-import { loadProductsSuccess } from './products';
-import { loadCurrenciesSuccess } from './currencies';
-import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
+import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadCarts = (page = 1, limit) => {
+export const loadCarts = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    let url = baseUrl;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
     const {
-      carts: {
-        list: { req },
-      },
+      carts: { req },
     } = getState();
 
-    let found = false;
     let ids;
     for (let item of req) {
       if (item.page === page && item.limit === limit) {
         ids = [...item.ids];
-        found = true;
       }
     }
 
-    if (found) {
-      dispatch(setListCurrentPage(ids));
+    if (ids) {
+      dispatch(setCartIds(ids));
       return;
     }
 
-    dispatch(loadingCarts());
+    dispatch(setLoading(true));
 
     const response = await axios({
-      url: url,
+      url: `${CART_API}?page=${page}&limit=${limit}`,
       method: 'get',
-    }).catch((error) => {
-      dispatch(loadCartsFailure(error.message));
     });
 
-    if (response) {
-      const { nodes, total } = response.data;
-      const currentPageIds = getIds(nodes);
-      const req = { page: page, limit: limit, ids: currentPageIds };
-      dispatch(addListRequest(req));
-      dispatch(loadCartsSuccess(nodes));
-      dispatch(setListCurrentPage(currentPageIds));
-      dispatch(setCartsListTotal(total));
-    }
+    const { nodes, total } = response.data;
+    const currentPageIds = getIds(nodes);
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    dispatch(setCartRequest(currentReq, total));
+    dispatch(addCarts(nodes));
+    dispatch(setCartIds(currentPageIds));
+
+    dispatch(setLoading(false));
   };
 };
 
-export const getCartItems = (id, page = 1, limit) => {
-  return async (dispatch, getState) => {
-    let url = `${baseUrl}/${id}/items`;
-    if (page && limit) {
-      url = `${url}?page=${page}&limit=${limit}`;
-    }
-
-    dispatch(loadingCartDetails());
-
-    const {
-      carts: {
-        details: { req },
-      },
-    } = getState();
-
-    let reqObj;
-    for (let item of req) {
-      if (item.cartId === id && item.page === page && item.limit === limit) {
-        reqObj = item;
-        break;
-      }
-    }
-
-    if (reqObj) {
-      dispatch(setDetailsCurrentPage(reqObj.ids));
-      dispatch(setCartItemsListTotal(reqObj.total));
-      return;
-    }
-
-    const response = await axios({
-      url: url,
-      method: 'get',
-    }).catch((error) => {
-      dispatch(getCartItemsFailure(error.message));
-    });
-
-    if (response) {
-      const { nodes, total } = response.data;
-
-      const products = getValues(nodes, 'product');
-
-      const currencies = getValues(products, 'currency');
-      dispatch(loadCurrenciesSuccess(currencies));
-
-      dispatch(loadProductsSuccess(products));
-
-      const currentPageIds = getIds(nodes);
-      const req = { cartId: id, page, limit, ids: currentPageIds, total };
-      dispatch(addDetailsRequest(req));
-      dispatch(getCartItemsSuccess(nodes));
-      dispatch(setDetailsCurrentPage(currentPageIds));
-      dispatch(setCartItemsListTotal(total));
-    }
-  };
-};
-
-const loadingCarts = () => {
+const setLoading = (loading) => {
   return {
-    type: LOADING_CARTS,
+    type: SET_CART_LOADING,
+    payload: { loading },
   };
 };
 
-const loadingCartDetails = () => {
+export const addCarts = (carts) => {
   return {
-    type: LOADING_CART_DETAILS,
-  };
-};
-
-const setCartsListTotal = (total) => {
-  return {
-    type: SET_CART_LIST_TOTAL,
-    payload: total,
-  };
-};
-
-const setListCurrentPage = (ids) => {
-  return {
-    type: SET_CARTS_LIST_CURRENT_PAGE,
-    payload: ids,
-  };
-};
-
-const setDetailsCurrentPage = (ids) => {
-  return {
-    type: SET_CARTS_DETAILS_CURRENT_PAGE,
-    payload: ids,
-  };
-};
-
-const addListRequest = (req) => {
-  return {
-    type: ADD_CARTS_LIST_REQUEST,
-    payload: req,
-  };
-};
-
-const addDetailsRequest = (req) => {
-  return {
-    type: ADD_CART_DETAILS_REQUEST,
-    payload: req,
-  };
-};
-
-export const loadCartsSuccess = (carts) => {
-  return {
-    type: LOAD_CARTS_SUCCESS,
+    type: ADD_CARTS,
     payload: {
-      items: buildObjectOfItems(carts),
+      carts: buildObjectOfItems(carts),
     },
   };
 };
 
-const loadCartsFailure = (message) => {
+const setCartRequest = (req, total) => {
   return {
-    type: LOAD_CARTS_FAILURE,
-    payload: message,
+    type: SET_CART_REQUEST,
+    payload: { req, total },
   };
 };
 
-const setCartItemsListTotal = (total) => {
+const setCartIds = (ids) => {
   return {
-    type: SET_CART_ITEMS_LIST_TOTAL,
-    payload: total,
-  };
-};
-
-const getCartItemsSuccess = (cartItems) => {
-  return {
-    type: GET_CART_ITEMS_SUCCESS,
-    payload: {
-      items: buildObjectOfItems(deleteKeys(cartItems, ['product'])),
-    },
-  };
-};
-
-const getCartItemsFailure = (message) => {
-  return {
-    type: GET_CART_ITEMS_FAILURE,
-    payload: message,
+    type: SET_CART_IDS,
+    payload: { ids },
   };
 };

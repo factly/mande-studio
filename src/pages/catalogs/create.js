@@ -11,7 +11,7 @@ const CatalogCreate = () => {
 
   const onCreate = async (values) => {
     await dispatch(createCatalog(values));
-    history.push('/categories');
+    history.push('/catalogs');
   };
 
   return <CatalogCreateForm onSubmit={onCreate} />;
