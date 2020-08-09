@@ -5,4 +5,4 @@ export const SET_CURRENCY_REQUEST = 'SET_CURRENCY_REQUEST';
 export const SET_CURRENCY_IDS = 'SET_CURRENCY_IDS';
 export const RESET_CURRENCY = 'RESET_CURRENCY';
 
-export const CURRENCY_API = `${process.env.REACT_APP_API_URL}/currencies`;
+export const CURRENCY_API = `/currencies`;

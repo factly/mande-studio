@@ -116,14 +116,14 @@ export const getMedium = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_MEDIUM_LOADING,
     payload: { loading },
   };
 };
 
-const addMedium = (medium) => {
+export const addMedium = (medium) => {
   return {
     type: ADD_MEDIUM,
     payload: { medium },
@@ -139,21 +139,21 @@ export const addMedia = (media) => {
   };
 };
 
-const setMediumRequest = (req, total) => {
+export const setMediumRequest = (req, total) => {
   return {
     type: SET_MEDIUM_REQUEST,
     payload: { req, total },
   };
 };
 
-const setMediumIds = (ids) => {
+export const setMediumIds = (ids) => {
   return {
     type: SET_MEDIUM_IDS,
     payload: { ids },
   };
 };
 
-const resetMedium = () => {
+export const resetMedium = () => {
   return {
     type: RESET_MEDIUM,
   };

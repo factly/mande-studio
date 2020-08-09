@@ -44,7 +44,7 @@ export const loadCarts = (page = 1, limit = 5) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_CART_LOADING,
     payload: { loading },
@@ -60,14 +60,14 @@ export const addCarts = (carts) => {
   };
 };
 
-const setCartRequest = (req, total) => {
+export const setCartRequest = (req, total) => {
   return {
     type: SET_CART_REQUEST,
     payload: { req, total },
   };
 };
 
-const setCartIds = (ids) => {
+export const setCartIds = (ids) => {
   return {
     type: SET_CART_IDS,
     payload: { ids },

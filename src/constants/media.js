@@ -5,4 +5,4 @@ export const SET_MEDIUM_REQUEST = 'SET_MEDIUM_REQUEST';
 export const SET_MEDIUM_IDS = 'SET_MEDIUM_IDS';
 export const RESET_MEDIUM = 'RESET_MEDIUM';
 
-export const MEDIUM_API = `${process.env.REACT_APP_API_URL}/media`;
+export const MEDIUM_API = `/media`;

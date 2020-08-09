@@ -116,14 +116,14 @@ export const getFormat = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_FORMAT_LOADING,
     payload: { loading },
   };
 };
 
-const addFormat = (format) => {
+export const addFormat = (format) => {
   return {
     type: ADD_FORMAT,
     payload: { format },
@@ -139,21 +139,21 @@ export const addFormats = (formats) => {
   };
 };
 
-const setFormatRequest = (req, total) => {
+export const setFormatRequest = (req, total) => {
   return {
     type: SET_FORMAT_REQUEST,
     payload: { req, total },
   };
 };
 
-const setFormatIds = (ids) => {
+export const setFormatIds = (ids) => {
   return {
     type: SET_FORMAT_IDS,
     payload: { ids },
   };
 };
 
-const resetFormat = () => {
+export const resetFormat = () => {
   return {
     type: RESET_FORMAT,
   };

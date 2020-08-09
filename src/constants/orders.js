@@ -4,4 +4,4 @@ export const SET_ORDER_LOADING = 'SET_ORDER_LOADING';
 export const SET_ORDER_REQUEST = 'SET_ORDER_REQUEST';
 export const SET_ORDER_IDS = 'SET_ORDER_IDS';
 
-export const ORDER_API = `${process.env.REACT_APP_API_URL}/orders`;
+export const ORDER_API = `/orders`;

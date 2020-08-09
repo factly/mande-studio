@@ -5,4 +5,4 @@ export const SET_PRODUCT_REQUEST = 'SET_PRODUCT_REQUEST';
 export const SET_PRODUCT_IDS = 'SET_PRODUCT_IDS';
 export const RESET_PRODUCT = 'RESET_PRODUCT';
 
-export const PRODUCT_API = `${process.env.REACT_APP_API_URL}/products`;
+export const PRODUCT_API = `/products`;

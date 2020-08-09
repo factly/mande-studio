@@ -5,4 +5,4 @@ export const SET_FORMAT_REQUEST = 'SET_FORMAT_REQUEST';
 export const SET_FORMAT_IDS = 'SET_FORMAT_IDS';
 export const RESET_FORMAT = 'RESET_FORMAT';
 
-export const FORMAT_API = `${process.env.REACT_APP_API_URL}/formats`;
+export const FORMAT_API = `/formats`;

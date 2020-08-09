@@ -5,4 +5,4 @@ export const SET_CATALOG_REQUEST = 'SET_CATALOG_REQUEST';
 export const SET_CATALOG_IDS = 'SET_CATALOG_IDS';
 export const RESET_CATALOG = 'RESET_CATALOG';
 
-export const CATALOG_API = `${process.env.REACT_APP_API_URL}/catalogs`;
+export const CATALOG_API = `/catalogs`;
