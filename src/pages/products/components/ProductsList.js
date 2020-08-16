@@ -65,7 +65,12 @@ const ProductsList = () => {
   };
 
   const actions = (id) => [
-    <EditOutlined key="edit" onClick={() => history.push(`/products/${id}/edit`)} />,
+    <EditOutlined
+      key="edit"
+      onClick={() => {
+        history.push(`/products/${id}/edit`);
+      }}
+    />,
     <Popconfirm title="Sure to delete?" onConfirm={() => remove(id)}>
       <DeleteOutlined key="delete" />
     </Popconfirm>,

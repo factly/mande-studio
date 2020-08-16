@@ -1,0 +1,1932 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tags Create Form component snapshot testing should match component in all steps 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <TagCreateForm
+    data={
+      Object {
+        "slug": "slug",
+        "title": "title",
+      }
+    }
+  >
+    <ForwardRef(InternalForm)
+      initialValues={
+        Object {
+          "slug": "slug",
+          "title": "title",
+        }
+      }
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="tags_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "name": "tags_create",
+              },
+              "getFieldError": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="tags_create"
+          initialValues={
+            Object {
+              "slug": "slug",
+              "title": "title",
+            }
+          }
+          name="tags_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="tags_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="title"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="title"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_title"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "title",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="tags_create_title"
+                        label="Name"
+                        name="title"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="tags_create_title"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "title",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="title"
+                                >
+                                  <Input
+                                    id="tags_create_title"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Crime In India"
+                                    type="text"
+                                    value="title"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="tags_create_title"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Crime In India"
+                                          type="text"
+                                          value="title"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="tags_create_title"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Crime In India"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="title"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="tags_create_title"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Crime In India"
+                                        type="text"
+                                        value="title"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Slug"
+              name="slug"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter slug!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Slug"
+                messageVariables={
+                  Object {
+                    "label": "Slug",
+                  }
+                }
+                name="slug"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter slug!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_slug"
+                  label="Slug"
+                  messageVariables={
+                    Object {
+                      "label": "Slug",
+                    }
+                  }
+                  name={
+                    Array [
+                      "slug",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter slug!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="tags_create_slug"
+                        label="Slug"
+                        name="slug"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter slug!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="tags_create_slug"
+                              title="Slug"
+                            >
+                              Slug
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Slug"
+                        name={
+                          Array [
+                            "slug",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter slug!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="slug"
+                                >
+                                  <Input
+                                    id="tags_create_slug"
+                                    onChange={[Function]}
+                                    placeholder="Ex. crime-in-india"
+                                    type="text"
+                                    value="slug"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="tags_create_slug"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. crime-in-india"
+                                          type="text"
+                                          value="slug"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="tags_create_slug"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. crime-in-india"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="slug"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="tags_create_slug"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. crime-in-india"
+                                        type="text"
+                                        value="slug"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                gutter={0}
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </TagCreateForm>
+</Provider>
+`;
+
+exports[`Tags Create Form component snapshot testing should match component with data 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <TagCreateForm
+    data={
+      Object {
+        "slug": "slug",
+        "title": "title",
+      }
+    }
+    onSubmit={[MockFunction]}
+  >
+    <ForwardRef(InternalForm)
+      initialValues={
+        Object {
+          "slug": "slug",
+          "title": "title",
+        }
+      }
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="tags_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "name": "tags_create",
+              },
+              "getFieldError": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="tags_create"
+          initialValues={
+            Object {
+              "slug": "slug",
+              "title": "title",
+            }
+          }
+          name="tags_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="tags_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="title"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="title"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_title"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "title",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="tags_create_title"
+                        label="Name"
+                        name="title"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="tags_create_title"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "title",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="title"
+                                >
+                                  <Input
+                                    id="tags_create_title"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Crime In India"
+                                    type="text"
+                                    value="title"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="tags_create_title"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Crime In India"
+                                          type="text"
+                                          value="title"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="tags_create_title"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Crime In India"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="title"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="tags_create_title"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Crime In India"
+                                        type="text"
+                                        value="title"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Slug"
+              name="slug"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter slug!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Slug"
+                messageVariables={
+                  Object {
+                    "label": "Slug",
+                  }
+                }
+                name="slug"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter slug!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_slug"
+                  label="Slug"
+                  messageVariables={
+                    Object {
+                      "label": "Slug",
+                    }
+                  }
+                  name={
+                    Array [
+                      "slug",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter slug!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="tags_create_slug"
+                        label="Slug"
+                        name="slug"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter slug!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="tags_create_slug"
+                              title="Slug"
+                            >
+                              Slug
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Slug"
+                        name={
+                          Array [
+                            "slug",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter slug!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="slug"
+                                >
+                                  <Input
+                                    id="tags_create_slug"
+                                    onChange={[Function]}
+                                    placeholder="Ex. crime-in-india"
+                                    type="text"
+                                    value="slug"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="tags_create_slug"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. crime-in-india"
+                                          type="text"
+                                          value="slug"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="tags_create_slug"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. crime-in-india"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="slug"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="tags_create_slug"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. crime-in-india"
+                                        type="text"
+                                        value="slug"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                gutter={0}
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </TagCreateForm>
+</Provider>
+`;
+
+exports[`Tags Create Form component snapshot testing should render the component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <TagCreateForm>
+    <ForwardRef(InternalForm)
+      initialValues={Object {}}
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="tags_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "name": "tags_create",
+              },
+              "getFieldError": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="tags_create"
+          initialValues={Object {}}
+          name="tags_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="tags_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="title"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="title"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_title"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "title",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="tags_create_title"
+                        label="Name"
+                        name="title"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="tags_create_title"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "title",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                >
+                                  <Input
+                                    id="tags_create_title"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Crime In India"
+                                    type="text"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="tags_create_title"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Crime In India"
+                                          type="text"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="tags_create_title"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Crime In India"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value=""
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="tags_create_title"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Crime In India"
+                                        type="text"
+                                        value=""
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Slug"
+              name="slug"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter slug!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Slug"
+                messageVariables={
+                  Object {
+                    "label": "Slug",
+                  }
+                }
+                name="slug"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter slug!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_slug"
+                  label="Slug"
+                  messageVariables={
+                    Object {
+                      "label": "Slug",
+                    }
+                  }
+                  name={
+                    Array [
+                      "slug",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter slug!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="tags_create_slug"
+                        label="Slug"
+                        name="slug"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter slug!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="tags_create_slug"
+                              title="Slug"
+                            >
+                              Slug
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Slug"
+                        name={
+                          Array [
+                            "slug",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter slug!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                >
+                                  <Input
+                                    id="tags_create_slug"
+                                    onChange={[Function]}
+                                    placeholder="Ex. crime-in-india"
+                                    type="text"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="tags_create_slug"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. crime-in-india"
+                                          type="text"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="tags_create_slug"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. crime-in-india"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value=""
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="tags_create_slug"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. crime-in-india"
+                                        type="text"
+                                        value=""
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                gutter={0}
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </TagCreateForm>
+</Provider>
+`;
