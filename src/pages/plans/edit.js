@@ -10,13 +10,16 @@ const EditPlan = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { plan } = useSelector(({ plans }) => plans);
+  const { loading, plan } = useSelector(({ plans }) => ({
+    loading: formats.loading,
+    plan: plans.items[id],
+  }));
 
   React.useEffect(() => {
     dispatch(getPlan(id));
   }, []);
 
-  if (!plan.id) return <Skeleton />;
+  if (loading) return <Skeleton />;
 
   const onUpdate = async (values) => {
     await dispatch(updatePlan(id, values));
