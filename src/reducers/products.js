@@ -32,7 +32,6 @@ const productsReducer = produce((draft, action = {}) => {
       return;
     }
     case SET_PRODUCT_IDS:
-      console.log(action);
       draft.ids = action.payload.ids;
       return;
     case SET_PRODUCT_REQUEST: {
