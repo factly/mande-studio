@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatasetCreateForm snapshot testing should match component in all steps 1`] = `
+<Fragment>
+  <Steps
+    current={0}
+    size="small"
+  >
+    <Step
+      key="Create Dataset"
+      title="Create Dataset"
+    />
+    <Step
+      key="Add Formats"
+      title="Add Formats"
+    />
+  </Steps>
+  <br />
+  <DatasetForm
+    data={
+      Object {
+        "id": 1,
+        "title": "title",
+      }
+    }
+    next={[Function]}
+    onSubmit={[MockFunction]}
+    setDatasetId={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`DatasetCreateForm snapshot testing should match component in all steps 2`] = `
+<Fragment>
+  <Steps
+    current={1}
+    size="small"
+  >
+    <Step
+      key="Create Dataset"
+      title="Create Dataset"
+    />
+    <Step
+      key="Add Formats"
+      title="Add Formats"
+    />
+  </Steps>
+  <br />
+  <DatasetFormatForm
+    datasetFormats={
+      Array [
+        Object {
+          "created_at": "2020-12-12",
+          "format": Object {
+            "name": "format",
+          },
+          "id": 1,
+          "url": "url",
+        },
+      ]
+    }
+    datasetId={1}
+    onSubmit={[Function]}
+    prev={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`DatasetCreateForm snapshot testing should render the component 1`] = `
+<Fragment>
+  <Steps
+    current={0}
+    size="small"
+  >
+    <Step
+      key="Create Dataset"
+      title="Create Dataset"
+    />
+    <Step
+      key="Add Formats"
+      title="Add Formats"
+    />
+  </Steps>
+  <br />
+  <DatasetForm
+    next={[Function]}
+    setDatasetId={[Function]}
+  />
+</Fragment>
+`;

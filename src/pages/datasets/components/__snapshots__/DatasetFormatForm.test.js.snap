@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatasetFormatForm component snapshot testing should render the component 1`] = `
+<Fragment>
+  <Space>
+    <Uploader
+      onUploadSuccess={[Function]}
+    />
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="button"
+      loading={false}
+      onClick={[Function]}
+    >
+      Done
+    </Button>
+  </Space>
+  <DatasetFormatsList />
+</Fragment>
+`;
