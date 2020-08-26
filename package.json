@@ -79,7 +79,8 @@
       "!src/index.js"
     ],
     "coverageReporters": [
-      "text"
+      "text",
+      "html"
     ]
   }
 }

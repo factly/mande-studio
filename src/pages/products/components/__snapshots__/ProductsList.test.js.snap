@@ -285,7 +285,7 @@ exports[`Products List component snapshot testing should match component with pr
                           <span
                             className="ant-descriptions-item-content"
                           >
-                            in 4 months
+                            in 3 months
                           </span>
                         </td>
                       </tr>

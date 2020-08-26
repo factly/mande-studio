@@ -319,7 +319,7 @@ exports[`Payments List component snapshot testing should match component with pa
                     <span
                       title="2020-12-12"
                     >
-                      in 4 months
+                      in 3 months
                     </span>
                   </td>
                 </tr>

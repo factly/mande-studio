@@ -1,0 +1,2577 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Plans Create Form component snapshot testing should match component in all steps 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <PlanCreateForm
+    data={
+      Object {
+        "plan_info": "plan_info",
+        "plan_name": "plan_name",
+        "status": "status",
+      }
+    }
+  >
+    <ForwardRef(InternalForm)
+      initialValues={
+        Object {
+          "plan_info": "plan_info",
+          "plan_name": "plan_name",
+          "status": "status",
+        }
+      }
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="plans_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "name": "plans_create",
+              },
+              "getFieldError": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="plans_create"
+          initialValues={
+            Object {
+              "plan_info": "plan_info",
+              "plan_name": "plan_name",
+              "status": "status",
+            }
+          }
+          name="plans_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="plans_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="plan_name"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter plan name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="plan_name"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter plan name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_plan_name"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "plan_name",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter plan name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_plan_name"
+                        label="Name"
+                        name="plan_name"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_plan_name"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "plan_name",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="plan_name"
+                                >
+                                  <Input
+                                    id="plans_create_plan_name"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Premium"
+                                    type="text"
+                                    value="plan_name"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_plan_name"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Premium"
+                                          type="text"
+                                          value="plan_name"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_plan_name"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Premium"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="plan_name"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_plan_name"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Premium"
+                                        type="text"
+                                        value="plan_name"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Info"
+              name="plan_info"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter plan info!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Info"
+                messageVariables={
+                  Object {
+                    "label": "Info",
+                  }
+                }
+                name="plan_info"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter plan info!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_plan_info"
+                  label="Info"
+                  messageVariables={
+                    Object {
+                      "label": "Info",
+                    }
+                  }
+                  name={
+                    Array [
+                      "plan_info",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter plan info!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_plan_info"
+                        label="Info"
+                        name="plan_info"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan info!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_plan_info"
+                              title="Info"
+                            >
+                              Info
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Info"
+                        name={
+                          Array [
+                            "plan_info",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan info!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="plan_info"
+                                >
+                                  <Input
+                                    id="plans_create_plan_info"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Allows users to access premium content"
+                                    type="text"
+                                    value="plan_info"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_plan_info"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Allows users to access premium content"
+                                          type="text"
+                                          value="plan_info"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_plan_info"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Allows users to access premium content"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="plan_info"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_plan_info"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Allows users to access premium content"
+                                        type="text"
+                                        value="plan_info"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Status"
+              name="status"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter status!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Status"
+                messageVariables={
+                  Object {
+                    "label": "Status",
+                  }
+                }
+                name="status"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter status!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_status"
+                  label="Status"
+                  messageVariables={
+                    Object {
+                      "label": "Status",
+                    }
+                  }
+                  name={
+                    Array [
+                      "status",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter status!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_status"
+                        label="Status"
+                        name="status"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter status!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_status"
+                              title="Status"
+                            >
+                              Status
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Status"
+                        name={
+                          Array [
+                            "status",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter status!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="status"
+                                >
+                                  <Input
+                                    id="plans_create_status"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Pending"
+                                    type="text"
+                                    value="status"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_status"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Pending"
+                                          type="text"
+                                          value="status"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_status"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Pending"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="status"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_status"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Pending"
+                                        type="text"
+                                        value="status"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                gutter={0}
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </PlanCreateForm>
+</Provider>
+`;
+
+exports[`Plans Create Form component snapshot testing should match component with data 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <PlanCreateForm
+    data={
+      Object {
+        "plan_info": "plan_info",
+        "plan_name": "plan_name",
+        "status": "status",
+      }
+    }
+    onSubmit={[MockFunction]}
+  >
+    <ForwardRef(InternalForm)
+      initialValues={
+        Object {
+          "plan_info": "plan_info",
+          "plan_name": "plan_name",
+          "status": "status",
+        }
+      }
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="plans_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "name": "plans_create",
+              },
+              "getFieldError": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="plans_create"
+          initialValues={
+            Object {
+              "plan_info": "plan_info",
+              "plan_name": "plan_name",
+              "status": "status",
+            }
+          }
+          name="plans_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="plans_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="plan_name"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter plan name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="plan_name"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter plan name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_plan_name"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "plan_name",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter plan name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_plan_name"
+                        label="Name"
+                        name="plan_name"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_plan_name"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "plan_name",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="plan_name"
+                                >
+                                  <Input
+                                    id="plans_create_plan_name"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Premium"
+                                    type="text"
+                                    value="plan_name"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_plan_name"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Premium"
+                                          type="text"
+                                          value="plan_name"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_plan_name"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Premium"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="plan_name"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_plan_name"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Premium"
+                                        type="text"
+                                        value="plan_name"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Info"
+              name="plan_info"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter plan info!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Info"
+                messageVariables={
+                  Object {
+                    "label": "Info",
+                  }
+                }
+                name="plan_info"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter plan info!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_plan_info"
+                  label="Info"
+                  messageVariables={
+                    Object {
+                      "label": "Info",
+                    }
+                  }
+                  name={
+                    Array [
+                      "plan_info",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter plan info!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_plan_info"
+                        label="Info"
+                        name="plan_info"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan info!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_plan_info"
+                              title="Info"
+                            >
+                              Info
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Info"
+                        name={
+                          Array [
+                            "plan_info",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan info!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="plan_info"
+                                >
+                                  <Input
+                                    id="plans_create_plan_info"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Allows users to access premium content"
+                                    type="text"
+                                    value="plan_info"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_plan_info"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Allows users to access premium content"
+                                          type="text"
+                                          value="plan_info"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_plan_info"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Allows users to access premium content"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="plan_info"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_plan_info"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Allows users to access premium content"
+                                        type="text"
+                                        value="plan_info"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Status"
+              name="status"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter status!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Status"
+                messageVariables={
+                  Object {
+                    "label": "Status",
+                  }
+                }
+                name="status"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter status!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_status"
+                  label="Status"
+                  messageVariables={
+                    Object {
+                      "label": "Status",
+                    }
+                  }
+                  name={
+                    Array [
+                      "status",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter status!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_status"
+                        label="Status"
+                        name="status"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter status!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_status"
+                              title="Status"
+                            >
+                              Status
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Status"
+                        name={
+                          Array [
+                            "status",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter status!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="status"
+                                >
+                                  <Input
+                                    id="plans_create_status"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Pending"
+                                    type="text"
+                                    value="status"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_status"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Pending"
+                                          type="text"
+                                          value="status"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_status"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Pending"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="status"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_status"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Pending"
+                                        type="text"
+                                        value="status"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                gutter={0}
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </PlanCreateForm>
+</Provider>
+`;
+
+exports[`Plans Create Form component snapshot testing should render the component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <PlanCreateForm>
+    <ForwardRef(InternalForm)
+      initialValues={Object {}}
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="plans_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "name": "plans_create",
+              },
+              "getFieldError": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="plans_create"
+          initialValues={Object {}}
+          name="plans_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="plans_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="plan_name"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter plan name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="plan_name"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter plan name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_plan_name"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "plan_name",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter plan name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_plan_name"
+                        label="Name"
+                        name="plan_name"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_plan_name"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "plan_name",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                >
+                                  <Input
+                                    id="plans_create_plan_name"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Premium"
+                                    type="text"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_plan_name"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Premium"
+                                          type="text"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_plan_name"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Premium"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value=""
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_plan_name"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Premium"
+                                        type="text"
+                                        value=""
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Info"
+              name="plan_info"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter plan info!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Info"
+                messageVariables={
+                  Object {
+                    "label": "Info",
+                  }
+                }
+                name="plan_info"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter plan info!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_plan_info"
+                  label="Info"
+                  messageVariables={
+                    Object {
+                      "label": "Info",
+                    }
+                  }
+                  name={
+                    Array [
+                      "plan_info",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter plan info!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_plan_info"
+                        label="Info"
+                        name="plan_info"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan info!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_plan_info"
+                              title="Info"
+                            >
+                              Info
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Info"
+                        name={
+                          Array [
+                            "plan_info",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter plan info!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                >
+                                  <Input
+                                    id="plans_create_plan_info"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Allows users to access premium content"
+                                    type="text"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_plan_info"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Allows users to access premium content"
+                                          type="text"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_plan_info"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Allows users to access premium content"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value=""
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_plan_info"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Allows users to access premium content"
+                                        type="text"
+                                        value=""
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="Status"
+              name="status"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter status!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Status"
+                messageVariables={
+                  Object {
+                    "label": "Status",
+                  }
+                }
+                name="status"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter status!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_status"
+                  label="Status"
+                  messageVariables={
+                    Object {
+                      "label": "Status",
+                    }
+                  }
+                  name={
+                    Array [
+                      "status",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter status!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    gutter={0}
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="plans_create_status"
+                        label="Status"
+                        name="status"
+                        prefixCls="ant-form"
+                        required={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter status!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="plans_create_status"
+                              title="Status"
+                            >
+                              Status
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Status"
+                        name={
+                          Array [
+                            "status",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter status!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                >
+                                  <Input
+                                    id="plans_create_status"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Pending"
+                                    type="text"
+                                  >
+                                    <ClearableLabeledInput
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="plans_create_status"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Pending"
+                                          type="text"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="plans_create_status"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Pending"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value=""
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="plans_create_status"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Pending"
+                                        type="text"
+                                        value=""
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                gutter={0}
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </PlanCreateForm>
+</Provider>
+`;
