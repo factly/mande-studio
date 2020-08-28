@@ -1,10 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: '/',
-  headers: {
-    common: {
-      'X-User': '1',
-    },
-  },
+  baseURL: window.REACT_APP_API_URL,
 });

@@ -76,9 +76,7 @@ function BasicLayout(props) {
               placeholder="Search....."
             />
             <Divider type="vertical" />
-            <a
-              href={process.env.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/logout'}
-            >
+            <a href={window.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/logout'}>
               <Button>
                 <LogoutOutlined />
                 Logout

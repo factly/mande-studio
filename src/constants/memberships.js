@@ -5,4 +5,4 @@ export const SET_MEMBERSHIP_REQUEST = 'SET_MEMBERSHIP_REQUEST';
 export const SET_MEMBERSHIP_IDS = 'SET_MEMBERSHIP_IDS';
 export const RESET_MEMBERSHIP = 'RESET_MEMBERSHIP';
 
-export const MEMBERSHIP_API = `${process.env.REACT_APP_API_URL}/memberships`;
+export const MEMBERSHIP_API = `/memberships`;
