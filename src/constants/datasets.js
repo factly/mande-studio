@@ -7,4 +7,4 @@ export const SET_DATASET_REQUEST = 'SET_DATASET_REQUEST';
 export const SET_DATASET_IDS = 'SET_DATASET_IDS';
 export const RESET_DATASET = 'RESET_DATASET';
 
-export const DATASET_API = `${process.env.REACT_APP_API_URL}/datasets`;
+export const DATASET_API = `/datasets`;
