@@ -22,11 +22,11 @@ function Login() {
 
     if (!obj['request']) {
       window.location.href =
-        process.env.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/login';
+        window.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/login';
     }
 
     fetch(
-      process.env.REACT_APP_KRATOS_PUBLIC_URL +
+      window.REACT_APP_KRATOS_PUBLIC_URL +
         '/self-service/browser/flows/requests/login?request=' +
         obj['request'],
     )
@@ -40,7 +40,7 @@ function Login() {
       .then((res) => setMethod(res.methods))
       .catch((err) => {
         window.location.href =
-          process.env.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/login';
+          window.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/login';
       });
   }, []);
 

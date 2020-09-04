@@ -22,11 +22,11 @@ function Registration() {
 
     if (!obj['request']) {
       window.location.href =
-        process.env.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/registration';
+        window.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/registration';
     }
 
     fetch(
-      process.env.REACT_APP_KRATOS_PUBLIC_URL +
+      window.REACT_APP_KRATOS_PUBLIC_URL +
         '/self-service/browser/flows/requests/registration?request=' +
         obj['request'],
     )
@@ -40,7 +40,7 @@ function Registration() {
       .then((res) => setMethod(res.methods))
       .catch((err) => {
         window.location.href =
-          process.env.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/registration';
+          window.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/registration';
       });
   }, []);
 

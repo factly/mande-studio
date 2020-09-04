@@ -9,17 +9,21 @@ import { updateProduct, getProduct } from '../../actions/products';
 const ProductEdit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { loading, product } = useSelector(({ products }) => ({
-    loading: products.loading,
-    product: products.items[id],
-  }));
-  product.tag_ids = product.tags;
+  const { loading, product } = useSelector(({ products }) => {
+    console.log('products', products);
+    return {
+      loading: products.loading,
+      product: products.items[id],
+    };
+  });
 
   React.useEffect(() => {
     dispatch(getProduct(id));
   }, []);
 
   if (loading) return <Skeleton />;
+
+  product.tag_ids = product?.tags;
 
   const onUpdate = async (values) => {
     await dispatch(updateProduct(id, values));
