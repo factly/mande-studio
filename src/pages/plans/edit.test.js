@@ -38,13 +38,13 @@ describe('Plans List component', () => {
     plans: {
       req: [],
       details: {
-        '1': {
+        1: {
           id: 1,
           name: 'Plan-1',
           slug: 'plan-1',
           description: 'description',
         },
-        '2': {
+        2: {
           id: 2,
           name: 'Plan-2',
           slug: 'plan-2',

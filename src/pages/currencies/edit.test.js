@@ -38,13 +38,13 @@ describe('Currencies List component', () => {
     currencies: {
       req: [],
       details: {
-        '1': {
+        1: {
           id: 1,
           name: 'Currency-1',
           slug: 'currency-1',
           description: 'description',
         },
-        '2': {
+        2: {
           id: 2,
           name: 'Currency-2',
           slug: 'currency-2',

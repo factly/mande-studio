@@ -38,13 +38,13 @@ describe('Formats List component', () => {
     formats: {
       req: [],
       details: {
-        '1': {
+        1: {
           id: 1,
           name: 'Format-1',
           slug: 'format-1',
           description: 'description',
         },
-        '2': {
+        2: {
           id: 2,
           name: 'Format-2',
           slug: 'format-2',

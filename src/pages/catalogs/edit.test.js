@@ -38,14 +38,14 @@ describe('Catalogs List component', () => {
       ids: [],
       req: [],
       items: {
-        '1': {
+        1: {
           id: 1,
           title: 'Catalog-1',
           description: 'description',
           price: 100,
           published_date: null,
         },
-        '2': {
+        2: {
           id: 2,
           title: 'Catalog-2',
           description: 'description',

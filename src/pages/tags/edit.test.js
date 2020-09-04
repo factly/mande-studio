@@ -38,13 +38,13 @@ describe('Tags List component', () => {
     tags: {
       req: [],
       details: {
-        '1': {
+        1: {
           id: 1,
           name: 'Tag-1',
           slug: 'tag-1',
           description: 'description',
         },
-        '2': {
+        2: {
           id: 2,
           name: 'Tag-2',
           slug: 'tag-2',
