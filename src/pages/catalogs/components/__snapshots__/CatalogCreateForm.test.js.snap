@@ -63,9 +63,11 @@ exports[`Catalogs Create Form component snapshot testing should match component 
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "catalogs_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -166,7 +168,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -179,6 +180,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="title"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -254,6 +256,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                     value="title"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -296,6 +299,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -304,6 +308,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -380,7 +385,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -393,6 +397,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="description"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -468,6 +473,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                     value="description"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -510,6 +516,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -518,6 +525,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -594,7 +602,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -607,6 +614,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="price"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -674,7 +682,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                   update={1}
                                   value={100}
                                 >
-                                  <InputNumber
+                                  <ForwardRef
                                     id="catalogs_create_price"
                                     min={0}
                                     onChange={[Function]}
@@ -692,6 +700,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                       }
                                       focusOnUpDown={true}
                                       id="catalogs_create_price"
+                                      max={9007199254740991}
                                       min={0}
                                       onBlur={[Function]}
                                       onChange={[Function]}
@@ -714,45 +723,56 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                     >
                                       <div
                                         className="ant-input-number"
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
                                         style={Object {}}
                                       >
                                         <div
                                           className="ant-input-number-handler-wrap"
                                         >
-                                          <InputHandler
-                                            aria-disabled={false}
+                                          <span
                                             aria-label="Increase Value"
-                                            className="ant-input-number-handler ant-input-number-handler-up "
+                                            className="ant-input-number-handler ant-input-number-handler-up"
                                             onMouseDown={[Function]}
                                             onMouseLeave={[Function]}
                                             onMouseUp={[Function]}
-                                            prefixCls="ant-input-number"
                                             role="button"
-                                            unselectable="unselectable"
+                                            unselectable="on"
                                           >
-                                            <TouchFeedback
-                                              activeClassName="ant-input-number-handler-active"
-                                              disabled={false}
+                                            <ForwardRef(UpOutlined)
+                                              className="ant-input-number-handler-up-inner"
                                             >
-                                              <span
-                                                aria-disabled={false}
-                                                aria-label="Increase Value"
-                                                className="ant-input-number-handler ant-input-number-handler-up "
-                                                onMouseDown={[Function]}
-                                                onMouseLeave={[Function]}
-                                                onMouseUp={[Function]}
-                                                onTouchCancel={[Function]}
-                                                onTouchEnd={[Function]}
-                                                onTouchMove={[Function]}
-                                                onTouchStart={[Function]}
-                                                role="button"
-                                                unselectable="unselectable"
+                                              <AntdIcon
+                                                className="ant-input-number-handler-up-inner"
+                                                icon={
+                                                  Object {
+                                                    "icon": Object {
+                                                      "attrs": Object {
+                                                        "focusable": "false",
+                                                        "viewBox": "64 64 896 896",
+                                                      },
+                                                      "children": Array [
+                                                        Object {
+                                                          "attrs": Object {
+                                                            "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
+                                                          },
+                                                          "tag": "path",
+                                                        },
+                                                      ],
+                                                      "tag": "svg",
+                                                    },
+                                                    "name": "up",
+                                                    "theme": "outlined",
+                                                  }
+                                                }
                                               >
-                                                <ForwardRef(UpOutlined)
-                                                  className="ant-input-number-handler-up-inner"
+                                                <span
+                                                  aria-label="up"
+                                                  className="anticon anticon-up ant-input-number-handler-up-inner"
+                                                  role="img"
                                                 >
-                                                  <AntdIcon
-                                                    className="ant-input-number-handler-up-inner"
+                                                  <IconReact
+                                                    className=""
                                                     icon={
                                                       Object {
                                                         "icon": Object {
@@ -775,92 +795,70 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       }
                                                     }
                                                   >
-                                                    <span
-                                                      aria-label="up"
-                                                      className="anticon anticon-up ant-input-number-handler-up-inner"
-                                                      role="img"
+                                                    <svg
+                                                      aria-hidden="true"
+                                                      className=""
+                                                      data-icon="up"
+                                                      fill="currentColor"
+                                                      focusable="false"
+                                                      height="1em"
+                                                      key="svg-up"
+                                                      viewBox="64 64 896 896"
+                                                      width="1em"
                                                     >
-                                                      <IconReact
-                                                        className=""
-                                                        icon={
-                                                          Object {
-                                                            "icon": Object {
-                                                              "attrs": Object {
-                                                                "focusable": "false",
-                                                                "viewBox": "64 64 896 896",
-                                                              },
-                                                              "children": Array [
-                                                                Object {
-                                                                  "attrs": Object {
-                                                                    "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                                  },
-                                                                  "tag": "path",
-                                                                },
-                                                              ],
-                                                              "tag": "svg",
-                                                            },
-                                                            "name": "up",
-                                                            "theme": "outlined",
-                                                          }
-                                                        }
-                                                      >
-                                                        <svg
-                                                          aria-hidden="true"
-                                                          className=""
-                                                          data-icon="up"
-                                                          fill="currentColor"
-                                                          focusable="false"
-                                                          height="1em"
-                                                          key="svg-up"
-                                                          viewBox="64 64 896 896"
-                                                          width="1em"
-                                                        >
-                                                          <path
-                                                            d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
-                                                            key="svg-up-svg-0"
-                                                          />
-                                                        </svg>
-                                                      </IconReact>
-                                                    </span>
-                                                  </AntdIcon>
-                                                </ForwardRef(UpOutlined)>
-                                              </span>
-                                            </TouchFeedback>
-                                          </InputHandler>
-                                          <InputHandler
-                                            aria-disabled={false}
+                                                      <path
+                                                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+                                                        key="svg-up-svg-0"
+                                                      />
+                                                    </svg>
+                                                  </IconReact>
+                                                </span>
+                                              </AntdIcon>
+                                            </ForwardRef(UpOutlined)>
+                                          </span>
+                                          <span
                                             aria-label="Decrease Value"
-                                            className="ant-input-number-handler ant-input-number-handler-down "
+                                            className="ant-input-number-handler ant-input-number-handler-down"
                                             onMouseDown={[Function]}
                                             onMouseLeave={[Function]}
                                             onMouseUp={[Function]}
-                                            prefixCls="ant-input-number"
                                             role="button"
-                                            unselectable="unselectable"
+                                            unselectable="on"
                                           >
-                                            <TouchFeedback
-                                              activeClassName="ant-input-number-handler-active"
-                                              disabled={false}
+                                            <ForwardRef(DownOutlined)
+                                              className="ant-input-number-handler-down-inner"
                                             >
-                                              <span
-                                                aria-disabled={false}
-                                                aria-label="Decrease Value"
-                                                className="ant-input-number-handler ant-input-number-handler-down "
-                                                onMouseDown={[Function]}
-                                                onMouseLeave={[Function]}
-                                                onMouseUp={[Function]}
-                                                onTouchCancel={[Function]}
-                                                onTouchEnd={[Function]}
-                                                onTouchMove={[Function]}
-                                                onTouchStart={[Function]}
-                                                role="button"
-                                                unselectable="unselectable"
+                                              <AntdIcon
+                                                className="ant-input-number-handler-down-inner"
+                                                icon={
+                                                  Object {
+                                                    "icon": Object {
+                                                      "attrs": Object {
+                                                        "focusable": "false",
+                                                        "viewBox": "64 64 896 896",
+                                                      },
+                                                      "children": Array [
+                                                        Object {
+                                                          "attrs": Object {
+                                                            "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
+                                                          },
+                                                          "tag": "path",
+                                                        },
+                                                      ],
+                                                      "tag": "svg",
+                                                    },
+                                                    "name": "down",
+                                                    "theme": "outlined",
+                                                  }
+                                                }
                                               >
-                                                <ForwardRef(DownOutlined)
-                                                  className="ant-input-number-handler-down-inner"
+                                                <span
+                                                  aria-label="down"
+                                                  className="anticon anticon-down ant-input-number-handler-down-inner"
+                                                  role="img"
                                                 >
-                                                  <AntdIcon
-                                                    className="ant-input-number-handler-down-inner"
+                                                  <IconReact
+                                                    className=""
                                                     icon={
                                                       Object {
                                                         "icon": Object {
@@ -883,68 +881,39 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       }
                                                     }
                                                   >
-                                                    <span
-                                                      aria-label="down"
-                                                      className="anticon anticon-down ant-input-number-handler-down-inner"
-                                                      role="img"
+                                                    <svg
+                                                      aria-hidden="true"
+                                                      className=""
+                                                      data-icon="down"
+                                                      fill="currentColor"
+                                                      focusable="false"
+                                                      height="1em"
+                                                      key="svg-down"
+                                                      viewBox="64 64 896 896"
+                                                      width="1em"
                                                     >
-                                                      <IconReact
-                                                        className=""
-                                                        icon={
-                                                          Object {
-                                                            "icon": Object {
-                                                              "attrs": Object {
-                                                                "focusable": "false",
-                                                                "viewBox": "64 64 896 896",
-                                                              },
-                                                              "children": Array [
-                                                                Object {
-                                                                  "attrs": Object {
-                                                                    "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                                  },
-                                                                  "tag": "path",
-                                                                },
-                                                              ],
-                                                              "tag": "svg",
-                                                            },
-                                                            "name": "down",
-                                                            "theme": "outlined",
-                                                          }
-                                                        }
-                                                      >
-                                                        <svg
-                                                          aria-hidden="true"
-                                                          className=""
-                                                          data-icon="down"
-                                                          fill="currentColor"
-                                                          focusable="false"
-                                                          height="1em"
-                                                          key="svg-down"
-                                                          viewBox="64 64 896 896"
-                                                          width="1em"
-                                                        >
-                                                          <path
-                                                            d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                                            key="svg-down-svg-0"
-                                                          />
-                                                        </svg>
-                                                      </IconReact>
-                                                    </span>
-                                                  </AntdIcon>
-                                                </ForwardRef(DownOutlined)>
-                                              </span>
-                                            </TouchFeedback>
-                                          </InputHandler>
+                                                      <path
+                                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                                        key="svg-down-svg-0"
+                                                      />
+                                                    </svg>
+                                                  </IconReact>
+                                                </span>
+                                              </AntdIcon>
+                                            </ForwardRef(DownOutlined)>
+                                          </span>
                                         </div>
                                         <div
                                           className="ant-input-number-input-wrap"
                                         >
                                           <input
+                                            aria-valuemax={9007199254740991}
                                             aria-valuemin={0}
                                             aria-valuenow={100}
                                             autoComplete="off"
                                             className="ant-input-number-input"
                                             id="catalogs_create_price"
+                                            max={9007199254740991}
                                             min={0}
                                             onBlur={[Function]}
                                             onChange={[Function]}
@@ -961,12 +930,13 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                         </div>
                                       </div>
                                     </InputNumber>
-                                  </InputNumber>
+                                  </ForwardRef>
                                 </Component>
                               </div>
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -975,6 +945,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1051,7 +1022,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1064,6 +1034,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="product_ids"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1149,7 +1120,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                   >
                                     <Select
                                       bordered={true}
-                                      choiceTransitionName="zoom"
+                                      choiceTransitionName=""
                                       defaultValue={
                                         Array [
                                           1,
@@ -1165,7 +1136,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                       transitionName="slide-up"
                                     >
                                       <Select
-                                        choiceTransitionName="zoom"
+                                        choiceTransitionName=""
                                         className=""
                                         clearIcon={<ForwardRef(CloseCircleFilled) />}
                                         defaultValue={
@@ -1177,7 +1148,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                         filterOption={[Function]}
                                         inputIcon={[Function]}
                                         listHeight={128}
-                                        listItemHeight={32}
+                                        listItemHeight={24}
                                         loading={false}
                                         menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                         mode="multiple"
@@ -1194,7 +1165,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                         transitionName="slide-up"
                                       >
                                         <ForwardRef(Select)
-                                          choiceTransitionName="zoom"
+                                          choiceTransitionName=""
                                           className=""
                                           clearIcon={<ForwardRef(CloseCircleFilled) />}
                                           defaultValue={
@@ -1206,7 +1177,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                           filterOption={[Function]}
                                           inputIcon={[Function]}
                                           listHeight={128}
-                                          listItemHeight={32}
+                                          listItemHeight={24}
                                           loading={false}
                                           menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                           mode="multiple"
@@ -1241,7 +1212,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   defaultActiveFirstOption={true}
                                                   flattenOptions={Array []}
                                                   height={128}
-                                                  itemHeight={32}
+                                                  itemHeight={24}
                                                   menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                   multiple={true}
                                                   notFoundContent={
@@ -1250,6 +1221,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                     </Context.Consumer>
                                                   }
                                                   onActiveValue={[Function]}
+                                                  onMouseEnter={[Function]}
                                                   onScroll={[Function]}
                                                   onSelect={[Function]}
                                                   onToggleOpen={[Function]}
@@ -1270,6 +1242,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                               <Trigger
                                                 action={Array []}
                                                 afterPopupVisibleChange={[Function]}
+                                                autoDestroy={false}
                                                 blurDelay={0.15}
                                                 builtinPlacements={
                                                   Object {
@@ -1351,7 +1324,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       defaultActiveFirstOption={true}
                                                       flattenOptions={Array []}
                                                       height={128}
-                                                      itemHeight={32}
+                                                      itemHeight={24}
                                                       menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                       multiple={true}
                                                       notFoundContent={
@@ -1360,6 +1333,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                         </Context.Consumer>
                                                       }
                                                       onActiveValue={[Function]}
+                                                      onMouseEnter={[Function]}
                                                       onScroll={[Function]}
                                                       onSelect={[Function]}
                                                       onToggleOpen={[Function]}
@@ -1391,7 +1365,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                 <Selector
                                                   accessibilityIndex={0}
                                                   activeValue={null}
-                                                  choiceTransitionName="zoom"
+                                                  choiceTransitionName=""
                                                   className=""
                                                   clearIcon={<ForwardRef(CloseCircleFilled) />}
                                                   defaultValue={
@@ -1456,6 +1430,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            unselectable="on"
                                                             value=""
                                                           />
                                                           <span
@@ -1475,7 +1450,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   inputIcon={[Function]}
                                                   key="trigger"
                                                   listHeight={128}
-                                                  listItemHeight={32}
+                                                  listItemHeight={24}
                                                   loading={false}
                                                   menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                   mode="multiple"
@@ -1488,6 +1463,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   onChange={[Function]}
                                                   onPopupScroll={[Function]}
                                                   onSearch={[Function]}
+                                                  onSearchSubmit={[Function]}
                                                   onSelect={[Function]}
                                                   onToggleOpen={[Function]}
                                                   placeholder="Add products"
@@ -1495,6 +1471,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   removeIcon={<ForwardRef(CloseOutlined) />}
                                                   searchValue=""
                                                   showSearch={true}
+                                                  tokenWithEnter={false}
                                                   transitionName="slide-up"
                                                   values={
                                                     Array [
@@ -1509,13 +1486,12 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                 >
                                                   <div
                                                     className="ant-select-selector"
-                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SelectSelector
                                                       accessibilityIndex={0}
                                                       activeValue={null}
-                                                      choiceTransitionName="zoom"
+                                                      choiceTransitionName=""
                                                       className=""
                                                       clearIcon={<ForwardRef(CloseCircleFilled) />}
                                                       defaultValue={
@@ -1580,6 +1556,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                unselectable="on"
                                                                 value=""
                                                               />
                                                               <span
@@ -1611,12 +1588,13 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            unselectable="on"
                                                             value=""
                                                           />,
                                                         }
                                                       }
                                                       listHeight={128}
-                                                      listItemHeight={32}
+                                                      listItemHeight={24}
                                                       loading={false}
                                                       menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                       mode="multiple"
@@ -1628,10 +1606,14 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       }
                                                       onChange={[Function]}
                                                       onInputChange={[Function]}
+                                                      onInputCompositionEnd={[Function]}
+                                                      onInputCompositionStart={[Function]}
                                                       onInputKeyDown={[Function]}
                                                       onInputMouseDown={[Function]}
+                                                      onInputPaste={[Function]}
                                                       onPopupScroll={[Function]}
                                                       onSearch={[Function]}
+                                                      onSearchSubmit={[Function]}
                                                       onSelect={[Function]}
                                                       onToggleOpen={[Function]}
                                                       placeholder="Add products"
@@ -1639,6 +1621,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       removeIcon={<ForwardRef(CloseOutlined) />}
                                                       searchValue=""
                                                       showSearch={true}
+                                                      tokenWithEnter={false}
                                                       transitionName="slide-up"
                                                       values={
                                                         Array [
@@ -1664,7 +1647,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                           ]
                                                         }
                                                         motionAppear={false}
-                                                        motionName="zoom"
+                                                        motionName=""
                                                       >
                                                         <ForwardRef
                                                           eventProps={
@@ -1677,7 +1660,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                           }
                                                           key="1"
                                                           motionAppear={false}
-                                                          motionName="zoom"
+                                                          motionName=""
                                                           onLeaveEnd={[Function]}
                                                           visible={true}
                                                         >
@@ -1694,7 +1677,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             motionAppear={false}
                                                             motionEnter={true}
                                                             motionLeave={true}
-                                                            motionName="zoom"
+                                                            motionName=""
                                                             onLeaveEnd={[Function]}
                                                             removeOnLeave={true}
                                                             visible={true}
@@ -1816,10 +1799,14 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       >
                                                         <Input
                                                           accessibilityIndex={0}
+                                                          attrs={Object {}}
                                                           inputElement={null}
                                                           onChange={[Function]}
+                                                          onCompositionEnd={[Function]}
+                                                          onCompositionStart={[Function]}
                                                           onKeyDown={[Function]}
                                                           onMouseDown={[Function]}
+                                                          onPaste={[Function]}
                                                           prefixCls="ant-select"
                                                           value=""
                                                         >
@@ -1832,8 +1819,11 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             autoComplete="off"
                                                             className="ant-select-selection-search-input"
                                                             onChange={[Function]}
+                                                            onCompositionEnd={[Function]}
+                                                            onCompositionStart={[Function]}
                                                             onKeyDown={[Function]}
                                                             onMouseDown={[Function]}
+                                                            onPaste={[Function]}
                                                             readOnly={true}
                                                             role="combobox"
                                                             style={
@@ -1841,6 +1831,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            unselectable="on"
                                                             value=""
                                                           />
                                                         </Input>
@@ -1866,6 +1857,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1874,6 +1866,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1926,7 +1919,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1939,6 +1931,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="published_date"
                         prefixCls="ant-form"
                         required={false}
+                        requiredMark={true}
                       >
                         <Col
                           className="ant-form-item-label"
@@ -2398,6 +2391,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                             <Trigger
                                               action={Array []}
                                               afterPopupVisibleChange={[Function]}
+                                              autoDestroy={false}
                                               blurDelay={0.15}
                                               builtinPlacements={
                                                 Object {
@@ -2627,6 +2621,8 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   className="ant-picker-input"
                                                 >
                                                   <input
+                                                    autoComplete="off"
+                                                    id="catalogs_create_published_date"
                                                     onBlur={[Function]}
                                                     onChange={[Function]}
                                                     onFocus={[Function]}
@@ -2807,6 +2803,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -2815,6 +2812,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -2841,7 +2839,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -2850,6 +2847,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -2942,6 +2940,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -2950,6 +2949,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"
@@ -3036,9 +3036,11 @@ exports[`Catalogs Create Form component snapshot testing should match component 
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "catalogs_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -3139,7 +3141,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -3152,6 +3153,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="title"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -3227,6 +3229,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                     value="title"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -3269,6 +3272,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -3277,6 +3281,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -3353,7 +3358,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -3366,6 +3370,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="description"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -3441,6 +3446,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                     value="description"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -3483,6 +3489,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -3491,6 +3498,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -3567,7 +3575,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -3580,6 +3587,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="price"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -3647,7 +3655,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                   update={1}
                                   value={100}
                                 >
-                                  <InputNumber
+                                  <ForwardRef
                                     id="catalogs_create_price"
                                     min={0}
                                     onChange={[Function]}
@@ -3665,6 +3673,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                       }
                                       focusOnUpDown={true}
                                       id="catalogs_create_price"
+                                      max={9007199254740991}
                                       min={0}
                                       onBlur={[Function]}
                                       onChange={[Function]}
@@ -3687,45 +3696,56 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                     >
                                       <div
                                         className="ant-input-number"
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
                                         style={Object {}}
                                       >
                                         <div
                                           className="ant-input-number-handler-wrap"
                                         >
-                                          <InputHandler
-                                            aria-disabled={false}
+                                          <span
                                             aria-label="Increase Value"
-                                            className="ant-input-number-handler ant-input-number-handler-up "
+                                            className="ant-input-number-handler ant-input-number-handler-up"
                                             onMouseDown={[Function]}
                                             onMouseLeave={[Function]}
                                             onMouseUp={[Function]}
-                                            prefixCls="ant-input-number"
                                             role="button"
-                                            unselectable="unselectable"
+                                            unselectable="on"
                                           >
-                                            <TouchFeedback
-                                              activeClassName="ant-input-number-handler-active"
-                                              disabled={false}
+                                            <ForwardRef(UpOutlined)
+                                              className="ant-input-number-handler-up-inner"
                                             >
-                                              <span
-                                                aria-disabled={false}
-                                                aria-label="Increase Value"
-                                                className="ant-input-number-handler ant-input-number-handler-up "
-                                                onMouseDown={[Function]}
-                                                onMouseLeave={[Function]}
-                                                onMouseUp={[Function]}
-                                                onTouchCancel={[Function]}
-                                                onTouchEnd={[Function]}
-                                                onTouchMove={[Function]}
-                                                onTouchStart={[Function]}
-                                                role="button"
-                                                unselectable="unselectable"
+                                              <AntdIcon
+                                                className="ant-input-number-handler-up-inner"
+                                                icon={
+                                                  Object {
+                                                    "icon": Object {
+                                                      "attrs": Object {
+                                                        "focusable": "false",
+                                                        "viewBox": "64 64 896 896",
+                                                      },
+                                                      "children": Array [
+                                                        Object {
+                                                          "attrs": Object {
+                                                            "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
+                                                          },
+                                                          "tag": "path",
+                                                        },
+                                                      ],
+                                                      "tag": "svg",
+                                                    },
+                                                    "name": "up",
+                                                    "theme": "outlined",
+                                                  }
+                                                }
                                               >
-                                                <ForwardRef(UpOutlined)
-                                                  className="ant-input-number-handler-up-inner"
+                                                <span
+                                                  aria-label="up"
+                                                  className="anticon anticon-up ant-input-number-handler-up-inner"
+                                                  role="img"
                                                 >
-                                                  <AntdIcon
-                                                    className="ant-input-number-handler-up-inner"
+                                                  <IconReact
+                                                    className=""
                                                     icon={
                                                       Object {
                                                         "icon": Object {
@@ -3748,92 +3768,70 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       }
                                                     }
                                                   >
-                                                    <span
-                                                      aria-label="up"
-                                                      className="anticon anticon-up ant-input-number-handler-up-inner"
-                                                      role="img"
+                                                    <svg
+                                                      aria-hidden="true"
+                                                      className=""
+                                                      data-icon="up"
+                                                      fill="currentColor"
+                                                      focusable="false"
+                                                      height="1em"
+                                                      key="svg-up"
+                                                      viewBox="64 64 896 896"
+                                                      width="1em"
                                                     >
-                                                      <IconReact
-                                                        className=""
-                                                        icon={
-                                                          Object {
-                                                            "icon": Object {
-                                                              "attrs": Object {
-                                                                "focusable": "false",
-                                                                "viewBox": "64 64 896 896",
-                                                              },
-                                                              "children": Array [
-                                                                Object {
-                                                                  "attrs": Object {
-                                                                    "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                                  },
-                                                                  "tag": "path",
-                                                                },
-                                                              ],
-                                                              "tag": "svg",
-                                                            },
-                                                            "name": "up",
-                                                            "theme": "outlined",
-                                                          }
-                                                        }
-                                                      >
-                                                        <svg
-                                                          aria-hidden="true"
-                                                          className=""
-                                                          data-icon="up"
-                                                          fill="currentColor"
-                                                          focusable="false"
-                                                          height="1em"
-                                                          key="svg-up"
-                                                          viewBox="64 64 896 896"
-                                                          width="1em"
-                                                        >
-                                                          <path
-                                                            d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
-                                                            key="svg-up-svg-0"
-                                                          />
-                                                        </svg>
-                                                      </IconReact>
-                                                    </span>
-                                                  </AntdIcon>
-                                                </ForwardRef(UpOutlined)>
-                                              </span>
-                                            </TouchFeedback>
-                                          </InputHandler>
-                                          <InputHandler
-                                            aria-disabled={false}
+                                                      <path
+                                                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+                                                        key="svg-up-svg-0"
+                                                      />
+                                                    </svg>
+                                                  </IconReact>
+                                                </span>
+                                              </AntdIcon>
+                                            </ForwardRef(UpOutlined)>
+                                          </span>
+                                          <span
                                             aria-label="Decrease Value"
-                                            className="ant-input-number-handler ant-input-number-handler-down "
+                                            className="ant-input-number-handler ant-input-number-handler-down"
                                             onMouseDown={[Function]}
                                             onMouseLeave={[Function]}
                                             onMouseUp={[Function]}
-                                            prefixCls="ant-input-number"
                                             role="button"
-                                            unselectable="unselectable"
+                                            unselectable="on"
                                           >
-                                            <TouchFeedback
-                                              activeClassName="ant-input-number-handler-active"
-                                              disabled={false}
+                                            <ForwardRef(DownOutlined)
+                                              className="ant-input-number-handler-down-inner"
                                             >
-                                              <span
-                                                aria-disabled={false}
-                                                aria-label="Decrease Value"
-                                                className="ant-input-number-handler ant-input-number-handler-down "
-                                                onMouseDown={[Function]}
-                                                onMouseLeave={[Function]}
-                                                onMouseUp={[Function]}
-                                                onTouchCancel={[Function]}
-                                                onTouchEnd={[Function]}
-                                                onTouchMove={[Function]}
-                                                onTouchStart={[Function]}
-                                                role="button"
-                                                unselectable="unselectable"
+                                              <AntdIcon
+                                                className="ant-input-number-handler-down-inner"
+                                                icon={
+                                                  Object {
+                                                    "icon": Object {
+                                                      "attrs": Object {
+                                                        "focusable": "false",
+                                                        "viewBox": "64 64 896 896",
+                                                      },
+                                                      "children": Array [
+                                                        Object {
+                                                          "attrs": Object {
+                                                            "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
+                                                          },
+                                                          "tag": "path",
+                                                        },
+                                                      ],
+                                                      "tag": "svg",
+                                                    },
+                                                    "name": "down",
+                                                    "theme": "outlined",
+                                                  }
+                                                }
                                               >
-                                                <ForwardRef(DownOutlined)
-                                                  className="ant-input-number-handler-down-inner"
+                                                <span
+                                                  aria-label="down"
+                                                  className="anticon anticon-down ant-input-number-handler-down-inner"
+                                                  role="img"
                                                 >
-                                                  <AntdIcon
-                                                    className="ant-input-number-handler-down-inner"
+                                                  <IconReact
+                                                    className=""
                                                     icon={
                                                       Object {
                                                         "icon": Object {
@@ -3856,68 +3854,39 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       }
                                                     }
                                                   >
-                                                    <span
-                                                      aria-label="down"
-                                                      className="anticon anticon-down ant-input-number-handler-down-inner"
-                                                      role="img"
+                                                    <svg
+                                                      aria-hidden="true"
+                                                      className=""
+                                                      data-icon="down"
+                                                      fill="currentColor"
+                                                      focusable="false"
+                                                      height="1em"
+                                                      key="svg-down"
+                                                      viewBox="64 64 896 896"
+                                                      width="1em"
                                                     >
-                                                      <IconReact
-                                                        className=""
-                                                        icon={
-                                                          Object {
-                                                            "icon": Object {
-                                                              "attrs": Object {
-                                                                "focusable": "false",
-                                                                "viewBox": "64 64 896 896",
-                                                              },
-                                                              "children": Array [
-                                                                Object {
-                                                                  "attrs": Object {
-                                                                    "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                                  },
-                                                                  "tag": "path",
-                                                                },
-                                                              ],
-                                                              "tag": "svg",
-                                                            },
-                                                            "name": "down",
-                                                            "theme": "outlined",
-                                                          }
-                                                        }
-                                                      >
-                                                        <svg
-                                                          aria-hidden="true"
-                                                          className=""
-                                                          data-icon="down"
-                                                          fill="currentColor"
-                                                          focusable="false"
-                                                          height="1em"
-                                                          key="svg-down"
-                                                          viewBox="64 64 896 896"
-                                                          width="1em"
-                                                        >
-                                                          <path
-                                                            d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                                            key="svg-down-svg-0"
-                                                          />
-                                                        </svg>
-                                                      </IconReact>
-                                                    </span>
-                                                  </AntdIcon>
-                                                </ForwardRef(DownOutlined)>
-                                              </span>
-                                            </TouchFeedback>
-                                          </InputHandler>
+                                                      <path
+                                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                                        key="svg-down-svg-0"
+                                                      />
+                                                    </svg>
+                                                  </IconReact>
+                                                </span>
+                                              </AntdIcon>
+                                            </ForwardRef(DownOutlined)>
+                                          </span>
                                         </div>
                                         <div
                                           className="ant-input-number-input-wrap"
                                         >
                                           <input
+                                            aria-valuemax={9007199254740991}
                                             aria-valuemin={0}
                                             aria-valuenow={100}
                                             autoComplete="off"
                                             className="ant-input-number-input"
                                             id="catalogs_create_price"
+                                            max={9007199254740991}
                                             min={0}
                                             onBlur={[Function]}
                                             onChange={[Function]}
@@ -3934,12 +3903,13 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                         </div>
                                       </div>
                                     </InputNumber>
-                                  </InputNumber>
+                                  </ForwardRef>
                                 </Component>
                               </div>
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -3948,6 +3918,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -4024,7 +3995,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -4037,6 +4007,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="product_ids"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -4122,7 +4093,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                   >
                                     <Select
                                       bordered={true}
-                                      choiceTransitionName="zoom"
+                                      choiceTransitionName=""
                                       defaultValue={
                                         Array [
                                           1,
@@ -4138,7 +4109,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                       transitionName="slide-up"
                                     >
                                       <Select
-                                        choiceTransitionName="zoom"
+                                        choiceTransitionName=""
                                         className=""
                                         clearIcon={<ForwardRef(CloseCircleFilled) />}
                                         defaultValue={
@@ -4150,7 +4121,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                         filterOption={[Function]}
                                         inputIcon={[Function]}
                                         listHeight={128}
-                                        listItemHeight={32}
+                                        listItemHeight={24}
                                         loading={false}
                                         menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                         mode="multiple"
@@ -4167,7 +4138,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                         transitionName="slide-up"
                                       >
                                         <ForwardRef(Select)
-                                          choiceTransitionName="zoom"
+                                          choiceTransitionName=""
                                           className=""
                                           clearIcon={<ForwardRef(CloseCircleFilled) />}
                                           defaultValue={
@@ -4179,7 +4150,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                           filterOption={[Function]}
                                           inputIcon={[Function]}
                                           listHeight={128}
-                                          listItemHeight={32}
+                                          listItemHeight={24}
                                           loading={false}
                                           menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                           mode="multiple"
@@ -4214,7 +4185,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   defaultActiveFirstOption={true}
                                                   flattenOptions={Array []}
                                                   height={128}
-                                                  itemHeight={32}
+                                                  itemHeight={24}
                                                   menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                   multiple={true}
                                                   notFoundContent={
@@ -4223,6 +4194,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                     </Context.Consumer>
                                                   }
                                                   onActiveValue={[Function]}
+                                                  onMouseEnter={[Function]}
                                                   onScroll={[Function]}
                                                   onSelect={[Function]}
                                                   onToggleOpen={[Function]}
@@ -4243,6 +4215,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                               <Trigger
                                                 action={Array []}
                                                 afterPopupVisibleChange={[Function]}
+                                                autoDestroy={false}
                                                 blurDelay={0.15}
                                                 builtinPlacements={
                                                   Object {
@@ -4324,7 +4297,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       defaultActiveFirstOption={true}
                                                       flattenOptions={Array []}
                                                       height={128}
-                                                      itemHeight={32}
+                                                      itemHeight={24}
                                                       menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                       multiple={true}
                                                       notFoundContent={
@@ -4333,6 +4306,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                         </Context.Consumer>
                                                       }
                                                       onActiveValue={[Function]}
+                                                      onMouseEnter={[Function]}
                                                       onScroll={[Function]}
                                                       onSelect={[Function]}
                                                       onToggleOpen={[Function]}
@@ -4364,7 +4338,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                 <Selector
                                                   accessibilityIndex={0}
                                                   activeValue={null}
-                                                  choiceTransitionName="zoom"
+                                                  choiceTransitionName=""
                                                   className=""
                                                   clearIcon={<ForwardRef(CloseCircleFilled) />}
                                                   defaultValue={
@@ -4429,6 +4403,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            unselectable="on"
                                                             value=""
                                                           />
                                                           <span
@@ -4448,7 +4423,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   inputIcon={[Function]}
                                                   key="trigger"
                                                   listHeight={128}
-                                                  listItemHeight={32}
+                                                  listItemHeight={24}
                                                   loading={false}
                                                   menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                   mode="multiple"
@@ -4461,6 +4436,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   onChange={[Function]}
                                                   onPopupScroll={[Function]}
                                                   onSearch={[Function]}
+                                                  onSearchSubmit={[Function]}
                                                   onSelect={[Function]}
                                                   onToggleOpen={[Function]}
                                                   placeholder="Add products"
@@ -4468,6 +4444,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   removeIcon={<ForwardRef(CloseOutlined) />}
                                                   searchValue=""
                                                   showSearch={true}
+                                                  tokenWithEnter={false}
                                                   transitionName="slide-up"
                                                   values={
                                                     Array [
@@ -4482,13 +4459,12 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                 >
                                                   <div
                                                     className="ant-select-selector"
-                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SelectSelector
                                                       accessibilityIndex={0}
                                                       activeValue={null}
-                                                      choiceTransitionName="zoom"
+                                                      choiceTransitionName=""
                                                       className=""
                                                       clearIcon={<ForwardRef(CloseCircleFilled) />}
                                                       defaultValue={
@@ -4553,6 +4529,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                unselectable="on"
                                                                 value=""
                                                               />
                                                               <span
@@ -4584,12 +4561,13 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            unselectable="on"
                                                             value=""
                                                           />,
                                                         }
                                                       }
                                                       listHeight={128}
-                                                      listItemHeight={32}
+                                                      listItemHeight={24}
                                                       loading={false}
                                                       menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                       mode="multiple"
@@ -4601,10 +4579,14 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       }
                                                       onChange={[Function]}
                                                       onInputChange={[Function]}
+                                                      onInputCompositionEnd={[Function]}
+                                                      onInputCompositionStart={[Function]}
                                                       onInputKeyDown={[Function]}
                                                       onInputMouseDown={[Function]}
+                                                      onInputPaste={[Function]}
                                                       onPopupScroll={[Function]}
                                                       onSearch={[Function]}
+                                                      onSearchSubmit={[Function]}
                                                       onSelect={[Function]}
                                                       onToggleOpen={[Function]}
                                                       placeholder="Add products"
@@ -4612,6 +4594,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       removeIcon={<ForwardRef(CloseOutlined) />}
                                                       searchValue=""
                                                       showSearch={true}
+                                                      tokenWithEnter={false}
                                                       transitionName="slide-up"
                                                       values={
                                                         Array [
@@ -4637,7 +4620,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                           ]
                                                         }
                                                         motionAppear={false}
-                                                        motionName="zoom"
+                                                        motionName=""
                                                       >
                                                         <ForwardRef
                                                           eventProps={
@@ -4650,7 +4633,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                           }
                                                           key="1"
                                                           motionAppear={false}
-                                                          motionName="zoom"
+                                                          motionName=""
                                                           onLeaveEnd={[Function]}
                                                           visible={true}
                                                         >
@@ -4667,7 +4650,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             motionAppear={false}
                                                             motionEnter={true}
                                                             motionLeave={true}
-                                                            motionName="zoom"
+                                                            motionName=""
                                                             onLeaveEnd={[Function]}
                                                             removeOnLeave={true}
                                                             visible={true}
@@ -4789,10 +4772,14 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                       >
                                                         <Input
                                                           accessibilityIndex={0}
+                                                          attrs={Object {}}
                                                           inputElement={null}
                                                           onChange={[Function]}
+                                                          onCompositionEnd={[Function]}
+                                                          onCompositionStart={[Function]}
                                                           onKeyDown={[Function]}
                                                           onMouseDown={[Function]}
+                                                          onPaste={[Function]}
                                                           prefixCls="ant-select"
                                                           value=""
                                                         >
@@ -4805,8 +4792,11 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                             autoComplete="off"
                                                             className="ant-select-selection-search-input"
                                                             onChange={[Function]}
+                                                            onCompositionEnd={[Function]}
+                                                            onCompositionStart={[Function]}
                                                             onKeyDown={[Function]}
                                                             onMouseDown={[Function]}
+                                                            onPaste={[Function]}
                                                             readOnly={true}
                                                             role="combobox"
                                                             style={
@@ -4814,6 +4804,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            unselectable="on"
                                                             value=""
                                                           />
                                                         </Input>
@@ -4839,6 +4830,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -4847,6 +4839,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -4899,7 +4892,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -4912,6 +4904,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         name="published_date"
                         prefixCls="ant-form"
                         required={false}
+                        requiredMark={true}
                       >
                         <Col
                           className="ant-form-item-label"
@@ -5371,6 +5364,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                             <Trigger
                                               action={Array []}
                                               afterPopupVisibleChange={[Function]}
+                                              autoDestroy={false}
                                               blurDelay={0.15}
                                               builtinPlacements={
                                                 Object {
@@ -5600,6 +5594,8 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                                   className="ant-picker-input"
                                                 >
                                                   <input
+                                                    autoComplete="off"
+                                                    id="catalogs_create_published_date"
                                                     onBlur={[Function]}
                                                     onChange={[Function]}
                                                     onFocus={[Function]}
@@ -5780,6 +5776,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -5788,6 +5785,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -5814,7 +5812,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -5823,6 +5820,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -5915,6 +5913,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -5923,6 +5922,7 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"
@@ -5980,9 +5980,11 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "catalogs_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -6070,7 +6072,6 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -6083,6 +6084,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                         name="title"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -6156,6 +6158,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                     type="text"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -6197,6 +6200,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -6205,6 +6209,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -6281,7 +6286,6 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -6294,6 +6298,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                         name="description"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -6367,6 +6372,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                     type="text"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -6408,6 +6414,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -6416,6 +6423,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -6492,7 +6500,6 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -6505,6 +6512,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                         name="price"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -6571,7 +6579,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                 <Component
                                   update={1}
                                 >
-                                  <InputNumber
+                                  <ForwardRef
                                     id="catalogs_create_price"
                                     min={0}
                                     onChange={[Function]}
@@ -6588,6 +6596,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                       }
                                       focusOnUpDown={true}
                                       id="catalogs_create_price"
+                                      max={9007199254740991}
                                       min={0}
                                       onBlur={[Function]}
                                       onChange={[Function]}
@@ -6609,45 +6618,56 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                     >
                                       <div
                                         className="ant-input-number"
+                                        onBlur={[Function]}
+                                        onFocus={[Function]}
                                         style={Object {}}
                                       >
                                         <div
                                           className="ant-input-number-handler-wrap"
                                         >
-                                          <InputHandler
-                                            aria-disabled={false}
+                                          <span
                                             aria-label="Increase Value"
-                                            className="ant-input-number-handler ant-input-number-handler-up "
+                                            className="ant-input-number-handler ant-input-number-handler-up"
                                             onMouseDown={[Function]}
                                             onMouseLeave={[Function]}
                                             onMouseUp={[Function]}
-                                            prefixCls="ant-input-number"
                                             role="button"
-                                            unselectable="unselectable"
+                                            unselectable="on"
                                           >
-                                            <TouchFeedback
-                                              activeClassName="ant-input-number-handler-active"
-                                              disabled={false}
+                                            <ForwardRef(UpOutlined)
+                                              className="ant-input-number-handler-up-inner"
                                             >
-                                              <span
-                                                aria-disabled={false}
-                                                aria-label="Increase Value"
-                                                className="ant-input-number-handler ant-input-number-handler-up "
-                                                onMouseDown={[Function]}
-                                                onMouseLeave={[Function]}
-                                                onMouseUp={[Function]}
-                                                onTouchCancel={[Function]}
-                                                onTouchEnd={[Function]}
-                                                onTouchMove={[Function]}
-                                                onTouchStart={[Function]}
-                                                role="button"
-                                                unselectable="unselectable"
+                                              <AntdIcon
+                                                className="ant-input-number-handler-up-inner"
+                                                icon={
+                                                  Object {
+                                                    "icon": Object {
+                                                      "attrs": Object {
+                                                        "focusable": "false",
+                                                        "viewBox": "64 64 896 896",
+                                                      },
+                                                      "children": Array [
+                                                        Object {
+                                                          "attrs": Object {
+                                                            "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
+                                                          },
+                                                          "tag": "path",
+                                                        },
+                                                      ],
+                                                      "tag": "svg",
+                                                    },
+                                                    "name": "up",
+                                                    "theme": "outlined",
+                                                  }
+                                                }
                                               >
-                                                <ForwardRef(UpOutlined)
-                                                  className="ant-input-number-handler-up-inner"
+                                                <span
+                                                  aria-label="up"
+                                                  className="anticon anticon-up ant-input-number-handler-up-inner"
+                                                  role="img"
                                                 >
-                                                  <AntdIcon
-                                                    className="ant-input-number-handler-up-inner"
+                                                  <IconReact
+                                                    className=""
                                                     icon={
                                                       Object {
                                                         "icon": Object {
@@ -6670,92 +6690,70 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                       }
                                                     }
                                                   >
-                                                    <span
-                                                      aria-label="up"
-                                                      className="anticon anticon-up ant-input-number-handler-up-inner"
-                                                      role="img"
+                                                    <svg
+                                                      aria-hidden="true"
+                                                      className=""
+                                                      data-icon="up"
+                                                      fill="currentColor"
+                                                      focusable="false"
+                                                      height="1em"
+                                                      key="svg-up"
+                                                      viewBox="64 64 896 896"
+                                                      width="1em"
                                                     >
-                                                      <IconReact
-                                                        className=""
-                                                        icon={
-                                                          Object {
-                                                            "icon": Object {
-                                                              "attrs": Object {
-                                                                "focusable": "false",
-                                                                "viewBox": "64 64 896 896",
-                                                              },
-                                                              "children": Array [
-                                                                Object {
-                                                                  "attrs": Object {
-                                                                    "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                                  },
-                                                                  "tag": "path",
-                                                                },
-                                                              ],
-                                                              "tag": "svg",
-                                                            },
-                                                            "name": "up",
-                                                            "theme": "outlined",
-                                                          }
-                                                        }
-                                                      >
-                                                        <svg
-                                                          aria-hidden="true"
-                                                          className=""
-                                                          data-icon="up"
-                                                          fill="currentColor"
-                                                          focusable="false"
-                                                          height="1em"
-                                                          key="svg-up"
-                                                          viewBox="64 64 896 896"
-                                                          width="1em"
-                                                        >
-                                                          <path
-                                                            d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
-                                                            key="svg-up-svg-0"
-                                                          />
-                                                        </svg>
-                                                      </IconReact>
-                                                    </span>
-                                                  </AntdIcon>
-                                                </ForwardRef(UpOutlined)>
-                                              </span>
-                                            </TouchFeedback>
-                                          </InputHandler>
-                                          <InputHandler
-                                            aria-disabled={false}
+                                                      <path
+                                                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+                                                        key="svg-up-svg-0"
+                                                      />
+                                                    </svg>
+                                                  </IconReact>
+                                                </span>
+                                              </AntdIcon>
+                                            </ForwardRef(UpOutlined)>
+                                          </span>
+                                          <span
                                             aria-label="Decrease Value"
-                                            className="ant-input-number-handler ant-input-number-handler-down "
+                                            className="ant-input-number-handler ant-input-number-handler-down"
                                             onMouseDown={[Function]}
                                             onMouseLeave={[Function]}
                                             onMouseUp={[Function]}
-                                            prefixCls="ant-input-number"
                                             role="button"
-                                            unselectable="unselectable"
+                                            unselectable="on"
                                           >
-                                            <TouchFeedback
-                                              activeClassName="ant-input-number-handler-active"
-                                              disabled={false}
+                                            <ForwardRef(DownOutlined)
+                                              className="ant-input-number-handler-down-inner"
                                             >
-                                              <span
-                                                aria-disabled={false}
-                                                aria-label="Decrease Value"
-                                                className="ant-input-number-handler ant-input-number-handler-down "
-                                                onMouseDown={[Function]}
-                                                onMouseLeave={[Function]}
-                                                onMouseUp={[Function]}
-                                                onTouchCancel={[Function]}
-                                                onTouchEnd={[Function]}
-                                                onTouchMove={[Function]}
-                                                onTouchStart={[Function]}
-                                                role="button"
-                                                unselectable="unselectable"
+                                              <AntdIcon
+                                                className="ant-input-number-handler-down-inner"
+                                                icon={
+                                                  Object {
+                                                    "icon": Object {
+                                                      "attrs": Object {
+                                                        "focusable": "false",
+                                                        "viewBox": "64 64 896 896",
+                                                      },
+                                                      "children": Array [
+                                                        Object {
+                                                          "attrs": Object {
+                                                            "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
+                                                          },
+                                                          "tag": "path",
+                                                        },
+                                                      ],
+                                                      "tag": "svg",
+                                                    },
+                                                    "name": "down",
+                                                    "theme": "outlined",
+                                                  }
+                                                }
                                               >
-                                                <ForwardRef(DownOutlined)
-                                                  className="ant-input-number-handler-down-inner"
+                                                <span
+                                                  aria-label="down"
+                                                  className="anticon anticon-down ant-input-number-handler-down-inner"
+                                                  role="img"
                                                 >
-                                                  <AntdIcon
-                                                    className="ant-input-number-handler-down-inner"
+                                                  <IconReact
+                                                    className=""
                                                     icon={
                                                       Object {
                                                         "icon": Object {
@@ -6778,67 +6776,38 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                       }
                                                     }
                                                   >
-                                                    <span
-                                                      aria-label="down"
-                                                      className="anticon anticon-down ant-input-number-handler-down-inner"
-                                                      role="img"
+                                                    <svg
+                                                      aria-hidden="true"
+                                                      className=""
+                                                      data-icon="down"
+                                                      fill="currentColor"
+                                                      focusable="false"
+                                                      height="1em"
+                                                      key="svg-down"
+                                                      viewBox="64 64 896 896"
+                                                      width="1em"
                                                     >
-                                                      <IconReact
-                                                        className=""
-                                                        icon={
-                                                          Object {
-                                                            "icon": Object {
-                                                              "attrs": Object {
-                                                                "focusable": "false",
-                                                                "viewBox": "64 64 896 896",
-                                                              },
-                                                              "children": Array [
-                                                                Object {
-                                                                  "attrs": Object {
-                                                                    "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                                  },
-                                                                  "tag": "path",
-                                                                },
-                                                              ],
-                                                              "tag": "svg",
-                                                            },
-                                                            "name": "down",
-                                                            "theme": "outlined",
-                                                          }
-                                                        }
-                                                      >
-                                                        <svg
-                                                          aria-hidden="true"
-                                                          className=""
-                                                          data-icon="down"
-                                                          fill="currentColor"
-                                                          focusable="false"
-                                                          height="1em"
-                                                          key="svg-down"
-                                                          viewBox="64 64 896 896"
-                                                          width="1em"
-                                                        >
-                                                          <path
-                                                            d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                                            key="svg-down-svg-0"
-                                                          />
-                                                        </svg>
-                                                      </IconReact>
-                                                    </span>
-                                                  </AntdIcon>
-                                                </ForwardRef(DownOutlined)>
-                                              </span>
-                                            </TouchFeedback>
-                                          </InputHandler>
+                                                      <path
+                                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                                                        key="svg-down-svg-0"
+                                                      />
+                                                    </svg>
+                                                  </IconReact>
+                                                </span>
+                                              </AntdIcon>
+                                            </ForwardRef(DownOutlined)>
+                                          </span>
                                         </div>
                                         <div
                                           className="ant-input-number-input-wrap"
                                         >
                                           <input
+                                            aria-valuemax={9007199254740991}
                                             aria-valuemin={0}
                                             autoComplete="off"
                                             className="ant-input-number-input"
                                             id="catalogs_create_price"
+                                            max={9007199254740991}
                                             min={0}
                                             onBlur={[Function]}
                                             onChange={[Function]}
@@ -6855,12 +6824,13 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                         </div>
                                       </div>
                                     </InputNumber>
-                                  </InputNumber>
+                                  </ForwardRef>
                                 </Component>
                               </div>
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -6869,6 +6839,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -6945,7 +6916,6 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -6958,6 +6928,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                         name="product_ids"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -7033,7 +7004,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                   >
                                     <Select
                                       bordered={true}
-                                      choiceTransitionName="zoom"
+                                      choiceTransitionName=""
                                       defaultValue={Array []}
                                       filterOption={[Function]}
                                       listHeight={128}
@@ -7045,7 +7016,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                       transitionName="slide-up"
                                     >
                                       <Select
-                                        choiceTransitionName="zoom"
+                                        choiceTransitionName=""
                                         className=""
                                         clearIcon={<ForwardRef(CloseCircleFilled) />}
                                         defaultValue={Array []}
@@ -7053,7 +7024,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                         filterOption={[Function]}
                                         inputIcon={[Function]}
                                         listHeight={128}
-                                        listItemHeight={32}
+                                        listItemHeight={24}
                                         loading={false}
                                         menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                         mode="multiple"
@@ -7070,7 +7041,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                         transitionName="slide-up"
                                       >
                                         <ForwardRef(Select)
-                                          choiceTransitionName="zoom"
+                                          choiceTransitionName=""
                                           className=""
                                           clearIcon={<ForwardRef(CloseCircleFilled) />}
                                           defaultValue={Array []}
@@ -7078,7 +7049,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                           filterOption={[Function]}
                                           inputIcon={[Function]}
                                           listHeight={128}
-                                          listItemHeight={32}
+                                          listItemHeight={24}
                                           loading={false}
                                           menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                           mode="multiple"
@@ -7113,7 +7084,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                   defaultActiveFirstOption={true}
                                                   flattenOptions={Array []}
                                                   height={128}
-                                                  itemHeight={32}
+                                                  itemHeight={24}
                                                   menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                   multiple={true}
                                                   notFoundContent={
@@ -7122,6 +7093,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                     </Context.Consumer>
                                                   }
                                                   onActiveValue={[Function]}
+                                                  onMouseEnter={[Function]}
                                                   onScroll={[Function]}
                                                   onSelect={[Function]}
                                                   onToggleOpen={[Function]}
@@ -7138,6 +7110,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                               <Trigger
                                                 action={Array []}
                                                 afterPopupVisibleChange={[Function]}
+                                                autoDestroy={false}
                                                 blurDelay={0.15}
                                                 builtinPlacements={
                                                   Object {
@@ -7219,7 +7192,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                       defaultActiveFirstOption={true}
                                                       flattenOptions={Array []}
                                                       height={128}
-                                                      itemHeight={32}
+                                                      itemHeight={24}
                                                       menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                       multiple={true}
                                                       notFoundContent={
@@ -7228,6 +7201,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                         </Context.Consumer>
                                                       }
                                                       onActiveValue={[Function]}
+                                                      onMouseEnter={[Function]}
                                                       onScroll={[Function]}
                                                       onSelect={[Function]}
                                                       onToggleOpen={[Function]}
@@ -7255,7 +7229,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                 <Selector
                                                   accessibilityIndex={0}
                                                   activeValue={null}
-                                                  choiceTransitionName="zoom"
+                                                  choiceTransitionName=""
                                                   className=""
                                                   clearIcon={<ForwardRef(CloseCircleFilled) />}
                                                   defaultValue={Array []}
@@ -7280,6 +7254,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            unselectable="on"
                                                             value=""
                                                           />
                                                           <span
@@ -7304,7 +7279,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                   inputIcon={[Function]}
                                                   key="trigger"
                                                   listHeight={128}
-                                                  listItemHeight={32}
+                                                  listItemHeight={24}
                                                   loading={false}
                                                   menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                   mode="multiple"
@@ -7317,6 +7292,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                   onChange={[Function]}
                                                   onPopupScroll={[Function]}
                                                   onSearch={[Function]}
+                                                  onSearchSubmit={[Function]}
                                                   onSelect={[Function]}
                                                   onToggleOpen={[Function]}
                                                   placeholder="Add products"
@@ -7324,18 +7300,18 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                   removeIcon={<ForwardRef(CloseOutlined) />}
                                                   searchValue=""
                                                   showSearch={true}
+                                                  tokenWithEnter={false}
                                                   transitionName="slide-up"
                                                   values={Array []}
                                                 >
                                                   <div
                                                     className="ant-select-selector"
-                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SelectSelector
                                                       accessibilityIndex={0}
                                                       activeValue={null}
-                                                      choiceTransitionName="zoom"
+                                                      choiceTransitionName=""
                                                       className=""
                                                       clearIcon={<ForwardRef(CloseCircleFilled) />}
                                                       defaultValue={Array []}
@@ -7360,6 +7336,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                unselectable="on"
                                                                 value=""
                                                               />
                                                               <span
@@ -7396,12 +7373,13 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            unselectable="on"
                                                             value=""
                                                           />,
                                                         }
                                                       }
                                                       listHeight={128}
-                                                      listItemHeight={32}
+                                                      listItemHeight={24}
                                                       loading={false}
                                                       menuItemSelectedIcon={<ForwardRef(CheckOutlined) />}
                                                       mode="multiple"
@@ -7413,10 +7391,14 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                       }
                                                       onChange={[Function]}
                                                       onInputChange={[Function]}
+                                                      onInputCompositionEnd={[Function]}
+                                                      onInputCompositionStart={[Function]}
                                                       onInputKeyDown={[Function]}
                                                       onInputMouseDown={[Function]}
+                                                      onInputPaste={[Function]}
                                                       onPopupScroll={[Function]}
                                                       onSearch={[Function]}
+                                                      onSearchSubmit={[Function]}
                                                       onSelect={[Function]}
                                                       onToggleOpen={[Function]}
                                                       placeholder="Add products"
@@ -7424,6 +7406,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                       removeIcon={<ForwardRef(CloseOutlined) />}
                                                       searchValue=""
                                                       showSearch={true}
+                                                      tokenWithEnter={false}
                                                       transitionName="slide-up"
                                                       values={Array []}
                                                     >
@@ -7431,7 +7414,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                         component={false}
                                                         keys={Array []}
                                                         motionAppear={false}
-                                                        motionName="zoom"
+                                                        motionName=""
                                                       />
                                                       <span
                                                         className="ant-select-selection-search"
@@ -7443,10 +7426,14 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                       >
                                                         <Input
                                                           accessibilityIndex={0}
+                                                          attrs={Object {}}
                                                           inputElement={null}
                                                           onChange={[Function]}
+                                                          onCompositionEnd={[Function]}
+                                                          onCompositionStart={[Function]}
                                                           onKeyDown={[Function]}
                                                           onMouseDown={[Function]}
+                                                          onPaste={[Function]}
                                                           prefixCls="ant-select"
                                                           value=""
                                                         >
@@ -7459,8 +7446,11 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                             autoComplete="off"
                                                             className="ant-select-selection-search-input"
                                                             onChange={[Function]}
+                                                            onCompositionEnd={[Function]}
+                                                            onCompositionStart={[Function]}
                                                             onKeyDown={[Function]}
                                                             onMouseDown={[Function]}
+                                                            onPaste={[Function]}
                                                             readOnly={true}
                                                             role="combobox"
                                                             style={
@@ -7468,6 +7458,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            unselectable="on"
                                                             value=""
                                                           />
                                                         </Input>
@@ -7498,6 +7489,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -7506,6 +7498,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -7558,7 +7551,6 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -7571,6 +7563,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                         name="published_date"
                         prefixCls="ant-form"
                         required={false}
+                        requiredMark={true}
                       >
                         <Col
                           className="ant-form-item-label"
@@ -8026,6 +8019,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                             <Trigger
                                               action={Array []}
                                               afterPopupVisibleChange={[Function]}
+                                              autoDestroy={false}
                                               blurDelay={0.15}
                                               builtinPlacements={
                                                 Object {
@@ -8255,6 +8249,8 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                                   className="ant-picker-input"
                                                 >
                                                   <input
+                                                    autoComplete="off"
+                                                    id="catalogs_create_published_date"
                                                     onBlur={[Function]}
                                                     onChange={[Function]}
                                                     onFocus={[Function]}
@@ -8356,6 +8352,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -8364,6 +8361,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -8390,7 +8388,6 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -8399,6 +8396,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -8491,6 +8489,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -8499,6 +8498,7 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"

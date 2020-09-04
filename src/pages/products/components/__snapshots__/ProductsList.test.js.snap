@@ -78,9 +78,11 @@ exports[`Products List component snapshot testing should match component when lo
         tabIndex={null}
         title="Previous Page"
       >
-        <a
+        <button
           className="ant-pagination-item-link"
           disabled={true}
+          tabIndex={-1}
+          type="button"
         >
           <span
             aria-label="left"
@@ -102,7 +104,7 @@ exports[`Products List component snapshot testing should match component when lo
               />
             </svg>
           </span>
-        </a>
+        </button>
       </li>
       <li
         className="ant-pagination-item ant-pagination-item-0 ant-pagination-disabled ant-pagination-item-disabled"
@@ -111,7 +113,9 @@ exports[`Products List component snapshot testing should match component when lo
         tabIndex="0"
         title={0}
       >
-        <a>
+        <a
+          rel="nofollow"
+        >
           0
         </a>
       </li>
@@ -123,9 +127,11 @@ exports[`Products List component snapshot testing should match component when lo
         tabIndex={null}
         title="Next Page"
       >
-        <a
+        <button
           className="ant-pagination-item-link"
           disabled={true}
+          tabIndex={-1}
+          type="button"
         >
           <span
             aria-label="right"
@@ -147,7 +153,7 @@ exports[`Products List component snapshot testing should match component when lo
               />
             </svg>
           </span>
-        </a>
+        </button>
       </li>
     </ul>
   </div>
@@ -181,14 +187,18 @@ exports[`Products List component snapshot testing should match component with pr
                 className="ant-descriptions"
               >
                 <div
-                  className="ant-descriptions-title"
+                  className="ant-descriptions-header"
                 >
-                  <a
-                    href="/products/1"
-                    onClick={[Function]}
+                  <div
+                    className="ant-descriptions-title"
                   >
-                    title
-                  </a>
+                    <a
+                      href="/products/1"
+                      onClick={[Function]}
+                    >
+                      title
+                    </a>
+                  </div>
                 </div>
                 <div
                   className="ant-descriptions-view"
@@ -202,48 +212,60 @@ exports[`Products List component snapshot testing should match component with pr
                           className="ant-descriptions-item"
                           colSpan={1}
                         >
-                          <span
-                            className="ant-descriptions-item-label ant-descriptions-item-colon"
+                          <div
+                            className="ant-descriptions-item-container"
                           >
-                            Slug
-                          </span>
-                          <span
-                            className="ant-descriptions-item-content"
-                          >
-                            slug
-                          </span>
+                            <span
+                              className="ant-descriptions-item-label"
+                            >
+                              Slug
+                            </span>
+                            <span
+                              className="ant-descriptions-item-content"
+                            >
+                              slug
+                            </span>
+                          </div>
                         </td>
                         <td
                           className="ant-descriptions-item"
                           colSpan={1}
                         >
-                          <span
-                            className="ant-descriptions-item-label ant-descriptions-item-colon"
+                          <div
+                            className="ant-descriptions-item-container"
                           >
-                            Price
-                          </span>
-                          <span
-                            className="ant-descriptions-item-content"
-                          >
-                            100
-                             
-                            INR
-                          </span>
+                            <span
+                              className="ant-descriptions-item-label"
+                            >
+                              Price
+                            </span>
+                            <span
+                              className="ant-descriptions-item-content"
+                            >
+                              100
+                               
+                              INR
+                            </span>
+                          </div>
                         </td>
                         <td
                           className="ant-descriptions-item"
                           colSpan={1}
                         >
-                          <span
-                            className="ant-descriptions-item-label ant-descriptions-item-colon"
+                          <div
+                            className="ant-descriptions-item-container"
                           >
-                            Status
-                          </span>
-                          <span
-                            className="ant-descriptions-item-content"
-                          >
-                            status
-                          </span>
+                            <span
+                              className="ant-descriptions-item-label"
+                            >
+                              Status
+                            </span>
+                            <span
+                              className="ant-descriptions-item-content"
+                            >
+                              status
+                            </span>
+                          </div>
                         </td>
                       </tr>
                       <tr
@@ -253,40 +275,48 @@ exports[`Products List component snapshot testing should match component with pr
                           className="ant-descriptions-item"
                           colSpan={1}
                         >
-                          <span
-                            className="ant-descriptions-item-label ant-descriptions-item-colon"
-                          >
-                            Tags
-                          </span>
-                          <span
-                            className="ant-descriptions-item-content"
+                          <div
+                            className="ant-descriptions-item-container"
                           >
                             <span
-                              className="ant-tag"
-                              style={
-                                Object {
-                                  "backgroundColor": undefined,
-                                }
-                              }
+                              className="ant-descriptions-item-label"
                             >
-                              tag1
+                              Tags
                             </span>
-                          </span>
+                            <span
+                              className="ant-descriptions-item-content"
+                            >
+                              <span
+                                className="ant-tag"
+                                style={
+                                  Object {
+                                    "backgroundColor": undefined,
+                                  }
+                                }
+                              >
+                                tag1
+                              </span>
+                            </span>
+                          </div>
                         </td>
                         <td
                           className="ant-descriptions-item"
                           colSpan={2}
                         >
-                          <span
-                            className="ant-descriptions-item-label ant-descriptions-item-colon"
+                          <div
+                            className="ant-descriptions-item-container"
                           >
-                            Created At
-                          </span>
-                          <span
-                            className="ant-descriptions-item-content"
-                          >
-                            in 3 months
-                          </span>
+                            <span
+                              className="ant-descriptions-item-label"
+                            >
+                              Created At
+                            </span>
+                            <span
+                              className="ant-descriptions-item-content"
+                            >
+                              in 3 months
+                            </span>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -341,6 +371,7 @@ exports[`Products List component snapshot testing should match component with pr
                     aria-label="delete"
                     className="anticon anticon-delete"
                     onClick={[Function]}
+                    onKeyDown={[Function]}
                     onMouseDown={[Function]}
                     onTouchStart={[Function]}
                     role="img"
@@ -385,9 +416,11 @@ exports[`Products List component snapshot testing should match component with pr
         tabIndex={null}
         title="Previous Page"
       >
-        <a
+        <button
           className="ant-pagination-item-link"
           disabled={true}
+          tabIndex={-1}
+          type="button"
         >
           <span
             aria-label="left"
@@ -409,7 +442,7 @@ exports[`Products List component snapshot testing should match component with pr
               />
             </svg>
           </span>
-        </a>
+        </button>
       </li>
       <li
         className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
@@ -418,7 +451,9 @@ exports[`Products List component snapshot testing should match component with pr
         tabIndex="0"
         title={1}
       >
-        <a>
+        <a
+          rel="nofollow"
+        >
           1
         </a>
       </li>
@@ -430,9 +465,11 @@ exports[`Products List component snapshot testing should match component with pr
         tabIndex={null}
         title="Next Page"
       >
-        <a
+        <button
           className="ant-pagination-item-link"
           disabled={true}
+          tabIndex={-1}
+          type="button"
         >
           <span
             aria-label="right"
@@ -454,7 +491,7 @@ exports[`Products List component snapshot testing should match component with pr
               />
             </svg>
           </span>
-        </a>
+        </button>
       </li>
     </ul>
   </div>
@@ -539,9 +576,11 @@ exports[`Products List component snapshot testing should render the component 1`
         tabIndex={null}
         title="Previous Page"
       >
-        <a
+        <button
           className="ant-pagination-item-link"
           disabled={true}
+          tabIndex={-1}
+          type="button"
         >
           <span
             aria-label="left"
@@ -563,7 +602,7 @@ exports[`Products List component snapshot testing should render the component 1`
               />
             </svg>
           </span>
-        </a>
+        </button>
       </li>
       <li
         className="ant-pagination-item ant-pagination-item-0 ant-pagination-disabled ant-pagination-item-disabled"
@@ -572,7 +611,9 @@ exports[`Products List component snapshot testing should render the component 1`
         tabIndex="0"
         title={0}
       >
-        <a>
+        <a
+          rel="nofollow"
+        >
           0
         </a>
       </li>
@@ -584,9 +625,11 @@ exports[`Products List component snapshot testing should render the component 1`
         tabIndex={null}
         title="Next Page"
       >
-        <a
+        <button
           className="ant-pagination-item-link"
           disabled={true}
+          tabIndex={-1}
+          type="button"
         >
           <span
             aria-label="right"
@@ -608,7 +651,7 @@ exports[`Products List component snapshot testing should render the component 1`
               />
             </svg>
           </span>
-        </a>
+        </button>
       </li>
     </ul>
   </div>

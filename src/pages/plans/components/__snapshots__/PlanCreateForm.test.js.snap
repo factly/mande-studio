@@ -49,9 +49,11 @@ exports[`Plans Create Form component snapshot testing should match component in 
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "plans_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -145,7 +147,6 @@ exports[`Plans Create Form component snapshot testing should match component in 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -158,6 +159,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                         name="plan_name"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -233,6 +235,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                                     value="plan_name"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -275,6 +278,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -283,6 +287,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -359,7 +364,6 @@ exports[`Plans Create Form component snapshot testing should match component in 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -372,6 +376,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                         name="plan_info"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -447,6 +452,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                                     value="plan_info"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -489,6 +495,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -497,6 +504,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -573,7 +581,6 @@ exports[`Plans Create Form component snapshot testing should match component in 
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -586,6 +593,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                         name="status"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -661,6 +669,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                                     value="status"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -703,6 +712,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -711,6 +721,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -737,7 +748,6 @@ exports[`Plans Create Form component snapshot testing should match component in 
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -746,6 +756,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -838,6 +849,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -846,6 +858,7 @@ exports[`Plans Create Form component snapshot testing should match component in 
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"
@@ -918,9 +931,11 @@ exports[`Plans Create Form component snapshot testing should match component wit
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "plans_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -1014,7 +1029,6 @@ exports[`Plans Create Form component snapshot testing should match component wit
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1027,6 +1041,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                         name="plan_name"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1102,6 +1117,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                                     value="plan_name"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -1144,6 +1160,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1152,6 +1169,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1228,7 +1246,6 @@ exports[`Plans Create Form component snapshot testing should match component wit
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1241,6 +1258,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                         name="plan_info"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1316,6 +1334,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                                     value="plan_info"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -1358,6 +1377,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1366,6 +1386,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1442,7 +1463,6 @@ exports[`Plans Create Form component snapshot testing should match component wit
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1455,6 +1475,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                         name="status"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1530,6 +1551,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                                     value="status"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -1572,6 +1594,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1580,6 +1603,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1606,7 +1630,6 @@ exports[`Plans Create Form component snapshot testing should match component wit
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -1615,6 +1638,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -1707,6 +1731,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -1715,6 +1740,7 @@ exports[`Plans Create Form component snapshot testing should match component wit
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"
@@ -1772,9 +1798,11 @@ exports[`Plans Create Form component snapshot testing should render the componen
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "plans_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -1862,7 +1890,6 @@ exports[`Plans Create Form component snapshot testing should render the componen
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1875,6 +1902,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                         name="plan_name"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1948,6 +1976,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                                     type="text"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -1989,6 +2018,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1997,6 +2027,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -2073,7 +2104,6 @@ exports[`Plans Create Form component snapshot testing should render the componen
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -2086,6 +2116,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                         name="plan_info"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -2159,6 +2190,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                                     type="text"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -2200,6 +2232,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -2208,6 +2241,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -2284,7 +2318,6 @@ exports[`Plans Create Form component snapshot testing should render the componen
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -2297,6 +2330,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                         name="status"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -2370,6 +2404,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                                     type="text"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -2411,6 +2446,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -2419,6 +2455,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -2445,7 +2482,6 @@ exports[`Plans Create Form component snapshot testing should render the componen
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -2454,6 +2490,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -2546,6 +2583,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -2554,6 +2592,7 @@ exports[`Plans Create Form component snapshot testing should render the componen
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"

@@ -146,7 +146,7 @@ exports[`DatasetForm component snapshot testing should match component in all st
           ]
         }
       >
-        <InputNumber
+        <ForwardRef
           min={1}
           placeholder="12"
           step={1}
@@ -176,7 +176,7 @@ exports[`DatasetForm component snapshot testing should match component in all st
       >
         <Select
           bordered={true}
-          choiceTransitionName="zoom"
+          choiceTransitionName=""
           placeholder="Select Unit"
           transitionName="slide-up"
         >
@@ -254,7 +254,7 @@ exports[`DatasetForm component snapshot testing should match component in all st
     label="Time Saved"
     name="time_saved"
   >
-    <InputNumber
+    <ForwardRef
       placeholder="12"
       step={1}
     />
@@ -434,7 +434,7 @@ exports[`DatasetForm component snapshot testing should match component with data
           ]
         }
       >
-        <InputNumber
+        <ForwardRef
           min={1}
           placeholder="12"
           step={1}
@@ -464,7 +464,7 @@ exports[`DatasetForm component snapshot testing should match component with data
       >
         <Select
           bordered={true}
-          choiceTransitionName="zoom"
+          choiceTransitionName=""
           placeholder="Select Unit"
           transitionName="slide-up"
         >
@@ -542,7 +542,7 @@ exports[`DatasetForm component snapshot testing should match component with data
     label="Time Saved"
     name="time_saved"
   >
-    <InputNumber
+    <ForwardRef
       placeholder="12"
       step={1}
     />
@@ -698,7 +698,7 @@ exports[`DatasetForm component snapshot testing should render the component 1`] 
           ]
         }
       >
-        <InputNumber
+        <ForwardRef
           min={1}
           placeholder="12"
           step={1}
@@ -728,7 +728,7 @@ exports[`DatasetForm component snapshot testing should render the component 1`] 
       >
         <Select
           bordered={true}
-          choiceTransitionName="zoom"
+          choiceTransitionName=""
           placeholder="Select Unit"
           transitionName="slide-up"
         >
@@ -806,7 +806,7 @@ exports[`DatasetForm component snapshot testing should render the component 1`] 
     label="Time Saved"
     name="time_saved"
   >
-    <InputNumber
+    <ForwardRef
       placeholder="12"
       step={1}
     />

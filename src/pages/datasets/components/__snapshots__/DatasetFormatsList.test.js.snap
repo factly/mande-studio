@@ -193,6 +193,7 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
                       <button
                         className="ant-btn"
                         onClick={[Function]}
+                        onKeyDown={[Function]}
                         onMouseDown={[Function]}
                         onTouchStart={[Function]}
                         type="button"
@@ -242,9 +243,11 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
           tabIndex={null}
           title="Previous Page"
         >
-          <a
+          <button
             className="ant-pagination-item-link"
             disabled={true}
+            tabIndex={-1}
+            type="button"
           >
             <span
               aria-label="left"
@@ -266,7 +269,7 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
                 />
               </svg>
             </span>
-          </a>
+          </button>
         </li>
         <li
           className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
@@ -275,7 +278,9 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
           tabIndex="0"
           title={1}
         >
-          <a>
+          <a
+            rel="nofollow"
+          >
             1
           </a>
         </li>
@@ -287,9 +292,11 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
           tabIndex={null}
           title="Next Page"
         >
-          <a
+          <button
             className="ant-pagination-item-link"
             disabled={true}
+            tabIndex={-1}
+            type="button"
           >
             <span
               aria-label="right"
@@ -311,7 +318,7 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
                 />
               </svg>
             </span>
-          </a>
+          </button>
         </li>
       </ul>
     </div>
@@ -469,9 +476,11 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
           tabIndex={null}
           title="Previous Page"
         >
-          <a
+          <button
             className="ant-pagination-item-link"
             disabled={true}
+            tabIndex={-1}
+            type="button"
           >
             <span
               aria-label="left"
@@ -493,7 +502,7 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
                 />
               </svg>
             </span>
-          </a>
+          </button>
         </li>
         <li
           className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
@@ -502,7 +511,9 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
           tabIndex="0"
           title={1}
         >
-          <a>
+          <a
+            rel="nofollow"
+          >
             1
           </a>
         </li>
@@ -514,9 +525,11 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
           tabIndex={null}
           title="Next Page"
         >
-          <a
+          <button
             className="ant-pagination-item-link"
             disabled={true}
+            tabIndex={-1}
+            type="button"
           >
             <span
               aria-label="right"
@@ -538,7 +551,7 @@ exports[`DatasetFormatsList component snapshot testing should match component wi
                 />
               </svg>
             </span>
-          </a>
+          </button>
         </li>
       </ul>
     </div>
@@ -557,7 +570,7 @@ exports[`DatasetFormatsList component snapshot testing should render the compone
       className="ant-spin-container"
     >
       <div
-        className="ant-table ant-table-bordered"
+        className="ant-table ant-table-bordered ant-table-empty"
       >
         <div
           className="ant-table-title"

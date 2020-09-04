@@ -27,7 +27,6 @@ exports[`ProductDetails component should render the component 1`] = `
       label="Tags"
     >
       <Tag
-        closable={false}
         key="1"
       >
         tag1

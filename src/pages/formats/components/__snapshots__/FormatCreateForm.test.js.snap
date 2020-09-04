@@ -49,9 +49,11 @@ exports[`Formats Create Form component snapshot testing should match component i
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "formats_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -145,7 +147,6 @@ exports[`Formats Create Form component snapshot testing should match component i
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -158,6 +159,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                         name="name"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -233,6 +235,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                                     value="name"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -275,6 +278,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -283,6 +287,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -359,7 +364,6 @@ exports[`Formats Create Form component snapshot testing should match component i
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -372,6 +376,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                         name="description"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -447,6 +452,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                                     value="description"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -489,6 +495,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -497,6 +504,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -575,7 +583,6 @@ exports[`Formats Create Form component snapshot testing should match component i
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -588,6 +595,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                         name="is_default"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -674,24 +682,27 @@ exports[`Formats Create Form component snapshot testing should match component i
                                         className=""
                                         defaultChecked={true}
                                         id="formats_create_is_default"
-                                        loadingIcon={null}
+                                        loadingIcon={
+                                          <div
+                                            className="ant-switch-handle"
+                                          />
+                                        }
                                         onChange={[Function]}
                                         prefixCls="ant-switch"
                                         unCheckedChildren={<ForwardRef(CloseOutlined) />}
                                       >
                                         <button
                                           aria-checked={true}
-                                          checked={true}
                                           className="ant-switch ant-switch-checked"
-                                          defaultChecked={true}
                                           id="formats_create_is_default"
-                                          onChange={[Function]}
                                           onClick={[Function]}
                                           onKeyDown={[Function]}
-                                          onMouseUp={[Function]}
                                           role="switch"
                                           type="button"
                                         >
+                                          <div
+                                            className="ant-switch-handle"
+                                          />
                                           <span
                                             className="ant-switch-inner"
                                           >
@@ -778,6 +789,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -786,6 +798,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -812,7 +825,6 @@ exports[`Formats Create Form component snapshot testing should match component i
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -821,6 +833,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -913,6 +926,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -921,6 +935,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"
@@ -993,9 +1008,11 @@ exports[`Formats Create Form component snapshot testing should match component w
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "formats_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -1089,7 +1106,6 @@ exports[`Formats Create Form component snapshot testing should match component w
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1102,6 +1118,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                         name="name"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1177,6 +1194,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                                     value="name"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -1219,6 +1237,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1227,6 +1246,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1303,7 +1323,6 @@ exports[`Formats Create Form component snapshot testing should match component w
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1316,6 +1335,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                         name="description"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1391,6 +1411,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                                     value="description"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -1433,6 +1454,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1441,6 +1463,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1519,7 +1542,6 @@ exports[`Formats Create Form component snapshot testing should match component w
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -1532,6 +1554,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                         name="is_default"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -1618,24 +1641,27 @@ exports[`Formats Create Form component snapshot testing should match component w
                                         className=""
                                         defaultChecked={true}
                                         id="formats_create_is_default"
-                                        loadingIcon={null}
+                                        loadingIcon={
+                                          <div
+                                            className="ant-switch-handle"
+                                          />
+                                        }
                                         onChange={[Function]}
                                         prefixCls="ant-switch"
                                         unCheckedChildren={<ForwardRef(CloseOutlined) />}
                                       >
                                         <button
                                           aria-checked={true}
-                                          checked={true}
                                           className="ant-switch ant-switch-checked"
-                                          defaultChecked={true}
                                           id="formats_create_is_default"
-                                          onChange={[Function]}
                                           onClick={[Function]}
                                           onKeyDown={[Function]}
-                                          onMouseUp={[Function]}
                                           role="switch"
                                           type="button"
                                         >
+                                          <div
+                                            className="ant-switch-handle"
+                                          />
                                           <span
                                             className="ant-switch-inner"
                                           >
@@ -1722,6 +1748,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -1730,6 +1757,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -1756,7 +1784,6 @@ exports[`Formats Create Form component snapshot testing should match component w
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -1765,6 +1792,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -1857,6 +1885,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -1865,6 +1894,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"
@@ -1926,9 +1956,11 @@ exports[`Formats Create Form component snapshot testing should render the compon
           form={
             Object {
               "__INTERNAL__": Object {
+                "itemRef": [Function],
                 "name": "formats_create",
               },
               "getFieldError": [Function],
+              "getFieldInstance": [Function],
               "getFieldValue": [Function],
               "getFieldsError": [Function],
               "getFieldsValue": [Function],
@@ -2020,7 +2052,6 @@ exports[`Formats Create Form component snapshot testing should render the compon
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -2033,6 +2064,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                         name="name"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -2106,6 +2138,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                     type="text"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -2147,6 +2180,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -2155,6 +2189,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -2231,7 +2266,6 @@ exports[`Formats Create Form component snapshot testing should render the compon
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -2244,6 +2278,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                         name="description"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -2317,6 +2352,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                     type="text"
                                   >
                                     <ClearableLabeledInput
+                                      bordered={true}
                                       element={
                                         <input
                                           className="ant-input"
@@ -2358,6 +2394,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -2366,6 +2403,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -2444,7 +2482,6 @@ exports[`Formats Create Form component snapshot testing should render the compon
                 >
                   <Row
                     className="ant-form-item"
-                    gutter={0}
                     key="row"
                   >
                     <div
@@ -2457,6 +2494,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                         name="is_default"
                         prefixCls="ant-form"
                         required={true}
+                        requiredMark={true}
                         rules={
                           Array [
                             Object {
@@ -2543,24 +2581,27 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                         className=""
                                         defaultChecked={true}
                                         id="formats_create_is_default"
-                                        loadingIcon={null}
+                                        loadingIcon={
+                                          <div
+                                            className="ant-switch-handle"
+                                          />
+                                        }
                                         onChange={[Function]}
                                         prefixCls="ant-switch"
                                         unCheckedChildren={<ForwardRef(CloseOutlined) />}
                                       >
                                         <button
                                           aria-checked={true}
-                                          checked={true}
                                           className="ant-switch ant-switch-checked"
-                                          defaultChecked={true}
                                           id="formats_create_is_default"
-                                          onChange={[Function]}
                                           onClick={[Function]}
                                           onKeyDown={[Function]}
-                                          onMouseUp={[Function]}
                                           role="switch"
                                           type="button"
                                         >
+                                          <div
+                                            className="ant-switch-handle"
+                                          />
                                           <span
                                             className="ant-switch-inner"
                                           >
@@ -2647,6 +2688,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                             </div>
                             <ForwardRef
                               motionAppear={true}
+                              motionDeadline={500}
                               motionName="show-help"
                               onLeaveEnd={[Function]}
                               removeOnLeave={true}
@@ -2655,6 +2697,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                               <CSSMotion
                                 internalRef={null}
                                 motionAppear={true}
+                                motionDeadline={500}
                                 motionEnter={true}
                                 motionLeave={true}
                                 motionName="show-help"
@@ -2681,7 +2724,6 @@ exports[`Formats Create Form component snapshot testing should render the compon
             >
               <Row
                 className="ant-form-item"
-                gutter={0}
                 key="row"
               >
                 <div
@@ -2690,6 +2732,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                 >
                   <FormItemLabel
                     prefixCls="ant-form"
+                    requiredMark={true}
                     wrapperCol={
                       Object {
                         "offset": 6,
@@ -2782,6 +2825,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                         </div>
                         <ForwardRef
                           motionAppear={true}
+                          motionDeadline={500}
                           motionName="show-help"
                           onLeaveEnd={[Function]}
                           removeOnLeave={true}
@@ -2790,6 +2834,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                           <CSSMotion
                             internalRef={null}
                             motionAppear={true}
+                            motionDeadline={500}
                             motionEnter={true}
                             motionLeave={true}
                             motionName="show-help"

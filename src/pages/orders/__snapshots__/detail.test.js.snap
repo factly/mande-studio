@@ -13,7 +13,7 @@ exports[`Orders detail component snapshot testing should match component when no
           className="ant-spin-container"
         >
           <div
-            className="ant-table ant-table-bordered"
+            className="ant-table ant-table-bordered ant-table-empty"
           >
             <div
               className="ant-table-container"
@@ -176,9 +176,13 @@ exports[`Orders detail component snapshot testing should render the component 1`
         className="ant-descriptions"
       >
         <div
-          className="ant-descriptions-title"
+          className="ant-descriptions-header"
         >
-          Order details
+          <div
+            className="ant-descriptions-title"
+          >
+            Order details
+          </div>
         </div>
         <div
           className="ant-descriptions-view"
@@ -192,48 +196,60 @@ exports[`Orders detail component snapshot testing should render the component 1`
                   className="ant-descriptions-item"
                   colSpan={1}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
+                  <div
+                    className="ant-descriptions-item-container"
                   >
-                    Order ID
-                  </span>
-                  <span
-                    className="ant-descriptions-item-content"
-                  >
-                    1
-                  </span>
+                    <span
+                      className="ant-descriptions-item-label"
+                    >
+                      Order ID
+                    </span>
+                    <span
+                      className="ant-descriptions-item-content"
+                    >
+                      1
+                    </span>
+                  </div>
                 </td>
                 <td
                   className="ant-descriptions-item"
                   colSpan={1}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
+                  <div
+                    className="ant-descriptions-item-container"
                   >
-                    Order Status
-                  </span>
-                  <span
-                    className="ant-descriptions-item-content"
-                  >
-                    status
-                  </span>
+                    <span
+                      className="ant-descriptions-item-label"
+                    >
+                      Order Status
+                    </span>
+                    <span
+                      className="ant-descriptions-item-content"
+                    >
+                      status
+                    </span>
+                  </div>
                 </td>
                 <td
                   className="ant-descriptions-item"
                   colSpan={1}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
+                  <div
+                    className="ant-descriptions-item-container"
                   >
-                    Payment
-                  </span>
-                  <span
-                    className="ant-descriptions-item-content"
-                  >
-                    100
-                     
-                    INR
-                  </span>
+                    <span
+                      className="ant-descriptions-item-label"
+                    >
+                      Payment
+                    </span>
+                    <span
+                      className="ant-descriptions-item-content"
+                    >
+                      100
+                       
+                      INR
+                    </span>
+                  </div>
                 </td>
               </tr>
               <tr
@@ -243,31 +259,39 @@ exports[`Orders detail component snapshot testing should render the component 1`
                   className="ant-descriptions-item"
                   colSpan={1}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
+                  <div
+                    className="ant-descriptions-item-container"
                   >
-                    Payment Gateway
-                  </span>
-                  <span
-                    className="ant-descriptions-item-content"
-                  >
-                    gateway
-                  </span>
+                    <span
+                      className="ant-descriptions-item-label"
+                    >
+                      Payment Gateway
+                    </span>
+                    <span
+                      className="ant-descriptions-item-content"
+                    >
+                      gateway
+                    </span>
+                  </div>
                 </td>
                 <td
                   className="ant-descriptions-item"
                   colSpan={2}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
+                  <div
+                    className="ant-descriptions-item-container"
                   >
-                    Payment Status
-                  </span>
-                  <span
-                    className="ant-descriptions-item-content"
-                  >
-                    status
-                  </span>
+                    <span
+                      className="ant-descriptions-item-label"
+                    >
+                      Payment Status
+                    </span>
+                    <span
+                      className="ant-descriptions-item-content"
+                    >
+                      status
+                    </span>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -287,7 +311,7 @@ exports[`Orders detail component snapshot testing should render the component 1`
           className="ant-spin-container"
         >
           <div
-            className="ant-table ant-table-bordered"
+            className="ant-table ant-table-bordered ant-table-empty"
           >
             <div
               className="ant-table-container"

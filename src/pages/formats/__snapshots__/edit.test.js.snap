@@ -116,17 +116,16 @@ exports[`Formats List component snapshot testing should match component with emp
         >
           <button
             aria-checked={true}
-            checked={true}
             className="ant-switch ant-switch-checked"
-            defaultChecked={true}
             id="formats_create_is_default"
-            onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
-            onMouseUp={[Function]}
             role="switch"
             type="button"
           >
+            <div
+              className="ant-switch-handle"
+            />
             <span
               className="ant-switch-inner"
             >
@@ -346,17 +345,16 @@ exports[`Formats List component snapshot testing should render the component 1`]
         >
           <button
             aria-checked={true}
-            checked={true}
             className="ant-switch ant-switch-checked"
-            defaultChecked={true}
             id="formats_create_is_default"
-            onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
-            onMouseUp={[Function]}
             role="switch"
             type="button"
           >
+            <div
+              className="ant-switch-handle"
+            />
             <span
               className="ant-switch-inner"
             >
