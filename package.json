@@ -74,7 +74,8 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "react-redux": "^7.2.1"
+    "react-redux": "^7.2.1",
+    "semantic-release": "^17.1.1"
   },
   "config": {
     "commitizen": {
