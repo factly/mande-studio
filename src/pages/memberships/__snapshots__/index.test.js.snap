@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Membership List component should render the component 1`] = `<MembershipList />`;

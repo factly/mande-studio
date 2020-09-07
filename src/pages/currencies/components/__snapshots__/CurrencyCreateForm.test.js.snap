@@ -1,0 +1,1962 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Currencies Create Form component snapshot testing should match component in all steps 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <CurrencyCreateForm
+    data={
+      Object {
+        "iso_code": "iso_code",
+        "name": "name",
+      }
+    }
+  >
+    <ForwardRef(InternalForm)
+      initialValues={
+        Object {
+          "iso_code": "iso_code",
+          "name": "name",
+        }
+      }
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="currencies_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "itemRef": [Function],
+                "name": "currencies_create",
+              },
+              "getFieldError": [Function],
+              "getFieldInstance": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="currencies_create"
+          initialValues={
+            Object {
+              "iso_code": "iso_code",
+              "name": "name",
+            }
+          }
+          name="currencies_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="currencies_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="name"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="name"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_name"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "name",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="currencies_create_name"
+                        label="Name"
+                        name="name"
+                        prefixCls="ant-form"
+                        required={true}
+                        requiredMark={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="currencies_create_name"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "name",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="name"
+                                >
+                                  <Input
+                                    id="currencies_create_name"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Indian Rupee"
+                                    type="text"
+                                    value="name"
+                                  >
+                                    <ClearableLabeledInput
+                                      bordered={true}
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="currencies_create_name"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Indian Rupee"
+                                          type="text"
+                                          value="name"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="currencies_create_name"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Indian Rupee"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="name"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="currencies_create_name"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Indian Rupee"
+                                        type="text"
+                                        value="name"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionDeadline={500}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionDeadline={500}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="ISO Code"
+              name="iso_code"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter iso code!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="ISO Code"
+                messageVariables={
+                  Object {
+                    "label": "ISO Code",
+                  }
+                }
+                name="iso_code"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter iso code!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_iso_code"
+                  label="ISO Code"
+                  messageVariables={
+                    Object {
+                      "label": "ISO Code",
+                    }
+                  }
+                  name={
+                    Array [
+                      "iso_code",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter iso code!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="currencies_create_iso_code"
+                        label="ISO Code"
+                        name="iso_code"
+                        prefixCls="ant-form"
+                        required={true}
+                        requiredMark={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter iso code!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="currencies_create_iso_code"
+                              title="ISO Code"
+                            >
+                              ISO Code
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="ISO Code"
+                        name={
+                          Array [
+                            "iso_code",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter iso code!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="iso_code"
+                                >
+                                  <Input
+                                    id="currencies_create_iso_code"
+                                    onChange={[Function]}
+                                    placeholder="Ex. INR"
+                                    type="text"
+                                    value="iso_code"
+                                  >
+                                    <ClearableLabeledInput
+                                      bordered={true}
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="currencies_create_iso_code"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. INR"
+                                          type="text"
+                                          value="iso_code"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="currencies_create_iso_code"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. INR"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="iso_code"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="currencies_create_iso_code"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. INR"
+                                        type="text"
+                                        value="iso_code"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionDeadline={500}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionDeadline={500}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    requiredMark={true}
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionDeadline={500}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionDeadline={500}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </CurrencyCreateForm>
+</Provider>
+`;
+
+exports[`Currencies Create Form component snapshot testing should match component with data 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <CurrencyCreateForm
+    data={
+      Object {
+        "iso_code": "iso_code",
+        "name": "name",
+      }
+    }
+    onSubmit={[MockFunction]}
+  >
+    <ForwardRef(InternalForm)
+      initialValues={
+        Object {
+          "iso_code": "iso_code",
+          "name": "name",
+        }
+      }
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="currencies_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "itemRef": [Function],
+                "name": "currencies_create",
+              },
+              "getFieldError": [Function],
+              "getFieldInstance": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="currencies_create"
+          initialValues={
+            Object {
+              "iso_code": "iso_code",
+              "name": "name",
+            }
+          }
+          name="currencies_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="currencies_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="name"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="name"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_name"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "name",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="currencies_create_name"
+                        label="Name"
+                        name="name"
+                        prefixCls="ant-form"
+                        required={true}
+                        requiredMark={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="currencies_create_name"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "name",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="name"
+                                >
+                                  <Input
+                                    id="currencies_create_name"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Indian Rupee"
+                                    type="text"
+                                    value="name"
+                                  >
+                                    <ClearableLabeledInput
+                                      bordered={true}
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="currencies_create_name"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Indian Rupee"
+                                          type="text"
+                                          value="name"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="currencies_create_name"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Indian Rupee"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="name"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="currencies_create_name"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Indian Rupee"
+                                        type="text"
+                                        value="name"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionDeadline={500}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionDeadline={500}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="ISO Code"
+              name="iso_code"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter iso code!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="ISO Code"
+                messageVariables={
+                  Object {
+                    "label": "ISO Code",
+                  }
+                }
+                name="iso_code"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter iso code!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_iso_code"
+                  label="ISO Code"
+                  messageVariables={
+                    Object {
+                      "label": "ISO Code",
+                    }
+                  }
+                  name={
+                    Array [
+                      "iso_code",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter iso code!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="currencies_create_iso_code"
+                        label="ISO Code"
+                        name="iso_code"
+                        prefixCls="ant-form"
+                        required={true}
+                        requiredMark={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter iso code!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="currencies_create_iso_code"
+                              title="ISO Code"
+                            >
+                              ISO Code
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="ISO Code"
+                        name={
+                          Array [
+                            "iso_code",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter iso code!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                  value="iso_code"
+                                >
+                                  <Input
+                                    id="currencies_create_iso_code"
+                                    onChange={[Function]}
+                                    placeholder="Ex. INR"
+                                    type="text"
+                                    value="iso_code"
+                                  >
+                                    <ClearableLabeledInput
+                                      bordered={true}
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="currencies_create_iso_code"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. INR"
+                                          type="text"
+                                          value="iso_code"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="currencies_create_iso_code"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. INR"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value="iso_code"
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="currencies_create_iso_code"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. INR"
+                                        type="text"
+                                        value="iso_code"
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionDeadline={500}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionDeadline={500}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    requiredMark={true}
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionDeadline={500}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionDeadline={500}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </CurrencyCreateForm>
+</Provider>
+`;
+
+exports[`Currencies Create Form component snapshot testing should render the component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <CurrencyCreateForm>
+    <ForwardRef(InternalForm)
+      initialValues={Object {}}
+      labelCol={
+        Object {
+          "span": 6,
+        }
+      }
+      name="currencies_create"
+      onFinish={[Function]}
+      wrapperCol={
+        Object {
+          "span": 14,
+        }
+      }
+    >
+      <SizeContextProvider>
+        <ForwardRef(Form)
+          className="ant-form ant-form-horizontal"
+          form={
+            Object {
+              "__INTERNAL__": Object {
+                "itemRef": [Function],
+                "name": "currencies_create",
+              },
+              "getFieldError": [Function],
+              "getFieldInstance": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "getInternalHooks": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "resetFields": [Function],
+              "scrollToField": [Function],
+              "setFields": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+            }
+          }
+          id="currencies_create"
+          initialValues={Object {}}
+          name="currencies_create"
+          onFinish={[Function]}
+          onFinishFailed={[Function]}
+        >
+          <form
+            className="ant-form ant-form-horizontal"
+            id="currencies_create"
+            onSubmit={[Function]}
+          >
+            <FormItem
+              label="Name"
+              name="name"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter name!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="Name"
+                messageVariables={
+                  Object {
+                    "label": "Name",
+                  }
+                }
+                name="name"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter name!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_name"
+                  label="Name"
+                  messageVariables={
+                    Object {
+                      "label": "Name",
+                    }
+                  }
+                  name={
+                    Array [
+                      "name",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter name!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="currencies_create_name"
+                        label="Name"
+                        name="name"
+                        prefixCls="ant-form"
+                        required={true}
+                        requiredMark={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="currencies_create_name"
+                              title="Name"
+                            >
+                              Name
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="Name"
+                        name={
+                          Array [
+                            "name",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter name!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                >
+                                  <Input
+                                    id="currencies_create_name"
+                                    onChange={[Function]}
+                                    placeholder="Ex. Indian Rupee"
+                                    type="text"
+                                  >
+                                    <ClearableLabeledInput
+                                      bordered={true}
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="currencies_create_name"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Indian Rupee"
+                                          type="text"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="currencies_create_name"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. Indian Rupee"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value=""
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="currencies_create_name"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. Indian Rupee"
+                                        type="text"
+                                        value=""
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionDeadline={500}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionDeadline={500}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              label="ISO Code"
+              name="iso_code"
+              rules={
+                Array [
+                  Object {
+                    "message": "Please enter iso code!",
+                    "required": true,
+                  },
+                ]
+              }
+            >
+              <WrapperField
+                label="ISO Code"
+                messageVariables={
+                  Object {
+                    "label": "ISO Code",
+                  }
+                }
+                name="iso_code"
+                onReset={[Function]}
+                rules={
+                  Array [
+                    Object {
+                      "message": "Please enter iso code!",
+                      "required": true,
+                    },
+                  ]
+                }
+                trigger="onChange"
+                validateTrigger="onChange"
+              >
+                <Field
+                  key="_iso_code"
+                  label="ISO Code"
+                  messageVariables={
+                    Object {
+                      "label": "ISO Code",
+                    }
+                  }
+                  name={
+                    Array [
+                      "iso_code",
+                    ]
+                  }
+                  onReset={[Function]}
+                  rules={
+                    Array [
+                      Object {
+                        "message": "Please enter iso code!",
+                        "required": true,
+                      },
+                    ]
+                  }
+                  trigger="onChange"
+                  validateTrigger="onChange"
+                  valuePropName="value"
+                >
+                  <Row
+                    className="ant-form-item"
+                    key="row"
+                  >
+                    <div
+                      className="ant-row ant-form-item"
+                      style={Object {}}
+                    >
+                      <FormItemLabel
+                        htmlFor="currencies_create_iso_code"
+                        label="ISO Code"
+                        name="iso_code"
+                        prefixCls="ant-form"
+                        required={true}
+                        requiredMark={true}
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter iso code!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                      >
+                        <Col
+                          className="ant-form-item-label"
+                          span={6}
+                        >
+                          <div
+                            className="ant-col ant-col-6 ant-form-item-label"
+                            style={Object {}}
+                          >
+                            <label
+                              className="ant-form-item-required"
+                              htmlFor="currencies_create_iso_code"
+                              title="ISO Code"
+                            >
+                              ISO Code
+                            </label>
+                          </div>
+                        </Col>
+                      </FormItemLabel>
+                      <FormItemInput
+                        errors={Array []}
+                        label="ISO Code"
+                        name={
+                          Array [
+                            "iso_code",
+                          ]
+                        }
+                        onDomErrorVisibleChange={[Function]}
+                        prefixCls="ant-form"
+                        rules={
+                          Array [
+                            Object {
+                              "message": "Please enter iso code!",
+                              "required": true,
+                            },
+                          ]
+                        }
+                        touched={false}
+                        validateStatus=""
+                        validating={false}
+                      >
+                        <Col
+                          className="ant-form-item-control"
+                          span={14}
+                        >
+                          <div
+                            className="ant-col ant-col-14 ant-form-item-control"
+                            style={Object {}}
+                          >
+                            <div
+                              className="ant-form-item-control-input"
+                            >
+                              <div
+                                className="ant-form-item-control-input-content"
+                              >
+                                <Component
+                                  update={1}
+                                >
+                                  <Input
+                                    id="currencies_create_iso_code"
+                                    onChange={[Function]}
+                                    placeholder="Ex. INR"
+                                    type="text"
+                                  >
+                                    <ClearableLabeledInput
+                                      bordered={true}
+                                      element={
+                                        <input
+                                          className="ant-input"
+                                          id="currencies_create_iso_code"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. INR"
+                                          type="text"
+                                        />
+                                      }
+                                      focused={false}
+                                      handleReset={[Function]}
+                                      id="currencies_create_iso_code"
+                                      inputType="input"
+                                      onChange={[Function]}
+                                      placeholder="Ex. INR"
+                                      prefixCls="ant-input"
+                                      triggerFocus={[Function]}
+                                      type="text"
+                                      value=""
+                                    >
+                                      <input
+                                        className="ant-input"
+                                        id="currencies_create_iso_code"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        placeholder="Ex. INR"
+                                        type="text"
+                                        value=""
+                                      />
+                                    </ClearableLabeledInput>
+                                  </Input>
+                                </Component>
+                              </div>
+                            </div>
+                            <ForwardRef
+                              motionAppear={true}
+                              motionDeadline={500}
+                              motionName="show-help"
+                              onLeaveEnd={[Function]}
+                              removeOnLeave={true}
+                              visible={false}
+                            >
+                              <CSSMotion
+                                internalRef={null}
+                                motionAppear={true}
+                                motionDeadline={500}
+                                motionEnter={true}
+                                motionLeave={true}
+                                motionName="show-help"
+                                onLeaveEnd={[Function]}
+                                removeOnLeave={true}
+                                visible={false}
+                              />
+                            </ForwardRef>
+                          </div>
+                        </Col>
+                      </FormItemInput>
+                    </div>
+                  </Row>
+                </Field>
+              </WrapperField>
+            </FormItem>
+            <FormItem
+              wrapperCol={
+                Object {
+                  "offset": 6,
+                  "span": 12,
+                }
+              }
+            >
+              <Row
+                className="ant-form-item"
+                key="row"
+              >
+                <div
+                  className="ant-row ant-form-item"
+                  style={Object {}}
+                >
+                  <FormItemLabel
+                    prefixCls="ant-form"
+                    requiredMark={true}
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  />
+                  <FormItemInput
+                    errors={Array []}
+                    onDomErrorVisibleChange={[Function]}
+                    prefixCls="ant-form"
+                    validateStatus=""
+                    wrapperCol={
+                      Object {
+                        "offset": 6,
+                        "span": 12,
+                      }
+                    }
+                  >
+                    <Col
+                      className="ant-form-item-control"
+                      offset={6}
+                      span={12}
+                    >
+                      <div
+                        className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-form-item-control-input"
+                        >
+                          <div
+                            className="ant-form-item-control-input-content"
+                          >
+                            <Button
+                              block={false}
+                              ghost={false}
+                              htmlType="submit"
+                              loading={false}
+                              type="primary"
+                            >
+                              <Wave>
+                                <button
+                                  className="ant-btn ant-btn-primary"
+                                  onClick={[Function]}
+                                  type="submit"
+                                >
+                                  <LoadingIcon
+                                    existIcon={false}
+                                    loading={false}
+                                    prefixCls="ant-btn"
+                                  >
+                                    <ForwardRef
+                                      motionName="ant-btn-loading-icon-motion"
+                                      onAppearActive={[Function]}
+                                      onAppearStart={[Function]}
+                                      onEnterActive={[Function]}
+                                      onEnterStart={[Function]}
+                                      onLeaveActive={[Function]}
+                                      onLeaveStart={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <CSSMotion
+                                        internalRef={null}
+                                        motionAppear={true}
+                                        motionEnter={true}
+                                        motionLeave={true}
+                                        motionName="ant-btn-loading-icon-motion"
+                                        onAppearActive={[Function]}
+                                        onAppearStart={[Function]}
+                                        onEnterActive={[Function]}
+                                        onEnterStart={[Function]}
+                                        onLeaveActive={[Function]}
+                                        onLeaveStart={[Function]}
+                                        removeOnLeave={true}
+                                        visible={false}
+                                      />
+                                    </ForwardRef>
+                                  </LoadingIcon>
+                                  <span
+                                    key=".0"
+                                  >
+                                    Submit
+                                  </span>
+                                </button>
+                              </Wave>
+                            </Button>
+                          </div>
+                        </div>
+                        <ForwardRef
+                          motionAppear={true}
+                          motionDeadline={500}
+                          motionName="show-help"
+                          onLeaveEnd={[Function]}
+                          removeOnLeave={true}
+                          visible={false}
+                        >
+                          <CSSMotion
+                            internalRef={null}
+                            motionAppear={true}
+                            motionDeadline={500}
+                            motionEnter={true}
+                            motionLeave={true}
+                            motionName="show-help"
+                            onLeaveEnd={[Function]}
+                            removeOnLeave={true}
+                            visible={false}
+                          />
+                        </ForwardRef>
+                      </div>
+                    </Col>
+                  </FormItemInput>
+                </div>
+              </Row>
+            </FormItem>
+          </form>
+        </ForwardRef(Form)>
+      </SizeContextProvider>
+    </ForwardRef(InternalForm)>
+  </CurrencyCreateForm>
+</Provider>
+`;

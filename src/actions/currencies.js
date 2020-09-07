@@ -116,14 +116,14 @@ export const getCurrency = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_CURRENCY_LOADING,
     payload: { loading },
   };
 };
 
-const addCurrency = (currency) => {
+export const addCurrency = (currency) => {
   return {
     type: ADD_CURRENCY,
     payload: { currency },
@@ -139,21 +139,21 @@ export const addCurrencies = (currencies) => {
   };
 };
 
-const setCurrencyRequest = (req, total) => {
+export const setCurrencyRequest = (req, total) => {
   return {
     type: SET_CURRENCY_REQUEST,
     payload: { req, total },
   };
 };
 
-const setCurrencyIds = (ids) => {
+export const setCurrencyIds = (ids) => {
   return {
     type: SET_CURRENCY_IDS,
     payload: { ids },
   };
 };
 
-const resetCurrency = () => {
+export const resetCurrency = () => {
   return {
     type: RESET_CURRENCY,
   };

@@ -45,7 +45,7 @@ export const loadOrderItems = (id, page = 1, limit = 5) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_ORDERITEM_LOADING,
     payload: { loading },
@@ -64,14 +64,14 @@ export const addOrderItems = (orderItems) => (dispatch) => {
   });
 };
 
-const setOrderItemRequest = (req, total) => {
+export const setOrderItemRequest = (req, total) => {
   return {
     type: SET_ORDERITEM_REQUEST,
     payload: { req, total },
   };
 };
 
-const setOrderItemIds = (ids) => {
+export const setOrderItemIds = (ids) => {
   return {
     type: SET_ORDERITEM_IDS,
     payload: { ids },

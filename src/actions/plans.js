@@ -116,14 +116,14 @@ export const getPlan = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_PLAN_LOADING,
     payload: { loading },
   };
 };
 
-const addPlan = (plan) => {
+export const addPlan = (plan) => {
   return {
     type: ADD_PLAN,
     payload: { plan },
@@ -139,21 +139,21 @@ export const addPlans = (plans) => {
   };
 };
 
-const setPlanRequest = (req, total) => {
+export const setPlanRequest = (req, total) => {
   return {
     type: SET_PLAN_REQUEST,
     payload: { req, total },
   };
 };
 
-const setPlanIds = (ids) => {
+export const setPlanIds = (ids) => {
   return {
     type: SET_PLAN_IDS,
     payload: { ids },
   };
 };
 
-const resetPlan = () => {
+export const resetPlan = () => {
   return {
     type: RESET_PLAN,
   };

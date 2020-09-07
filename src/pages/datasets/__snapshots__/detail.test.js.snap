@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Datasets detail component should render the component 1`] = `
+<Fragment>
+  <DatasetDetails
+    dataset={
+      Object {
+        "id": 1,
+        "name": "dataset",
+      }
+    }
+  />
+  <DatasetFormatsList
+    datasetId={1}
+    showOperations={false}
+  />
+</Fragment>
+`;
+
+exports[`Datasets detail component should render the component without dataset 1`] = `
+<Fragment>
+  <DatasetDetails
+    dataset={Object {}}
+  />
+  <DatasetFormatsList
+    showOperations={false}
+  />
+</Fragment>
+`;

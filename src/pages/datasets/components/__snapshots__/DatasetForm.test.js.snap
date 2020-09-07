@@ -1,0 +1,841 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatasetForm component snapshot testing should match component in all steps 1`] = `
+<ForwardRef(InternalForm)
+  initialValues={
+    Object {
+      "contact_email": "contact_email",
+      "contact_name": "contact_name",
+      "data_standard": "data_standard",
+      "description": "description",
+      "feature_media": Object {
+        "id": 10,
+        "media": "media",
+      },
+      "frequency": Object {
+        "count": 1,
+        "units": "units",
+      },
+      "granularity": "granularity",
+      "id": 1,
+      "license": "license",
+      "related_articles": "related_articles",
+      "source": "source",
+      "temporal_coverage": "temporal_coverage",
+      "time_saved": 2,
+      "title": "title",
+    }
+  }
+  labelCol={
+    Object {
+      "span": 6,
+    }
+  }
+  name="datasets_create_step_one"
+  onFinish={[Function]}
+  wrapperCol={
+    Object {
+      "span": 14,
+    }
+  }
+>
+  <FormItem
+    key="title"
+    label="Title"
+    name="title"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Title!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="Dataset title"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="contact_email"
+    label="Contact Email"
+    name="contact_email"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Contact Email!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="shashi@factly.in"
+      type="email"
+    />
+  </FormItem>
+  <FormItem
+    key="contact_name"
+    label="Contact Name"
+    name="contact_name"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Contact Name!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="Shashi"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="description"
+    label="Description"
+    name="description"
+  >
+    <Input
+      placeholder="description"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="data_standard"
+    label="Data Standard"
+    name="data_standard"
+  >
+    <Input
+      placeholder="standard"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="frequency"
+    label="Frequency"
+    name="frequency"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Frequency!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Group
+      compact={true}
+    >
+      <FormItem
+        name={
+          Array [
+            "frequency",
+            "count",
+          ]
+        }
+        noStyle={true}
+        rules={
+          Array [
+            Object {
+              "message": "Frequency count is required",
+              "required": true,
+            },
+          ]
+        }
+      >
+        <ForwardRef
+          min={1}
+          placeholder="12"
+          step={1}
+          style={
+            Object {
+              "width": "15%",
+            }
+          }
+        />
+      </FormItem>
+      <FormItem
+        name={
+          Array [
+            "frequency",
+            "units",
+          ]
+        }
+        noStyle={true}
+        rules={
+          Array [
+            Object {
+              "message": "Frequency unit is required",
+              "required": true,
+            },
+          ]
+        }
+      >
+        <Select
+          bordered={true}
+          choiceTransitionName=""
+          placeholder="Select Unit"
+          transitionName="slide-up"
+        >
+          <Option
+            value="days"
+          >
+            Days
+          </Option>
+          <Option
+            value="months"
+          >
+            Months
+          </Option>
+          <Option
+            value="years"
+          >
+            Years
+          </Option>
+        </Select>
+      </FormItem>
+    </Group>
+  </FormItem>
+  <FormItem
+    key="granularity"
+    label="Granularity"
+    name="granularity"
+  >
+    <Input
+      placeholder="granularity"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="license"
+    label="License"
+    name="license"
+  >
+    <Input
+      placeholder="MIT License"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="related_articles"
+    label="Related Articles"
+    name="related_articles"
+  >
+    <Input
+      placeholder="link://to.related.articles"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="source"
+    label="Source"
+    name="source"
+  >
+    <Input
+      placeholder="link://to.source.com"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="temporal_coverage"
+    label="Temporal Coverage"
+    name="temporal_coverage"
+  >
+    <Input
+      placeholder="temporal_coverage"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="time_saved"
+    label="Time Saved"
+    name="time_saved"
+  >
+    <ForwardRef
+      placeholder="12"
+      step={1}
+    />
+  </FormItem>
+  <FormItem
+    key="medium"
+    label="Medium"
+  >
+    <MediaUploader
+      onUploadSuccess={[Function]}
+    />
+  </FormItem>
+  <FormItem
+    wrapperCol={
+      Object {
+        "offset": 6,
+        "span": 12,
+      }
+    }
+  >
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="submit"
+      loading={false}
+      type="primary"
+    >
+      Submit
+    </Button>
+  </FormItem>
+</ForwardRef(InternalForm)>
+`;
+
+exports[`DatasetForm component snapshot testing should match component with data 1`] = `
+<ForwardRef(InternalForm)
+  initialValues={
+    Object {
+      "contact_email": "contact_email",
+      "contact_name": "contact_name",
+      "data_standard": "data_standard",
+      "description": "description",
+      "feature_media": Object {
+        "id": 10,
+        "media": "media",
+      },
+      "frequency": Object {
+        "count": 1,
+        "units": "units",
+      },
+      "granularity": "granularity",
+      "id": 1,
+      "license": "license",
+      "related_articles": "related_articles",
+      "source": "source",
+      "temporal_coverage": "temporal_coverage",
+      "time_saved": 2,
+      "title": "title",
+    }
+  }
+  labelCol={
+    Object {
+      "span": 6,
+    }
+  }
+  name="datasets_create_step_one"
+  onFinish={[Function]}
+  wrapperCol={
+    Object {
+      "span": 14,
+    }
+  }
+>
+  <FormItem
+    key="title"
+    label="Title"
+    name="title"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Title!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="Dataset title"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="contact_email"
+    label="Contact Email"
+    name="contact_email"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Contact Email!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="shashi@factly.in"
+      type="email"
+    />
+  </FormItem>
+  <FormItem
+    key="contact_name"
+    label="Contact Name"
+    name="contact_name"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Contact Name!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="Shashi"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="description"
+    label="Description"
+    name="description"
+  >
+    <Input
+      placeholder="description"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="data_standard"
+    label="Data Standard"
+    name="data_standard"
+  >
+    <Input
+      placeholder="standard"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="frequency"
+    label="Frequency"
+    name="frequency"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Frequency!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Group
+      compact={true}
+    >
+      <FormItem
+        name={
+          Array [
+            "frequency",
+            "count",
+          ]
+        }
+        noStyle={true}
+        rules={
+          Array [
+            Object {
+              "message": "Frequency count is required",
+              "required": true,
+            },
+          ]
+        }
+      >
+        <ForwardRef
+          min={1}
+          placeholder="12"
+          step={1}
+          style={
+            Object {
+              "width": "15%",
+            }
+          }
+        />
+      </FormItem>
+      <FormItem
+        name={
+          Array [
+            "frequency",
+            "units",
+          ]
+        }
+        noStyle={true}
+        rules={
+          Array [
+            Object {
+              "message": "Frequency unit is required",
+              "required": true,
+            },
+          ]
+        }
+      >
+        <Select
+          bordered={true}
+          choiceTransitionName=""
+          placeholder="Select Unit"
+          transitionName="slide-up"
+        >
+          <Option
+            value="days"
+          >
+            Days
+          </Option>
+          <Option
+            value="months"
+          >
+            Months
+          </Option>
+          <Option
+            value="years"
+          >
+            Years
+          </Option>
+        </Select>
+      </FormItem>
+    </Group>
+  </FormItem>
+  <FormItem
+    key="granularity"
+    label="Granularity"
+    name="granularity"
+  >
+    <Input
+      placeholder="granularity"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="license"
+    label="License"
+    name="license"
+  >
+    <Input
+      placeholder="MIT License"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="related_articles"
+    label="Related Articles"
+    name="related_articles"
+  >
+    <Input
+      placeholder="link://to.related.articles"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="source"
+    label="Source"
+    name="source"
+  >
+    <Input
+      placeholder="link://to.source.com"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="temporal_coverage"
+    label="Temporal Coverage"
+    name="temporal_coverage"
+  >
+    <Input
+      placeholder="temporal_coverage"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="time_saved"
+    label="Time Saved"
+    name="time_saved"
+  >
+    <ForwardRef
+      placeholder="12"
+      step={1}
+    />
+  </FormItem>
+  <FormItem
+    key="medium"
+    label="Medium"
+  >
+    <MediaUploader
+      onUploadSuccess={[Function]}
+    />
+  </FormItem>
+  <FormItem
+    wrapperCol={
+      Object {
+        "offset": 6,
+        "span": 12,
+      }
+    }
+  >
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="submit"
+      loading={false}
+      type="primary"
+    >
+      Submit
+    </Button>
+  </FormItem>
+</ForwardRef(InternalForm)>
+`;
+
+exports[`DatasetForm component snapshot testing should render the component 1`] = `
+<ForwardRef(InternalForm)
+  labelCol={
+    Object {
+      "span": 6,
+    }
+  }
+  name="datasets_create_step_one"
+  onFinish={[Function]}
+  wrapperCol={
+    Object {
+      "span": 14,
+    }
+  }
+>
+  <FormItem
+    key="title"
+    label="Title"
+    name="title"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Title!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="Dataset title"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="contact_email"
+    label="Contact Email"
+    name="contact_email"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Contact Email!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="shashi@factly.in"
+      type="email"
+    />
+  </FormItem>
+  <FormItem
+    key="contact_name"
+    label="Contact Name"
+    name="contact_name"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Contact Name!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Input
+      placeholder="Shashi"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="description"
+    label="Description"
+    name="description"
+  >
+    <Input
+      placeholder="description"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="data_standard"
+    label="Data Standard"
+    name="data_standard"
+  >
+    <Input
+      placeholder="standard"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="frequency"
+    label="Frequency"
+    name="frequency"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Frequency!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Group
+      compact={true}
+    >
+      <FormItem
+        name={
+          Array [
+            "frequency",
+            "count",
+          ]
+        }
+        noStyle={true}
+        rules={
+          Array [
+            Object {
+              "message": "Frequency count is required",
+              "required": true,
+            },
+          ]
+        }
+      >
+        <ForwardRef
+          min={1}
+          placeholder="12"
+          step={1}
+          style={
+            Object {
+              "width": "15%",
+            }
+          }
+        />
+      </FormItem>
+      <FormItem
+        name={
+          Array [
+            "frequency",
+            "units",
+          ]
+        }
+        noStyle={true}
+        rules={
+          Array [
+            Object {
+              "message": "Frequency unit is required",
+              "required": true,
+            },
+          ]
+        }
+      >
+        <Select
+          bordered={true}
+          choiceTransitionName=""
+          placeholder="Select Unit"
+          transitionName="slide-up"
+        >
+          <Option
+            value="days"
+          >
+            Days
+          </Option>
+          <Option
+            value="months"
+          >
+            Months
+          </Option>
+          <Option
+            value="years"
+          >
+            Years
+          </Option>
+        </Select>
+      </FormItem>
+    </Group>
+  </FormItem>
+  <FormItem
+    key="granularity"
+    label="Granularity"
+    name="granularity"
+  >
+    <Input
+      placeholder="granularity"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="license"
+    label="License"
+    name="license"
+  >
+    <Input
+      placeholder="MIT License"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="related_articles"
+    label="Related Articles"
+    name="related_articles"
+  >
+    <Input
+      placeholder="link://to.related.articles"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="source"
+    label="Source"
+    name="source"
+  >
+    <Input
+      placeholder="link://to.source.com"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="temporal_coverage"
+    label="Temporal Coverage"
+    name="temporal_coverage"
+  >
+    <Input
+      placeholder="temporal_coverage"
+      type=""
+    />
+  </FormItem>
+  <FormItem
+    key="time_saved"
+    label="Time Saved"
+    name="time_saved"
+  >
+    <ForwardRef
+      placeholder="12"
+      step={1}
+    />
+  </FormItem>
+  <FormItem
+    key="medium"
+    label="Medium"
+  >
+    <MediaUploader
+      onUploadSuccess={[Function]}
+    />
+  </FormItem>
+  <FormItem
+    wrapperCol={
+      Object {
+        "offset": 6,
+        "span": 12,
+      }
+    }
+  >
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="submit"
+      loading={false}
+      type="primary"
+    >
+      Submit
+    </Button>
+  </FormItem>
+</ForwardRef(InternalForm)>
+`;

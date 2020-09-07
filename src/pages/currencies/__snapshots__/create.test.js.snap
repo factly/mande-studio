@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Currencies create component snapshot testing should render the component 1`] = `
+<CurrencyCreateForm
+  onSubmit={[Function]}
+/>
+`;

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductDetails component should render the component 1`] = `
+<Card>
+  <Descriptions
+    column={1}
+    title="title"
+  >
+    <DescriptionsItem
+      label="Slug"
+    >
+      slug
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Price"
+    >
+      price
+       
+      INR
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Status"
+    >
+      status
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Tags"
+    >
+      <Tag
+        key="1"
+      >
+        tag1
+      </Tag>
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Created At"
+    >
+      in 3 months
+    </DescriptionsItem>
+  </Descriptions>
+</Card>
+`;

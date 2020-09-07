@@ -118,14 +118,14 @@ export const getProduct = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_PRODUCT_LOADING,
     payload: { loading },
   };
 };
 
-const addProduct = (product) => (dispatch) => {
+export const addProduct = (product) => (dispatch) => {
   const currencies = getValues([product], 'currency');
   dispatch(addCurrencies(currencies));
 
@@ -158,21 +158,21 @@ export const addProducts = (products) => (dispatch) => {
   });
 };
 
-const setProductRequest = (req, total) => {
+export const setProductRequest = (req, total) => {
   return {
     type: SET_PRODUCT_REQUEST,
     payload: { req, total },
   };
 };
 
-const setProductIds = (ids) => {
+export const setProductIds = (ids) => {
   return {
     type: SET_PRODUCT_IDS,
     payload: { ids },
   };
 };
 
-const resetProduct = () => {
+export const resetProduct = () => {
   return {
     type: RESET_PRODUCT,
   };

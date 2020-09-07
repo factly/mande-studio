@@ -110,20 +110,21 @@ export const getTag = (id) => {
       url: `${TAG_API}/${id}`,
       method: 'get',
     });
+
     dispatch(addTag(response.data));
 
     dispatch(setLoading(false));
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_TAG_LOADING,
     payload: { loading },
   };
 };
 
-const addTag = (tag) => {
+export const addTag = (tag) => {
   return {
     type: ADD_TAG,
     payload: { tag },
@@ -139,21 +140,21 @@ export const addTags = (tags) => {
   };
 };
 
-const setTagRequest = (req, total) => {
+export const setTagRequest = (req, total) => {
   return {
     type: SET_TAG_REQUEST,
     payload: { req, total },
   };
 };
 
-const setTagIds = (ids) => {
+export const setTagIds = (ids) => {
   return {
     type: SET_TAG_IDS,
     payload: { ids },
   };
 };
 
-const resetTag = () => {
+export const resetTag = () => {
   return {
     type: RESET_TAG,
   };

@@ -47,7 +47,7 @@ export const loadMemberships = (page = 1, limit = 5) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_MEMBERSHIP_LOADING,
     payload: { loading },
@@ -72,14 +72,14 @@ export const addMemberships = (memberships) => (dispatch) => {
   });
 };
 
-const setMembershipRequest = (req, total) => {
+export const setMembershipRequest = (req, total) => {
   return {
     type: SET_MEMBERSHIP_REQUEST,
     payload: { req, total },
   };
 };
 
-const setMembershipIds = (ids) => {
+export const setMembershipIds = (ids) => {
   return {
     type: SET_MEMBERSHIP_IDS,
     payload: { ids },

@@ -129,3 +129,6 @@ n
 
 # .env files
 .env
+
+# test coverage folder
+coverage

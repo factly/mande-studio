@@ -117,14 +117,14 @@ export const getCatalog = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_CATALOG_LOADING,
     payload: { loading },
   };
 };
 
-const addCatalog = (catalog) => (dispatch) => {
+export const addCatalog = (catalog) => (dispatch) => {
   const products = getValues([catalog], 'products');
   dispatch(addProducts(products));
 
@@ -152,21 +152,21 @@ export const addCatalogs = (catalogs) => (dispatch) => {
   });
 };
 
-const setCatalogRequest = (req, total) => {
+export const setCatalogRequest = (req, total) => {
   return {
     type: SET_CATALOG_REQUEST,
     payload: { req, total },
   };
 };
 
-const setCatalogIds = (ids) => {
+export const setCatalogIds = (ids) => {
   return {
     type: SET_CATALOG_IDS,
     payload: { ids },
   };
 };
 
-const resetCatalog = () => {
+export const resetCatalog = () => {
   return {
     type: RESET_CATALOG,
   };

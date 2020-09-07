@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Catalogs List component should render the component 1`] = `
+<Fragment>
+  <Link
+    to="/catalogs/create"
+  >
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="button"
+      loading={false}
+      style={
+        Object {
+          "marginBottom": 16,
+        }
+      }
+      type="primary"
+    >
+      Add Catalog
+    </Button>
+  </Link>
+  <CatalogsList />
+</Fragment>
+`;

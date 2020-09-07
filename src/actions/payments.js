@@ -45,7 +45,7 @@ export const loadPayments = (page = 1, limit = 5) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_PAYMENT_LOADING,
     payload: { loading },
@@ -64,14 +64,14 @@ export const addPayments = (payments) => (dispatch) => {
   });
 };
 
-const setPaymentRequest = (req, total) => {
+export const setPaymentRequest = (req, total) => {
   return {
     type: SET_PAYMENT_REQUEST,
     payload: { req, total },
   };
 };
 
-const setPaymentIds = (ids) => {
+export const setPaymentIds = (ids) => {
   return {
     type: SET_PAYMENT_IDS,
     payload: { ids },

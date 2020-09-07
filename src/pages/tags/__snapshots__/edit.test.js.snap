@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tags List component snapshot testing should match component with empty data 1`] = `
+<form
+  className="ant-form ant-form-horizontal"
+  id="tags_create"
+  onSubmit={[Function]}
+>
+  <div
+    className="ant-row ant-form-item"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-6 ant-form-item-label"
+      style={Object {}}
+    >
+      <label
+        className="ant-form-item-required"
+        htmlFor="tags_create_title"
+        title="Name"
+      >
+        Name
+      </label>
+    </div>
+    <div
+      className="ant-col ant-col-14 ant-form-item-control"
+      style={Object {}}
+    >
+      <div
+        className="ant-form-item-control-input"
+      >
+        <div
+          className="ant-form-item-control-input-content"
+        >
+          <input
+            className="ant-input"
+            id="tags_create_title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Ex. Crime In India"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-row ant-form-item"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-6 ant-form-item-label"
+      style={Object {}}
+    >
+      <label
+        className="ant-form-item-required"
+        htmlFor="tags_create_slug"
+        title="Slug"
+      >
+        Slug
+      </label>
+    </div>
+    <div
+      className="ant-col ant-col-14 ant-form-item-control"
+      style={Object {}}
+    >
+      <div
+        className="ant-form-item-control-input"
+      >
+        <div
+          className="ant-form-item-control-input-content"
+        >
+          <input
+            className="ant-input"
+            id="tags_create_slug"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Ex. crime-in-india"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-row ant-form-item"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+      style={Object {}}
+    >
+      <div
+        className="ant-form-item-control-input"
+      >
+        <div
+          className="ant-form-item-control-input-content"
+        >
+          <button
+            className="ant-btn ant-btn-primary"
+            onClick={[Function]}
+            type="submit"
+          >
+            <span>
+              Submit
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Tags List component snapshot testing should match skeleton while loading 1`] = `
+<div
+  className="ant-skeleton"
+>
+  <div
+    className="ant-skeleton-content"
+  >
+    <h3
+      className="ant-skeleton-title"
+      style={
+        Object {
+          "width": "38%",
+        }
+      }
+    />
+    <ul
+      className="ant-skeleton-paragraph"
+    >
+      <li
+        style={
+          Object {
+            "width": undefined,
+          }
+        }
+      />
+      <li
+        style={
+          Object {
+            "width": undefined,
+          }
+        }
+      />
+      <li
+        style={
+          Object {
+            "width": "61%",
+          }
+        }
+      />
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Tags List component snapshot testing should render the component 1`] = `
+<form
+  className="ant-form ant-form-horizontal"
+  id="tags_create"
+  onSubmit={[Function]}
+>
+  <div
+    className="ant-row ant-form-item"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-6 ant-form-item-label"
+      style={Object {}}
+    >
+      <label
+        className="ant-form-item-required"
+        htmlFor="tags_create_title"
+        title="Name"
+      >
+        Name
+      </label>
+    </div>
+    <div
+      className="ant-col ant-col-14 ant-form-item-control"
+      style={Object {}}
+    >
+      <div
+        className="ant-form-item-control-input"
+      >
+        <div
+          className="ant-form-item-control-input-content"
+        >
+          <input
+            className="ant-input"
+            id="tags_create_title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Ex. Crime In India"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-row ant-form-item"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-6 ant-form-item-label"
+      style={Object {}}
+    >
+      <label
+        className="ant-form-item-required"
+        htmlFor="tags_create_slug"
+        title="Slug"
+      >
+        Slug
+      </label>
+    </div>
+    <div
+      className="ant-col ant-col-14 ant-form-item-control"
+      style={Object {}}
+    >
+      <div
+        className="ant-form-item-control-input"
+      >
+        <div
+          className="ant-form-item-control-input-content"
+        >
+          <input
+            className="ant-input"
+            id="tags_create_slug"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Ex. crime-in-india"
+            type="text"
+            value="slug"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-row ant-form-item"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-12 ant-col-offset-6 ant-form-item-control"
+      style={Object {}}
+    >
+      <div
+        className="ant-form-item-control-input"
+      >
+        <div
+          className="ant-form-item-control-input-content"
+        >
+          <button
+            className="ant-btn ant-btn-primary"
+            onClick={[Function]}
+            type="submit"
+          >
+            <span>
+              Submit
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+`;
