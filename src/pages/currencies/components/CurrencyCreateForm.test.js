@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -27,7 +26,7 @@ jest.mock('react-router-dom', () => ({
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-let onSubmit, store;
+let store;
 
 describe('Currencies Create Form component', () => {
   store = mockStore({
@@ -43,6 +42,7 @@ describe('Currencies Create Form component', () => {
   useSelector.mockImplementation((state) => ({ details: [], total: 0, loading: false }));
 
   describe('snapshot testing', () => {
+    let onSubmit;
     beforeEach(() => {
       onSubmit = jest.fn();
       onSubmit.mockImplementationOnce(
@@ -86,9 +86,9 @@ describe('Currencies Create Form component', () => {
     });
   });
   describe('component testing', () => {
-    let wrapper, props;
+    let wrapper, props, onSubmit;
     beforeEach(() => {
-      const onSubmit = jest.fn();
+      onSubmit = jest.fn();
       onSubmit.mockResolvedValueOnce({});
 
       props = {

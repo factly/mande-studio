@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -88,7 +87,7 @@ describe('Tags Create Form component', () => {
   describe('component testing', () => {
     let wrapper, props;
     beforeEach(() => {
-      const onSubmit = jest.fn();
+      onSubmit = jest.fn();
       onSubmit.mockResolvedValueOnce({});
 
       props = {

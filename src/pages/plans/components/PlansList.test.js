@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, useHistory } from 'react-router-dom';
 import renderer, { act } from 'react-test-renderer';
 import { useSelector, useDispatch } from 'react-redux';
 import configureMockStore from 'redux-mock-store';

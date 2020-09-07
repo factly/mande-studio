@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -8,7 +7,6 @@ import { mount } from 'enzyme';
 
 import '../../../matchMedia.mock';
 import PlanCreateForm from './PlanCreateForm';
-import moment from 'moment';
 
 const data = {
   plan_name: 'plan_name',
@@ -90,7 +88,7 @@ describe('Plans Create Form component', () => {
   describe('component testing', () => {
     let wrapper, props;
     beforeEach(() => {
-      const onSubmit = jest.fn();
+      onSubmit = jest.fn();
       onSubmit.mockResolvedValueOnce({});
 
       props = {

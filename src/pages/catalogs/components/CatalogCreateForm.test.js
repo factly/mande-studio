@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { act } from '@testing-library/react';
 import { mount } from 'enzyme';
-import { Steps, DatePicker } from 'antd';
+import { DatePicker } from 'antd';
 import moment from 'moment';
 
 import '../../../matchMedia.mock';
