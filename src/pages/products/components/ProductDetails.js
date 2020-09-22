@@ -2,7 +2,7 @@ import React from 'react';
 import { Descriptions, Card, Tag } from 'antd';
 import moment from 'moment';
 
-const DatasetDetails = ({ product, currencyCode, productTags }) => {
+const ProductDetails = ({ product, currencyCode, productTags }) => {
   return (
     <Card>
       <Descriptions title={product.title} column={1}>
@@ -24,4 +24,4 @@ const DatasetDetails = ({ product, currencyCode, productTags }) => {
   );
 };
 
-export default DatasetDetails;
+export default ProductDetails;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tags List component should render the component 1`] = `
+<Fragment>
+  <Link
+    to="/tags/create"
+  >
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="button"
+      loading={false}
+      style={
+        Object {
+          "marginBottom": 16,
+        }
+      }
+      type="primary"
+    >
+      Add Tag
+    </Button>
+  </Link>
+  <TagsList />
+</Fragment>
+`;

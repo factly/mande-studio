@@ -150,14 +150,14 @@ export const getDataset = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_DATASET_LOADING,
     payload: { loading },
   };
 };
 
-const addDataset = (dataset) => {
+export const addDataset = (dataset) => {
   return {
     type: ADD_DATASET,
     payload: { dataset },
@@ -173,35 +173,35 @@ export const addDatasets = (datasets) => {
   };
 };
 
-const addDatasetFormat = (datasetId, datasetFormat) => {
+export const addDatasetFormat = (datasetId, datasetFormat) => {
   return {
     type: ADD_DATASET_FORMAT,
     payload: { datasetId, datasetFormat },
   };
 };
 
-const removeDatasetFormat = (datasetId, datasetFormatId) => {
+export const removeDatasetFormat = (datasetId, datasetFormatId) => {
   return {
     type: REMOVE_DATASET_FORMAT,
     payload: { datasetId, datasetFormatId },
   };
 };
 
-const setDatasetRequest = (req, total) => {
+export const setDatasetRequest = (req, total) => {
   return {
     type: SET_DATASET_REQUEST,
     payload: { req, total },
   };
 };
 
-const setDatasetIds = (ids) => {
+export const setDatasetIds = (ids) => {
   return {
     type: SET_DATASET_IDS,
     payload: { ids },
   };
 };
 
-const resetDataset = () => {
+export const resetDataset = () => {
   return {
     type: RESET_DATASET,
   };

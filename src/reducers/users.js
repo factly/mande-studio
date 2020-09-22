@@ -13,7 +13,7 @@ export default function usersReducer(state = initialState, action = {}) {
       return {
         ...state,
         ids: unique([...state.ids, ...ids]),
-        items,
+        items: { ...state.items, ...items },
       };
     default:
       return state;

@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import { loadMemberships } from '../../../actions/memberships';
 
-const FormatsList = () => {
+const MembershipList = () => {
   const [form] = Form.useForm();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
@@ -79,4 +79,4 @@ const FormatsList = () => {
   );
 };
 
-export default FormatsList;
+export default MembershipList;

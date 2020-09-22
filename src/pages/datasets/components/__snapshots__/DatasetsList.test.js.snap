@@ -1,0 +1,525 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatasetsList component snapshot testing should match component with datasets 1`] = `
+<div
+  className="ant-list ant-list-split ant-list-grid ant-list-something-after-last-item"
+>
+  <div
+    className="ant-spin-nested-loading"
+  >
+    <div
+      className="ant-spin-container"
+    >
+      <div
+        className="ant-row"
+        style={
+          Object {
+            "marginLeft": -8,
+            "marginRight": -8,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "maxWidth": "25%",
+              "width": "25%",
+            }
+          }
+        >
+          <div
+            className="ant-col"
+            style={
+              Object {
+                "flex": "1 1 auto",
+                "paddingLeft": 8,
+                "paddingRight": 8,
+              }
+            }
+          >
+            <div
+              className="ant-list-item"
+            >
+              <div
+                className="ant-card ant-card-hoverable"
+              >
+                <div
+                  className="ant-card-head"
+                  style={Object {}}
+                >
+                  <div
+                    className="ant-card-head-wrapper"
+                  >
+                    <div
+                      className="ant-card-head-title"
+                    >
+                      <a
+                        href="/datasets/1"
+                        onClick={[Function]}
+                      >
+                        title
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="ant-card-cover"
+                >
+                  <img
+                    alt="alt_text"
+                    className="photo"
+                    src="url"
+                  />
+                </div>
+                <div
+                  className="ant-card-body"
+                  style={Object {}}
+                >
+                  <div
+                    className="ant-descriptions"
+                  >
+                    <div
+                      className="ant-descriptions-view"
+                    >
+                      <table>
+                        <tbody>
+                          <tr
+                            className="ant-descriptions-row"
+                          >
+                            <td
+                              className="ant-descriptions-item"
+                              colSpan={1}
+                            >
+                              <div
+                                className="ant-descriptions-item-container"
+                              >
+                                <span
+                                  className="ant-descriptions-item-label"
+                                >
+                                  Contact email
+                                </span>
+                                <span
+                                  className="ant-descriptions-item-content"
+                                >
+                                  contact_email
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr
+                            className="ant-descriptions-row"
+                          >
+                            <td
+                              className="ant-descriptions-item"
+                              colSpan={1}
+                            >
+                              <div
+                                className="ant-descriptions-item-container"
+                              >
+                                <span
+                                  className="ant-descriptions-item-label"
+                                >
+                                  Contact name
+                                </span>
+                                <span
+                                  className="ant-descriptions-item-content"
+                                >
+                                  contact_name
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr
+                            className="ant-descriptions-row"
+                          >
+                            <td
+                              className="ant-descriptions-item"
+                              colSpan={1}
+                            >
+                              <div
+                                className="ant-descriptions-item-container"
+                              >
+                                <span
+                                  className="ant-descriptions-item-label"
+                                >
+                                  License
+                                </span>
+                                <span
+                                  className="ant-descriptions-item-content"
+                                >
+                                  license
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr
+                            className="ant-descriptions-row"
+                          >
+                            <td
+                              className="ant-descriptions-item"
+                              colSpan={1}
+                            >
+                              <div
+                                className="ant-descriptions-item-container"
+                              >
+                                <span
+                                  className="ant-descriptions-item-label"
+                                >
+                                  Source
+                                </span>
+                                <span
+                                  className="ant-descriptions-item-content"
+                                >
+                                  source
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <ul
+                  className="ant-card-actions"
+                >
+                  <li
+                    style={
+                      Object {
+                        "width": "50%",
+                      }
+                    }
+                  >
+                    <span>
+                      <span
+                        aria-label="edit"
+                        className="anticon anticon-edit"
+                        onClick={[Function]}
+                        role="img"
+                        tabIndex={-1}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className=""
+                          data-icon="edit"
+                          fill="currentColor"
+                          focusable="false"
+                          height="1em"
+                          viewBox="64 64 896 896"
+                          width="1em"
+                        >
+                          <path
+                            d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </li>
+                  <li
+                    style={
+                      Object {
+                        "width": "50%",
+                      }
+                    }
+                  >
+                    <span>
+                      <span
+                        aria-label="delete"
+                        className="anticon anticon-delete"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onTouchStart={[Function]}
+                        role="img"
+                        tabIndex={-1}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className=""
+                          data-icon="delete"
+                          fill="currentColor"
+                          focusable="false"
+                          height="1em"
+                          viewBox="64 64 896 896"
+                          width="1em"
+                        >
+                          <path
+                            d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-list-pagination"
+  >
+    <ul
+      className="ant-pagination"
+      style={Object {}}
+      unselectable="unselectable"
+    >
+      <li
+        aria-disabled={true}
+        className="ant-pagination-prev ant-pagination-disabled"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        tabIndex={null}
+        title="Previous Page"
+      >
+        <button
+          className="ant-pagination-item-link"
+          disabled={true}
+          tabIndex={-1}
+          type="button"
+        >
+          <span
+            aria-label="left"
+            className="anticon anticon-left"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="left"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </li>
+      <li
+        className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        tabIndex="0"
+        title={1}
+      >
+        <a
+          rel="nofollow"
+        >
+          1
+        </a>
+      </li>
+      <li
+        aria-disabled={true}
+        className="ant-pagination-next ant-pagination-disabled"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        tabIndex={null}
+        title="Next Page"
+      >
+        <button
+          className="ant-pagination-item-link"
+          disabled={true}
+          tabIndex={-1}
+          type="button"
+        >
+          <span
+            aria-label="right"
+            className="anticon anticon-right"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="right"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+              />
+            </svg>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`DatasetsList component snapshot testing should match component with no data 1`] = `
+<div
+  className="ant-card ant-card-bordered"
+>
+  <div
+    className="ant-card-body"
+    style={Object {}}
+  >
+    <div
+      className="ant-empty"
+    >
+      <div
+        className="ant-empty-image"
+      >
+        <svg
+          className="ant-empty-img-default"
+          height="152"
+          viewBox="0 0 184 152"
+          width="184"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            fill="none"
+            fillRule="evenodd"
+          >
+            <g
+              transform="translate(24 31.67)"
+            >
+              <ellipse
+                className="ant-empty-img-default-ellipse"
+                cx="67.797"
+                cy="106.89"
+                rx="67.797"
+                ry="12.668"
+              />
+              <path
+                className="ant-empty-img-default-path-1"
+                d="M122.034 69.674L98.109 40.229c-1.148-1.386-2.826-2.225-4.593-2.225h-51.44c-1.766 0-3.444.839-4.592 2.225L13.56 69.674v15.383h108.475V69.674z"
+              />
+              <path
+                className="ant-empty-img-default-path-2"
+                d="M101.537 86.214L80.63 61.102c-1.001-1.207-2.507-1.867-4.048-1.867H31.724c-1.54 0-3.047.66-4.048 1.867L6.769 86.214v13.792h94.768V86.214z"
+                transform="translate(13.56)"
+              />
+              <path
+                className="ant-empty-img-default-path-3"
+                d="M33.83 0h67.933a4 4 0 0 1 4 4v93.344a4 4 0 0 1-4 4H33.83a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"
+              />
+              <path
+                className="ant-empty-img-default-path-4"
+                d="M42.678 9.953h50.237a2 2 0 0 1 2 2V36.91a2 2 0 0 1-2 2H42.678a2 2 0 0 1-2-2V11.953a2 2 0 0 1 2-2zM42.94 49.767h49.713a2.262 2.262 0 1 1 0 4.524H42.94a2.262 2.262 0 0 1 0-4.524zM42.94 61.53h49.713a2.262 2.262 0 1 1 0 4.525H42.94a2.262 2.262 0 0 1 0-4.525zM121.813 105.032c-.775 3.071-3.497 5.36-6.735 5.36H20.515c-3.238 0-5.96-2.29-6.734-5.36a7.309 7.309 0 0 1-.222-1.79V69.675h26.318c2.907 0 5.25 2.448 5.25 5.42v.04c0 2.971 2.37 5.37 5.277 5.37h34.785c2.907 0 5.277-2.421 5.277-5.393V75.1c0-2.972 2.343-5.426 5.25-5.426h26.318v33.569c0 .617-.077 1.216-.221 1.789z"
+              />
+            </g>
+            <path
+              className="ant-empty-img-default-path-5"
+              d="M149.121 33.292l-6.83 2.65a1 1 0 0 1-1.317-1.23l1.937-6.207c-2.589-2.944-4.109-6.534-4.109-10.408C138.802 8.102 148.92 0 161.402 0 173.881 0 184 8.102 184 18.097c0 9.995-10.118 18.097-22.599 18.097-4.528 0-8.744-1.066-12.28-2.902z"
+            />
+            <g
+              className="ant-empty-img-default-g"
+              transform="translate(149.65 15.383)"
+            >
+              <ellipse
+                cx="20.654"
+                cy="3.167"
+                rx="2.849"
+                ry="2.815"
+              />
+              <path
+                d="M5.698 5.63H0L2.898.704zM9.259.704h4.985V5.63H9.259z"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <p
+        className="ant-empty-description"
+      >
+        No Data
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DatasetsList component snapshot testing should render the component 1`] = `
+<div
+  className="ant-card ant-card-bordered"
+>
+  <div
+    className="ant-card-body"
+    style={Object {}}
+  >
+    <div
+      className="ant-empty"
+    >
+      <div
+        className="ant-empty-image"
+      >
+        <svg
+          className="ant-empty-img-default"
+          height="152"
+          viewBox="0 0 184 152"
+          width="184"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            fill="none"
+            fillRule="evenodd"
+          >
+            <g
+              transform="translate(24 31.67)"
+            >
+              <ellipse
+                className="ant-empty-img-default-ellipse"
+                cx="67.797"
+                cy="106.89"
+                rx="67.797"
+                ry="12.668"
+              />
+              <path
+                className="ant-empty-img-default-path-1"
+                d="M122.034 69.674L98.109 40.229c-1.148-1.386-2.826-2.225-4.593-2.225h-51.44c-1.766 0-3.444.839-4.592 2.225L13.56 69.674v15.383h108.475V69.674z"
+              />
+              <path
+                className="ant-empty-img-default-path-2"
+                d="M101.537 86.214L80.63 61.102c-1.001-1.207-2.507-1.867-4.048-1.867H31.724c-1.54 0-3.047.66-4.048 1.867L6.769 86.214v13.792h94.768V86.214z"
+                transform="translate(13.56)"
+              />
+              <path
+                className="ant-empty-img-default-path-3"
+                d="M33.83 0h67.933a4 4 0 0 1 4 4v93.344a4 4 0 0 1-4 4H33.83a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"
+              />
+              <path
+                className="ant-empty-img-default-path-4"
+                d="M42.678 9.953h50.237a2 2 0 0 1 2 2V36.91a2 2 0 0 1-2 2H42.678a2 2 0 0 1-2-2V11.953a2 2 0 0 1 2-2zM42.94 49.767h49.713a2.262 2.262 0 1 1 0 4.524H42.94a2.262 2.262 0 0 1 0-4.524zM42.94 61.53h49.713a2.262 2.262 0 1 1 0 4.525H42.94a2.262 2.262 0 0 1 0-4.525zM121.813 105.032c-.775 3.071-3.497 5.36-6.735 5.36H20.515c-3.238 0-5.96-2.29-6.734-5.36a7.309 7.309 0 0 1-.222-1.79V69.675h26.318c2.907 0 5.25 2.448 5.25 5.42v.04c0 2.971 2.37 5.37 5.277 5.37h34.785c2.907 0 5.277-2.421 5.277-5.393V75.1c0-2.972 2.343-5.426 5.25-5.426h26.318v33.569c0 .617-.077 1.216-.221 1.789z"
+              />
+            </g>
+            <path
+              className="ant-empty-img-default-path-5"
+              d="M149.121 33.292l-6.83 2.65a1 1 0 0 1-1.317-1.23l1.937-6.207c-2.589-2.944-4.109-6.534-4.109-10.408C138.802 8.102 148.92 0 161.402 0 173.881 0 184 8.102 184 18.097c0 9.995-10.118 18.097-22.599 18.097-4.528 0-8.744-1.066-12.28-2.902z"
+            />
+            <g
+              className="ant-empty-img-default-g"
+              transform="translate(149.65 15.383)"
+            >
+              <ellipse
+                cx="20.654"
+                cy="3.167"
+                rx="2.849"
+                ry="2.815"
+              />
+              <path
+                d="M5.698 5.63H0L2.898.704zM9.259.704h4.985V5.63H9.259z"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <p
+        className="ant-empty-description"
+      >
+        No Data
+      </p>
+    </div>
+  </div>
+</div>
+`;

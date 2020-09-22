@@ -45,7 +45,7 @@ export const loadCartItems = (id, page = 1, limit = 5) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_CARTITEM_LOADING,
     payload: { loading },
@@ -64,14 +64,14 @@ export const addCartItems = (cartItems) => (dispatch) => {
   });
 };
 
-const setCartItemRequest = (req, total) => {
+export const setCartItemRequest = (req, total) => {
   return {
     type: SET_CARTITEM_REQUEST,
     payload: { req, total },
   };
 };
 
-const setCartItemIds = (ids) => {
+export const setCartItemIds = (ids) => {
   return {
     type: SET_CARTITEM_IDS,
     payload: { ids },

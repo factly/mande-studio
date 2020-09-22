@@ -19,6 +19,7 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
   }
 
   const onFinish = (values) => {
+    values.published_date = moment(values.published_date).format('YYYY-MM-DDTHH:mm:ssZ');
     onSubmit(values)
       .then(() => {
         notification.success({
@@ -88,17 +89,8 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
         <Selector action="Products" multiple={true} field="title" />
       </Form.Item>
 
-      <Form.Item
-        label="Published date"
-        name="published_date"
-        rules={[
-          {
-            required: true,
-            message: 'Please select date of publishing!',
-          },
-        ]}
-      >
-        <DatePicker format="YYYY-MM-DDTHH:mm:ssZ" />
+      <Form.Item label="Published date" name="published_date">
+        <DatePicker />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Datasets index component should render the component 1`] = `
+<Fragment>
+  <Link
+    to="/datasets/create"
+  >
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="button"
+      loading={false}
+      style={
+        Object {
+          "marginBottom": 16,
+        }
+      }
+      type="primary"
+    >
+      Add Dataset
+    </Button>
+  </Link>
+  <DatasetsList />
+</Fragment>
+`;

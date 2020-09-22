@@ -69,7 +69,7 @@ export const getOrder = (id) => {
   };
 };
 
-const setLoading = (loading) => {
+export const setLoading = (loading) => {
   return {
     type: SET_ORDER_LOADING,
     payload: { loading },
@@ -106,14 +106,14 @@ export const addOrders = (orders) => (dispatch) => {
   });
 };
 
-const setOrderRequest = (req, total) => {
+export const setOrderRequest = (req, total) => {
   return {
     type: SET_ORDER_REQUEST,
     payload: { req, total },
   };
 };
 
-const setOrderIds = (ids) => {
+export const setOrderIds = (ids) => {
   return {
     type: SET_ORDER_IDS,
     payload: { ids },

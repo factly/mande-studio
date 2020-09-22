@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Datasets create component snapshot testing should render the component 1`] = `
+<DatasetCreateForm
+  onSubmitDataset={[Function]}
+  onSubmitDatasetFormat={[Function]}
+/>
+`;
