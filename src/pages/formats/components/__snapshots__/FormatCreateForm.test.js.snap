@@ -276,7 +276,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -284,18 +284,8 @@ exports[`Formats Create Form component snapshot testing should match component i
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -493,7 +483,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -501,18 +491,8 @@ exports[`Formats Create Form component snapshot testing should match component i
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -787,7 +767,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -795,18 +775,8 @@ exports[`Formats Create Form component snapshot testing should match component i
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -886,7 +856,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                                     loading={false}
                                     prefixCls="ant-btn"
                                   >
-                                    <ForwardRef
+                                    <CSSMotion
                                       motionName="ant-btn-loading-icon-motion"
                                       onAppearActive={[Function]}
                                       onAppearStart={[Function]}
@@ -897,22 +867,8 @@ exports[`Formats Create Form component snapshot testing should match component i
                                       removeOnLeave={true}
                                       visible={false}
                                     >
-                                      <CSSMotion
-                                        internalRef={null}
-                                        motionAppear={true}
-                                        motionEnter={true}
-                                        motionLeave={true}
-                                        motionName="ant-btn-loading-icon-motion"
-                                        onAppearActive={[Function]}
-                                        onAppearStart={[Function]}
-                                        onEnterActive={[Function]}
-                                        onEnterStart={[Function]}
-                                        onLeaveActive={[Function]}
-                                        onLeaveStart={[Function]}
-                                        removeOnLeave={true}
-                                        visible={false}
-                                      />
-                                    </ForwardRef>
+                                      <DomWrapper />
+                                    </CSSMotion>
                                   </LoadingIcon>
                                   <span
                                     key=".0"
@@ -924,7 +880,7 @@ exports[`Formats Create Form component snapshot testing should match component i
                             </Button>
                           </div>
                         </div>
-                        <ForwardRef
+                        <CSSMotion
                           motionAppear={true}
                           motionDeadline={500}
                           motionName="show-help"
@@ -932,18 +888,8 @@ exports[`Formats Create Form component snapshot testing should match component i
                           removeOnLeave={true}
                           visible={false}
                         >
-                          <CSSMotion
-                            internalRef={null}
-                            motionAppear={true}
-                            motionDeadline={500}
-                            motionEnter={true}
-                            motionLeave={true}
-                            motionName="show-help"
-                            onLeaveEnd={[Function]}
-                            removeOnLeave={true}
-                            visible={false}
-                          />
-                        </ForwardRef>
+                          <DomWrapper />
+                        </CSSMotion>
                       </div>
                     </Col>
                   </FormItemInput>
@@ -1235,7 +1181,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -1243,18 +1189,8 @@ exports[`Formats Create Form component snapshot testing should match component w
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -1452,7 +1388,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -1460,18 +1396,8 @@ exports[`Formats Create Form component snapshot testing should match component w
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -1746,7 +1672,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -1754,18 +1680,8 @@ exports[`Formats Create Form component snapshot testing should match component w
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -1845,7 +1761,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                                     loading={false}
                                     prefixCls="ant-btn"
                                   >
-                                    <ForwardRef
+                                    <CSSMotion
                                       motionName="ant-btn-loading-icon-motion"
                                       onAppearActive={[Function]}
                                       onAppearStart={[Function]}
@@ -1856,22 +1772,8 @@ exports[`Formats Create Form component snapshot testing should match component w
                                       removeOnLeave={true}
                                       visible={false}
                                     >
-                                      <CSSMotion
-                                        internalRef={null}
-                                        motionAppear={true}
-                                        motionEnter={true}
-                                        motionLeave={true}
-                                        motionName="ant-btn-loading-icon-motion"
-                                        onAppearActive={[Function]}
-                                        onAppearStart={[Function]}
-                                        onEnterActive={[Function]}
-                                        onEnterStart={[Function]}
-                                        onLeaveActive={[Function]}
-                                        onLeaveStart={[Function]}
-                                        removeOnLeave={true}
-                                        visible={false}
-                                      />
-                                    </ForwardRef>
+                                      <DomWrapper />
+                                    </CSSMotion>
                                   </LoadingIcon>
                                   <span
                                     key=".0"
@@ -1883,7 +1785,7 @@ exports[`Formats Create Form component snapshot testing should match component w
                             </Button>
                           </div>
                         </div>
-                        <ForwardRef
+                        <CSSMotion
                           motionAppear={true}
                           motionDeadline={500}
                           motionName="show-help"
@@ -1891,18 +1793,8 @@ exports[`Formats Create Form component snapshot testing should match component w
                           removeOnLeave={true}
                           visible={false}
                         >
-                          <CSSMotion
-                            internalRef={null}
-                            motionAppear={true}
-                            motionDeadline={500}
-                            motionEnter={true}
-                            motionLeave={true}
-                            motionName="show-help"
-                            onLeaveEnd={[Function]}
-                            removeOnLeave={true}
-                            visible={false}
-                          />
-                        </ForwardRef>
+                          <DomWrapper />
+                        </CSSMotion>
                       </div>
                     </Col>
                   </FormItemInput>
@@ -2178,7 +2070,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -2186,18 +2078,8 @@ exports[`Formats Create Form component snapshot testing should render the compon
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -2392,7 +2274,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -2400,18 +2282,8 @@ exports[`Formats Create Form component snapshot testing should render the compon
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -2686,7 +2558,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -2694,18 +2566,8 @@ exports[`Formats Create Form component snapshot testing should render the compon
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -2785,7 +2647,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                     loading={false}
                                     prefixCls="ant-btn"
                                   >
-                                    <ForwardRef
+                                    <CSSMotion
                                       motionName="ant-btn-loading-icon-motion"
                                       onAppearActive={[Function]}
                                       onAppearStart={[Function]}
@@ -2796,22 +2658,8 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                       removeOnLeave={true}
                                       visible={false}
                                     >
-                                      <CSSMotion
-                                        internalRef={null}
-                                        motionAppear={true}
-                                        motionEnter={true}
-                                        motionLeave={true}
-                                        motionName="ant-btn-loading-icon-motion"
-                                        onAppearActive={[Function]}
-                                        onAppearStart={[Function]}
-                                        onEnterActive={[Function]}
-                                        onEnterStart={[Function]}
-                                        onLeaveActive={[Function]}
-                                        onLeaveStart={[Function]}
-                                        removeOnLeave={true}
-                                        visible={false}
-                                      />
-                                    </ForwardRef>
+                                      <DomWrapper />
+                                    </CSSMotion>
                                   </LoadingIcon>
                                   <span
                                     key=".0"
@@ -2823,7 +2671,7 @@ exports[`Formats Create Form component snapshot testing should render the compon
                             </Button>
                           </div>
                         </div>
-                        <ForwardRef
+                        <CSSMotion
                           motionAppear={true}
                           motionDeadline={500}
                           motionName="show-help"
@@ -2831,18 +2679,8 @@ exports[`Formats Create Form component snapshot testing should render the compon
                           removeOnLeave={true}
                           visible={false}
                         >
-                          <CSSMotion
-                            internalRef={null}
-                            motionAppear={true}
-                            motionDeadline={500}
-                            motionEnter={true}
-                            motionLeave={true}
-                            motionName="show-help"
-                            onLeaveEnd={[Function]}
-                            removeOnLeave={true}
-                            visible={false}
-                          />
-                        </ForwardRef>
+                          <DomWrapper />
+                        </CSSMotion>
                       </div>
                     </Col>
                   </FormItemInput>

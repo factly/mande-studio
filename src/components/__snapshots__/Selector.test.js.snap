@@ -292,6 +292,7 @@ exports[`Tags List component Snapshot testing should render the component 1`] = 
                             readonly=""
                             role="combobox"
                             style="opacity: 0;"
+                            type="search"
                             unselectable="on"
                             value=""
                           />
@@ -344,6 +345,7 @@ exports[`Tags List component Snapshot testing should render the component 1`] = 
                 >
                   <div
                     className="ant-select-selector"
+                    onClick={[Function]}
                     onMouseDown={[Function]}
                   >
                     <SingleSelector
@@ -377,6 +379,7 @@ exports[`Tags List component Snapshot testing should render the component 1`] = 
                                 readonly=""
                                 role="combobox"
                                 style="opacity: 0;"
+                                type="search"
                                 unselectable="on"
                                 value=""
                               />
@@ -405,6 +408,7 @@ exports[`Tags List component Snapshot testing should render the component 1`] = 
                             readonly=""
                             role="combobox"
                             style="opacity: 0;"
+                            type="search"
                             unselectable="on"
                             value=""
                           />,
@@ -489,6 +493,7 @@ exports[`Tags List component Snapshot testing should render the component 1`] = 
                                 "opacity": 0,
                               }
                             }
+                            type="search"
                             unselectable="on"
                             value=""
                           />
@@ -905,6 +910,7 @@ exports[`Tags List component Snapshot testing should render the component with d
                             readonly=""
                             role="combobox"
                             style="opacity: 0;"
+                            type="search"
                             unselectable="on"
                             value=""
                           />
@@ -957,6 +963,7 @@ exports[`Tags List component Snapshot testing should render the component with d
                 >
                   <div
                     className="ant-select-selector"
+                    onClick={[Function]}
                     onMouseDown={[Function]}
                   >
                     <SingleSelector
@@ -990,6 +997,7 @@ exports[`Tags List component Snapshot testing should render the component with d
                                 readonly=""
                                 role="combobox"
                                 style="opacity: 0;"
+                                type="search"
                                 unselectable="on"
                                 value=""
                               />
@@ -1018,6 +1026,7 @@ exports[`Tags List component Snapshot testing should render the component with d
                             readonly=""
                             role="combobox"
                             style="opacity: 0;"
+                            type="search"
                             unselectable="on"
                             value=""
                           />,
@@ -1102,6 +1111,7 @@ exports[`Tags List component Snapshot testing should render the component with d
                                 "opacity": 0,
                               }
                             }
+                            type="search"
                             unselectable="on"
                             value=""
                           />

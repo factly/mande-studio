@@ -291,7 +291,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -299,18 +299,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -508,7 +498,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -516,18 +506,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -958,6 +938,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -1013,6 +994,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                 >
                                                   <div
                                                     className="ant-select-selector"
+                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SingleSelector
@@ -1046,6 +1028,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                type="search"
                                                                 unselectable="on"
                                                                 value=""
                                                               />
@@ -1077,6 +1060,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />,
@@ -1161,6 +1145,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -1288,7 +1273,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -1296,18 +1281,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -1505,7 +1480,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -1513,18 +1488,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -2001,6 +1966,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -2057,6 +2023,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                 >
                                                   <div
                                                     className="ant-select-selector"
+                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SelectSelector
@@ -2127,6 +2094,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                type="search"
                                                                 unselectable="on"
                                                                 value=""
                                                               />
@@ -2159,6 +2127,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />,
@@ -2220,7 +2189,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                         motionAppear={false}
                                                         motionName=""
                                                       >
-                                                        <ForwardRef
+                                                        <CSSMotion
                                                           eventProps={
                                                             Object {
                                                               "disabled": undefined,
@@ -2232,27 +2201,10 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           key="1"
                                                           motionAppear={false}
                                                           motionName=""
-                                                          onLeaveEnd={[Function]}
+                                                          onVisibleChanged={[Function]}
                                                           visible={true}
                                                         >
-                                                          <CSSMotion
-                                                            eventProps={
-                                                              Object {
-                                                                "disabled": undefined,
-                                                                "key": "1",
-                                                                "label": 1,
-                                                                "value": 1,
-                                                              }
-                                                            }
-                                                            internalRef={null}
-                                                            motionAppear={false}
-                                                            motionEnter={true}
-                                                            motionLeave={true}
-                                                            motionName=""
-                                                            onLeaveEnd={[Function]}
-                                                            removeOnLeave={true}
-                                                            visible={true}
-                                                          >
+                                                          <DomWrapper>
                                                             <span
                                                               className="ant-select-selection-item"
                                                               key="1"
@@ -2357,8 +2309,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 </span>
                                                               </TransBtn>
                                                             </span>
-                                                          </CSSMotion>
-                                                        </ForwardRef>
+                                                          </DomWrapper>
+                                                        </CSSMotion>
                                                       </CSSMotionList>
                                                       <span
                                                         className="ant-select-selection-search"
@@ -2402,6 +2354,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -2426,7 +2379,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -2434,18 +2387,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -2933,10 +2876,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           autocomplete="off"
                                                           class="ant-select-selection-search-input"
                                                           id="products_create_status"
-                                                          readonly=""
                                                           role="combobox"
-                                                          style="opacity: 0;"
-                                                          unselectable="on"
+                                                          type="search"
                                                           value=""
                                                         />
                                                       </span>
@@ -2995,6 +2936,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                               >
                                                 <div
                                                   className="ant-select-selector"
+                                                  onClick={[Function]}
                                                   onMouseDown={[Function]}
                                                 >
                                                   <SingleSelector
@@ -3020,10 +2962,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                               autocomplete="off"
                                                               class="ant-select-selection-search-input"
                                                               id="products_create_status"
-                                                              readonly=""
                                                               role="combobox"
-                                                              style="opacity: 0;"
-                                                              unselectable="on"
+                                                              type="search"
                                                               value=""
                                                             />
                                                           </span>
@@ -3052,10 +2992,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           autocomplete="off"
                                                           class="ant-select-selection-search-input"
                                                           id="products_create_status"
-                                                          readonly=""
                                                           role="combobox"
-                                                          style="opacity: 0;"
-                                                          unselectable="on"
+                                                          type="search"
                                                           value=""
                                                         />,
                                                       }
@@ -3110,6 +3048,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                       <Input
                                                         accessibilityIndex={0}
                                                         attrs={Object {}}
+                                                        editable={true}
                                                         id="products_create_status"
                                                         inputElement={null}
                                                         onChange={[Function]}
@@ -3136,14 +3075,15 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           onKeyDown={[Function]}
                                                           onMouseDown={[Function]}
                                                           onPaste={[Function]}
-                                                          readOnly={true}
+                                                          readOnly={false}
                                                           role="combobox"
                                                           style={
                                                             Object {
-                                                              "opacity": 0,
+                                                              "opacity": null,
                                                             }
                                                           }
-                                                          unselectable="on"
+                                                          type="search"
+                                                          unselectable={null}
                                                           value=""
                                                         />
                                                       </Input>
@@ -3269,7 +3209,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -3277,18 +3217,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -3368,7 +3298,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                     loading={false}
                                     prefixCls="ant-btn"
                                   >
-                                    <ForwardRef
+                                    <CSSMotion
                                       motionName="ant-btn-loading-icon-motion"
                                       onAppearActive={[Function]}
                                       onAppearStart={[Function]}
@@ -3379,22 +3309,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                       removeOnLeave={true}
                                       visible={false}
                                     >
-                                      <CSSMotion
-                                        internalRef={null}
-                                        motionAppear={true}
-                                        motionEnter={true}
-                                        motionLeave={true}
-                                        motionName="ant-btn-loading-icon-motion"
-                                        onAppearActive={[Function]}
-                                        onAppearStart={[Function]}
-                                        onEnterActive={[Function]}
-                                        onEnterStart={[Function]}
-                                        onLeaveActive={[Function]}
-                                        onLeaveStart={[Function]}
-                                        removeOnLeave={true}
-                                        visible={false}
-                                      />
-                                    </ForwardRef>
+                                      <DomWrapper />
+                                    </CSSMotion>
                                   </LoadingIcon>
                                   <span
                                     key=".0"
@@ -3406,7 +3322,7 @@ exports[`Products Create Form component snapshot testing should match component 
                             </Button>
                           </div>
                         </div>
-                        <ForwardRef
+                        <CSSMotion
                           motionAppear={true}
                           motionDeadline={500}
                           motionName="show-help"
@@ -3414,18 +3330,8 @@ exports[`Products Create Form component snapshot testing should match component 
                           removeOnLeave={true}
                           visible={false}
                         >
-                          <CSSMotion
-                            internalRef={null}
-                            motionAppear={true}
-                            motionDeadline={500}
-                            motionEnter={true}
-                            motionLeave={true}
-                            motionName="show-help"
-                            onLeaveEnd={[Function]}
-                            removeOnLeave={true}
-                            visible={false}
-                          />
-                        </ForwardRef>
+                          <DomWrapper />
+                        </CSSMotion>
                       </div>
                     </Col>
                   </FormItemInput>
@@ -3732,7 +3638,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -3740,18 +3646,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -3949,7 +3845,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -3957,18 +3853,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -4399,6 +4285,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -4454,6 +4341,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                 >
                                                   <div
                                                     className="ant-select-selector"
+                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SingleSelector
@@ -4487,6 +4375,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                type="search"
                                                                 unselectable="on"
                                                                 value=""
                                                               />
@@ -4518,6 +4407,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />,
@@ -4602,6 +4492,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -4729,7 +4620,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -4737,18 +4628,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -4946,7 +4827,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -4954,18 +4835,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -5442,6 +5313,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -5498,6 +5370,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                 >
                                                   <div
                                                     className="ant-select-selector"
+                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SelectSelector
@@ -5568,6 +5441,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                type="search"
                                                                 unselectable="on"
                                                                 value=""
                                                               />
@@ -5600,6 +5474,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />,
@@ -5661,7 +5536,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                         motionAppear={false}
                                                         motionName=""
                                                       >
-                                                        <ForwardRef
+                                                        <CSSMotion
                                                           eventProps={
                                                             Object {
                                                               "disabled": undefined,
@@ -5673,27 +5548,10 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           key="1"
                                                           motionAppear={false}
                                                           motionName=""
-                                                          onLeaveEnd={[Function]}
+                                                          onVisibleChanged={[Function]}
                                                           visible={true}
                                                         >
-                                                          <CSSMotion
-                                                            eventProps={
-                                                              Object {
-                                                                "disabled": undefined,
-                                                                "key": "1",
-                                                                "label": 1,
-                                                                "value": 1,
-                                                              }
-                                                            }
-                                                            internalRef={null}
-                                                            motionAppear={false}
-                                                            motionEnter={true}
-                                                            motionLeave={true}
-                                                            motionName=""
-                                                            onLeaveEnd={[Function]}
-                                                            removeOnLeave={true}
-                                                            visible={true}
-                                                          >
+                                                          <DomWrapper>
                                                             <span
                                                               className="ant-select-selection-item"
                                                               key="1"
@@ -5798,8 +5656,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 </span>
                                                               </TransBtn>
                                                             </span>
-                                                          </CSSMotion>
-                                                        </ForwardRef>
+                                                          </DomWrapper>
+                                                        </CSSMotion>
                                                       </CSSMotionList>
                                                       <span
                                                         className="ant-select-selection-search"
@@ -5843,6 +5701,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -5867,7 +5726,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -5875,18 +5734,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -6374,10 +6223,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           autocomplete="off"
                                                           class="ant-select-selection-search-input"
                                                           id="products_create_status"
-                                                          readonly=""
                                                           role="combobox"
-                                                          style="opacity: 0;"
-                                                          unselectable="on"
+                                                          type="search"
                                                           value=""
                                                         />
                                                       </span>
@@ -6436,6 +6283,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                               >
                                                 <div
                                                   className="ant-select-selector"
+                                                  onClick={[Function]}
                                                   onMouseDown={[Function]}
                                                 >
                                                   <SingleSelector
@@ -6461,10 +6309,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                               autocomplete="off"
                                                               class="ant-select-selection-search-input"
                                                               id="products_create_status"
-                                                              readonly=""
                                                               role="combobox"
-                                                              style="opacity: 0;"
-                                                              unselectable="on"
+                                                              type="search"
                                                               value=""
                                                             />
                                                           </span>
@@ -6493,10 +6339,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           autocomplete="off"
                                                           class="ant-select-selection-search-input"
                                                           id="products_create_status"
-                                                          readonly=""
                                                           role="combobox"
-                                                          style="opacity: 0;"
-                                                          unselectable="on"
+                                                          type="search"
                                                           value=""
                                                         />,
                                                       }
@@ -6551,6 +6395,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                                       <Input
                                                         accessibilityIndex={0}
                                                         attrs={Object {}}
+                                                        editable={true}
                                                         id="products_create_status"
                                                         inputElement={null}
                                                         onChange={[Function]}
@@ -6577,14 +6422,15 @@ exports[`Products Create Form component snapshot testing should match component 
                                                           onKeyDown={[Function]}
                                                           onMouseDown={[Function]}
                                                           onPaste={[Function]}
-                                                          readOnly={true}
+                                                          readOnly={false}
                                                           role="combobox"
                                                           style={
                                                             Object {
-                                                              "opacity": 0,
+                                                              "opacity": null,
                                                             }
                                                           }
-                                                          unselectable="on"
+                                                          type="search"
+                                                          unselectable={null}
                                                           value=""
                                                         />
                                                       </Input>
@@ -6710,7 +6556,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -6718,18 +6564,8 @@ exports[`Products Create Form component snapshot testing should match component 
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -6809,7 +6645,7 @@ exports[`Products Create Form component snapshot testing should match component 
                                     loading={false}
                                     prefixCls="ant-btn"
                                   >
-                                    <ForwardRef
+                                    <CSSMotion
                                       motionName="ant-btn-loading-icon-motion"
                                       onAppearActive={[Function]}
                                       onAppearStart={[Function]}
@@ -6820,22 +6656,8 @@ exports[`Products Create Form component snapshot testing should match component 
                                       removeOnLeave={true}
                                       visible={false}
                                     >
-                                      <CSSMotion
-                                        internalRef={null}
-                                        motionAppear={true}
-                                        motionEnter={true}
-                                        motionLeave={true}
-                                        motionName="ant-btn-loading-icon-motion"
-                                        onAppearActive={[Function]}
-                                        onAppearStart={[Function]}
-                                        onEnterActive={[Function]}
-                                        onEnterStart={[Function]}
-                                        onLeaveActive={[Function]}
-                                        onLeaveStart={[Function]}
-                                        removeOnLeave={true}
-                                        visible={false}
-                                      />
-                                    </ForwardRef>
+                                      <DomWrapper />
+                                    </CSSMotion>
                                   </LoadingIcon>
                                   <span
                                     key=".0"
@@ -6847,7 +6669,7 @@ exports[`Products Create Form component snapshot testing should match component 
                             </Button>
                           </div>
                         </div>
-                        <ForwardRef
+                        <CSSMotion
                           motionAppear={true}
                           motionDeadline={500}
                           motionName="show-help"
@@ -6855,18 +6677,8 @@ exports[`Products Create Form component snapshot testing should match component 
                           removeOnLeave={true}
                           visible={false}
                         >
-                          <CSSMotion
-                            internalRef={null}
-                            motionAppear={true}
-                            motionDeadline={500}
-                            motionEnter={true}
-                            motionLeave={true}
-                            motionName="show-help"
-                            onLeaveEnd={[Function]}
-                            removeOnLeave={true}
-                            visible={false}
-                          />
-                        </ForwardRef>
+                          <DomWrapper />
+                        </CSSMotion>
                       </div>
                     </Col>
                   </FormItemInput>
@@ -7134,7 +6946,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -7142,18 +6954,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -7348,7 +7150,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -7356,18 +7158,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -7796,6 +7588,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -7848,6 +7641,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                 >
                                                   <div
                                                     className="ant-select-selector"
+                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SingleSelector
@@ -7881,6 +7675,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                type="search"
                                                                 unselectable="on"
                                                                 value=""
                                                               />
@@ -7909,6 +7704,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />,
@@ -7993,6 +7789,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -8117,7 +7914,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -8125,18 +7922,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -8331,7 +8118,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -8339,18 +8126,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -8757,6 +8534,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -8809,6 +8587,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                 >
                                                   <div
                                                     className="ant-select-selector"
+                                                    onClick={[Function]}
                                                     onMouseDown={[Function]}
                                                   >
                                                     <SelectSelector
@@ -8839,6 +8618,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                                 readonly=""
                                                                 role="combobox"
                                                                 style="opacity: 0;"
+                                                                type="search"
                                                                 unselectable="on"
                                                                 value=""
                                                               />
@@ -8876,6 +8656,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                             readonly=""
                                                             role="combobox"
                                                             style="opacity: 0;"
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />,
@@ -8961,6 +8742,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                                 "opacity": 0,
                                                               }
                                                             }
+                                                            type="search"
                                                             unselectable="on"
                                                             value=""
                                                           />
@@ -8990,7 +8772,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -8998,18 +8780,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -9485,10 +9257,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                           autocomplete="off"
                                                           class="ant-select-selection-search-input"
                                                           id="products_create_status"
-                                                          readonly=""
                                                           role="combobox"
-                                                          style="opacity: 0;"
-                                                          unselectable="on"
+                                                          type="search"
                                                           value=""
                                                         />
                                                       </span>
@@ -9536,6 +9306,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                               >
                                                 <div
                                                   className="ant-select-selector"
+                                                  onClick={[Function]}
                                                   onMouseDown={[Function]}
                                                 >
                                                   <SingleSelector
@@ -9561,10 +9332,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                               autocomplete="off"
                                                               class="ant-select-selection-search-input"
                                                               id="products_create_status"
-                                                              readonly=""
                                                               role="combobox"
-                                                              style="opacity: 0;"
-                                                              unselectable="on"
+                                                              type="search"
                                                               value=""
                                                             />
                                                           </span>
@@ -9592,10 +9361,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                           autocomplete="off"
                                                           class="ant-select-selection-search-input"
                                                           id="products_create_status"
-                                                          readonly=""
                                                           role="combobox"
-                                                          style="opacity: 0;"
-                                                          unselectable="on"
+                                                          type="search"
                                                           value=""
                                                         />,
                                                       }
@@ -9640,6 +9407,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                       <Input
                                                         accessibilityIndex={0}
                                                         attrs={Object {}}
+                                                        editable={true}
                                                         id="products_create_status"
                                                         inputElement={null}
                                                         onChange={[Function]}
@@ -9666,14 +9434,15 @@ exports[`Products Create Form component snapshot testing should render the compo
                                                           onKeyDown={[Function]}
                                                           onMouseDown={[Function]}
                                                           onPaste={[Function]}
-                                                          readOnly={true}
+                                                          readOnly={false}
                                                           role="combobox"
                                                           style={
                                                             Object {
-                                                              "opacity": 0,
+                                                              "opacity": null,
                                                             }
                                                           }
-                                                          unselectable="on"
+                                                          type="search"
+                                                          unselectable={null}
                                                           value=""
                                                         />
                                                       </Input>
@@ -9798,7 +9567,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                 </Component>
                               </div>
                             </div>
-                            <ForwardRef
+                            <CSSMotion
                               motionAppear={true}
                               motionDeadline={500}
                               motionName="show-help"
@@ -9806,18 +9575,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                               removeOnLeave={true}
                               visible={false}
                             >
-                              <CSSMotion
-                                internalRef={null}
-                                motionAppear={true}
-                                motionDeadline={500}
-                                motionEnter={true}
-                                motionLeave={true}
-                                motionName="show-help"
-                                onLeaveEnd={[Function]}
-                                removeOnLeave={true}
-                                visible={false}
-                              />
-                            </ForwardRef>
+                              <DomWrapper />
+                            </CSSMotion>
                           </div>
                         </Col>
                       </FormItemInput>
@@ -9897,7 +9656,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                                     loading={false}
                                     prefixCls="ant-btn"
                                   >
-                                    <ForwardRef
+                                    <CSSMotion
                                       motionName="ant-btn-loading-icon-motion"
                                       onAppearActive={[Function]}
                                       onAppearStart={[Function]}
@@ -9908,22 +9667,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                                       removeOnLeave={true}
                                       visible={false}
                                     >
-                                      <CSSMotion
-                                        internalRef={null}
-                                        motionAppear={true}
-                                        motionEnter={true}
-                                        motionLeave={true}
-                                        motionName="ant-btn-loading-icon-motion"
-                                        onAppearActive={[Function]}
-                                        onAppearStart={[Function]}
-                                        onEnterActive={[Function]}
-                                        onEnterStart={[Function]}
-                                        onLeaveActive={[Function]}
-                                        onLeaveStart={[Function]}
-                                        removeOnLeave={true}
-                                        visible={false}
-                                      />
-                                    </ForwardRef>
+                                      <DomWrapper />
+                                    </CSSMotion>
                                   </LoadingIcon>
                                   <span
                                     key=".0"
@@ -9935,7 +9680,7 @@ exports[`Products Create Form component snapshot testing should render the compo
                             </Button>
                           </div>
                         </div>
-                        <ForwardRef
+                        <CSSMotion
                           motionAppear={true}
                           motionDeadline={500}
                           motionName="show-help"
@@ -9943,18 +9688,8 @@ exports[`Products Create Form component snapshot testing should render the compo
                           removeOnLeave={true}
                           visible={false}
                         >
-                          <CSSMotion
-                            internalRef={null}
-                            motionAppear={true}
-                            motionDeadline={500}
-                            motionEnter={true}
-                            motionLeave={true}
-                            motionName="show-help"
-                            onLeaveEnd={[Function]}
-                            removeOnLeave={true}
-                            visible={false}
-                          />
-                        </ForwardRef>
+                          <DomWrapper />
+                        </CSSMotion>
                       </div>
                     </Col>
                   </FormItemInput>
