@@ -35,7 +35,7 @@ exports[`ProductDetails component should render the component 1`] = `
     <DescriptionsItem
       label="Created At"
     >
-      in 3 months
+      in 2 months
     </DescriptionsItem>
   </Descriptions>
 </Card>
