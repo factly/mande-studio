@@ -9,7 +9,7 @@ import {
 } from '../constants/plans';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},

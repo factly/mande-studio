@@ -9,7 +9,7 @@ import {
 } from '../constants/memberships';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},

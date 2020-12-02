@@ -6,6 +6,7 @@ import PlanEdit from './pages/plans/edit';
 import Orders from './pages/orders/index';
 import OrderDetail from './pages/orders/detail';
 import CartItems from './pages/cartItems/index';
+import CartItemDetails from './pages/cartItems/components/CartItemDetails';
 import Catalogs from './pages/catalogs/index';
 import CatalogCreate from './pages/catalogs/create';
 import CatalogEdit from './pages/catalogs/edit';
@@ -72,6 +73,10 @@ const routes = [
     title: 'Cart Items',
     icon: ShoppingCartOutlined,
     onNavigation: true,
+  }),
+  new Route({
+    path: '/cart-items/:id',
+    component: CartItemDetails,
   }),
   new Route({
     path: '/catalogs',

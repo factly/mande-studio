@@ -11,7 +11,7 @@ import {
 } from '../constants/datasets';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},

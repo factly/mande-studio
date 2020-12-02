@@ -52,7 +52,7 @@ const CartItems = () => {
           <span>
             <Button
               type="primary"
-              onClick={() => history.push(`/cartItems/${record.id}`)}
+              onClick={() => history.push(`/cart-items/${record.id}`)}
               style={{
                 marginRight: 8,
               }}

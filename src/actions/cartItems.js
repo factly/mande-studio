@@ -10,7 +10,7 @@ import { addProducts } from './products';
 import { addMemberships } from './memberships';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadCartItems = (id, page = 1, limit = 5) => {
+export const loadCartItems = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
     const {
       cartItems: { req },
@@ -37,7 +37,7 @@ export const loadCartItems = (id, page = 1, limit = 5) => {
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { id, page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { page: page, limit: limit, ids: currentPageIds };
     dispatch(setCartItemRequest(currentReq, total));
     dispatch(addCartItems(nodes));
     dispatch(setCartItemIds(currentPageIds));

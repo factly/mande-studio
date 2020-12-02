@@ -7,7 +7,7 @@ import {
 } from '../constants/cartItems';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},
