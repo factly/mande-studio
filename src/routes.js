@@ -5,8 +5,7 @@ import PlanCreate from './pages/plans/create';
 import PlanEdit from './pages/plans/edit';
 import Orders from './pages/orders/index';
 import OrderDetail from './pages/orders/detail';
-import Carts from './pages/carts/index';
-import CartDetail from './pages/carts/detail';
+import CartItems from './pages/cartItems/index';
 import Catalogs from './pages/catalogs/index';
 import CatalogCreate from './pages/catalogs/create';
 import CatalogEdit from './pages/catalogs/edit';
@@ -68,15 +67,11 @@ const routes = [
     onNavigation: true,
   }),
   new Route({
-    path: '/carts',
-    component: Carts,
-    title: 'Carts',
+    path: '/cart-items',
+    component: CartItems,
+    title: 'Cart Items',
     icon: ShoppingCartOutlined,
     onNavigation: true,
-  }),
-  new Route({
-    path: '/carts/:id',
-    component: CartDetail,
   }),
   new Route({
     path: '/catalogs',

@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import axios from '../utils/axios';
 import * as actions from './orders';
 import * as types from '../constants/orders';
-import { ADD_CARTS } from '../constants/carts';
+// import { ADD_CARTS } from '../constants/carts';
 import { ADD_CURRENCIES } from '../constants/currencies';
 import { ADD_PAYMENTS } from '../constants/payments';
 
@@ -45,12 +45,12 @@ describe('orders actions', () => {
     };
 
     const expectedActions = [
-      {
-        payload: {
-          carts: { 21: { id: 21, cart: 'Cart 2' } },
-        },
-        type: ADD_CARTS,
-      },
+      // {
+      //   payload: {
+      //     carts: { 21: { id: 21, cart: 'Cart 2' } },
+      //   },
+      //   type: ADD_CARTS,
+      // },
       {
         payload: {
           currencies: { 100: { id: 100, currency: 'Currency 1' } },
@@ -80,12 +80,12 @@ describe('orders actions', () => {
     const order = { id: 1, order: 'tester t' };
 
     const expectedActions = [
-      {
-        payload: {
-          carts: {},
-        },
-        type: ADD_CARTS,
-      },
+      // {
+      //   payload: {
+      //     carts: {},
+      //   },
+      //   type: ADD_CARTS,
+      // },
       {
         payload: {
           currencies: {},
@@ -125,12 +125,12 @@ describe('orders actions', () => {
     ];
 
     const expectedActions = [
-      {
-        payload: {
-          carts: { 21: { id: 21, cart: 'Cart 2' } },
-        },
-        type: ADD_CARTS,
-      },
+      // {
+      //   payload: {
+      //     carts: { 21: { id: 21, cart: 'Cart 2' } },
+      //   },
+      //   type: ADD_CARTS,
+      // },
       {
         payload: {
           currencies: { 100: { id: 100, currency: 'Currency 1' } },
@@ -166,12 +166,12 @@ describe('orders actions', () => {
     ];
 
     const expectedActions = [
-      {
-        payload: {
-          carts: {},
-        },
-        type: ADD_CARTS,
-      },
+      // {
+      //   payload: {
+      //     carts: {},
+      //   },
+      //   type: ADD_CARTS,
+      // },
       {
         payload: {
           currencies: {},
@@ -232,12 +232,12 @@ describe('orders actions', () => {
           total: 1,
         },
       },
-      {
-        payload: {
-          carts: {},
-        },
-        type: ADD_CARTS,
-      },
+      // {
+      //   payload: {
+      //     carts: {},
+      //   },
+      //   type: ADD_CARTS,
+      // },
       {
         payload: {
           currencies: {},
@@ -307,12 +307,12 @@ describe('orders actions', () => {
         type: types.SET_ORDER_LOADING,
         payload: { loading: true },
       },
-      {
-        payload: {
-          carts: {},
-        },
-        type: ADD_CARTS,
-      },
+      // {
+      //   payload: {
+      //     carts: {},
+      //   },
+      //   type: ADD_CARTS,
+      // },
       {
         payload: {
           currencies: {},

@@ -7,6 +7,7 @@ import {
   CARTITEM_API,
 } from '../constants/cartItems';
 import { addProducts } from './products';
+import { addMemberships } from './memberships';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadCartItems = (id, page = 1, limit = 5) => {
@@ -30,7 +31,7 @@ export const loadCartItems = (id, page = 1, limit = 5) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${CARTITEM_API(id)}?page=${page}&limit=${limit}`,
+      url: `${CARTITEM_API}?page=${page}&limit=${limit}`,
       method: 'get',
     });
 
@@ -56,10 +57,13 @@ export const addCartItems = (cartItems) => (dispatch) => {
   const products = getValues(cartItems, 'product');
   dispatch(addProducts(products));
 
+  const memberships = getValues(cartItems, 'membership');
+  dispatch(addMemberships(memberships));
+
   dispatch({
     type: ADD_CARTITEMS,
     payload: {
-      cartItems: buildObjectOfItems(deleteKeys(cartItems, ['product'])),
+      cartItems: buildObjectOfItems(deleteKeys(cartItems, ['product', 'membership'])),
     },
   });
 };
