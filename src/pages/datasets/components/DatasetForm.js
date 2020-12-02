@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, InputNumber, Button, Select, notification } from 'antd';
 
+import Selector from '../../../components/Selector';
 import MediaUploader from '../../media/components/MediaUpload';
 
 const { Option } = Select;
@@ -25,6 +26,8 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
     { label: 'Contact Name', name: 'contact_name', placeholder: 'Shashi', required: true },
     { label: 'Description', name: 'description', placeholder: 'description' },
     { label: 'Data Standard', name: 'data_standard', placeholder: 'standard' },
+    { label: 'Price', type: 'number', name: 'price', placeholder: '1000' },
+    { label: 'Currency', name: 'currency_id', placeholder: 'INR' },
     { label: 'Frequency', name: 'frequency', placeholder: '1 month', required: true },
     { label: 'Granularity', name: 'granularity', placeholder: 'granularity' },
     { label: 'License', name: 'license', placeholder: 'MIT License' },
@@ -86,6 +89,8 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
         >
           {field.type === 'number' ? (
             <InputNumber placeholder={field.placeholder} />
+          ) : field.name === 'currency_id' ? (
+            <Selector action="Currencies" field="iso_code" />
           ) : field.name === 'frequency' ? (
             <Input.Group compact>
               <Form.Item
