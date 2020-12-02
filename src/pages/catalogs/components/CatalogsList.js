@@ -53,16 +53,11 @@ const CatalogsList = () => {
       width: '20%',
     },
     {
-      title: 'Price',
-      dataIndex: 'price',
-      width: '20%',
-    },
-    {
       title: 'Published At',
       dataIndex: 'published_date',
       width: '20%',
       render: (_, record) => {
-        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
+        return <span title={record.published_date}>{moment(record.published_date).fromNow()}</span>;
       },
     },
     {
