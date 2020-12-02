@@ -61,13 +61,10 @@ export const addMemberships = (memberships) => (dispatch) => {
   const plans = getValues(memberships, 'plan');
   dispatch(addPlans(plans));
 
-  const users = getValues(memberships, 'user');
-  dispatch(setUsers(users));
-
   dispatch({
     type: ADD_MEMBERSHIPS,
     payload: {
-      memberships: buildObjectOfItems(deleteKeys(memberships, ['payment', 'plan', 'user'])),
+      memberships: buildObjectOfItems(deleteKeys(memberships, ['payment', 'plan'])),
     },
   });
 };

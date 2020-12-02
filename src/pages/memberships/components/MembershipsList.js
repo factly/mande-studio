@@ -34,13 +34,13 @@ const MembershipList = () => {
     },
     {
       title: 'Plan',
-      render: (record) => plans[record.plan_id].plan_name,
+      render: (record) => plans[record.plan_id].name,
       width: '15%',
       editable: true,
     },
     {
       title: 'User',
-      render: (record) => users[record.user_id].email,
+      dataIndex: 'user_id',
       width: '15%',
       editable: true,
     },
