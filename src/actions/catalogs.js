@@ -9,6 +9,7 @@ import {
   CATALOG_API,
 } from '../constants/catalogs';
 import { addProducts } from './products';
+import { addMedia } from './media';
 import { getIds, getValues, buildObjectOfItems } from '../utils/objects';
 
 export const loadCatalogs = (page = 1, limit = 5) => {
@@ -125,6 +126,9 @@ export const setLoading = (loading) => {
 };
 
 export const addCatalog = (catalog) => (dispatch) => {
+  const media = getValues([catalog], 'featured_medium');
+  dispatch(addMedia(media));
+
   const products = getValues([catalog], 'products');
   dispatch(addProducts(products));
 
@@ -137,6 +141,9 @@ export const addCatalog = (catalog) => (dispatch) => {
 };
 
 export const addCatalogs = (catalogs) => (dispatch) => {
+  const media = getValues(catalogs, 'featured_medium');
+  dispatch(addMedia(media));
+
   const products = getValues(catalogs, 'products');
   dispatch(addProducts(products));
 
