@@ -65,7 +65,7 @@ const PlansList = () => {
     {
       title: 'Operation',
       dataIndex: 'operation',
-      render: (record) => {
+      render: (_, record) => {
         return (
           <span>
             <Button
