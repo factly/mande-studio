@@ -10,6 +10,8 @@ import {
 } from '../constants/products';
 import { addCurrencies } from './currencies';
 import { addTags } from './tags';
+import { addMedium } from './media';
+import { addDatasets } from './datasets';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadProducts = (page = 1, limit = 5) => {
@@ -129,19 +131,31 @@ export const addProduct = (product) => (dispatch) => {
   const currencies = getValues([product], 'currency');
   dispatch(addCurrencies(currencies));
 
+  const medium = getValues([product], 'featured_medium');
+  dispatch(addMedium(medium));
+
+  const datasets = getValues([product], 'datasets');
+  dispatch(addDatasets(datasets));
+
   const tags = getValues([product], 'tags');
   dispatch(addTags(tags));
 
   product.tags = getIds(product.tags);
   dispatch({
     type: ADD_PRODUCT,
-    payload: { product: deleteKeys([product], ['currency'])[0] },
+    payload: { product: deleteKeys([product], ['currency', 'featured_medium'])[0] },
   });
 };
 
 export const addProducts = (products) => (dispatch) => {
   const currencies = getValues(products, 'currency');
   dispatch(addCurrencies(currencies));
+
+  const medium = getValues(products, 'featured_medium');
+  dispatch(addMedium(medium));
+
+  const datasets = getValues(products, 'datasets');
+  dispatch(addDatasets(datasets));
 
   const tags = getValues(products, 'tags');
   dispatch(addTags(tags));
@@ -153,7 +167,7 @@ export const addProducts = (products) => (dispatch) => {
   dispatch({
     type: ADD_PRODUCTS,
     payload: {
-      products: buildObjectOfItems(deleteKeys(products, ['currency'])),
+      products: buildObjectOfItems(deleteKeys(products, ['currency', 'featured_medium'])),
     },
   });
 };
