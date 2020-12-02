@@ -27,8 +27,17 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
       });
   };
 
+  let catalogs =
+    data.id && data.catalogs && data.catalogs.length > 0
+      ? data.catalogs.map((each) => each.id)
+      : [];
+  let initialValues = {};
+  if (data.id) {
+    initialValues = { ...data, catalogs: catalogs };
+  }
+
   return (
-    <Form name="plans_create" initialValues={data} {...formItemLayout} onFinish={onFinish}>
+    <Form name="plans_create" initialValues={initialValues} {...formItemLayout} onFinish={onFinish}>
       <Form.Item
         label="Name"
         name="name"
