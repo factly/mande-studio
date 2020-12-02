@@ -8,7 +8,9 @@ import {
   RESET_PLAN,
   PLAN_API,
 } from '../constants/plans';
-import { getIds, buildObjectOfItems } from '../utils/objects';
+import { addCurrencies } from './currencies';
+import { addCatalogs } from './catalogs';
+import { getIds, buildObjectOfItems, getValues, deleteKeys } from '../utils/objects';
 
 export const loadPlans = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
@@ -123,20 +125,32 @@ export const setLoading = (loading) => {
   };
 };
 
-export const addPlan = (plan) => {
-  return {
+export const addPlan = (plan) => (dispatch) => {
+  const currencies = getValues([plan], 'currency');
+  dispatch(addCurrencies(currencies));
+
+  const catalogs = getValues([plan], 'catalog');
+  dispatch(addCatalogs(catalogs));
+
+  dispatch({
     type: ADD_PLAN,
-    payload: { plan },
-  };
+    payload: { plan: deleteKeys([plan], ['currency', 'catalog'])[0] },
+  });
 };
 
-export const addPlans = (plans) => {
-  return {
+export const addPlans = (plans) => (dispatch) => {
+  const currencies = getValues(plans, 'currency');
+  dispatch(addCurrencies(currencies));
+
+  const catalogs = getValues(plans, 'catalog');
+  dispatch(addCatalogs(catalogs));
+
+  dispatch({
     type: ADD_PLANS,
     payload: {
-      plans: buildObjectOfItems(plans),
+      plans: buildObjectOfItems(deleteKeys(plans, ['currency', 'catalog'])),
     },
-  };
+  });
 };
 
 export const setPlanRequest = (req, total) => {

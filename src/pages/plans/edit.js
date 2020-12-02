@@ -11,7 +11,7 @@ const EditPlan = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { loading, plan } = useSelector(({ plans }) => ({
-    loading: formats.loading,
+    loading: plans.loading,
     plan: plans.items[id],
   }));
 
