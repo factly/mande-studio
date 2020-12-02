@@ -136,11 +136,12 @@ export const addProduct = (product) => (dispatch) => {
 
   const datasets = getValues([product], 'datasets');
   dispatch(addDatasets(datasets));
+  product.datasets = getIds(product.datasets);
 
   const tags = getValues([product], 'tags');
   dispatch(addTags(tags));
-
   product.tags = getIds(product.tags);
+
   dispatch({
     type: ADD_PRODUCT,
     payload: { product: deleteKeys([product], ['currency', 'featured_medium'])[0] },
@@ -156,10 +157,12 @@ export const addProducts = (products) => (dispatch) => {
 
   const datasets = getValues(products, 'datasets');
   dispatch(addDatasets(datasets));
+  products.forEach((product) => {
+    product.datasets = getIds(product.datasets);
+  });
 
   const tags = getValues(products, 'tags');
   dispatch(addTags(tags));
-
   products.forEach((product) => {
     product.tags = getIds(product.tags);
   });

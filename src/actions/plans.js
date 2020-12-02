@@ -129,12 +129,14 @@ export const addPlan = (plan) => (dispatch) => {
   const currencies = getValues([plan], 'currency');
   dispatch(addCurrencies(currencies));
 
-  const catalogs = getValues([plan], 'catalog');
+  const catalogs = getValues([plan], 'catalogs');
   dispatch(addCatalogs(catalogs));
+
+  plan.catalogs = getIds(plan.catalogs);
 
   dispatch({
     type: ADD_PLAN,
-    payload: { plan: deleteKeys([plan], ['currency', 'catalog'])[0] },
+    payload: { plan: deleteKeys([plan], ['currency'])[0] },
   });
 };
 
@@ -142,13 +144,17 @@ export const addPlans = (plans) => (dispatch) => {
   const currencies = getValues(plans, 'currency');
   dispatch(addCurrencies(currencies));
 
-  const catalogs = getValues(plans, 'catalog');
+  const catalogs = getValues(plans, 'catalogs');
   dispatch(addCatalogs(catalogs));
+
+  plans.forEach((plan) => {
+    plan.catalogs = getIds(plan.catalogs);
+  });
 
   dispatch({
     type: ADD_PLANS,
     payload: {
-      plans: buildObjectOfItems(deleteKeys(plans, ['currency', 'catalog'])),
+      plans: buildObjectOfItems(deleteKeys(plans, ['currency'])),
     },
   });
 };

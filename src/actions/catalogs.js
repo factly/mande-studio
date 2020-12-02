@@ -10,7 +10,7 @@ import {
 } from '../constants/catalogs';
 import { addProducts } from './products';
 import { addMedia } from './media';
-import { getIds, getValues, buildObjectOfItems } from '../utils/objects';
+import { getIds, getValues, buildObjectOfItems, deleteKeys } from '../utils/objects';
 
 export const loadCatalogs = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
@@ -136,7 +136,7 @@ export const addCatalog = (catalog) => (dispatch) => {
 
   dispatch({
     type: ADD_CATALOG,
-    payload: { catalog },
+    payload: { catalog: deleteKeys([catalog], ['featured_medium'])[0] },
   });
 };
 
@@ -154,7 +154,7 @@ export const addCatalogs = (catalogs) => (dispatch) => {
   dispatch({
     type: ADD_CATALOGS,
     payload: {
-      catalogs: buildObjectOfItems(catalogs),
+      catalogs: buildObjectOfItems(deleteKeys(catalogs, ['featured_medium'])),
     },
   });
 };

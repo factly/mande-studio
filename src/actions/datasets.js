@@ -174,7 +174,7 @@ export const addDataset = (dataset) => (dispatch) => {
 
   dispatch({
     type: ADD_DATASET,
-    payload: { dataset: deleteKeys(dataset, ['currency', 'featured_medium'])[0] },
+    payload: { dataset: deleteKeys([dataset], ['currency', 'featured_medium'])[0] },
   });
 };
 
