@@ -17,22 +17,6 @@ import { getIds, buildObjectOfItems, getValues, deleteKeys } from '../utils/obje
 
 export const loadDatasets = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    const {
-      datasets: { req },
-    } = getState();
-
-    let ids;
-    for (let item of req) {
-      if (item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-      }
-    }
-
-    if (ids) {
-      dispatch(setDatasetIds(ids));
-      return;
-    }
-
     dispatch(setLoading(true));
 
     const response = await axios({

@@ -12,22 +12,6 @@ import { getIds, buildObjectOfItems } from '../utils/objects';
 
 export const loadFormats = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    const {
-      formats: { req },
-    } = getState();
-
-    let ids;
-    for (let item of req) {
-      if (item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-      }
-    }
-
-    if (ids) {
-      dispatch(setFormatIds(ids));
-      return;
-    }
-
     dispatch(setLoading(true));
 
     const response = await axios({
