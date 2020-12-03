@@ -117,7 +117,7 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
           )}
         </Form.Item>
       ))}
-      <Form.Item key={'medium'} label={'Medium'}>
+      <Form.Item key={'medium'} label={'Featured Image'}>
         {/* {media && media.name} */}
         <MediaUploader onUploadSuccess={onUploadSuccess} />
       </Form.Item>

@@ -63,7 +63,7 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Input placeholder="Ex. Package of datasets of Indian cricket" />
+        <Input.TextArea placeholder="Ex. Package of datasets of Indian cricket" />
       </Form.Item>
 
       <Form.Item

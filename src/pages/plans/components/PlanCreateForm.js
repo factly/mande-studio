@@ -43,7 +43,7 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
       </Form.Item>
 
       <Form.Item label="Description" name="description">
-        <Input placeholder="Ex. Allows users to access premium content" />
+        <Input.TextArea placeholder="Ex. Allows users to access premium content" />
       </Form.Item>
 
       <Form.Item
@@ -99,7 +99,7 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
       </Form.Item>
 
       <Form.Item label="Catalogs" name="catalogs">
-        <Selector action="Catalogs" field="id" />
+        <Selector action="Catalogs" multiple={true} field="id" />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

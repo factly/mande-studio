@@ -80,13 +80,13 @@ const DatasetsList = () => {
             actions={actions(dataset.id)}
             title={<Link to={`/datasets/${dataset.id}`}>{dataset.title}</Link>}
             bordered={false}
-            cover={
-              <img
-                className="photo"
-                alt={dataset.featured_media?.alt_text || 'No image added'}
-                src={dataset.featured_media?.url}
-              />
-            }
+            // cover={
+            //   <img
+            //     className="photo"
+            //     alt={dataset.featured_media?.alt_text || 'No image added'}
+            //     src={dataset.featured_media?.url}
+            //   />
+            // }
           >
             <DatasetItem dataset={dataset} />
           </Card>
