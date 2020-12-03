@@ -129,6 +129,19 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
         </Select>
       </Form.Item>
 
+      <Form.Item
+        label="Datasets"
+        name="dataset_ids"
+        rules={[
+          {
+            required: true,
+            message: 'Please select atleast one dataset!',
+          },
+        ]}
+      >
+        <Selector action="Datasets" multiple={true} field="title" />
+      </Form.Item>
+
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">
           Submit
