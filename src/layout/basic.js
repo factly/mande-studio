@@ -42,9 +42,8 @@ function BasicLayout(props) {
         }}
       >
         <div className="menu-header">
-          <img alt="logo" className="menu-logo" src={logo} />
           <span hidden={collapsed} className="menu-company">
-            GO COMM
+            MandE
           </span>
         </div>
         <Menu theme="dark" mode="vertical" className="slider-menu">
@@ -85,7 +84,7 @@ function BasicLayout(props) {
           </div>
         </Header>
         <Content className="layout-content">{children}</Content>
-        <Footer>Footer</Footer>
+        <Footer></Footer>
       </Layout>
     </Layout>
   );
