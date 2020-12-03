@@ -10,16 +10,21 @@ const CartItemDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { loading, product, currencies, tags } = useSelector(({ products, currencies, tags }) => ({
-    loading: products.loading,
-    product: products.items[id],
-    currencies: currencies.items,
-    tags: tags.items,
-  }));
+  const { loading, product, currencies, tags } = useSelector(
+    ({ cartItems, products, currencies, tags }) => {
+      const cartItem = cartItems.items[id];
+      return {
+        loading: products.loading,
+        product: products.items[cartItem.product_id],
+        currencies: currencies.items,
+        tags: tags.items,
+      };
+    },
+  );
 
   React.useEffect(() => {
-    dispatch(getProduct(id));
-  }, []);
+    dispatch(getProduct(product.id));
+  }, [id]);
 
   if (loading) return <Skeleton />;
 
