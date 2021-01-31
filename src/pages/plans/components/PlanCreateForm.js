@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Input, InputNumber, Button, notification } from 'antd';
+import { Form, Input, InputNumber, Button, Switch, notification } from 'antd';
 import Selector from '../../../components/Selector';
 
 const formItemLayout = {
@@ -9,9 +9,18 @@ const formItemLayout = {
 };
 
 const PlanCreateForm = ({ onSubmit, data = {} }) => {
+  const [allProducts, setAllProducts] = React.useState(false);
   const history = useHistory();
 
+  const toggleAllProducts = () => {
+    setAllProducts(!allProducts);
+  };
+
   const onFinish = (values) => {
+    if (allProducts) {
+      values.catalogs = [];
+    }
+
     onSubmit(values)
       .then(() => {
         notification.success({
@@ -98,7 +107,11 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
         <Input placeholder="Ex. Pending" />
       </Form.Item>
 
-      <Form.Item label="Catalogs" name="catalogs">
+      <Form.Item label="All Catalogs" name="all_products">
+        <Switch onChange={toggleAllProducts} />
+      </Form.Item>
+
+      <Form.Item hidden={allProducts} label="Catalogs" name="catalogs">
         <Selector action="Catalogs" multiple={true} field="id" />
       </Form.Item>
 
