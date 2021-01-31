@@ -68,13 +68,21 @@ export const createDatasetFormat = (datasetId, data) => {
 };
 
 export const updateDataset = (id, data) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const {
+      datasets: { items },
+    } = getState();
+
+    const dataset = items[id];
+
+    if (!dataset) return;
+
     let url = `${DATASET_API}/${id}`;
 
     const response = await axios({
       url: url,
       method: 'put',
-      data: data,
+      data: { ...dataset, ...data },
     });
 
     dispatch(addDataset(response.data));
