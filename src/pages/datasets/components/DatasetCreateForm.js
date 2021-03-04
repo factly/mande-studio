@@ -19,7 +19,7 @@ const DatasetCreateForm = ({ dataset, datasetFormats, onSubmitDataset, onSubmitD
 
   const steps = [
     {
-      title: 'Create Dataset',
+      title: 'Add Dataset Details',
       content: (
         <DatasetForm
           data={dataset}
@@ -30,7 +30,7 @@ const DatasetCreateForm = ({ dataset, datasetFormats, onSubmitDataset, onSubmitD
       ),
     },
     {
-      title: 'Add Formats',
+      title: 'Add Datasets',
       content: (
         <DatasetFormatForm
           datasetFormats={datasetFormats}

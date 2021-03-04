@@ -9,26 +9,11 @@ import {
   CATALOG_API,
 } from '../constants/catalogs';
 import { addProducts } from './products';
-import { getIds, getValues, buildObjectOfItems } from '../utils/objects';
+import { addMedia } from './media';
+import { getIds, getValues, buildObjectOfItems, deleteKeys } from '../utils/objects';
 
 export const loadCatalogs = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    const {
-      catalogs: { req },
-    } = getState();
-
-    let ids;
-    for (let item of req) {
-      if (item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-      }
-    }
-
-    if (ids) {
-      dispatch(setCatalogIds(ids));
-      return;
-    }
-
     dispatch(setLoading(true));
 
     const response = await axios({
@@ -125,6 +110,9 @@ export const setLoading = (loading) => {
 };
 
 export const addCatalog = (catalog) => (dispatch) => {
+  const media = getValues([catalog], 'featured_medium');
+  dispatch(addMedia(media));
+
   const products = getValues([catalog], 'products');
   dispatch(addProducts(products));
 
@@ -132,11 +120,14 @@ export const addCatalog = (catalog) => (dispatch) => {
 
   dispatch({
     type: ADD_CATALOG,
-    payload: { catalog },
+    payload: { catalog: deleteKeys([catalog], ['featured_medium'])[0] },
   });
 };
 
 export const addCatalogs = (catalogs) => (dispatch) => {
+  const media = getValues(catalogs, 'featured_medium');
+  dispatch(addMedia(media));
+
   const products = getValues(catalogs, 'products');
   dispatch(addProducts(products));
 
@@ -147,7 +138,7 @@ export const addCatalogs = (catalogs) => (dispatch) => {
   dispatch({
     type: ADD_CATALOGS,
     payload: {
-      catalogs: buildObjectOfItems(catalogs),
+      catalogs: buildObjectOfItems(deleteKeys(catalogs, ['featured_medium'])),
     },
   });
 };

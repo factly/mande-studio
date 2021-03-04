@@ -9,11 +9,11 @@ import { updateProduct, getProduct } from '../../actions/products';
 const ProductEdit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { loading, product } = useSelector(({ products }) => {
+  let { loading, product } = useSelector(({ products }) => {
     console.log('products', products);
     return {
       loading: products.loading,
-      product: products.items[id],
+      product: { ...products.items[id] },
     };
   });
 
@@ -24,6 +24,7 @@ const ProductEdit = () => {
   if (loading) return <Skeleton />;
 
   product.tag_ids = product?.tags;
+  product.dataset_ids = product?.datasets;
 
   const onUpdate = async (values) => {
     await dispatch(updateProduct(id, values));

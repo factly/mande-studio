@@ -1,8 +1,20 @@
 export const getIds = (objectsList = []) => {
+  // objectsList=objectsList.filter(item => item)
+  if (!objectsList) {
+    objectsList = [];
+  }
+
   return getValues(objectsList, 'id');
 };
 
 export const getValues = (objectsList = [], key = '') => {
+  if (!objectsList) {
+    objectsList = [];
+  }
+  if (!key) {
+    key = '';
+  }
+
   return objectsList
     .map((obj) => obj[key])
     .flat()
@@ -10,6 +22,13 @@ export const getValues = (objectsList = [], key = '') => {
 };
 
 export const deleteKeys = (objectsList = [], keys = []) => {
+  if (!objectsList) {
+    objectsList = [];
+  }
+  if (!keys) {
+    keys = [];
+  }
+
   return objectsList.map((obj) => {
     keys.forEach((key) => delete obj[key]);
     return obj;
@@ -17,6 +36,10 @@ export const deleteKeys = (objectsList = [], keys = []) => {
 };
 
 export const buildObjectOfItems = (objectsList = []) => {
+  if (!objectsList) {
+    objectsList = [];
+  }
+
   const objectOfItems = {};
 
   for (let obj of objectsList) {

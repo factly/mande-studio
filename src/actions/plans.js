@@ -8,26 +8,12 @@ import {
   RESET_PLAN,
   PLAN_API,
 } from '../constants/plans';
-import { getIds, buildObjectOfItems } from '../utils/objects';
+import { addCurrencies } from './currencies';
+import { addCatalogs } from './catalogs';
+import { getIds, buildObjectOfItems, getValues, deleteKeys } from '../utils/objects';
 
 export const loadPlans = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    const {
-      plans: { req },
-    } = getState();
-
-    let ids;
-    for (let item of req) {
-      if (item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-      }
-    }
-
-    if (ids) {
-      dispatch(setPlanIds(ids));
-      return;
-    }
-
     dispatch(setLoading(true));
 
     const response = await axios({
@@ -123,20 +109,38 @@ export const setLoading = (loading) => {
   };
 };
 
-export const addPlan = (plan) => {
-  return {
+export const addPlan = (plan) => (dispatch) => {
+  const currencies = getValues([plan], 'currency');
+  dispatch(addCurrencies(currencies));
+
+  const catalogs = getValues([plan], 'catalogs');
+  dispatch(addCatalogs(catalogs));
+
+  plan.catalogs = getIds(plan.catalogs);
+
+  dispatch({
     type: ADD_PLAN,
-    payload: { plan },
-  };
+    payload: { plan: deleteKeys([plan], ['currency'])[0] },
+  });
 };
 
-export const addPlans = (plans) => {
-  return {
+export const addPlans = (plans) => (dispatch) => {
+  const currencies = getValues(plans, 'currency');
+  dispatch(addCurrencies(currencies));
+
+  const catalogs = getValues(plans, 'catalogs');
+  dispatch(addCatalogs(catalogs));
+
+  plans.forEach((plan) => {
+    plan.catalogs = getIds(plan.catalogs);
+  });
+
+  dispatch({
     type: ADD_PLANS,
     payload: {
-      plans: buildObjectOfItems(plans),
+      plans: buildObjectOfItems(deleteKeys(plans, ['currency'])),
     },
-  };
+  });
 };
 
 export const setPlanRequest = (req, total) => {

@@ -7,28 +7,13 @@ import {
   SET_ORDER_IDS,
   ORDER_API,
 } from '../constants/orders';
-import { addCarts } from './carts';
+// import { addCarts } from './carts';
 import { addPayments } from './payments';
+import { addProducts } from './products';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
 export const loadOrders = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    const {
-      orders: { req },
-    } = getState();
-
-    let ids;
-    for (let item of req) {
-      if (item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-      }
-    }
-
-    if (ids) {
-      dispatch(setOrderIds(ids));
-      return;
-    }
-
     dispatch(setLoading(true));
 
     const response = await axios({
@@ -77,31 +62,37 @@ export const setLoading = (loading) => {
 };
 
 export const addOrder = (order) => (dispatch) => {
-  const carts = getValues([order], 'cart');
-  dispatch(addCarts(carts));
-
   const payments = getValues([order], 'payment');
   dispatch(addPayments(payments));
+
+  const products = getValues([order], 'products');
+  dispatch(addProducts(products));
+
+  order.products = getIds(order.products);
 
   dispatch({
     type: ADD_ORDER,
     payload: {
-      order: deleteKeys([order], ['payment', 'cart'])[0],
+      order: deleteKeys([order], ['payment'])[0],
     },
   });
 };
 
 export const addOrders = (orders) => (dispatch) => {
-  const carts = getValues(orders, 'cart');
-  dispatch(addCarts(carts));
-
   const payments = getValues(orders, 'payment');
   dispatch(addPayments(payments));
+
+  const products = getValues(orders, 'products');
+  dispatch(addProducts(products));
+
+  orders.forEach((order) => {
+    order.products = getIds(order.products);
+  });
 
   dispatch({
     type: ADD_ORDERS,
     payload: {
-      orders: buildObjectOfItems(deleteKeys(orders, ['payment', 'cart'])),
+      orders: buildObjectOfItems(deleteKeys(orders, ['payment'])),
     },
   });
 };

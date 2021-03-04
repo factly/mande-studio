@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Popconfirm, Form, notification } from 'antd';
+import { Table, Button, Popconfirm, Form, Typography, notification } from 'antd';
 import moment from 'moment';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
@@ -49,12 +49,13 @@ const CatalogsList = () => {
     },
     {
       title: 'Description',
-      dataIndex: 'description',
-      width: '20%',
-    },
-    {
-      title: 'Price',
-      dataIndex: 'price',
+      render: (_, record) => {
+        return (
+          <Typography.Paragraph ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
+            {record.description}
+          </Typography.Paragraph>
+        );
+      },
       width: '20%',
     },
     {
@@ -62,7 +63,7 @@ const CatalogsList = () => {
       dataIndex: 'published_date',
       width: '20%',
       render: (_, record) => {
-        return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
+        return <span title={record.published_date}>{moment(record.published_date).fromNow()}</span>;
       },
     },
     {

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Input, InputNumber, Button, Select, notification } from 'antd';
+import { Form, Input, InputNumber, Button, Select, notification, Switch } from 'antd';
 
+import Selector from '../../../components/Selector';
 import MediaUploader from '../../media/components/MediaUpload';
+import Uploader from '../../../components/Uploader';
 
 const { Option } = Select;
 
@@ -11,6 +13,7 @@ const formItemLayout = {
 };
 
 const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
+  const [form] = Form.useForm();
   const [media, setMedia] = useState(data?.feature_media);
 
   const formFields = [
@@ -25,6 +28,8 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
     { label: 'Contact Name', name: 'contact_name', placeholder: 'Shashi', required: true },
     { label: 'Description', name: 'description', placeholder: 'description' },
     { label: 'Data Standard', name: 'data_standard', placeholder: 'standard' },
+    { label: 'Price', type: 'number', name: 'price', placeholder: '1000', required: true },
+    { label: 'Currency', name: 'currency_id', placeholder: 'INR', required: true },
     { label: 'Frequency', name: 'frequency', placeholder: '1 month', required: true },
     { label: 'Granularity', name: 'granularity', placeholder: 'granularity' },
     { label: 'License', name: 'license', placeholder: 'MIT License' },
@@ -63,8 +68,18 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
       });
   };
 
+  const [profiling_url, setProfilingURL] = useState(data?.profiling_url);
+
+  const onUpload = (data) => {
+    form.setFieldsValue({
+      profiling_url: data[0]?.uploadURL,
+    });
+    setProfilingURL(data[0]?.uploadURL);
+  };
+
   return (
     <Form
+      form={form}
       name="datasets_create_step_one"
       initialValues={data}
       {...formItemLayout}
@@ -86,6 +101,8 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
         >
           {field.type === 'number' ? (
             <InputNumber placeholder={field.placeholder} />
+          ) : field.name === 'currency_id' ? (
+            <Selector action="Currencies" field="iso_code" />
           ) : field.name === 'frequency' ? (
             <Input.Group compact>
               <Form.Item
@@ -112,9 +129,12 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
           )}
         </Form.Item>
       ))}
-      <Form.Item key={'medium'} label={'Medium'}>
+      <Form.Item name={'is_public'} label={'Is Public'} valuePropName="checked">
+        <Switch />
+      </Form.Item>
+      <Form.Item name={'profiling_url'} label={'Profiling URL'}>
         {/* {media && media.name} */}
-        <MediaUploader onUploadSuccess={onUploadSuccess} />
+        {!profiling_url ? <Uploader onUploadSuccess={onUpload} /> : profiling_url}
       </Form.Item>
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">

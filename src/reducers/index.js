@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 
-import cartsReducer from './carts';
 import cartItemsReducer from './cartItems';
 import ordersReducer from './orders';
-import orderItemsReducer from './orderItems';
 import membershipsReducer from './memberships';
 import paymentsReducer from './payments';
 import plansReducer from './plans';
@@ -17,14 +15,12 @@ import mediaReducer from './media';
 import usersReducer from './users';
 
 export default combineReducers({
-  carts: cartsReducer,
   cartItems: cartItemsReducer,
   catalogs: catalogsReducer,
   datasets: datasetsReducer,
   currencies: currenciesReducer,
   memberships: membershipsReducer,
   orders: ordersReducer,
-  orderItems: orderItemsReducer,
   payments: paymentsReducer,
   tags: tagsReducer,
   plans: plansReducer,

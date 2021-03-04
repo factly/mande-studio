@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Form, Input, Button, notification, Select } from 'antd';
 
 import Selector from '../../../components/Selector';
+import { maker, checker } from '../../../utils/sluger';
 
 const { Option } = Select;
 
@@ -14,6 +15,7 @@ const formItemLayout = {
 
 const ProductCreateForm = ({ onSubmit, data = {} }) => {
   const history = useHistory();
+  const [form] = Form.useForm();
 
   const onFinish = (values) => {
     values.currency_id = parseInt(values.currency_id);
@@ -35,8 +37,20 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
       });
   };
 
+  const onTitleChange = (string) => {
+    form.setFieldsValue({
+      slug: maker(string),
+    });
+  };
+
   return (
-    <Form name="products_create" initialValues={data} {...formItemLayout} onFinish={onFinish}>
+    <Form
+      form={form}
+      name="products_create"
+      initialValues={data}
+      {...formItemLayout}
+      onFinish={onFinish}
+    >
       <Form.Item
         label="Title"
         name="title"
@@ -47,7 +61,7 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Input placeholder="Ex. Crime In India" />
+        <Input placeholder="Ex. Crime In India" onChange={(e) => onTitleChange(e.target.value)} />
       </Form.Item>
 
       <Form.Item
@@ -58,9 +72,26 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
             required: true,
             message: 'Please enter slug!',
           },
+          {
+            pattern: checker,
+            message: 'Please enter valid slug!',
+          },
         ]}
       >
         <Input placeholder="Ex. crime-in-india" />
+      </Form.Item>
+
+      <Form.Item
+        label="Description"
+        name="description"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter catalog description!',
+          },
+        ]}
+      >
+        <Input.TextArea placeholder="Ex. Package of datasets of Indian cricket" />
       </Form.Item>
 
       <Form.Item
@@ -127,6 +158,19 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
             Hide
           </Option>
         </Select>
+      </Form.Item>
+
+      <Form.Item
+        label="Datasets"
+        name="dataset_ids"
+        rules={[
+          {
+            required: true,
+            message: 'Please select atleast one dataset!',
+          },
+        ]}
+      >
+        <Selector action="Datasets" multiple={true} field="title" />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

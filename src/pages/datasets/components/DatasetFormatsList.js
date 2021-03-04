@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Skeleton, Popconfirm, Form, notification } from 'antd';
+import { Table, Button, Skeleton, Popconfirm, Form, Switch, notification } from 'antd';
 import moment from 'moment';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 import { deleteDatasetFormat } from '../../../actions/datasets';
 
-const DatasetFormatsList = ({ datasetId, showOperations = true }) => {
+const DatasetFormatsList = ({
+  datasetId,
+  showOperations = true,
+  datasetSampleId,
+  setDatasetSampleId,
+}) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
@@ -58,7 +63,20 @@ const DatasetFormatsList = ({ datasetId, showOperations = true }) => {
     },
   ];
 
-  showOperations &&
+  if (showOperations) {
+    columns.push({
+      title: 'Is Sample',
+      render: (_, record) => {
+        return (
+          <span>
+            <Switch
+              checked={datasetSampleId === record.id}
+              onChange={() => setDatasetSampleId(record.id)}
+            />
+          </span>
+        );
+      },
+    });
     columns.push({
       title: 'Operation',
       dataIndex: 'operation',
@@ -72,6 +90,15 @@ const DatasetFormatsList = ({ datasetId, showOperations = true }) => {
         );
       },
     });
+  }
+  // else {
+  //   columns.push({
+  //     title: 'Is Sample',
+  //     render: (_, record) => {
+  //       return <span>{datasetSampleId === record.id ? <CheckOutlined /> : <CloseOutlined />}</span>;
+  //     },
+  //   });
+  // }
 
   return loading ? (
     <Skeleton />

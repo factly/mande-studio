@@ -16,7 +16,7 @@ const PlansList = () => {
   const { data, total } = useSelector(({ plans }) => {
     const { ids, items, total } = plans;
     return {
-      data: ids.map((id) => items[id]),
+      data: ids.map((id) => items[id]).filter((item) => item),
       total,
     };
   });
@@ -44,14 +44,20 @@ const PlansList = () => {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'plan_name',
-      width: '20%',
+      dataIndex: 'name',
+      width: '10%',
       editable: true,
     },
     {
-      title: 'Info',
-      dataIndex: 'plan_info',
-      width: '20%',
+      title: 'Price',
+      dataIndex: 'price',
+      width: '10%',
+      editable: true,
+    },
+    {
+      title: 'Users',
+      dataIndex: 'users',
+      width: '10%',
       editable: true,
     },
     {
@@ -64,7 +70,7 @@ const PlansList = () => {
       title: 'Created At',
       dataIndex: 'created_at',
       width: '20%',
-      render: (_, record) => {
+      render: (record) => {
         return <span title={record.created_at}>{moment(record.created_at).fromNow()}</span>;
       },
     },

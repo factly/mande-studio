@@ -19,7 +19,7 @@ const DatasetItem = ({ dataset }) => {
 };
 
 const DatasetsList = () => {
-  const [pagination, setPagination] = useState({ page: 1, limit: 4 });
+  const [pagination, setPagination] = useState({ page: 1, limit: 10 });
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ const DatasetsList = () => {
       grid={{ gutter: 16, column: 4 }}
       pagination={{
         current: pagination.page,
-        defaultPageSize: 4,
+        defaultPageSize: 10,
         pageSize: pagination.limit,
         total,
         onChange: (page, limit) => setPagination({ page, limit }),
@@ -80,13 +80,13 @@ const DatasetsList = () => {
             actions={actions(dataset.id)}
             title={<Link to={`/datasets/${dataset.id}`}>{dataset.title}</Link>}
             bordered={false}
-            cover={
-              <img
-                className="photo"
-                alt={dataset.featured_media?.alt_text || 'No image added'}
-                src={dataset.featured_media?.url}
-              />
-            }
+            // cover={
+            //   <img
+            //     className="photo"
+            //     alt={dataset.featured_media?.alt_text || 'No image added'}
+            //     src={dataset.featured_media?.url}
+            //   />
+            // }
           >
             <DatasetItem dataset={dataset} />
           </Card>

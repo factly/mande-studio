@@ -4,16 +4,16 @@ import { Table, Form, Button } from 'antd';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { loadCarts } from '../../../actions/carts';
+import { loadCartItems } from '../../../actions/cartItems';
 
-const Carts = () => {
+const CartItems = () => {
   const history = useHistory();
   const [form] = Form.useForm();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
   const dispatch = useDispatch();
 
-  const { data, total } = useSelector(({ carts }) => {
-    const { ids, items, total } = carts;
+  const { data, total } = useSelector(({ cartItems }) => {
+    const { ids, items, total } = cartItems;
 
     return {
       data: ids.map((id) => items[id]),
@@ -22,7 +22,7 @@ const Carts = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadCarts(pagination.page, pagination.limit));
+    dispatch(loadCartItems(pagination.page, pagination.limit));
   }, [pagination]);
 
   const columns = [
@@ -52,7 +52,7 @@ const Carts = () => {
           <span>
             <Button
               type="primary"
-              onClick={() => history.push(`/carts/${record.id}`)}
+              onClick={() => history.push(`/cart-items/${record.id}`)}
               style={{
                 marginRight: 8,
               }}
@@ -86,4 +86,4 @@ const Carts = () => {
   );
 };
 
-export default Carts;
+export default CartItems;

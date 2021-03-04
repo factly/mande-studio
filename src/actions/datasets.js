@@ -10,26 +10,13 @@ import {
   RESET_DATASET,
   DATASET_API,
 } from '../constants/datasets';
-import { getIds, buildObjectOfItems } from '../utils/objects';
+import { addCurrencies } from './currencies';
+import { addTags } from './tags';
+import { addMedium } from './media';
+import { getIds, buildObjectOfItems, getValues, deleteKeys } from '../utils/objects';
 
 export const loadDatasets = (page = 1, limit = 5) => {
   return async (dispatch, getState) => {
-    const {
-      datasets: { req },
-    } = getState();
-
-    let ids;
-    for (let item of req) {
-      if (item.page === page && item.limit === limit) {
-        ids = [...item.ids];
-      }
-    }
-
-    if (ids) {
-      dispatch(setDatasetIds(ids));
-      return;
-    }
-
     dispatch(setLoading(true));
 
     const response = await axios({
@@ -81,13 +68,21 @@ export const createDatasetFormat = (datasetId, data) => {
 };
 
 export const updateDataset = (id, data) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const {
+      datasets: { items },
+    } = getState();
+
+    const dataset = items[id];
+
+    if (!dataset) return;
+
     let url = `${DATASET_API}/${id}`;
 
     const response = await axios({
       url: url,
       method: 'put',
-      data: data,
+      data: { ...dataset, ...data },
     });
 
     dispatch(addDataset(response.data));
@@ -157,20 +152,44 @@ export const setLoading = (loading) => {
   };
 };
 
-export const addDataset = (dataset) => {
-  return {
+export const addDataset = (dataset) => (dispatch) => {
+  const currencies = getValues([dataset], 'currency');
+  dispatch(addCurrencies(currencies));
+
+  const medium = getValues([dataset], 'featured_medium');
+  dispatch(addMedium(medium));
+
+  const tags = getValues([dataset], 'tags');
+  dispatch(addTags(tags));
+
+  dataset.tags = getIds(dataset.tags);
+
+  dispatch({
     type: ADD_DATASET,
-    payload: { dataset },
-  };
+    payload: { dataset: deleteKeys([dataset], ['currency', 'featured_medium'])[0] },
+  });
 };
 
-export const addDatasets = (datasets) => {
-  return {
+export const addDatasets = (datasets) => (dispatch) => {
+  const currencies = getValues(datasets, 'currency');
+  dispatch(addCurrencies(currencies));
+
+  const medium = getValues(datasets, 'featured_medium');
+  dispatch(addMedium(medium));
+
+  const tags = getValues(datasets, 'tags');
+  dispatch(addTags(tags));
+
+  datasets.forEach((dataset) => {
+    dataset.tags = getIds(dataset.tags);
+  });
+
+  dispatch({
     type: ADD_DATASETS,
     payload: {
-      datasets: buildObjectOfItems(datasets),
+      datasets: buildObjectOfItems(deleteKeys(datasets, ['currency', 'featured_medium'])),
     },
-  };
+  });
 };
 
 export const addDatasetFormat = (datasetId, datasetFormat) => {

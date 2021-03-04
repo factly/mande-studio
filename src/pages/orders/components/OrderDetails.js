@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Table, Form } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { loadOrderItems } from '../../../actions/orderItems';
-
 const OrderDetails = () => {
   const dispatch = useDispatch();
 
@@ -12,37 +10,29 @@ const OrderDetails = () => {
   const { id } = useParams();
   const [pagination, setPagination] = useState({ page: 1, limit: 5 });
 
-  const { data, products, currencies, total } = useSelector(
-    ({ orderItems, products, currencies }) => {
-      const { ids, items, total } = orderItems;
+  const { data, currencies, total } = useSelector(({ orders, products, currencies }) => {
+    const { products: product_ids } = orders.items[id];
 
-      return {
-        data: ids.map((id) => items[id]),
-        products: products.items,
-        currencies: currencies.items,
-        total: total,
-      };
-    },
-  );
-
-  React.useEffect(() => {
-    dispatch(loadOrderItems(id, pagination.page, pagination.limit));
-  }, [pagination]);
+    return {
+      data: product_ids.map((id) => products[id]),
+      currencies: currencies.items,
+      total: total,
+    };
+  });
 
   const columns = [
     {
       title: 'Product Item',
-      render: (record) => products[record.product_id].title || '',
+      dataIndex: 'title',
       width: '40%',
     },
     {
       title: 'Price',
       render: (record) => {
-        const product = products[record.product_id];
-        const currency = currencies[product.currency_id];
+        const currency = currencies[record.currency_id];
         return (
           <span>
-            {product.price} {currency.iso_code}
+            {record.price} {currency.iso_code}
           </span>
         );
       },

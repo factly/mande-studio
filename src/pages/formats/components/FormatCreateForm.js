@@ -57,7 +57,7 @@ const CurrencyCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Input placeholder="Ex. Locked file" />
+        <Input.TextArea placeholder="Ex. Locked file" />
       </Form.Item>
 
       <Form.Item

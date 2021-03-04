@@ -7,7 +7,7 @@ import {
 } from '../constants/payments';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},

@@ -14,8 +14,11 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
   const history = useHistory();
 
   if (data.id) {
-    data.product_ids = data.products;
-    data.published_date = moment(data.published_date);
+    data = {
+      ...data,
+      product_ids: data.products,
+      published_date: moment(data.published_date),
+    };
   }
 
   const onFinish = (values) => {
@@ -60,20 +63,7 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Input placeholder="Ex. Package of datasets of Indian cricket" />
-      </Form.Item>
-
-      <Form.Item
-        label="Price"
-        name="price"
-        rules={[
-          {
-            required: true,
-            message: 'Please enter price!',
-          },
-        ]}
-      >
-        <InputNumber min={0} placeholder="Ex. 1999" />
+        <Input.TextArea placeholder="Ex. Package of datasets of Indian cricket" />
       </Form.Item>
 
       <Form.Item

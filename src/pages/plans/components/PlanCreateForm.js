@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, InputNumber, Button, Switch, notification } from 'antd';
+import Selector from '../../../components/Selector';
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -8,9 +9,18 @@ const formItemLayout = {
 };
 
 const PlanCreateForm = ({ onSubmit, data = {} }) => {
+  const [allProducts, setAllProducts] = React.useState(false);
   const history = useHistory();
 
+  const toggleAllProducts = () => {
+    setAllProducts(!allProducts);
+  };
+
   const onFinish = (values) => {
+    if (allProducts) {
+      values.catalogs = [];
+    }
+
     onSubmit(values)
       .then(() => {
         notification.success({
@@ -30,7 +40,7 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
     <Form name="plans_create" initialValues={data} {...formItemLayout} onFinish={onFinish}>
       <Form.Item
         label="Name"
-        name="plan_name"
+        name="name"
         rules={[
           {
             required: true,
@@ -41,17 +51,60 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
         <Input placeholder="Ex. Premium" />
       </Form.Item>
 
+      <Form.Item label="Description" name="description">
+        <Input.TextArea placeholder="Ex. Allows users to access premium content" />
+      </Form.Item>
+
       <Form.Item
-        label="Info"
-        name="plan_info"
+        label="Currency"
+        name="currency_id"
         rules={[
           {
             required: true,
-            message: 'Please enter plan info!',
+            message: 'Please select currency!',
           },
         ]}
       >
-        <Input placeholder="Ex. Allows users to access premium content" />
+        <Selector action="Currencies" field="iso_code" />
+      </Form.Item>
+
+      <Form.Item
+        label="Users"
+        name="users"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter no. of users!',
+          },
+        ]}
+      >
+        <InputNumber placeholder="Ex. 5" />
+      </Form.Item>
+
+      <Form.Item
+        label="Price"
+        name="price"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter price!',
+          },
+        ]}
+      >
+        <InputNumber placeholder="Ex. 1999" />
+      </Form.Item>
+
+      <Form.Item
+        label="Duration"
+        name="duration"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter duration!',
+          },
+        ]}
+      >
+        <InputNumber placeholder="Ex. 30" />
       </Form.Item>
 
       <Form.Item
@@ -65,6 +118,14 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
         ]}
       >
         <Input placeholder="Ex. Pending" />
+      </Form.Item>
+
+      <Form.Item label="All Catalogs" name="all_products">
+        <Switch onChange={toggleAllProducts} />
+      </Form.Item>
+
+      <Form.Item hidden={allProducts} label="Catalogs" name="catalogs">
+        <Selector action="Catalogs" multiple={true} field="id" />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

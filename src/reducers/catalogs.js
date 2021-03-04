@@ -9,7 +9,7 @@ import {
 } from '../constants/catalogs';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},

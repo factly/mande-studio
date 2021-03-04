@@ -8,7 +8,7 @@ import {
 } from '../constants/orders';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},
