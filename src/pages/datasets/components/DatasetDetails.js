@@ -17,6 +17,8 @@ const DatasetDetails = ({ dataset }) => {
         <Descriptions.Item label="Source">{dataset.source}</Descriptions.Item>
         <Descriptions.Item label="Temporal coverage">{dataset.temporal_coverage}</Descriptions.Item>
         <Descriptions.Item label="Time saved">{dataset.time_saved}</Descriptions.Item>
+        <Descriptions.Item label="Profiling URL">{dataset.profiling_url}</Descriptions.Item>
+        <Descriptions.Item label="Is Public">{dataset.is_public ? 'yes' : 'no'}</Descriptions.Item>
         <Descriptions.Item label="Created At">
           {moment(dataset.created_at).fromNow()}
         </Descriptions.Item>

@@ -29,14 +29,14 @@ const DatasetFormatForm = ({ datasetFormats, datasetId, onSubmit, prev }) => {
   }, [datasetFormats]);
 
   const onDone = () => {
-    if (!datasetSampleId) {
-      alert('Please select a sample from uploaded datasets');
-      return;
-    }
-    console.log({ datasetFormats });
-    console.log({ datasetSampleId });
-    const sampleUrl = datasetFormats.find((item) => item.id === datasetSampleId)?.url;
-    dispatch(updateDataset(datasetId, { sample_url: sampleUrl }));
+    // if (!datasetSampleId) {
+    //   alert('Please select a sample from uploaded datasets');
+    //   return;
+    // }
+    // console.log({ datasetFormats });
+    // console.log({ datasetSampleId });
+    // const sampleUrl = datasetFormats.find((item) => item.id === datasetSampleId)?.url;
+    // dispatch(updateDataset(datasetId, { sample_url: sampleUrl }));
     history.push('/datasets');
   };
   const onFinish = (values) => {

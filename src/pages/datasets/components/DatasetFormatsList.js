@@ -90,14 +90,15 @@ const DatasetFormatsList = ({
         );
       },
     });
-  } else {
-    columns.push({
-      title: 'Is Sample',
-      render: (_, record) => {
-        return <span>{datasetSampleId === record.id ? <CheckOutlined /> : <CloseOutlined />}</span>;
-      },
-    });
   }
+  // else {
+  //   columns.push({
+  //     title: 'Is Sample',
+  //     render: (_, record) => {
+  //       return <span>{datasetSampleId === record.id ? <CheckOutlined /> : <CloseOutlined />}</span>;
+  //     },
+  //   });
+  // }
 
   return loading ? (
     <Skeleton />

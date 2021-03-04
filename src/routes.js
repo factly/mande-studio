@@ -68,6 +68,78 @@ const routes = [
     onNavigation: true,
   }),
   new Route({
+    path: '/catalogs',
+    component: Catalogs,
+    title: 'Catalogs',
+    icon: DatabaseOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/products',
+    component: Products,
+    title: 'Products',
+    icon: ContainerOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/datasets',
+    component: Datasets,
+    title: 'Datasets',
+    icon: FolderOpenOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/media',
+    component: Media,
+    title: 'Media',
+    icon: FileImageOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/tags',
+    component: Tags,
+    title: 'Tags',
+    icon: TagOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/formats',
+    component: Formats,
+    title: 'Formats',
+    icon: FileUnknownOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/plans',
+    component: Plans,
+    title: 'Plans',
+    icon: SolutionOutlined,
+    onNavigation: true,
+  }),
+
+  new Route({
+    path: '/currencies',
+    component: Currencies,
+    title: 'Currencies',
+    icon: MoneyCollectFilled,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/memberships',
+    component: Memberships,
+    title: 'Memberships',
+    icon: IdcardOutlined,
+    onNavigation: true,
+  }),
+  new Route({
+    path: '/payments',
+    component: Payments,
+    title: 'Payments',
+    icon: CreditCardOutlined,
+    onNavigation: true,
+  }),
+
+  new Route({
     path: '/cart-items',
     component: CartItems,
     title: 'Cart Items',
@@ -78,13 +150,7 @@ const routes = [
     path: '/cart-items/:id',
     component: CartItemDetails,
   }),
-  new Route({
-    path: '/catalogs',
-    component: Catalogs,
-    title: 'Catalogs',
-    icon: DatabaseOutlined,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/catalogs/create',
     component: CatalogCreate,
@@ -93,13 +159,7 @@ const routes = [
     path: '/catalogs/:id/edit',
     component: CatalogEdit,
   }),
-  new Route({
-    path: '/currencies',
-    component: Currencies,
-    title: 'Currencies',
-    icon: MoneyCollectFilled,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/currencies/create',
     component: CurrencyCreate,
@@ -108,13 +168,7 @@ const routes = [
     path: '/currencies/:id/edit',
     component: CurrencyEdit,
   }),
-  new Route({
-    path: '/datasets',
-    component: Datasets,
-    title: 'Datasets',
-    icon: FolderOpenOutlined,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/datasets/create',
     component: DatasetCreate,
@@ -127,13 +181,7 @@ const routes = [
     path: '/datasets/:id/edit',
     component: DatasetEdit,
   }),
-  new Route({
-    path: '/formats',
-    component: Formats,
-    title: 'Formats',
-    icon: FileUnknownOutlined,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/formats/create',
     component: FormatCreate,
@@ -142,20 +190,7 @@ const routes = [
     path: '/formats/:id/edit',
     component: FormatEdit,
   }),
-  new Route({
-    path: '/memberships',
-    component: Memberships,
-    title: 'Memberships',
-    icon: IdcardOutlined,
-    onNavigation: true,
-  }),
-  new Route({
-    path: '/media',
-    component: Media,
-    title: 'Media',
-    icon: FileImageOutlined,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/media/:id/edit',
     component: MediaEdit,
@@ -171,20 +206,7 @@ const routes = [
     path: '/orders/:id',
     component: OrderDetail,
   }),
-  new Route({
-    path: '/payments',
-    component: Payments,
-    title: 'Payments',
-    icon: CreditCardOutlined,
-    onNavigation: true,
-  }),
-  new Route({
-    path: '/plans',
-    component: Plans,
-    title: 'Plans',
-    icon: SolutionOutlined,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/plans/create',
     component: PlanCreate,
@@ -193,13 +215,7 @@ const routes = [
     path: '/plans/:id/edit',
     component: PlanEdit,
   }),
-  new Route({
-    path: '/products',
-    component: Products,
-    title: 'Products',
-    icon: ContainerOutlined,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/products/create',
     component: ProductCreate,
@@ -212,13 +228,7 @@ const routes = [
     path: '/products/:id/edit',
     component: ProductEdit,
   }),
-  new Route({
-    path: '/tags',
-    component: Tags,
-    title: 'Tags',
-    icon: TagOutlined,
-    onNavigation: true,
-  }),
+
   new Route({
     path: '/tags/create',
     component: TagCreate,

@@ -69,6 +69,19 @@ const PlanCreateForm = ({ onSubmit, data = {} }) => {
       </Form.Item>
 
       <Form.Item
+        label="Users"
+        name="users"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter no. of users!',
+          },
+        ]}
+      >
+        <InputNumber placeholder="Ex. 5" />
+      </Form.Item>
+
+      <Form.Item
         label="Price"
         name="price"
         rules={[

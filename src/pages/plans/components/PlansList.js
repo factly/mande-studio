@@ -45,7 +45,19 @@ const PlansList = () => {
     {
       title: 'Name',
       dataIndex: 'name',
-      width: '20%',
+      width: '10%',
+      editable: true,
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      width: '10%',
+      editable: true,
+    },
+    {
+      title: 'Users',
+      dataIndex: 'users',
+      width: '10%',
       editable: true,
     },
     {

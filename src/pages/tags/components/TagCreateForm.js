@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Input, Button, notification } from 'antd';
+import { checker, maker } from '../../../utils/sluger';
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -8,6 +9,8 @@ const formItemLayout = {
 };
 
 const TagCreateForm = ({ onSubmit, data = {} }) => {
+  const [form] = Form.useForm();
+
   const history = useHistory();
 
   const onFinish = (values) => {
@@ -26,8 +29,20 @@ const TagCreateForm = ({ onSubmit, data = {} }) => {
       });
   };
 
+  const onTitleChange = (string) => {
+    form.setFieldsValue({
+      slug: maker(string),
+    });
+  };
+
   return (
-    <Form name="tags_create" initialValues={data} {...formItemLayout} onFinish={onFinish}>
+    <Form
+      form={form}
+      name="tags_create"
+      initialValues={data}
+      {...formItemLayout}
+      onFinish={onFinish}
+    >
       <Form.Item
         label="Name"
         name="title"
@@ -38,7 +53,7 @@ const TagCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Input placeholder="Ex. Crime In India" />
+        <Input placeholder="Ex. Crime In India" onChange={(e) => onTitleChange(e.target.value)} />
       </Form.Item>
 
       <Form.Item
@@ -48,6 +63,10 @@ const TagCreateForm = ({ onSubmit, data = {} }) => {
           {
             required: true,
             message: 'Please enter slug!',
+          },
+          {
+            pattern: checker,
+            message: 'Please enter valid slug!',
           },
         ]}
       >

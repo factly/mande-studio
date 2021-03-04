@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Input, InputNumber, Button, Select, notification } from 'antd';
+import { Form, Input, InputNumber, Button, Select, notification, Switch } from 'antd';
 
 import Selector from '../../../components/Selector';
 import MediaUploader from '../../media/components/MediaUpload';
+import Uploader from '../../../components/Uploader';
 
 const { Option } = Select;
 
@@ -12,6 +13,7 @@ const formItemLayout = {
 };
 
 const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
+  const [form] = Form.useForm();
   const [media, setMedia] = useState(data?.feature_media);
 
   const formFields = [
@@ -66,8 +68,18 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
       });
   };
 
+  const [profiling_url, setProfilingURL] = useState(data?.profiling_url);
+
+  const onUpload = (data) => {
+    form.setFieldsValue({
+      profiling_url: data[0]?.uploadURL,
+    });
+    setProfilingURL(data[0]?.uploadURL);
+  };
+
   return (
     <Form
+      form={form}
       name="datasets_create_step_one"
       initialValues={data}
       {...formItemLayout}
@@ -117,9 +129,12 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
           )}
         </Form.Item>
       ))}
-      <Form.Item key={'medium'} label={'Featured Image'}>
+      <Form.Item name={'is_public'} label={'Is Public'} valuePropName="checked">
+        <Switch />
+      </Form.Item>
+      <Form.Item name={'profiling_url'} label={'Profiling URL'}>
         {/* {media && media.name} */}
-        <MediaUploader onUploadSuccess={onUploadSuccess} />
+        {!profiling_url ? <Uploader onUploadSuccess={onUpload} /> : profiling_url}
       </Form.Item>
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">
