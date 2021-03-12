@@ -4,6 +4,7 @@ import { Form, Input, InputNumber, Button, Select, notification, Switch } from '
 import Selector from '../../../components/Selector';
 import MediaUploader from '../../media/components/MediaUpload';
 import Uploader from '../../../components/Uploader';
+import TextEdior from '../../../components/TextEditor';
 
 const { Option } = Select;
 
@@ -124,6 +125,8 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
                 </Select>
               </Form.Item>
             </Input.Group>
+          ) : field.name === 'description' ? (
+            <TextEdior placeholder="Enter decription" />
           ) : (
             <Input placeholder={field.placeholder} type={field.type || ''} />
           )}
