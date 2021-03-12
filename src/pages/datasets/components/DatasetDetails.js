@@ -1,11 +1,24 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Descriptions, Card } from 'antd';
 import moment from 'moment';
+import { EditOutlined } from '@ant-design/icons';
 
 const DatasetDetails = ({ dataset }) => {
+  const history = useHistory();
   return (
     <Card>
-      <Descriptions title={dataset.title} column={1}>
+      <Descriptions
+        title={dataset.title}
+        column={1}
+        extra={
+          <EditOutlined
+            key="edit"
+            style={{ fontSize: '150%' }}
+            onClick={() => history.push(`/datasets/${dataset.id}/edit`)}
+          />
+        }
+      >
         <Descriptions.Item label="Contact email">{dataset.contact_email}</Descriptions.Item>
         <Descriptions.Item label="Contact name">{dataset.contact_name}</Descriptions.Item>
         <Descriptions.Item label="Data standard">{dataset.data_standard}</Descriptions.Item>
