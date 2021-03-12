@@ -6,7 +6,10 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import '../../styles.css';
 import { loadDatasets, deleteDataset } from '../../../actions/datasets';
-
+const cardBody = {
+  height: 220,
+  overflow: 'auto',
+};
 const DatasetItem = ({ dataset }) => {
   return (
     <Descriptions layout="horizontal" column={1}>
@@ -80,6 +83,7 @@ const DatasetsList = () => {
             actions={actions(dataset.id)}
             title={<Link to={`/datasets/${dataset.id}`}>{dataset.title}</Link>}
             bordered={false}
+            bodyStyle={cardBody}
             // cover={
             //   <img
             //     className="photo"
