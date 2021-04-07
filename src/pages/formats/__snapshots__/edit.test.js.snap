@@ -73,15 +73,13 @@ exports[`Formats List component snapshot testing should match component with emp
         <div
           className="ant-form-item-control-input-content"
         >
-          <input
+          <textarea
             className="ant-input"
             id="formats_create_description"
-            onBlur={[Function]}
             onChange={[Function]}
-            onFocus={[Function]}
             onKeyDown={[Function]}
             placeholder="Ex. Locked file"
-            type="text"
+            style={Object {}}
             value=""
           />
         </div>
@@ -302,15 +300,13 @@ exports[`Formats List component snapshot testing should render the component 1`]
         <div
           className="ant-form-item-control-input-content"
         >
-          <input
+          <textarea
             className="ant-input"
             id="formats_create_description"
-            onBlur={[Function]}
             onChange={[Function]}
-            onFocus={[Function]}
             onKeyDown={[Function]}
             placeholder="Ex. Locked file"
-            type="text"
+            style={Object {}}
             value="description"
           />
         </div>
