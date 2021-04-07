@@ -2,7 +2,7 @@ import reducer from './payments';
 import * as types from '../constants/payments';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},
@@ -69,7 +69,7 @@ describe('payments reducer', () => {
       ids: [],
       total: 0,
       items: { 1: { id: 1, name: 'payment 1' }, 2: { id: 2, name: 'payment 2' } },
-      loading: false,
+      loading: true,
     });
   });
   it('should handle empty payload ADD_PAYMENTS', () => {
@@ -79,7 +79,7 @@ describe('payments reducer', () => {
         payload: { payments: {} },
       }),
     ).toEqual({
-      loading: false,
+      loading: true,
       ids: [],
       req: [],
       items: {},
@@ -125,7 +125,7 @@ describe('payments reducer', () => {
       req: [],
       items: {},
       ids: [1, 2, 3],
-      loading: false,
+      loading: true,
       total: 0,
     });
   });
@@ -142,7 +142,7 @@ describe('payments reducer', () => {
       req: [{ ids: [1, 2, 3], page: 1, limit: 5 }],
       items: {},
       ids: [],
-      loading: false,
+      loading: true,
       total: 3,
     });
   });

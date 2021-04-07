@@ -2,7 +2,7 @@ import reducer from './catalogs';
 import * as types from '../constants/catalogs';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},
@@ -69,7 +69,7 @@ describe('catalogs reducer', () => {
       ids: [],
       total: 0,
       items: { 1: { id: 1, name: 'catalog 1' } },
-      loading: false,
+      loading: true,
     });
   });
   it('should handle ADD_CATALOG when already exists', () => {
@@ -110,7 +110,7 @@ describe('catalogs reducer', () => {
       ids: [],
       total: 0,
       items: { 1: { id: 1, name: 'catalog 1' }, 2: { id: 2, name: 'catalog 2' } },
-      loading: false,
+      loading: true,
     });
   });
   it('should handle empty payload ADD_CATALOGS', () => {
@@ -120,7 +120,7 @@ describe('catalogs reducer', () => {
         payload: { catalogs: {} },
       }),
     ).toEqual({
-      loading: false,
+      loading: true,
       ids: [],
       req: [],
       items: {},
@@ -166,7 +166,7 @@ describe('catalogs reducer', () => {
       req: [],
       items: {},
       ids: [1, 2, 3],
-      loading: false,
+      loading: true,
       total: 0,
     });
   });
@@ -183,7 +183,7 @@ describe('catalogs reducer', () => {
       req: [{ ids: [1, 2, 3], page: 1, limit: 5 }],
       items: {},
       ids: [],
-      loading: false,
+      loading: true,
       total: 3,
     });
   });
