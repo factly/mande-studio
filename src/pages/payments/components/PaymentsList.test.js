@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import renderer, { act } from 'react-test-renderer';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
@@ -15,7 +15,7 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
+  ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
 }));
 jest.mock('../../../actions/payments', () => ({
@@ -41,66 +41,115 @@ describe('Payments List component', () => {
 
   describe('snapshot testing', () => {
     beforeEach(() => {
-      store = mockStore({});
-      store.dispatch = jest.fn();
+      store = mockStore({
+        payments: {
+          ids: [1],
+          req: [],
+          loading: false,
+          items: {
+            1: {
+              id: 1,
+              amount: 1,
+              currency_id: 1,
+              status: 'status',
+              gateway: 'Gateway',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 1,
+        },
+        currencies: {
+          loading: false,
+          ids: [1],
+          req: [],
+          items: {
+            1: { id: 1, iso_code: 'INR' },
+          },
+          total: 1,
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
       mockedDispatch = jest.fn();
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should render the component', () => {
-      useSelector.mockImplementation((state) => ({}));
-      const tree = renderer.create(<PaymentList />).toJSON();
+      const tree = renderer
+        .create(
+          <Provider store={store}>
+            <PaymentList />
+          </Provider>,
+        )
+        .toJSON();
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component when loading', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [],
-        total: 0,
-        currencies: {},
-      }));
-      const tree = renderer.create(<PaymentList />).toJSON();
+      const tree = renderer
+        .create(
+          <Provider store={store}>
+            <PaymentList />
+          </Provider>,
+        )
+        .toJSON();
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component with payments', () => {
       loadPayments.mockReset();
-      useSelector.mockImplementation((state) => ({
-        data: [payment],
-        total: 1,
-        currencies: { 1: { id: 1, iso_code: 'INR' } },
-      }));
-
       let component;
       act(() => {
         component = renderer.create(
-          <Router>
-            <PaymentList />
-          </Router>,
+          <Provider store={store}>
+            <Router>
+              <PaymentList />
+            </Router>
+          </Provider>,
         );
       });
       const tree = component.toJSON();
       expect(tree).toMatchSnapshot();
 
-      expect(useSelector).toHaveBeenCalled();
       expect(mockedDispatch).toHaveBeenCalledTimes(1);
-      expect(useSelector).toHaveReturnedWith({
-        data: [payment],
-        total: 1,
-        currencies: { 1: { id: 1, iso_code: 'INR' } },
-      });
       expect(loadPayments).toHaveBeenCalledWith(1, 5);
     });
   });
   describe('component testing', () => {
     beforeEach(() => {
       jest.clearAllMocks();
+      store = mockStore({
+        payments: {
+          ids: [1],
+          req: [],
+          loading: false,
+          items: {
+            1: {
+              id: 1,
+              amount: 1,
+              currency_id: 1,
+              status: 'status',
+              gateway: 'Gateway',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 1,
+        },
+        currencies: {
+          loading: false,
+          ids: [1],
+          req: [],
+          items: {
+            1: { id: 1, iso_code: 'INR' },
+          },
+          total: 1,
+        },
+      });
       mockedDispatch = jest.fn(() => new Promise((resolve) => resolve(true)));
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should change the page', (done) => {
-      useSelector.mockImplementation((state) => ({}));
-
-      const wrapper = mount(<PaymentList />);
+      const wrapper = mount(
+        <Provider store={store}>
+          <PaymentList />
+        </Provider>,
+      );
       const table = wrapper.find(Table);
       table.props().pagination.onChange(2, 5);
       wrapper.update();
