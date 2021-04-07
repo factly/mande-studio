@@ -136,12 +136,57 @@ describe('media actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/media?page=1&limit=5` });
       });
   });
-  it('should create actions to load media when req is in state', () => {
+  it('should create actions to load media with no parameters', () => {
+    const media = [{ id: 1, name: 'Medium' }];
+    const resp = { data: { nodes: media, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_MEDIUM_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_MEDIUM_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: types.ADD_MEDIA,
+        payload: { media: { 1: { id: 1, name: 'Medium' } } },
+      },
       {
         type: types.SET_MEDIUM_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_MEDIUM_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ media: initialState });
+    store
+      .dispatch(actions.loadMedia())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/media?page=1&limit=5` });
+      });
+  });
+  it('should create actions to load media when req is in state', () => {
+    const media = [{ id: 1, name: 'Medium' }];
+    const resp = { data: { nodes: media, total: 1 } };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+    const expectedActions = [
+      {
+        type: types.SET_MEDIUM_LOADING,
+        payload: { loading: true },
       },
     ];
 
@@ -156,7 +201,7 @@ describe('media actions', () => {
     });
     store.dispatch(actions.loadMedia(1, 5));
     expect(store.getActions()).toEqual(expectedActions);
-    expect(axios).not.toHaveBeenCalled();
+    expect(axios).toHaveBeenCalled();
   });
   it('should create actions to create medium', () => {
     const medium = { name: 'Medium' };

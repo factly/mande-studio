@@ -136,27 +136,47 @@ describe('currencies actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/currencies?page=1&limit=5` });
       });
   });
-  it('should create actions to load currencies when req is in state', () => {
+  it('should create actions to load currencies with no parameters', () => {
+    const currencies = [{ id: 1, name: 'Currency' }];
+    const resp = { data: { nodes: currencies, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_CURRENCY_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_CURRENCY_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: types.ADD_CURRENCIES,
+        payload: { currencies: { 1: { id: 1, name: 'Currency' } } },
+      },
       {
         type: types.SET_CURRENCY_IDS,
         payload: { ids: [1] },
       },
+      {
+        type: types.SET_CURRENCY_LOADING,
+        payload: { loading: false },
+      },
     ];
 
-    const store = mockStore({
-      currencies: {
-        loading: false,
-        ids: [],
-        req: [{ page: 1, limit: 5, ids: [1] }],
-        items: { 1: { id: 1, name: 'Currency' } },
-        total: 1,
-      },
-    });
-    store.dispatch(actions.loadCurrencies(1, 5));
-    expect(store.getActions()).toEqual(expectedActions);
-    expect(axios).not.toHaveBeenCalled();
+    const store = mockStore({ currencies: initialState });
+    store
+      .dispatch(actions.loadCurrencies())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/currencies?page=1&limit=5` });
+      });
   });
   it('should create actions to create currency', () => {
     const currency = { name: 'Currency' };

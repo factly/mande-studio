@@ -136,12 +136,60 @@ describe('formats actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/formats?page=1&limit=5` });
       });
   });
-  it('should create actions to load formats when req is in state', () => {
+  it('should create actions to load formats with no parameters', () => {
+    const formats = [{ id: 1, name: 'Format' }];
+    const resp = { data: { nodes: formats, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_FORMAT_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_FORMAT_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: types.ADD_FORMATS,
+        payload: { formats: { 1: { id: 1, name: 'Format' } } },
+      },
       {
         type: types.SET_FORMAT_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_FORMAT_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ formats: initialState });
+    store
+      .dispatch(actions.loadFormats())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/formats?page=1&limit=5` });
+      });
+  });
+  it('should create actions to load formats when req is in state', () => {
+    const formats = [{ id: 1, name: 'Format' }];
+    const resp = { data: { nodes: formats, total: 1 } };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+    const expectedActions = [
+      {
+        type: types.SET_FORMAT_LOADING,
+
+        payload: {
+          loading: true,
+        },
       },
     ];
 
@@ -156,7 +204,7 @@ describe('formats actions', () => {
     });
     store.dispatch(actions.loadFormats(1, 5));
     expect(store.getActions()).toEqual(expectedActions);
-    expect(axios).not.toHaveBeenCalled();
+    expect(axios).toHaveBeenCalled();
   });
   it('should create actions to create format', () => {
     const format = { name: 'Format' };

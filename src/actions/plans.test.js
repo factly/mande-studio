@@ -4,6 +4,13 @@ import thunk from 'redux-thunk';
 import axios from '../utils/axios';
 import * as actions from './plans';
 import * as types from '../constants/plans';
+import { ADD_CURRENCIES } from '../constants/currencies';
+import { ADD_PAYMENTS } from '../constants/payments';
+import { ADD_MEDIA, ADD_MEDIUM } from '../constants/media';
+import { ADD_TAGS } from '../constants/tags';
+import { ADD_DATASETS } from '../constants/datasets';
+import { ADD_PRODUCTS } from '../constants/products';
+import { ADD_CATALOGS } from '../constants/catalogs';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -38,9 +45,75 @@ describe('plans actions', () => {
 
     const expectedActions = [
       {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          media: {},
+        },
+        type: ADD_MEDIA,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          datasets: {},
+        },
+        type: ADD_DATASETS,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          products: {},
+        },
+        type: ADD_PRODUCTS,
+      },
+      {
+        payload: {
+          catalogs: {},
+        },
+        type: ADD_CATALOGS,
+      },
+      {
         type: types.ADD_PLAN,
         payload: {
-          plan: { id: 1, plan: 'tester 1' },
+          plan: { id: 1, plan: 'tester 1', catalogs: [] },
         },
       },
     ];
@@ -58,11 +131,77 @@ describe('plans actions', () => {
 
     const expectedActions = [
       {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          media: {},
+        },
+        type: ADD_MEDIA,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          datasets: {},
+        },
+        type: ADD_DATASETS,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          products: {},
+        },
+        type: ADD_PRODUCTS,
+      },
+      {
+        payload: {
+          catalogs: {},
+        },
+        type: ADD_CATALOGS,
+      },
+      {
         type: types.ADD_PLANS,
         payload: {
           plans: {
-            1: { id: 1, plan: 'tester 1' },
-            2: { id: 2, plan: 'testing 2' },
+            1: { id: 1, plan: 'tester 1', catalogs: [] },
+            2: { id: 2, plan: 'testing 2', catalogs: [] },
           },
         },
       },
@@ -113,8 +252,74 @@ describe('plans actions', () => {
         },
       },
       {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          media: {},
+        },
+        type: ADD_MEDIA,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          datasets: {},
+        },
+        type: ADD_DATASETS,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          products: {},
+        },
+        type: ADD_PRODUCTS,
+      },
+      {
+        payload: {
+          catalogs: {},
+        },
+        type: ADD_CATALOGS,
+      },
+      {
         type: types.ADD_PLANS,
-        payload: { plans: { 1: { id: 1, name: 'Plan' } } },
+        payload: { plans: { 1: { id: 1, name: 'Plan', catalogs: [] } } },
       },
       {
         type: types.SET_PLAN_IDS,
@@ -136,12 +341,123 @@ describe('plans actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/plans?page=1&limit=5` });
       });
   });
-  it('should create actions to load plans when req is in state', () => {
+  it('should create actions to load plans with no parameters', () => {
+    const plans = [{ id: 1, name: 'Plan' }];
+    const resp = { data: { nodes: plans, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_PLAN_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_PLAN_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          media: {},
+        },
+        type: ADD_MEDIA,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          datasets: {},
+        },
+        type: ADD_DATASETS,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          products: {},
+        },
+        type: ADD_PRODUCTS,
+      },
+      {
+        payload: {
+          catalogs: {},
+        },
+        type: ADD_CATALOGS,
+      },
+      {
+        type: types.ADD_PLANS,
+        payload: { plans: { 1: { id: 1, name: 'Plan', catalogs: [] } } },
+      },
       {
         type: types.SET_PLAN_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_PLAN_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ plans: initialState });
+    store
+      .dispatch(actions.loadPlans())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/plans?page=1&limit=5` });
+      });
+  });
+  it('should create actions to load plans when req is in state', () => {
+    const plans = [{ id: 1, name: 'Plan' }];
+    const resp = { data: { nodes: plans, total: 1 } };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+    const expectedActions = [
+      {
+        type: types.SET_PLAN_LOADING,
+        payload: { loading: true },
       },
     ];
 
@@ -156,7 +472,7 @@ describe('plans actions', () => {
     });
     store.dispatch(actions.loadPlans(1, 5));
     expect(store.getActions()).toEqual(expectedActions);
-    expect(axios).not.toHaveBeenCalled();
+    expect(axios).toHaveBeenCalled();
   });
   it('should create actions to create plan', () => {
     const plan = { name: 'Plan' };
@@ -200,9 +516,75 @@ describe('plans actions', () => {
         payload: { loading: true },
       },
       {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          media: {},
+        },
+        type: ADD_MEDIA,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          datasets: {},
+        },
+        type: ADD_DATASETS,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          products: {},
+        },
+        type: ADD_PRODUCTS,
+      },
+      {
+        payload: {
+          catalogs: {},
+        },
+        type: ADD_CATALOGS,
+      },
+      {
         type: types.ADD_PLAN,
         payload: {
-          plan: { id: 1, plan: 'tester 1' },
+          plan: { id: 1, plan: 'tester 1', catalogs: [] },
         },
       },
       {
@@ -282,8 +664,74 @@ describe('plans actions', () => {
         payload: { loading: true },
       },
       {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          media: {},
+        },
+        type: ADD_MEDIA,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          medium: [],
+        },
+        type: ADD_MEDIUM,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          datasets: {},
+        },
+        type: ADD_DATASETS,
+      },
+      {
+        payload: {
+          tags: {},
+        },
+        type: ADD_TAGS,
+      },
+      {
+        payload: {
+          products: {},
+        },
+        type: ADD_PRODUCTS,
+      },
+      {
+        payload: {
+          catalogs: {},
+        },
+        type: ADD_CATALOGS,
+      },
+      {
         type: types.ADD_PLAN,
-        payload: { plan: { id, name: 'Plan' } },
+        payload: { plan: { id, name: 'Plan', catalogs: [] } },
       },
       {
         type: types.SET_PLAN_LOADING,

@@ -6,6 +6,8 @@ import * as actions from './products';
 import * as types from '../constants/products';
 import { ADD_CURRENCIES } from '../constants/currencies';
 import { ADD_TAGS } from '../constants/tags';
+import { ADD_MEDIUM } from '../constants/media';
+import { ADD_DATASETS } from '../constants/datasets';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -53,6 +55,36 @@ describe('products actions', () => {
         },
       },
       {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
         type: ADD_TAGS,
         payload: {
           tags: { 11: { id: 11, tag: 'Tag 11' } },
@@ -61,7 +93,7 @@ describe('products actions', () => {
       {
         type: types.ADD_PRODUCT,
         payload: {
-          product: { id: 1, product: 'tester 1', tags: [11] },
+          product: { id: 1, product: 'tester 1', tags: [11], datasets: [] },
         },
       },
     ];
@@ -80,13 +112,43 @@ describe('products actions', () => {
         payload: { currencies: {} },
       },
       {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
         type: ADD_TAGS,
         payload: { tags: {} },
       },
       {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
         type: types.ADD_PRODUCT,
         payload: {
-          product: { id: 1, product: 'tester 1', tags: [] },
+          product: { id: 1, product: 'tester 1', tags: [], datasets: [] },
         },
       },
     ];
@@ -123,6 +185,34 @@ describe('products actions', () => {
         },
       },
       {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
         type: ADD_TAGS,
         payload: {
           tags: { 11: { id: 11, tag: 'Tag 11' }, 21: { id: 21, tag: 'Tag 21' } },
@@ -132,8 +222,8 @@ describe('products actions', () => {
         type: types.ADD_PRODUCTS,
         payload: {
           products: {
-            1: { id: 1, product: 'tester 1', tags: [11] },
-            2: { id: 2, product: 'testing 2', tags: [21] },
+            1: { id: 1, product: 'tester 1', tags: [11], datasets: [] },
+            2: { id: 2, product: 'testing 2', tags: [21], datasets: [] },
           },
         },
       },
@@ -158,6 +248,36 @@ describe('products actions', () => {
         },
       },
       {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
         type: ADD_TAGS,
         payload: {
           tags: {},
@@ -167,8 +287,8 @@ describe('products actions', () => {
         type: types.ADD_PRODUCTS,
         payload: {
           products: {
-            1: { id: 1, product: 'tester 1', tags: [] },
-            2: { id: 2, product: 'testing 2', tags: [] },
+            1: { id: 1, product: 'tester 1', tags: [], datasets: [] },
+            2: { id: 2, product: 'testing 2', tags: [], datasets: [] },
           },
         },
       },
@@ -216,12 +336,40 @@ describe('products actions', () => {
         payload: { currencies: {} },
       },
       {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
         type: ADD_TAGS,
         payload: { tags: {} },
       },
       {
         type: types.ADD_PRODUCTS,
-        payload: { products: { 1: { id: 1, name: 'Product', tags: [] } } },
+        payload: { products: { 1: { id: 1, name: 'Product', tags: [], datasets: [] } } },
       },
       {
         type: types.SET_PRODUCT_IDS,
@@ -250,12 +398,93 @@ describe('products actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/products?page=1&limit=5` });
       });
   });
-  it('should create actions to load products when req is in state', () => {
+  it('should create actions to load products with no parameters', () => {
+    const products = [{ id: 1, name: 'Product' }];
+    const resp = { data: { nodes: products, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_PRODUCT_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: types.ADD_PRODUCTS,
+        payload: { products: { 1: { id: 1, name: 'Product', tags: [], datasets: [] } } },
+      },
       {
         type: types.SET_PRODUCT_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_PRODUCT_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: types.SET_PRODUCT_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ products: initialState });
+    store
+      .dispatch(actions.loadProducts())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/products?page=1&limit=5` });
+      });
+  });
+  it('should create actions to load products when req is in state', () => {
+    const products = [{ id: 1, name: 'Product' }];
+    const resp = { data: { nodes: products, total: 1 } };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+    const expectedActions = [
+      {
+        type: types.SET_PRODUCT_LOADING,
+        payload: { loading: true },
       },
     ];
 
@@ -270,7 +499,7 @@ describe('products actions', () => {
     });
     store.dispatch(actions.loadProducts(1, 5));
     expect(store.getActions()).toEqual(expectedActions);
-    expect(axios).not.toHaveBeenCalled();
+    expect(axios).toHaveBeenCalled();
   });
   it('should create actions to create product', () => {
     const product = { name: 'Product' };
@@ -320,6 +549,36 @@ describe('products actions', () => {
         },
       },
       {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
         type: ADD_TAGS,
         payload: {
           tags: {},
@@ -328,7 +587,7 @@ describe('products actions', () => {
       {
         type: types.ADD_PRODUCT,
         payload: {
-          product: { id: 1, product: 'tester 1', tags: [] },
+          product: { id: 1, product: 'tester 1', tags: [], datasets: [] },
         },
       },
       {
@@ -414,6 +673,36 @@ describe('products actions', () => {
         },
       },
       {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
         type: ADD_TAGS,
         payload: {
           tags: {},
@@ -421,7 +710,7 @@ describe('products actions', () => {
       },
       {
         type: types.ADD_PRODUCT,
-        payload: { product: { id, name: 'Product', tags: [] } },
+        payload: { product: { id, name: 'Product', tags: [], datasets: [] } },
       },
       {
         type: types.SET_PRODUCT_LOADING,

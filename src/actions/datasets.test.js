@@ -4,6 +4,9 @@ import thunk from 'redux-thunk';
 import axios from '../utils/axios';
 import * as actions from './datasets';
 import * as types from '../constants/datasets';
+import { ADD_CURRENCIES } from '../constants/currencies';
+import { ADD_MEDIUM } from '../constants/media';
+import { ADD_TAGS } from '../constants/tags';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -38,9 +41,27 @@ describe('datasets actions', () => {
 
     const expectedActions = [
       {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
         type: types.ADD_DATASET,
         payload: {
-          dataset: { id: 1, dataset: 'dataset 1' },
+          dataset: { id: 1, dataset: 'dataset 1', tags: [] },
         },
       },
     ];
@@ -58,11 +79,29 @@ describe('datasets actions', () => {
 
     const expectedActions = [
       {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
         type: types.ADD_DATASETS,
         payload: {
           datasets: {
-            1: { id: 1, dataset: 'dataset 1' },
-            2: { id: 2, dataset: 'dataset 2' },
+            1: { id: 1, dataset: 'dataset 1', tags: [] },
+            2: { id: 2, dataset: 'dataset 2', tags: [] },
           },
         },
       },
@@ -147,8 +186,26 @@ describe('datasets actions', () => {
         },
       },
       {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
         type: types.ADD_DATASETS,
-        payload: { datasets: { 1: { id: 1, name: 'Dataset' } } },
+        payload: { datasets: { 1: { id: 1, name: 'Dataset', tags: [] } } },
       },
       {
         type: types.SET_DATASET_IDS,
@@ -170,12 +227,77 @@ describe('datasets actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/datasets?page=1&limit=5` });
       });
   });
-  it('should create actions to load datasets when req is in state', () => {
+  it('should create actions to load datasets with no parameters', () => {
+    const datasets = [{ id: 1, name: 'Dataset' }];
+    const resp = { data: { nodes: datasets, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_DATASET_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_DATASET_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
+        type: types.ADD_DATASETS,
+        payload: { datasets: { 1: { id: 1, name: 'Dataset', tags: [] } } },
+      },
       {
         type: types.SET_DATASET_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_DATASET_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ datasets: initialState });
+    store
+      .dispatch(actions.loadDatasets())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/datasets?page=1&limit=5` });
+      });
+  });
+  it('should create actions to load datasets when req is in state', () => {
+    const datasets = [{ id: 1, name: 'Dataset' }];
+    const resp = { data: { nodes: datasets, total: 1 } };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+    const expectedActions = [
+      {
+        type: types.SET_DATASET_LOADING,
+        payload: {
+          loading: true,
+        },
       },
     ];
 
@@ -190,7 +312,7 @@ describe('datasets actions', () => {
     });
     store.dispatch(actions.loadDatasets(1, 5));
     expect(store.getActions()).toEqual(expectedActions);
-    expect(axios).not.toHaveBeenCalled();
+    expect(axios).toHaveBeenCalled();
   });
   it('should create actions to create dataset', () => {
     const dataset = { name: 'Dataset' };
@@ -204,8 +326,31 @@ describe('datasets actions', () => {
         payload: { loading: true },
       },
       {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
         type: types.ADD_DATASET,
-        payload: { dataset },
+        payload: {
+          dataset: {
+            name: 'Dataset',
+            tags: [],
+          },
+        },
       },
       {
         type: types.SET_DATASET_LOADING,
@@ -259,19 +404,64 @@ describe('datasets actions', () => {
       });
   });
   it('should create actions to update dataset', () => {
-    const dataset = { id: 1, dataset: 'dataset 1' };
+    const dataset = { id: 1, dataset: 'dataset 1', tags: [] };
     const resp = { data: dataset };
     axios.mockRestore();
     axios.mockResolvedValueOnce(resp);
 
     const expectedActions = [
       {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
         type: types.ADD_DATASET,
         payload: {
-          dataset: { id: 1, dataset: 'dataset 1' },
+          dataset: { id: 1, dataset: 'dataset 1', tags: [] },
         },
       },
     ];
+
+    const store = mockStore({
+      datasets: {
+        items: {
+          1: {
+            id: 1,
+            dataset: 'dataset 1',
+          },
+        },
+      },
+    });
+    store
+      .dispatch(actions.updateDataset(1, dataset))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'put', url: `/datasets/1`, data: dataset });
+      });
+  });
+  it('should create actions to update dataset when dataset not found in state', () => {
+    const dataset = { id: 1, dataset: 'dataset 1', tags: [] };
+    const resp = { data: dataset };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
+    const expectedActions = [];
 
     const store = mockStore({ datasets: initialState });
     store
@@ -280,7 +470,7 @@ describe('datasets actions', () => {
         expect(store.getActions()).toEqual(expectedActions);
       })
       .then(() => {
-        expect(axios).toHaveBeenCalledWith({ method: 'put', url: `/datasets/1`, data: dataset });
+        expect(axios).not.toHaveBeenCalled();
       });
   });
   it('should create actions to delete dataset success', () => {
@@ -373,8 +563,26 @@ describe('datasets actions', () => {
         payload: { loading: true },
       },
       {
+        type: ADD_CURRENCIES,
+        payload: {
+          currencies: {},
+        },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: {
+          tags: {},
+        },
+      },
+      {
         type: types.ADD_DATASET,
-        payload: { dataset: { id, name: 'Dataset' } },
+        payload: { dataset: { id, name: 'Dataset', tags: [] } },
       },
       {
         type: types.SET_DATASET_LOADING,
