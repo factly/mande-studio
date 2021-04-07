@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import renderer, { act as rendererAct } from 'react-test-renderer';
-import { useDispatch, Provider, useSelector } from 'react-redux';
+import { useDispatch, Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
@@ -18,7 +17,6 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
-  useSelector: jest.fn(),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -34,10 +32,11 @@ jest.mock('../../actions/plans', () => ({
 }));
 
 describe('Plans List component', () => {
-  const store = mockStore({
+  let store = mockStore({
     plans: {
+      ids: [1],
       req: [],
-      details: {
+      items: {
         1: {
           id: 1,
           name: 'Plan-1',
@@ -51,7 +50,22 @@ describe('Plans List component', () => {
           description: 'description',
         },
       },
-      loading: true,
+      loading: false,
+      total: 1,
+    },
+    currencies: {
+      loading: false,
+      ids: [],
+      req: [],
+      items: {},
+      total: 0,
+    },
+    catalogs: {
+      loading: false,
+      ids: [],
+      req: [],
+      items: {},
+      total: 0,
     },
   });
   store.dispatch = jest.fn(() => ({}));
@@ -61,68 +75,122 @@ describe('Plans List component', () => {
 
   describe('snapshot testing', () => {
     it('should render the component', () => {
-      useSelector.mockReturnValueOnce({
-        plan: {
-          id: 1,
-          name: 'plan',
-          slug: 'slug',
-          description: 'description',
-        },
-        loading: false,
-      });
-      let component;
-      rendererAct(() => {
-        component = renderer.create(
-          <Provider store={store}>
-            <EditPlan />
-          </Provider>,
-        );
-      });
-      const tree = component.toJSON();
+      const tree = mount(
+        <Provider store={store}>
+          <EditPlan />
+        </Provider>,
+      );
+
       expect(tree).toMatchSnapshot();
     });
     it('should match component with empty data', () => {
-      useSelector.mockReturnValueOnce({
-        plan: {},
-        loading: false,
+      store = mockStore({
+        plans: {
+          ids: [],
+          req: [],
+          items: {},
+          loading: false,
+          total: 0,
+        },
+        currencies: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+        catalogs: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
       });
-      let component;
-      store.details = {};
-      rendererAct(() => {
-        component = renderer.create(
-          <Provider store={store}>
-            <EditPlan />
-          </Provider>,
-        );
-      });
-      const tree = component.toJSON();
+
+      const tree = mount(
+        <Provider store={store}>
+          <EditPlan />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
     });
     it('should match skeleton while loading', () => {
-      useSelector.mockReturnValueOnce({
-        plan: {},
-        loading: true,
+      store = mockStore({
+        plans: {
+          ids: [],
+          req: [],
+          items: {},
+          loading: true,
+          total: 0,
+        },
+        currencies: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+        catalogs: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
       });
-      let component;
-      rendererAct(() => {
-        component = renderer.create(
-          <Provider store={store}>
-            <EditPlan />
-          </Provider>,
-        );
-      });
-      const tree = component.toJSON();
+      const tree = mount(
+        <Provider store={store}>
+          <EditPlan />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
     });
   });
   describe('component testing', () => {
     let wrapper;
+    beforeEach(() => {
+      store = mockStore({
+        plans: {
+          ids: [1],
+          req: [],
+          items: {
+            1: {
+              id: 1,
+              name: 'Plan-1',
+              slug: 'plan-1',
+              description: 'description',
+            },
+            2: {
+              id: 2,
+              name: 'Plan-2',
+              slug: 'plan-2',
+              description: 'description',
+            },
+          },
+          loading: false,
+          total: 1,
+        },
+        currencies: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+        catalogs: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+      });
+    });
     afterEach(() => {
       wrapper.unmount();
     });
     it('should call get action', () => {
-      useSelector.mockReset();
-      useSelector.mockReturnValueOnce({ plan: null, loading: true });
       actions.getPlan.mockReset();
       act(() => {
         wrapper = mount(
@@ -134,8 +202,6 @@ describe('Plans List component', () => {
       expect(actions.getPlan).toHaveBeenCalledWith('1');
     });
     it('should call updatePlan', (done) => {
-      useSelector.mockReset();
-      useSelector.mockReturnValueOnce({ plan: {}, loading: false });
       actions.updatePlan.mockReset();
       const push = jest.fn();
       useHistory.mockReturnValueOnce({ push });

@@ -40,6 +40,20 @@ describe('Plans create component', () => {
       items: {},
       total: 0,
     },
+    currencies: {
+      loading: false,
+      ids: [],
+      req: [],
+      items: {},
+      total: 0,
+    },
+    catalogs: {
+      loading: false,
+      ids: [],
+      req: [],
+      items: {},
+      total: 0,
+    },
   });
   store.dispatch = jest.fn(() => ({}));
   mockedDispatch = jest.fn(() => Promise.resolve({}));
