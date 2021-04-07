@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, useHistory } from 'react-router-dom';
+import { Router, useHistory } from 'react-router-dom';
 import renderer, { act as rendererAct } from 'react-test-renderer';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
@@ -9,24 +9,18 @@ import { Button, Table } from 'antd';
 import { act } from '@testing-library/react';
 
 import '../../../matchMedia.mock';
-import CartList from './CartsList';
-import { loadCarts } from '../../../actions/carts';
+import CartList from './CartItemsList';
+import { loadCartItems } from '../../../actions/cartItems';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
-  useSelector: jest.fn(),
   useDispatch: jest.fn(),
 }));
-jest.mock('../../../actions/carts', () => ({
-  loadCarts: jest.fn(),
-  deleteCart: jest.fn(),
-}));
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: jest.fn(),
+jest.mock('../../../actions/cartItems', () => ({
+  loadCartItems: jest.fn(),
 }));
 
 describe('Carts List component', () => {
@@ -38,73 +32,146 @@ describe('Carts List component', () => {
     status: 'status',
     created_at: '2020-12-12',
   };
+  store = mockStore({
+    cartItems: {
+      loading: false,
+      ids: [1],
+      req: [
+        {
+          page: 1,
+          limit: 5,
+          ids: [1],
+        },
+      ],
+      items: {
+        1: {
+          id: 1,
+          user_id: 1,
+          status: 'status',
+          created_at: '2020-12-12',
+        },
+      },
+      total: 1,
+    },
+  });
 
   describe('snapshot testing', () => {
     beforeEach(() => {
-      store = mockStore({});
-      store.dispatch = jest.fn();
-      mockedDispatch = jest.fn();
+      store = mockStore({
+        cartItems: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              user_id: 1,
+              status: 'status',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 1,
+        },
+        products: {
+          loading: true,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
+      mockedDispatch = jest.fn(() => Promise.resolve({}));
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should render the component', () => {
-      useSelector.mockImplementationOnce((state) => ({}));
-      const tree = renderer.create(<CartList />).toJSON();
+      const tree = mount(
+        <Provider store={store}>
+          <CartList />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component when loading', () => {
-      useSelector.mockImplementationOnce((state) => ({
-        data: [],
-        total: 0,
-      }));
-      const tree = renderer.create(<CartList />).toJSON();
+      store = mockStore({
+        cartItems: {
+          loading: true,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+      });
+      const tree = mount(
+        <Provider store={store}>
+          <CartList />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component with carts', () => {
-      loadCarts.mockReset();
-      useSelector.mockReset();
-      useSelector.mockImplementationOnce((state) => ({
-        data: [cart],
-        total: 1,
-      }));
-
-      let component;
-      rendererAct(() => {
-        component = renderer.create(
-          <Router>
-            <CartList />
-          </Router>,
-        );
-      });
-      const tree = component.toJSON();
+      loadCartItems.mockReset();
+      const tree = mount(
+        <Provider store={store}>
+          <CartList />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
-
-      expect(useSelector).toHaveBeenCalled();
       expect(mockedDispatch).toHaveBeenCalledTimes(1);
-      expect(useSelector).toHaveReturnedWith({
-        data: [cart],
-        total: 1,
-      });
-      expect(loadCarts).toHaveBeenCalledWith(1, 5);
+      expect(loadCartItems).toHaveBeenCalledWith(1, 5);
     });
   });
   describe('component testing', () => {
+    let wrapper;
     beforeEach(() => {
       jest.clearAllMocks();
-      mockedDispatch = jest.fn(() => new Promise((resolve) => resolve(true)));
+      store = mockStore({
+        cartItems: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              user_id: 1,
+              status: 'status',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 1,
+        },
+        products: {
+          loading: true,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+      });
+      mockedDispatch = jest.fn(() => Promise.resolve({}));
       useDispatch.mockReturnValue(mockedDispatch);
     });
+    afterEach(() => {
+      wrapper.unmount();
+    });
     it('should change the page', () => {
-      useSelector.mockReset();
-      useSelector.mockImplementation(() => ({ data: [cart], total: 10 }));
-
-      let wrapper;
       act(() => {
         wrapper = mount(
-          <Router>
+          <Provider store={store}>
             <CartList />
-          </Router>,
+          </Provider>,
         );
       });
       const table = wrapper.find(Table);
@@ -112,34 +179,37 @@ describe('Carts List component', () => {
       wrapper.update();
       const updatedTable = wrapper.find(Table);
       expect(updatedTable.props().pagination.current).toEqual(2);
-      wrapper.unmount();
     });
     it('should go to cart details page', () => {
-      const push = jest.fn();
-      useHistory.mockReturnValueOnce({ push });
-      useSelector.mockImplementationOnce((state) => ({
-        data: [cart],
-        total: 1,
-      }));
-
-      const wrapper = mount(
-        <Router>
-          <CartList />
-        </Router>,
-      );
+      const historyMock = { push: jest.fn(), location: {}, listen: jest.fn() };
+      act(() => {
+        wrapper = mount(
+          <Provider store={store}>
+            <Router history={historyMock}>
+              <CartList />
+            </Router>
+          </Provider>,
+        );
+      });
       const button = wrapper.find(Button).at(0);
       expect(button.text()).toEqual('Details');
       button.simulate('click');
-
-      expect(push).toHaveBeenCalledWith('/carts/1');
+      expect(historyMock.push).toHaveBeenCalledWith('/cart-items/1');
     });
     it('should not have details buttons', () => {
-      useSelector.mockImplementationOnce((state) => ({ data: [], total: 0 }));
-
-      const wrapper = mount(
-        <Router>
+      store = mockStore({
+        cartItems: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+      });
+      wrapper = mount(
+        <Provider store={store}>
           <CartList />
-        </Router>,
+        </Provider>,
       );
 
       const button = wrapper.find(Button);
