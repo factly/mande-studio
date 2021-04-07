@@ -22,6 +22,30 @@ exports[`Tags Create Form component snapshot testing should match component in a
     }
   >
     <ForwardRef(InternalForm)
+      form={
+        Object {
+          "__INTERNAL__": Object {
+            "itemRef": [Function],
+            "name": "tags_create",
+          },
+          "getFieldError": [Function],
+          "getFieldInstance": [Function],
+          "getFieldValue": [Function],
+          "getFieldsError": [Function],
+          "getFieldsValue": [Function],
+          "getInternalHooks": [Function],
+          "isFieldTouched": [Function],
+          "isFieldValidating": [Function],
+          "isFieldsTouched": [Function],
+          "isFieldsValidating": [Function],
+          "resetFields": [Function],
+          "scrollToField": [Function],
+          "setFields": [Function],
+          "setFieldsValue": [Function],
+          "submit": [Function],
+          "validateFields": [Function],
+        }
+      }
       initialValues={
         Object {
           "slug": "slug",
@@ -300,6 +324,10 @@ exports[`Tags Create Form component snapshot testing should match component in a
                     "message": "Please enter slug!",
                     "required": true,
                   },
+                  Object {
+                    "message": "Please enter valid slug!",
+                    "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
+                  },
                 ]
               }
             >
@@ -317,6 +345,10 @@ exports[`Tags Create Form component snapshot testing should match component in a
                     Object {
                       "message": "Please enter slug!",
                       "required": true,
+                    },
+                    Object {
+                      "message": "Please enter valid slug!",
+                      "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                     },
                   ]
                 }
@@ -342,6 +374,10 @@ exports[`Tags Create Form component snapshot testing should match component in a
                       Object {
                         "message": "Please enter slug!",
                         "required": true,
+                      },
+                      Object {
+                        "message": "Please enter valid slug!",
+                        "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                       },
                     ]
                   }
@@ -369,6 +405,10 @@ exports[`Tags Create Form component snapshot testing should match component in a
                             Object {
                               "message": "Please enter slug!",
                               "required": true,
+                            },
+                            Object {
+                              "message": "Please enter valid slug!",
+                              "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                             },
                           ]
                         }
@@ -406,6 +446,10 @@ exports[`Tags Create Form component snapshot testing should match component in a
                             Object {
                               "message": "Please enter slug!",
                               "required": true,
+                            },
+                            Object {
+                              "message": "Please enter valid slug!",
+                              "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                             },
                           ]
                         }
@@ -640,6 +684,30 @@ exports[`Tags Create Form component snapshot testing should match component with
     onSubmit={[MockFunction]}
   >
     <ForwardRef(InternalForm)
+      form={
+        Object {
+          "__INTERNAL__": Object {
+            "itemRef": [Function],
+            "name": "tags_create",
+          },
+          "getFieldError": [Function],
+          "getFieldInstance": [Function],
+          "getFieldValue": [Function],
+          "getFieldsError": [Function],
+          "getFieldsValue": [Function],
+          "getInternalHooks": [Function],
+          "isFieldTouched": [Function],
+          "isFieldValidating": [Function],
+          "isFieldsTouched": [Function],
+          "isFieldsValidating": [Function],
+          "resetFields": [Function],
+          "scrollToField": [Function],
+          "setFields": [Function],
+          "setFieldsValue": [Function],
+          "submit": [Function],
+          "validateFields": [Function],
+        }
+      }
       initialValues={
         Object {
           "slug": "slug",
@@ -918,6 +986,10 @@ exports[`Tags Create Form component snapshot testing should match component with
                     "message": "Please enter slug!",
                     "required": true,
                   },
+                  Object {
+                    "message": "Please enter valid slug!",
+                    "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
+                  },
                 ]
               }
             >
@@ -935,6 +1007,10 @@ exports[`Tags Create Form component snapshot testing should match component with
                     Object {
                       "message": "Please enter slug!",
                       "required": true,
+                    },
+                    Object {
+                      "message": "Please enter valid slug!",
+                      "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                     },
                   ]
                 }
@@ -960,6 +1036,10 @@ exports[`Tags Create Form component snapshot testing should match component with
                       Object {
                         "message": "Please enter slug!",
                         "required": true,
+                      },
+                      Object {
+                        "message": "Please enter valid slug!",
+                        "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                       },
                     ]
                   }
@@ -987,6 +1067,10 @@ exports[`Tags Create Form component snapshot testing should match component with
                             Object {
                               "message": "Please enter slug!",
                               "required": true,
+                            },
+                            Object {
+                              "message": "Please enter valid slug!",
+                              "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                             },
                           ]
                         }
@@ -1024,6 +1108,10 @@ exports[`Tags Create Form component snapshot testing should match component with
                             Object {
                               "message": "Please enter slug!",
                               "required": true,
+                            },
+                            Object {
+                              "message": "Please enter valid slug!",
+                              "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                             },
                           ]
                         }
@@ -1250,6 +1338,30 @@ exports[`Tags Create Form component snapshot testing should render the component
 >
   <TagCreateForm>
     <ForwardRef(InternalForm)
+      form={
+        Object {
+          "__INTERNAL__": Object {
+            "itemRef": [Function],
+            "name": "tags_create",
+          },
+          "getFieldError": [Function],
+          "getFieldInstance": [Function],
+          "getFieldValue": [Function],
+          "getFieldsError": [Function],
+          "getFieldsValue": [Function],
+          "getInternalHooks": [Function],
+          "isFieldTouched": [Function],
+          "isFieldValidating": [Function],
+          "isFieldsTouched": [Function],
+          "isFieldsValidating": [Function],
+          "resetFields": [Function],
+          "scrollToField": [Function],
+          "setFields": [Function],
+          "setFieldsValue": [Function],
+          "submit": [Function],
+          "validateFields": [Function],
+        }
+      }
       initialValues={Object {}}
       labelCol={
         Object {
@@ -1515,6 +1627,10 @@ exports[`Tags Create Form component snapshot testing should render the component
                     "message": "Please enter slug!",
                     "required": true,
                   },
+                  Object {
+                    "message": "Please enter valid slug!",
+                    "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
+                  },
                 ]
               }
             >
@@ -1532,6 +1648,10 @@ exports[`Tags Create Form component snapshot testing should render the component
                     Object {
                       "message": "Please enter slug!",
                       "required": true,
+                    },
+                    Object {
+                      "message": "Please enter valid slug!",
+                      "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                     },
                   ]
                 }
@@ -1557,6 +1677,10 @@ exports[`Tags Create Form component snapshot testing should render the component
                       Object {
                         "message": "Please enter slug!",
                         "required": true,
+                      },
+                      Object {
+                        "message": "Please enter valid slug!",
+                        "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                       },
                     ]
                   }
@@ -1584,6 +1708,10 @@ exports[`Tags Create Form component snapshot testing should render the component
                             Object {
                               "message": "Please enter slug!",
                               "required": true,
+                            },
+                            Object {
+                              "message": "Please enter valid slug!",
+                              "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                             },
                           ]
                         }
@@ -1621,6 +1749,10 @@ exports[`Tags Create Form component snapshot testing should render the component
                             Object {
                               "message": "Please enter slug!",
                               "required": true,
+                            },
+                            Object {
+                              "message": "Please enter valid slug!",
+                              "pattern": /\\^\\[a-z0-9\\]\\+\\(\\?:-\\[a-z0-9\\]\\+\\)\\*\\$/,
                             },
                           ]
                         }
