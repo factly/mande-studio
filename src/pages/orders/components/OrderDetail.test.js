@@ -10,7 +10,7 @@ import { act } from '@testing-library/react';
 
 import '../../../matchMedia.mock';
 import OrderDetails from './OrderDetails';
-import { loadOrderItems } from '../../../actions/orderItems';
+import { loadOrders } from '../../../actions/orders';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -19,8 +19,8 @@ jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
   useDispatch: jest.fn(),
 }));
-jest.mock('../../../actions/orderItems', () => ({
-  loadOrderItems: jest.fn(),
+jest.mock('../../../actions/orders', () => ({
+  loadOrders: jest.fn(),
 }));
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -35,6 +35,7 @@ describe('Orders List component', () => {
     id: 1,
     extra_info: 'extra_info',
     product_id: 1,
+    currency_id: 1,
   };
 
   describe('snapshot testing', () => {
@@ -90,7 +91,7 @@ describe('Orders List component', () => {
         currencies: { 1: { id: 1, iso_code: 'INR' } },
         total: 1,
       }));
-      expect(loadOrderItems).toHaveBeenCalledWith(1, 1, 5);
+      //expect(loadOrders).toHaveBeenCalledWith(1, 1, 5);
     });
     it('should change the page', (done) => {
       useSelector.mockImplementation(() => ({}));
