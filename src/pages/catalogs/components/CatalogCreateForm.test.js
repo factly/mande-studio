@@ -13,7 +13,6 @@ import CatalogCreateForm from './CatalogCreateForm';
 const data = {
   title: 'title',
   description: 'description',
-  price: 100,
   products: [1],
   product_ids: [1],
   published_date: moment(new Date('2020-12-12')),
@@ -148,7 +147,6 @@ describe('Catalogs Create Form component', () => {
         expect(props.onSubmit).toHaveBeenCalledWith({
           title: 'title',
           description: 'description',
-          price: 100,
           product_ids: [1],
           published_date: moment(new Date('2020-12-12')).format('YYYY-MM-DDTHH:mm:ssZ'),
         });
@@ -169,7 +167,6 @@ describe('Catalogs Create Form component', () => {
         expect(props.onSubmit).toHaveBeenCalledWith({
           title: 'new name',
           description: 'description',
-          price: 100,
           product_ids: [1],
           published_date: moment(new Date('2020-12-12')).format('YYYY-MM-DDTHH:mm:ssZ'),
         });
@@ -186,25 +183,19 @@ describe('Catalogs Create Form component', () => {
         wrapper
           .find('FormItem')
           .at(1)
-          .find('Input')
+          .find('TextArea')
+          .at(0)
           .simulate('change', { target: { value: 'new description' } });
         wrapper
           .find('FormItem')
           .at(2)
-          .find('InputNumber')
-          .at(0)
-          .props()
-          .onChange({ target: { value: 100 } });
-        wrapper
-          .find('FormItem')
-          .at(3)
           .find('Select')
           .at(0)
           .props()
           .onChange({ target: { value: [2] } });
         wrapper
           .find('FormItem')
-          .at(4)
+          .at(3)
           .find(DatePicker)
           .at(0)
           .props()
@@ -219,7 +210,6 @@ describe('Catalogs Create Form component', () => {
         expect(props.onSubmit).toHaveBeenCalledWith({
           title: 'new name',
           description: 'new description',
-          price: 100,
           product_ids: [2],
           published_date: moment.utc(new Date('2020-01-01')).format('YYYY-MM-DDTHH:mm:ssZ'),
         });
