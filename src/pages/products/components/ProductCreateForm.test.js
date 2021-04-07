@@ -15,6 +15,8 @@ const data = {
   status: 'status',
   tag_ids: [1],
   currency_id: 1,
+  description: 'description',
+  dataset_ids: [1],
 };
 
 jest.mock('react-redux', () => ({
@@ -157,6 +159,8 @@ describe('Products Create Form component', () => {
           price: 100,
           tag_ids: [1],
           status: 'status',
+          description: 'description',
+          dataset_ids: [1],
         });
         done();
       }, 0);
@@ -172,31 +176,31 @@ describe('Products Create Form component', () => {
           .find('FormItem')
           .at(1)
           .find('Input')
-          .simulate('change', { target: { value: 'new slug' } });
+          .simulate('change', { target: { value: 'new-slug' } });
         wrapper
           .find('FormItem')
-          .at(2)
+          .at(3)
           .find('Select')
           .at(0)
           .props()
           .onChange({ target: { value: 1 } });
         wrapper
           .find('FormItem')
-          .at(3)
+          .at(4)
           .find('Input')
           .at(0)
           .props()
           .onChange({ target: { value: 100 } });
         wrapper
           .find('FormItem')
-          .at(4)
+          .at(5)
           .find('Select')
           .at(0)
           .props()
           .onChange({ target: { value: [1] } });
         wrapper
           .find('FormItem')
-          .at(5)
+          .at(6)
           .find('Select')
           .at(0)
           .props()
@@ -210,11 +214,13 @@ describe('Products Create Form component', () => {
         expect(props.onSubmit).toHaveBeenCalledTimes(1);
         expect(props.onSubmit).toHaveBeenCalledWith({
           title: 'new title',
-          slug: 'new slug',
+          slug: 'new-slug',
           currency_id: 1,
           price: 100,
           tag_ids: [1],
           status: 'Show',
+          description: 'description',
+          dataset_ids: [1],
         });
         done();
       }, 0);

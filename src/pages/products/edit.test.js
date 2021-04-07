@@ -1,15 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, Provider } from 'react-redux';
+import { useDispatch, Provider, useSelector } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { act } from '@testing-library/react';
 
 import '../../matchMedia.mock';
-import CreateProduct from './create';
+import EditProduct from './edit';
 import * as actions from '../../actions/products';
-import ProductDetail from './detail';
+import ProductEditForm from './components/ProductCreateForm';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -17,7 +16,6 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
-  //useSelector: jest.fn(),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -27,15 +25,12 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('../../actions/products', () => ({
-  createProduct: jest.fn(),
   getProduct: jest.fn(),
+  updateProduct: jest.fn(),
 }));
 
-describe('Products create component', () => {
-  let store;
-  let mockedDispatch;
-
-  store = mockStore({
+describe('Product edit component', () => {
+  let store = mockStore({
     products: {
       loading: false,
       ids: [1, 2],
@@ -82,18 +77,27 @@ describe('Products create component', () => {
       },
       total: 1,
     },
+    datasets: {
+      loading: false,
+      ids: [],
+      req: [],
+      items: {},
+      total: 0,
+    },
   });
   store.dispatch = jest.fn(() => ({}));
-  mockedDispatch = jest.fn(() => Promise.resolve({}));
+
+  const mockedDispatch = jest.fn();
   useDispatch.mockReturnValue(mockedDispatch);
+
   describe('snapshot testing', () => {
     it('should render the component', () => {
-      const component = mount(
+      const tree = mount(
         <Provider store={store}>
-          <ProductDetail />
+          <EditProduct />
         </Provider>,
       );
-      expect(component).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
     });
     it('should match when loading', () => {
       store = mockStore({
@@ -115,6 +119,47 @@ describe('Products create component', () => {
           },
           total: 1,
         },
+      });
+      const tree = mount(
+        <Provider store={store}>
+          <EditProduct />
+        </Provider>,
+      );
+      expect(tree).toMatchSnapshot();
+    });
+  });
+  describe('component testing', () => {
+    let wrapper;
+    beforeEach(() => {
+      store = mockStore({
+        products: {
+          loading: false,
+          ids: [1, 2],
+          req: [],
+          items: {
+            1: {
+              id: 1,
+              title: 'title',
+              slug: 'slug',
+              price: 100,
+              status: 'status',
+              tags: [1],
+              currency_id: 1,
+              created_at: '2020-12-12',
+            },
+            2: {
+              id: 2,
+              title: 'title',
+              slug: 'slug',
+              price: 100,
+              status: 'status',
+              tags: [],
+              currency_id: 1,
+              created_at: '2020-12-12',
+            },
+          },
+          total: 2,
+        },
         currencies: {
           loading: false,
           ids: [1],
@@ -133,13 +178,40 @@ describe('Products create component', () => {
           },
           total: 1,
         },
+        datasets: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
       });
-      const component = mount(
-        <Provider store={store}>
-          <ProductDetail />
-        </Provider>,
-      );
-      expect(component).toMatchSnapshot();
+    });
+    afterEach(() => {
+      wrapper.unmount();
+    });
+    it('should call get action', () => {
+      actions.getProduct.mockReset();
+      act(() => {
+        wrapper = mount(
+          <Provider store={store}>
+            <EditProduct />
+          </Provider>,
+        );
+      });
+      expect(actions.getProduct).toHaveBeenCalledWith('1');
+    });
+    it('should call updateTag', () => {
+      actions.updateProduct.mockReset();
+      act(() => {
+        wrapper = mount(
+          <Provider store={store}>
+            <EditProduct />
+          </Provider>,
+        );
+      });
+      wrapper.find(ProductEditForm).props().onSubmit({ test: 'test' });
+      expect(actions.updateProduct).toHaveBeenCalledWith('1', { test: 'test' });
     });
   });
 });

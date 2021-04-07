@@ -54,6 +54,13 @@ describe('Products create component', () => {
       items: {},
       total: 0,
     },
+    datasets: {
+      loading: false,
+      ids: [],
+      req: [],
+      items: {},
+      total: 0,
+    },
   });
   store.dispatch = jest.fn(() => ({}));
   mockedDispatch = jest.fn(() => Promise.resolve({}));
