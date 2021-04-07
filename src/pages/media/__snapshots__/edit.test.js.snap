@@ -1,0 +1,1311 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Media Edit component snapshot testing should match when loading 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <MediaEdit>
+    <Skeleton
+      avatar={false}
+      paragraph={true}
+      title={true}
+    >
+      <div
+        className="ant-skeleton"
+      >
+        <div
+          className="ant-skeleton-content"
+        >
+          <Title
+            prefixCls="ant-skeleton-title"
+            width="38%"
+          >
+            <h3
+              className="ant-skeleton-title"
+              style={
+                Object {
+                  "width": "38%",
+                }
+              }
+            />
+          </Title>
+          <Paragraph
+            prefixCls="ant-skeleton-paragraph"
+            rows={3}
+            width="61%"
+          >
+            <ul
+              className="ant-skeleton-paragraph"
+            >
+              <li
+                key="0"
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                key="1"
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                key="2"
+                style={
+                  Object {
+                    "width": "61%",
+                  }
+                }
+              />
+            </ul>
+          </Paragraph>
+        </div>
+      </div>
+    </Skeleton>
+  </MediaEdit>
+</Provider>
+`;
+
+exports[`Media Edit component snapshot testing should render the component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [MockFunction],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <MediaEdit>
+    <Row>
+      <div
+        className="ant-row"
+        style={Object {}}
+      >
+        <Col
+          span="12"
+        >
+          <div
+            className="ant-col ant-col-12"
+            style={Object {}}
+          >
+            <img
+              alt="space"
+              src="some-url"
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            />
+          </div>
+        </Col>
+        <Col
+          span="12"
+        >
+          <div
+            className="ant-col ant-col-12"
+            style={Object {}}
+          >
+            <ForwardRef(InternalForm)
+              form={
+                Object {
+                  "__INTERNAL__": Object {
+                    "itemRef": [Function],
+                    "name": "create-space",
+                  },
+                  "getFieldError": [Function],
+                  "getFieldInstance": [Function],
+                  "getFieldValue": [Function],
+                  "getFieldsError": [Function],
+                  "getFieldsValue": [Function],
+                  "getInternalHooks": [Function],
+                  "isFieldTouched": [Function],
+                  "isFieldValidating": [Function],
+                  "isFieldsTouched": [Function],
+                  "isFieldsValidating": [Function],
+                  "resetFields": [Function],
+                  "scrollToField": [Function],
+                  "setFields": [Function],
+                  "setFieldsValue": [Function],
+                  "submit": [Function],
+                  "validateFields": [Function],
+                }
+              }
+              initialValues={
+                Object {
+                  "caption": "caption",
+                  "description": "description",
+                  "file_size": "file_size",
+                  "id": 1,
+                  "name": "name",
+                  "url": "some-url",
+                }
+              }
+              labelCol={
+                Object {
+                  "span": 8,
+                }
+              }
+              name="create-space"
+              onFinish={[Function]}
+              wrapperCol={
+                Object {
+                  "span": 16,
+                }
+              }
+            >
+              <SizeContextProvider>
+                <ForwardRef(Form)
+                  className="ant-form ant-form-horizontal"
+                  form={
+                    Object {
+                      "__INTERNAL__": Object {
+                        "itemRef": [Function],
+                        "name": "create-space",
+                      },
+                      "getFieldError": [Function],
+                      "getFieldInstance": [Function],
+                      "getFieldValue": [Function],
+                      "getFieldsError": [Function],
+                      "getFieldsValue": [Function],
+                      "getInternalHooks": [Function],
+                      "isFieldTouched": [Function],
+                      "isFieldValidating": [Function],
+                      "isFieldsTouched": [Function],
+                      "isFieldsValidating": [Function],
+                      "resetFields": [Function],
+                      "scrollToField": [Function],
+                      "setFields": [Function],
+                      "setFieldsValue": [Function],
+                      "submit": [Function],
+                      "validateFields": [Function],
+                    }
+                  }
+                  id="create-space"
+                  initialValues={
+                    Object {
+                      "caption": "caption",
+                      "description": "description",
+                      "file_size": "file_size",
+                      "id": 1,
+                      "name": "name",
+                      "url": "some-url",
+                    }
+                  }
+                  name="create-space"
+                  onFinish={[Function]}
+                  onFinishFailed={[Function]}
+                >
+                  <form
+                    className="ant-form ant-form-horizontal"
+                    id="create-space"
+                    onSubmit={[Function]}
+                  >
+                    <FormItem
+                      label="Name"
+                      name="name"
+                    >
+                      <WrapperField
+                        label="Name"
+                        messageVariables={
+                          Object {
+                            "label": "Name",
+                          }
+                        }
+                        name="name"
+                        onReset={[Function]}
+                        trigger="onChange"
+                        validateTrigger="onChange"
+                      >
+                        <Field
+                          key="_name"
+                          label="Name"
+                          messageVariables={
+                            Object {
+                              "label": "Name",
+                            }
+                          }
+                          name={
+                            Array [
+                              "name",
+                            ]
+                          }
+                          onReset={[Function]}
+                          trigger="onChange"
+                          validateTrigger="onChange"
+                          valuePropName="value"
+                        >
+                          <Row
+                            className="ant-form-item"
+                            key="row"
+                          >
+                            <div
+                              className="ant-row ant-form-item"
+                              style={Object {}}
+                            >
+                              <FormItemLabel
+                                htmlFor="create-space_name"
+                                label="Name"
+                                name="name"
+                                prefixCls="ant-form"
+                                required={false}
+                                requiredMark={true}
+                              >
+                                <Col
+                                  className="ant-form-item-label"
+                                  span={8}
+                                >
+                                  <div
+                                    className="ant-col ant-col-8 ant-form-item-label"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="create-space_name"
+                                      title="Name"
+                                    >
+                                      Name
+                                    </label>
+                                  </div>
+                                </Col>
+                              </FormItemLabel>
+                              <FormItemInput
+                                errors={Array []}
+                                label="Name"
+                                name={
+                                  Array [
+                                    "name",
+                                  ]
+                                }
+                                onDomErrorVisibleChange={[Function]}
+                                prefixCls="ant-form"
+                                touched={false}
+                                validateStatus=""
+                                validating={false}
+                              >
+                                <Col
+                                  className="ant-form-item-control"
+                                  span={16}
+                                >
+                                  <div
+                                    className="ant-col ant-col-16 ant-form-item-control"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ant-form-item-control-input"
+                                    >
+                                      <div
+                                        className="ant-form-item-control-input-content"
+                                      >
+                                        <Component
+                                          update={2}
+                                          value="name"
+                                        >
+                                          <Input
+                                            id="create-space_name"
+                                            onChange={[Function]}
+                                            type="text"
+                                            value="name"
+                                          >
+                                            <ClearableLabeledInput
+                                              bordered={true}
+                                              element={
+                                                <input
+                                                  className="ant-input"
+                                                  id="create-space_name"
+                                                  onBlur={[Function]}
+                                                  onChange={[Function]}
+                                                  onFocus={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  type="text"
+                                                  value="name"
+                                                />
+                                              }
+                                              focused={false}
+                                              handleReset={[Function]}
+                                              id="create-space_name"
+                                              inputType="input"
+                                              onChange={[Function]}
+                                              prefixCls="ant-input"
+                                              triggerFocus={[Function]}
+                                              type="text"
+                                              value="name"
+                                            >
+                                              <input
+                                                className="ant-input"
+                                                id="create-space_name"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                type="text"
+                                                value="name"
+                                              />
+                                            </ClearableLabeledInput>
+                                          </Input>
+                                        </Component>
+                                      </div>
+                                    </div>
+                                    <CSSMotion
+                                      motionAppear={true}
+                                      motionDeadline={500}
+                                      motionName="show-help"
+                                      onLeaveEnd={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <DomWrapper />
+                                    </CSSMotion>
+                                  </div>
+                                </Col>
+                              </FormItemInput>
+                            </div>
+                          </Row>
+                        </Field>
+                      </WrapperField>
+                    </FormItem>
+                    <FormItem
+                      label="Title"
+                      name="title"
+                    >
+                      <WrapperField
+                        label="Title"
+                        messageVariables={
+                          Object {
+                            "label": "Title",
+                          }
+                        }
+                        name="title"
+                        onReset={[Function]}
+                        trigger="onChange"
+                        validateTrigger="onChange"
+                      >
+                        <Field
+                          key="_title"
+                          label="Title"
+                          messageVariables={
+                            Object {
+                              "label": "Title",
+                            }
+                          }
+                          name={
+                            Array [
+                              "title",
+                            ]
+                          }
+                          onReset={[Function]}
+                          trigger="onChange"
+                          validateTrigger="onChange"
+                          valuePropName="value"
+                        >
+                          <Row
+                            className="ant-form-item"
+                            key="row"
+                          >
+                            <div
+                              className="ant-row ant-form-item"
+                              style={Object {}}
+                            >
+                              <FormItemLabel
+                                htmlFor="create-space_title"
+                                label="Title"
+                                name="title"
+                                prefixCls="ant-form"
+                                required={false}
+                                requiredMark={true}
+                              >
+                                <Col
+                                  className="ant-form-item-label"
+                                  span={8}
+                                >
+                                  <div
+                                    className="ant-col ant-col-8 ant-form-item-label"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="create-space_title"
+                                      title="Title"
+                                    >
+                                      Title
+                                    </label>
+                                  </div>
+                                </Col>
+                              </FormItemLabel>
+                              <FormItemInput
+                                errors={Array []}
+                                label="Title"
+                                name={
+                                  Array [
+                                    "title",
+                                  ]
+                                }
+                                onDomErrorVisibleChange={[Function]}
+                                prefixCls="ant-form"
+                                touched={false}
+                                validateStatus=""
+                                validating={false}
+                              >
+                                <Col
+                                  className="ant-form-item-control"
+                                  span={16}
+                                >
+                                  <div
+                                    className="ant-col ant-col-16 ant-form-item-control"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ant-form-item-control-input"
+                                    >
+                                      <div
+                                        className="ant-form-item-control-input-content"
+                                      >
+                                        <Component
+                                          update={2}
+                                        >
+                                          <Input
+                                            id="create-space_title"
+                                            onChange={[Function]}
+                                            type="text"
+                                          >
+                                            <ClearableLabeledInput
+                                              bordered={true}
+                                              element={
+                                                <input
+                                                  className="ant-input"
+                                                  id="create-space_title"
+                                                  onBlur={[Function]}
+                                                  onChange={[Function]}
+                                                  onFocus={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  type="text"
+                                                />
+                                              }
+                                              focused={false}
+                                              handleReset={[Function]}
+                                              id="create-space_title"
+                                              inputType="input"
+                                              onChange={[Function]}
+                                              prefixCls="ant-input"
+                                              triggerFocus={[Function]}
+                                              type="text"
+                                              value=""
+                                            >
+                                              <input
+                                                className="ant-input"
+                                                id="create-space_title"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                type="text"
+                                                value=""
+                                              />
+                                            </ClearableLabeledInput>
+                                          </Input>
+                                        </Component>
+                                      </div>
+                                    </div>
+                                    <CSSMotion
+                                      motionAppear={true}
+                                      motionDeadline={500}
+                                      motionName="show-help"
+                                      onLeaveEnd={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <DomWrapper />
+                                    </CSSMotion>
+                                  </div>
+                                </Col>
+                              </FormItemInput>
+                            </div>
+                          </Row>
+                        </Field>
+                      </WrapperField>
+                    </FormItem>
+                    <FormItem
+                      label="Slug"
+                      name="slug"
+                    >
+                      <WrapperField
+                        label="Slug"
+                        messageVariables={
+                          Object {
+                            "label": "Slug",
+                          }
+                        }
+                        name="slug"
+                        onReset={[Function]}
+                        trigger="onChange"
+                        validateTrigger="onChange"
+                      >
+                        <Field
+                          key="_slug"
+                          label="Slug"
+                          messageVariables={
+                            Object {
+                              "label": "Slug",
+                            }
+                          }
+                          name={
+                            Array [
+                              "slug",
+                            ]
+                          }
+                          onReset={[Function]}
+                          trigger="onChange"
+                          validateTrigger="onChange"
+                          valuePropName="value"
+                        >
+                          <Row
+                            className="ant-form-item"
+                            key="row"
+                          >
+                            <div
+                              className="ant-row ant-form-item"
+                              style={Object {}}
+                            >
+                              <FormItemLabel
+                                htmlFor="create-space_slug"
+                                label="Slug"
+                                name="slug"
+                                prefixCls="ant-form"
+                                required={false}
+                                requiredMark={true}
+                              >
+                                <Col
+                                  className="ant-form-item-label"
+                                  span={8}
+                                >
+                                  <div
+                                    className="ant-col ant-col-8 ant-form-item-label"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="create-space_slug"
+                                      title="Slug"
+                                    >
+                                      Slug
+                                    </label>
+                                  </div>
+                                </Col>
+                              </FormItemLabel>
+                              <FormItemInput
+                                errors={Array []}
+                                label="Slug"
+                                name={
+                                  Array [
+                                    "slug",
+                                  ]
+                                }
+                                onDomErrorVisibleChange={[Function]}
+                                prefixCls="ant-form"
+                                touched={false}
+                                validateStatus=""
+                                validating={false}
+                              >
+                                <Col
+                                  className="ant-form-item-control"
+                                  span={16}
+                                >
+                                  <div
+                                    className="ant-col ant-col-16 ant-form-item-control"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ant-form-item-control-input"
+                                    >
+                                      <div
+                                        className="ant-form-item-control-input-content"
+                                      >
+                                        <Component
+                                          update={2}
+                                        >
+                                          <Input
+                                            id="create-space_slug"
+                                            onChange={[Function]}
+                                            type="text"
+                                          >
+                                            <ClearableLabeledInput
+                                              bordered={true}
+                                              element={
+                                                <input
+                                                  className="ant-input"
+                                                  id="create-space_slug"
+                                                  onBlur={[Function]}
+                                                  onChange={[Function]}
+                                                  onFocus={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  type="text"
+                                                />
+                                              }
+                                              focused={false}
+                                              handleReset={[Function]}
+                                              id="create-space_slug"
+                                              inputType="input"
+                                              onChange={[Function]}
+                                              prefixCls="ant-input"
+                                              triggerFocus={[Function]}
+                                              type="text"
+                                              value=""
+                                            >
+                                              <input
+                                                className="ant-input"
+                                                id="create-space_slug"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                type="text"
+                                                value=""
+                                              />
+                                            </ClearableLabeledInput>
+                                          </Input>
+                                        </Component>
+                                      </div>
+                                    </div>
+                                    <CSSMotion
+                                      motionAppear={true}
+                                      motionDeadline={500}
+                                      motionName="show-help"
+                                      onLeaveEnd={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <DomWrapper />
+                                    </CSSMotion>
+                                  </div>
+                                </Col>
+                              </FormItemInput>
+                            </div>
+                          </Row>
+                        </Field>
+                      </WrapperField>
+                    </FormItem>
+                    <FormItem
+                      label="Alt Text"
+                      name="alt_text"
+                    >
+                      <WrapperField
+                        label="Alt Text"
+                        messageVariables={
+                          Object {
+                            "label": "Alt Text",
+                          }
+                        }
+                        name="alt_text"
+                        onReset={[Function]}
+                        trigger="onChange"
+                        validateTrigger="onChange"
+                      >
+                        <Field
+                          key="_alt_text"
+                          label="Alt Text"
+                          messageVariables={
+                            Object {
+                              "label": "Alt Text",
+                            }
+                          }
+                          name={
+                            Array [
+                              "alt_text",
+                            ]
+                          }
+                          onReset={[Function]}
+                          trigger="onChange"
+                          validateTrigger="onChange"
+                          valuePropName="value"
+                        >
+                          <Row
+                            className="ant-form-item"
+                            key="row"
+                          >
+                            <div
+                              className="ant-row ant-form-item"
+                              style={Object {}}
+                            >
+                              <FormItemLabel
+                                htmlFor="create-space_alt_text"
+                                label="Alt Text"
+                                name="alt_text"
+                                prefixCls="ant-form"
+                                required={false}
+                                requiredMark={true}
+                              >
+                                <Col
+                                  className="ant-form-item-label"
+                                  span={8}
+                                >
+                                  <div
+                                    className="ant-col ant-col-8 ant-form-item-label"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="create-space_alt_text"
+                                      title="Alt Text"
+                                    >
+                                      Alt Text
+                                    </label>
+                                  </div>
+                                </Col>
+                              </FormItemLabel>
+                              <FormItemInput
+                                errors={Array []}
+                                label="Alt Text"
+                                name={
+                                  Array [
+                                    "alt_text",
+                                  ]
+                                }
+                                onDomErrorVisibleChange={[Function]}
+                                prefixCls="ant-form"
+                                touched={false}
+                                validateStatus=""
+                                validating={false}
+                              >
+                                <Col
+                                  className="ant-form-item-control"
+                                  span={16}
+                                >
+                                  <div
+                                    className="ant-col ant-col-16 ant-form-item-control"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ant-form-item-control-input"
+                                    >
+                                      <div
+                                        className="ant-form-item-control-input-content"
+                                      >
+                                        <Component
+                                          update={2}
+                                        >
+                                          <Input
+                                            id="create-space_alt_text"
+                                            onChange={[Function]}
+                                            type="text"
+                                          >
+                                            <ClearableLabeledInput
+                                              bordered={true}
+                                              element={
+                                                <input
+                                                  className="ant-input"
+                                                  id="create-space_alt_text"
+                                                  onBlur={[Function]}
+                                                  onChange={[Function]}
+                                                  onFocus={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  type="text"
+                                                />
+                                              }
+                                              focused={false}
+                                              handleReset={[Function]}
+                                              id="create-space_alt_text"
+                                              inputType="input"
+                                              onChange={[Function]}
+                                              prefixCls="ant-input"
+                                              triggerFocus={[Function]}
+                                              type="text"
+                                              value=""
+                                            >
+                                              <input
+                                                className="ant-input"
+                                                id="create-space_alt_text"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                type="text"
+                                                value=""
+                                              />
+                                            </ClearableLabeledInput>
+                                          </Input>
+                                        </Component>
+                                      </div>
+                                    </div>
+                                    <CSSMotion
+                                      motionAppear={true}
+                                      motionDeadline={500}
+                                      motionName="show-help"
+                                      onLeaveEnd={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <DomWrapper />
+                                    </CSSMotion>
+                                  </div>
+                                </Col>
+                              </FormItemInput>
+                            </div>
+                          </Row>
+                        </Field>
+                      </WrapperField>
+                    </FormItem>
+                    <FormItem
+                      label="Caption"
+                      name="caption"
+                    >
+                      <WrapperField
+                        label="Caption"
+                        messageVariables={
+                          Object {
+                            "label": "Caption",
+                          }
+                        }
+                        name="caption"
+                        onReset={[Function]}
+                        trigger="onChange"
+                        validateTrigger="onChange"
+                      >
+                        <Field
+                          key="_caption"
+                          label="Caption"
+                          messageVariables={
+                            Object {
+                              "label": "Caption",
+                            }
+                          }
+                          name={
+                            Array [
+                              "caption",
+                            ]
+                          }
+                          onReset={[Function]}
+                          trigger="onChange"
+                          validateTrigger="onChange"
+                          valuePropName="value"
+                        >
+                          <Row
+                            className="ant-form-item"
+                            key="row"
+                          >
+                            <div
+                              className="ant-row ant-form-item"
+                              style={Object {}}
+                            >
+                              <FormItemLabel
+                                htmlFor="create-space_caption"
+                                label="Caption"
+                                name="caption"
+                                prefixCls="ant-form"
+                                required={false}
+                                requiredMark={true}
+                              >
+                                <Col
+                                  className="ant-form-item-label"
+                                  span={8}
+                                >
+                                  <div
+                                    className="ant-col ant-col-8 ant-form-item-label"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="create-space_caption"
+                                      title="Caption"
+                                    >
+                                      Caption
+                                    </label>
+                                  </div>
+                                </Col>
+                              </FormItemLabel>
+                              <FormItemInput
+                                errors={Array []}
+                                label="Caption"
+                                name={
+                                  Array [
+                                    "caption",
+                                  ]
+                                }
+                                onDomErrorVisibleChange={[Function]}
+                                prefixCls="ant-form"
+                                touched={false}
+                                validateStatus=""
+                                validating={false}
+                              >
+                                <Col
+                                  className="ant-form-item-control"
+                                  span={16}
+                                >
+                                  <div
+                                    className="ant-col ant-col-16 ant-form-item-control"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ant-form-item-control-input"
+                                    >
+                                      <div
+                                        className="ant-form-item-control-input-content"
+                                      >
+                                        <Component
+                                          update={2}
+                                          value="caption"
+                                        >
+                                          <Input
+                                            id="create-space_caption"
+                                            onChange={[Function]}
+                                            type="text"
+                                            value="caption"
+                                          >
+                                            <ClearableLabeledInput
+                                              bordered={true}
+                                              element={
+                                                <input
+                                                  className="ant-input"
+                                                  id="create-space_caption"
+                                                  onBlur={[Function]}
+                                                  onChange={[Function]}
+                                                  onFocus={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  type="text"
+                                                  value="caption"
+                                                />
+                                              }
+                                              focused={false}
+                                              handleReset={[Function]}
+                                              id="create-space_caption"
+                                              inputType="input"
+                                              onChange={[Function]}
+                                              prefixCls="ant-input"
+                                              triggerFocus={[Function]}
+                                              type="text"
+                                              value="caption"
+                                            >
+                                              <input
+                                                className="ant-input"
+                                                id="create-space_caption"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                type="text"
+                                                value="caption"
+                                              />
+                                            </ClearableLabeledInput>
+                                          </Input>
+                                        </Component>
+                                      </div>
+                                    </div>
+                                    <CSSMotion
+                                      motionAppear={true}
+                                      motionDeadline={500}
+                                      motionName="show-help"
+                                      onLeaveEnd={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <DomWrapper />
+                                    </CSSMotion>
+                                  </div>
+                                </Col>
+                              </FormItemInput>
+                            </div>
+                          </Row>
+                        </Field>
+                      </WrapperField>
+                    </FormItem>
+                    <FormItem
+                      label="Description"
+                      name="description"
+                    >
+                      <WrapperField
+                        label="Description"
+                        messageVariables={
+                          Object {
+                            "label": "Description",
+                          }
+                        }
+                        name="description"
+                        onReset={[Function]}
+                        trigger="onChange"
+                        validateTrigger="onChange"
+                      >
+                        <Field
+                          key="_description"
+                          label="Description"
+                          messageVariables={
+                            Object {
+                              "label": "Description",
+                            }
+                          }
+                          name={
+                            Array [
+                              "description",
+                            ]
+                          }
+                          onReset={[Function]}
+                          trigger="onChange"
+                          validateTrigger="onChange"
+                          valuePropName="value"
+                        >
+                          <Row
+                            className="ant-form-item"
+                            key="row"
+                          >
+                            <div
+                              className="ant-row ant-form-item"
+                              style={Object {}}
+                            >
+                              <FormItemLabel
+                                htmlFor="create-space_description"
+                                label="Description"
+                                name="description"
+                                prefixCls="ant-form"
+                                required={false}
+                                requiredMark={true}
+                              >
+                                <Col
+                                  className="ant-form-item-label"
+                                  span={8}
+                                >
+                                  <div
+                                    className="ant-col ant-col-8 ant-form-item-label"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className=""
+                                      htmlFor="create-space_description"
+                                      title="Description"
+                                    >
+                                      Description
+                                    </label>
+                                  </div>
+                                </Col>
+                              </FormItemLabel>
+                              <FormItemInput
+                                errors={Array []}
+                                label="Description"
+                                name={
+                                  Array [
+                                    "description",
+                                  ]
+                                }
+                                onDomErrorVisibleChange={[Function]}
+                                prefixCls="ant-form"
+                                touched={false}
+                                validateStatus=""
+                                validating={false}
+                              >
+                                <Col
+                                  className="ant-form-item-control"
+                                  span={16}
+                                >
+                                  <div
+                                    className="ant-col ant-col-16 ant-form-item-control"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ant-form-item-control-input"
+                                    >
+                                      <div
+                                        className="ant-form-item-control-input-content"
+                                      >
+                                        <Component
+                                          update={2}
+                                          value="description"
+                                        >
+                                          <Input
+                                            id="create-space_description"
+                                            onChange={[Function]}
+                                            type="text"
+                                            value="description"
+                                          >
+                                            <ClearableLabeledInput
+                                              bordered={true}
+                                              element={
+                                                <input
+                                                  className="ant-input"
+                                                  id="create-space_description"
+                                                  onBlur={[Function]}
+                                                  onChange={[Function]}
+                                                  onFocus={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  type="text"
+                                                  value="description"
+                                                />
+                                              }
+                                              focused={false}
+                                              handleReset={[Function]}
+                                              id="create-space_description"
+                                              inputType="input"
+                                              onChange={[Function]}
+                                              prefixCls="ant-input"
+                                              triggerFocus={[Function]}
+                                              type="text"
+                                              value="description"
+                                            >
+                                              <input
+                                                className="ant-input"
+                                                id="create-space_description"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                type="text"
+                                                value="description"
+                                              />
+                                            </ClearableLabeledInput>
+                                          </Input>
+                                        </Component>
+                                      </div>
+                                    </div>
+                                    <CSSMotion
+                                      motionAppear={true}
+                                      motionDeadline={500}
+                                      motionName="show-help"
+                                      onLeaveEnd={[Function]}
+                                      removeOnLeave={true}
+                                      visible={false}
+                                    >
+                                      <DomWrapper />
+                                    </CSSMotion>
+                                  </div>
+                                </Col>
+                              </FormItemInput>
+                            </div>
+                          </Row>
+                        </Field>
+                      </WrapperField>
+                    </FormItem>
+                    <FormItem
+                      wrapperCol={
+                        Object {
+                          "offset": 8,
+                          "span": 16,
+                        }
+                      }
+                    >
+                      <Row
+                        className="ant-form-item"
+                        key="row"
+                      >
+                        <div
+                          className="ant-row ant-form-item"
+                          style={Object {}}
+                        >
+                          <FormItemLabel
+                            prefixCls="ant-form"
+                            requiredMark={true}
+                            wrapperCol={
+                              Object {
+                                "offset": 8,
+                                "span": 16,
+                              }
+                            }
+                          />
+                          <FormItemInput
+                            errors={Array []}
+                            onDomErrorVisibleChange={[Function]}
+                            prefixCls="ant-form"
+                            validateStatus=""
+                            wrapperCol={
+                              Object {
+                                "offset": 8,
+                                "span": 16,
+                              }
+                            }
+                          >
+                            <Col
+                              className="ant-form-item-control"
+                              offset={8}
+                              span={16}
+                            >
+                              <div
+                                className="ant-col ant-col-16 ant-col-offset-8 ant-form-item-control"
+                                style={Object {}}
+                              >
+                                <div
+                                  className="ant-form-item-control-input"
+                                >
+                                  <div
+                                    className="ant-form-item-control-input-content"
+                                  >
+                                    <Button
+                                      block={false}
+                                      ghost={false}
+                                      htmlType="submit"
+                                      loading={false}
+                                      type="primary"
+                                    >
+                                      <Wave>
+                                        <button
+                                          className="ant-btn ant-btn-primary"
+                                          onClick={[Function]}
+                                          type="submit"
+                                        >
+                                          <LoadingIcon
+                                            existIcon={false}
+                                            loading={false}
+                                            prefixCls="ant-btn"
+                                          >
+                                            <CSSMotion
+                                              motionName="ant-btn-loading-icon-motion"
+                                              onAppearActive={[Function]}
+                                              onAppearStart={[Function]}
+                                              onEnterActive={[Function]}
+                                              onEnterStart={[Function]}
+                                              onLeaveActive={[Function]}
+                                              onLeaveStart={[Function]}
+                                              removeOnLeave={true}
+                                              visible={false}
+                                            >
+                                              <DomWrapper />
+                                            </CSSMotion>
+                                          </LoadingIcon>
+                                          <span
+                                            key=".0"
+                                          >
+                                            Submit
+                                          </span>
+                                        </button>
+                                      </Wave>
+                                    </Button>
+                                  </div>
+                                </div>
+                                <CSSMotion
+                                  motionAppear={true}
+                                  motionDeadline={500}
+                                  motionName="show-help"
+                                  onLeaveEnd={[Function]}
+                                  removeOnLeave={true}
+                                  visible={false}
+                                >
+                                  <DomWrapper />
+                                </CSSMotion>
+                              </div>
+                            </Col>
+                          </FormItemInput>
+                        </div>
+                      </Row>
+                    </FormItem>
+                  </form>
+                </ForwardRef(Form)>
+              </SizeContextProvider>
+            </ForwardRef(InternalForm)>
+          </div>
+        </Col>
+      </div>
+    </Row>
+  </MediaEdit>
+</Provider>
+`;
