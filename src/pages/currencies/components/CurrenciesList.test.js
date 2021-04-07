@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, useHistory } from 'react-router-dom';
-import renderer, { act } from 'react-test-renderer';
-import { useSelector, useDispatch } from 'react-redux';
+import { Router, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch, Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { shallow, mount } from 'enzyme';
@@ -15,12 +14,8 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
+  ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
-}));
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: jest.fn(),
 }));
 jest.mock('../../../actions/currencies', () => ({
   loadCurrencies: jest.fn(),
@@ -39,62 +34,111 @@ describe('Currencies List component', () => {
 
   describe('snapshot testing', () => {
     beforeEach(() => {
-      store = mockStore({});
-      store.dispatch = jest.fn();
-      mockedDispatch = jest.fn();
+      store = mockStore({
+        currencies: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'Indian Rupee',
+              iso_code: 'INR',
+            },
+          },
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
+      mockedDispatch = jest.fn(() => Promise.resolve({}));
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should render the component', () => {
-      useSelector.mockImplementation((state) => ({}));
-      const tree = renderer.create(<CurrencyList />).toJSON();
+      const tree = mount(
+        <Provider store={store}>
+          <CurrencyList />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component when loading', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [],
-        total: 0,
-      }));
-      const tree = renderer.create(<CurrencyList />).toJSON();
+      store = mockStore({
+        currencies: {
+          loading: true,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'Indian Rupee',
+              iso_code: 'INR',
+            },
+          },
+        },
+      });
+      const tree = mount(
+        <Provider store={store}>
+          <CurrencyList />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component with currencies', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [currency],
-        total: 1,
-      }));
-
-      let component;
-      act(() => {
-        component = renderer.create(
-          <Router>
-            <CurrencyList />
-          </Router>,
-        );
-      });
-      const tree = component.toJSON();
+      const tree = mount(
+        <Provider store={store}>
+          <CurrencyList />
+        </Provider>,
+      );
       expect(tree).toMatchSnapshot();
-
-      expect(useSelector).toHaveBeenCalled();
       expect(mockedDispatch).toHaveBeenCalledTimes(1);
-      expect(useSelector).toHaveReturnedWith({
-        data: [currency],
-        total: 1,
-      });
       expect(loadCurrencies).toHaveBeenCalledWith(1, 5);
     });
   });
   describe('component testing', () => {
+    let wrapper;
     beforeEach(() => {
       jest.clearAllMocks();
-      mockedDispatch = jest.fn(() => new Promise((resolve) => resolve(true)));
+      store = mockStore({
+        currencies: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'Indian Rupee',
+              iso_code: 'INR',
+            },
+          },
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
+      mockedDispatch = jest.fn(() => Promise.resolve({}));
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should change the page', () => {
-      useSelector.mockImplementation((state) => ({}));
-
-      const wrapper = shallow(<CurrencyList />);
+      wrapper = mount(
+        <Provider store={store}>
+          <CurrencyList />
+        </Provider>,
+      );
       const table = wrapper.find(Table);
       table.props().pagination.onChange(2);
       wrapper.update();
@@ -102,34 +146,25 @@ describe('Currencies List component', () => {
       expect(updatedTable.props().pagination.current).toEqual(2);
     });
     it('should edit currency', () => {
-      const push = jest.fn();
-      useHistory.mockReturnValueOnce({ push });
+      const historyMock = { push: jest.fn(), location: {}, listen: jest.fn() };
 
-      useSelector.mockImplementation((state) => ({
-        data: [currency],
-        total: 1,
-      }));
-
-      const wrapper = mount(
-        <Router>
-          <CurrencyList />
-        </Router>,
+      wrapper = mount(
+        <Provider store={store}>
+          <Router history={historyMock}>
+            <CurrencyList />
+          </Router>
+        </Provider>,
       );
       const button = wrapper.find(Button).at(0);
       expect(button.text()).toEqual('Edit');
       button.simulate('click');
-      expect(push).toHaveBeenCalledWith('/currencies/1/edit');
+      expect(historyMock.push).toHaveBeenCalledWith('/currencies/1/edit');
     });
     it('should delete currency', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [currency],
-        total: 1,
-      }));
-
-      const wrapper = mount(
-        <Router>
+      wrapper = mount(
+        <Provider store={store}>
           <CurrencyList />
-        </Router>,
+        </Provider>,
       );
       const button = wrapper.find(Button).at(1);
       expect(button.text()).toEqual('Delete');
@@ -144,12 +179,18 @@ describe('Currencies List component', () => {
       expect(loadCurrencies).toHaveBeenCalledWith(1, 5);
     });
     it('should have no delete and edit buttons', () => {
-      useSelector.mockImplementation((state) => ({}));
-
-      const wrapper = mount(
-        <Router>
+      store = mockStore({
+        currencies: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+        },
+      });
+      wrapper = mount(
+        <Provider store={store}>
           <CurrencyList />
-        </Router>,
+        </Provider>,
       );
 
       const button = wrapper.find(Button);
