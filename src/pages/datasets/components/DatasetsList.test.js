@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, useHistory } from 'react-router-dom';
+import { BrowserRouter, Router, useHistory } from 'react-router-dom';
 import renderer, { act as rendererAct } from 'react-test-renderer';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
@@ -16,13 +16,10 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
+  ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
 }));
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: jest.fn(),
-}));
+
 jest.mock('../../../actions/datasets', () => ({
   loadDatasets: jest.fn(),
   deleteDataset: jest.fn(),
@@ -43,80 +40,195 @@ describe('DatasetsList component', () => {
 
   describe('snapshot testing', () => {
     beforeEach(() => {
-      store = mockStore({});
-      store.dispatch = jest.fn();
-      mockedDispatch = jest.fn();
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [1, 2],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1, 2],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              title: 'title',
+              contact_email: 'contact_email',
+              contact_name: 'contact_name',
+              data_standard: 'data_standard',
+              description: 'description',
+              frequency: 'frequency',
+              granularity: 'granularity',
+              license: 'license',
+              related_articles: 'related_articles',
+              source: 'source',
+              temporal_coverage: 'temporal_coverage',
+              time_saved: 'time_saved',
+              created_at: '2020-12-12',
+            },
+            2: {
+              id: 2,
+              title: 'title',
+              contact_email: 'contact_email',
+              contact_name: 'contact_name',
+              data_standard: 'data_standard',
+              description: 'description',
+              frequency: 'frequency',
+              granularity: 'granularity',
+              license: 'license',
+              related_articles: 'related_articles',
+              source: 'source',
+              temporal_coverage: 'temporal_coverage',
+              time_saved: 'time_saved',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 2,
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
+      mockedDispatch = jest.fn(() => Promise.resolve({}));
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should render the component', () => {
-      useSelector.mockImplementation((state) => ({}));
-      const tree = renderer.create(<DatasetList />).toJSON();
+      const tree = renderer
+        .create(
+          <Provider store={store}>
+            <BrowserRouter>
+              <DatasetList />
+            </BrowserRouter>
+          </Provider>,
+        )
+        .toJSON();
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component with no data', () => {
-      useSelector.mockImplementation((state) => ({}));
-      const tree = renderer.create(<DatasetList />).toJSON();
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+      });
+      const tree = renderer
+        .create(
+          <Provider store={store}>
+            <DatasetList />
+          </Provider>,
+        )
+        .toJSON();
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component with datasets', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [dataset],
-        total: 1,
-      }));
-
       let component;
       rendererAct(() => {
         component = renderer.create(
-          <Router>
-            <DatasetList />
-          </Router>,
+          <Provider store={store}>
+            <BrowserRouter>
+              <DatasetList />
+            </BrowserRouter>
+          </Provider>,
         );
       });
       const tree = component.toJSON();
       expect(tree).toMatchSnapshot();
-
-      expect(useSelector).toHaveBeenCalled();
       expect(mockedDispatch).toHaveBeenCalledTimes(1);
-      expect(useSelector).toHaveReturnedWith({
-        data: [dataset],
-        total: 1,
-      });
-      expect(loadDatasets).toHaveBeenCalledWith(1, 4);
+      expect(loadDatasets).toHaveBeenCalledWith(1, 10);
     });
   });
   describe('component testing', () => {
+    let wrapper;
     beforeEach(() => {
       jest.clearAllMocks();
-      mockedDispatch = jest.fn(() => new Promise((resolve) => resolve(true)));
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [1, 2],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1, 2],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              title: 'title',
+              contact_email: 'contact_email',
+              contact_name: 'contact_name',
+              data_standard: 'data_standard',
+              description: 'description',
+              frequency: 'frequency',
+              granularity: 'granularity',
+              license: 'license',
+              related_articles: 'related_articles',
+              source: 'source',
+              temporal_coverage: 'temporal_coverage',
+              time_saved: 'time_saved',
+              created_at: '2020-12-12',
+            },
+            2: {
+              id: 2,
+              title: 'title',
+              contact_email: 'contact_email',
+              contact_name: 'contact_name',
+              data_standard: 'data_standard',
+              description: 'description',
+              frequency: 'frequency',
+              granularity: 'granularity',
+              license: 'license',
+              related_articles: 'related_articles',
+              source: 'source',
+              temporal_coverage: 'temporal_coverage',
+              time_saved: 'time_saved',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 2,
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
+      mockedDispatch = jest.fn(() => Promise.resolve({}));
       useDispatch.mockReturnValue(mockedDispatch);
     });
+    afterEach(() => {
+      wrapper.unmount();
+    });
     it('should have empty', () => {
-      useSelector.mockImplementation((state) => ({}));
-      let wrapper;
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+      });
       act(() => {
         wrapper = mount(
-          <Router>
-            <DatasetList />
-          </Router>,
+          <Provider store={store}>
+            <BrowserRouter>
+              <DatasetList />
+            </BrowserRouter>
+          </Provider>,
         );
       });
-      const list = wrapper.find(List);
+      const list = wrapper.find(List.Item);
       expect(list.length).toEqual(0);
     });
     it('should change the page', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [dataset],
-        total: 1,
-      }));
-
-      let wrapper;
       act(() => {
         wrapper = mount(
-          <Router>
-            <DatasetList />
-          </Router>,
+          <Provider store={store}>
+            <BrowserRouter>
+              <DatasetList />
+            </BrowserRouter>
+          </Provider>,
         );
       });
       const list = wrapper.find(List);
@@ -126,39 +238,34 @@ describe('DatasetsList component', () => {
       expect(updatedList.props().pagination.current).toEqual(2);
     });
     it('should edit dataset', () => {
-      const push = jest.fn();
-      useHistory.mockReturnValueOnce({ push });
-
-      useSelector.mockImplementation((state) => ({
-        data: [dataset],
-        total: 1,
-      }));
-
-      let wrapper;
-      act(() => {
-        wrapper = mount(
-          <Router>
+      const historyMock = {
+        push: jest.fn(),
+        location: {},
+        listen: jest.fn(),
+        createHref: jest.fn(),
+      };
+      wrapper = mount(
+        <Provider store={store}>
+          <Router history={historyMock}>
             <DatasetList />
-          </Router>,
-        );
-      });
+          </Router>
+          ,
+        </Provider>,
+      );
+
       const card = wrapper.find(Card).at(0);
       const button = card.find('li').at(0).find('span').at(1);
       button.simulate('click');
-      expect(push).toHaveBeenCalledWith('/datasets/1/edit');
+      expect(historyMock.push).toHaveBeenCalledWith('/datasets/1/edit');
     });
     it('should delete dataset', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [dataset],
-        total: 1,
-      }));
-
-      let wrapper;
       act(() => {
         wrapper = mount(
-          <Router>
-            <DatasetList />
-          </Router>,
+          <Provider store={store}>
+            <BrowserRouter>
+              <DatasetList />
+            </BrowserRouter>
+          </Provider>,
         );
       });
       const card = wrapper.find(Card).at(0);
@@ -171,17 +278,16 @@ describe('DatasetsList component', () => {
         .simulate('click');
       expect(deleteDataset).toHaveBeenCalled();
       expect(deleteDataset).toHaveBeenCalledWith(1);
-      expect(loadDatasets).toHaveBeenCalledWith(1, 4);
+      expect(loadDatasets).toHaveBeenCalledWith(1, 10);
     });
     it('should have no delete and edit buttons', () => {
-      useSelector.mockImplementation((state) => ({}));
-
-      let wrapper;
       act(() => {
         wrapper = mount(
-          <Router>
-            <DatasetList />
-          </Router>,
+          <Provider store={store}>
+            <BrowserRouter>
+              <DatasetList />
+            </BrowserRouter>
+          </Provider>,
         );
       });
 

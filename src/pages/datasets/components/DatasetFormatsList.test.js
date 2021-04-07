@@ -131,6 +131,27 @@ describe('DatasetFormatsList component', () => {
       expect(deleteDatasetFormat).toHaveBeenCalled();
       expect(deleteDatasetFormat).toHaveBeenCalledWith(1, 1);
     });
+    it('should handle delete failure', () => {
+      deleteDatasetFormat.mockReset();
+      deleteDatasetFormat.mockImplementationOnce(() =>
+        Promise.resolve(new Error('Delete Failure')),
+      );
+      const wrapper = mount(
+        <Router>
+          <DatasetFormatList datasetId={1} />
+        </Router>,
+      );
+      const button = wrapper.find(Button).at(0);
+      expect(button.text()).toEqual('Delete');
+      button.simulate('click');
+      const popconfirm = wrapper.find(Popconfirm);
+      popconfirm
+        .findWhere((item) => item.type() === 'button' && item.text() === 'OK')
+        .simulate('click');
+
+      expect(deleteDatasetFormat).toHaveBeenCalled();
+      expect(deleteDatasetFormat).toHaveBeenCalledWith(1, 1);
+    });
     it('should have no delete buttons', () => {
       useSelector.mockImplementation((state) => ({}));
 
@@ -156,6 +177,26 @@ describe('DatasetFormatsList component', () => {
 
       const button = wrapper.find(Button);
       expect(button.length).toEqual(0);
+    });
+    it('should handle with switch for set datasetSampleId', () => {
+      useSelector.mockImplementation((state) => ({
+        datasetFormats: [datasetFormat],
+        loading: false,
+      }));
+      const wrapper = mount(
+        <Router>
+          <DatasetFormatList
+            datasetId={1}
+            showOperations={true}
+            datasetSampleId={1}
+            setDatasetSampleId={jest.fn()}
+          />
+        </Router>,
+      );
+      const sampleSwitch = wrapper.find('Switch').at(0);
+      sampleSwitch.props().onChange(true);
+      wrapper.update();
+      expect(sampleSwitch.props().checked).toBe(true);
     });
   });
 });

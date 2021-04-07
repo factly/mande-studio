@@ -40,6 +40,24 @@ describe('Datasets create component', () => {
       items: {},
       total: 0,
     },
+    currencies: {
+      loading: false,
+      ids: [1],
+      req: [
+        {
+          page: 1,
+          limit: 5,
+          ids: [1],
+        },
+      ],
+      items: {
+        1: {
+          id: 1,
+          name: 'Indian Rupee',
+          iso_code: 'INR',
+        },
+      },
+    },
   });
   store.dispatch = jest.fn(() => ({}));
   mockedDispatch = jest.fn(() => Promise.resolve({}));

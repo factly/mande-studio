@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { act } from '@testing-library/react';
@@ -14,8 +14,10 @@ const data = {
   contact_email: 'contact_email',
   contact_name: 'contact_name',
   data_standard: 'data_standard',
+  price: 1000,
   description: 'description',
   frequency: { count: 1, units: 'units' },
+  currency_id: 'INR',
   granularity: 'granularity',
   license: 'license',
   related_articles: 'related_articles',
@@ -39,10 +41,33 @@ describe('DatasetForm component', () => {
   store = mockStore({
     datasets: {
       loading: false,
-      ids: [],
-      req: [],
-      items: {},
-      total: 0,
+      ids: [1],
+      req: [
+        {
+          page: 1,
+          limit: 5,
+          ids: [1],
+        },
+      ],
+      items: {
+        1: {
+          id: 1,
+          title: 'title',
+          contact_email: 'contact_email',
+          contact_name: 'contact_name',
+          data_standard: 'data_standard',
+          description: 'description',
+          frequency: 'frequency',
+          granularity: 'granularity',
+          license: 'license',
+          related_articles: 'related_articles',
+          source: 'source',
+          temporal_coverage: 'temporal_coverage',
+          time_saved: 'time_saved',
+          created_at: '2020-12-12',
+        },
+      },
+      total: 1,
     },
   });
   useDispatch.mockReturnValue(jest.fn());
@@ -81,6 +106,63 @@ describe('DatasetForm component', () => {
   describe('component testing', () => {
     let wrapper, props;
     beforeEach(() => {
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              title: 'title',
+              contact_email: 'contact_email',
+              contact_name: 'contact_name',
+              data_standard: 'data_standard',
+              description: 'description',
+              frequency: { count: 1, units: 'units' },
+              granularity: 'granularity',
+              license: 'license',
+              related_articles: 'related_articles',
+              source: 'source',
+              temporal_coverage: 'temporal_coverage',
+              time_saved: 2,
+              feature_media: { id: 10, media: 'media' },
+            },
+          },
+          total: 1,
+        },
+        media: {
+          loading: true,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+        currencies: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'Indian Rupee',
+              iso_code: 'INR',
+            },
+          },
+        },
+      });
       const onSubmit = jest.fn();
       onSubmit.mockResolvedValueOnce({});
 
@@ -91,15 +173,57 @@ describe('DatasetForm component', () => {
         data: data,
       };
       act(() => {
-        wrapper = mount(<DatasetForm {...props} />);
+        wrapper = mount(
+          <Provider store={store}>
+            <DatasetForm {...props} />
+          </Provider>,
+        );
       });
     });
     afterEach(() => {
       wrapper.unmount();
     });
     it('should not submit form with empty data', (done) => {
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+        media: {
+          loading: true,
+          ids: [],
+          req: [],
+          items: {},
+          total: 0,
+        },
+        currencies: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'Indian Rupee',
+              iso_code: 'INR',
+            },
+          },
+        },
+      });
       act(() => {
-        wrapper = mount(<DatasetForm onSubmit={props.onSubmit} />);
+        wrapper = mount(
+          <Provider store={store}>
+            <DatasetForm onSubmit={props.onSubmit} />
+          </Provider>,
+        );
       });
 
       act(() => {
@@ -115,7 +239,8 @@ describe('DatasetForm component', () => {
     });
     it('should submit form with given data', (done) => {
       act(() => {
-        const submitButtom = wrapper.find('Button').at(0);
+        const submitButtom = wrapper.find('Button').at(1);
+        expect(submitButtom.text()).toBe('Submit');
         submitButtom.simulate('submit');
       });
       wrapper.update();
@@ -126,9 +251,11 @@ describe('DatasetForm component', () => {
           title: 'title',
           contact_email: 'contact_email',
           contact_name: 'contact_name',
+          price: 1000,
           data_standard: 'data_standard',
           description: 'description',
           frequency: '1 units',
+          currency_id: 'INR',
           granularity: 'granularity',
           license: 'license',
           related_articles: 'related_articles',
@@ -143,29 +270,33 @@ describe('DatasetForm component', () => {
     it('should submit form with given data without media', (done) => {
       act(() => {
         wrapper = mount(
-          <DatasetForm
-            onSubmit={props.onSubmit}
-            data={{
-              id: 1,
-              title: 'title',
-              contact_email: 'contact_email',
-              contact_name: 'contact_name',
-              data_standard: 'data_standard',
-              description: 'description',
-              frequency: { count: 1, units: 'units' },
-              granularity: 'granularity',
-              license: 'license',
-              related_articles: 'related_articles',
-              source: 'source',
-              temporal_coverage: 'temporal_coverage',
-              time_saved: 2,
-            }}
-          />,
+          <Provider store={store}>
+            <DatasetForm
+              onSubmit={props.onSubmit}
+              data={{
+                id: 1,
+                title: 'title',
+                contact_email: 'contact_email',
+                contact_name: 'contact_name',
+                price: 1000,
+                data_standard: 'data_standard',
+                description: 'description',
+                frequency: { count: 1, units: 'units' },
+                currency_id: 'INR',
+                granularity: 'granularity',
+                license: 'license',
+                related_articles: 'related_articles',
+                source: 'source',
+                temporal_coverage: 'temporal_coverage',
+                time_saved: 2,
+              }}
+            />
+          </Provider>,
         );
       });
 
       act(() => {
-        const submitButtom = wrapper.find('Button').at(0);
+        const submitButtom = wrapper.find('Button').at(1);
         submitButtom.simulate('submit');
       });
       wrapper.update();
@@ -176,9 +307,11 @@ describe('DatasetForm component', () => {
           title: 'title',
           contact_email: 'contact_email',
           contact_name: 'contact_name',
+          price: 1000,
           data_standard: 'data_standard',
           description: 'description',
           frequency: '1 units',
+          currency_id: 'INR',
           granularity: 'granularity',
           license: 'license',
           related_articles: 'related_articles',
@@ -218,58 +351,58 @@ describe('DatasetForm component', () => {
           .simulate('change', { target: { value: 'new data_standard' } });
         wrapper
           .find('FormItem')
-          .at(5)
+          .at(8)
           .find('InputNumber')
           .at(0)
           .props()
           .onChange({ target: { value: 2 } });
         wrapper
           .find('FormItem')
-          .at(5)
+          .at(9)
           .find('Select')
           .at(0)
           .props()
           .onChange({ target: { value: 'months' } });
         wrapper
           .find('FormItem')
-          .at(6 + 2)
+          .at(8 + 2)
           .find('Input')
           .simulate('change', { target: { value: 'new granularity' } });
         wrapper
           .find('FormItem')
-          .at(7 + 2)
+          .at(9 + 2)
           .find('Input')
           .simulate('change', { target: { value: 'new license' } });
         wrapper
           .find('FormItem')
-          .at(8 + 2)
+          .at(10 + 2)
           .find('Input')
           .simulate('change', { target: { value: 'new related_articles' } });
         wrapper
           .find('FormItem')
-          .at(9 + 2)
+          .at(11 + 2)
           .find('Input')
           .simulate('change', { target: { value: 'new source' } });
         wrapper
           .find('FormItem')
-          .at(10 + 2)
+          .at(12 + 2)
           .find('Input')
           .simulate('change', { target: { value: 'new temporal_coverage' } });
         wrapper
           .find('FormItem')
-          .at(11 + 2)
+          .at(13 + 2)
           .find('InputNumber')
           .at(0)
           .props()
           .onChange({ target: { value: 4 } });
         wrapper
           .find('FormItem')
-          .at(12 + 2)
-          .find('MediaUploader')
+          .at(15 + 2)
+          .find('Uploader')
           .props()
-          .onUploadSuccess({ id: 20, media: 'media' });
+          .onUploadSuccess({ id: 10, media: 'media' });
 
-        const submitButtom = wrapper.find('Button').at(0);
+        const submitButtom = wrapper.find('Button').at(1);
         submitButtom.simulate('submit');
         wrapper.update();
       });
@@ -280,16 +413,18 @@ describe('DatasetForm component', () => {
           title: 'new title',
           contact_email: 'new contact_email',
           contact_name: 'new contact_name',
+          price: 1000,
           data_standard: 'new data_standard',
           description: 'new description',
           frequency: '2 months',
           granularity: 'new granularity',
+          currency_id: 'INR',
           license: 'new license',
           related_articles: 'new related_articles',
           source: 'new source',
           temporal_coverage: 'new temporal_coverage',
           time_saved: 4,
-          featured_media_id: 20,
+          featured_media_id: 10,
         });
         done();
       }, 0);

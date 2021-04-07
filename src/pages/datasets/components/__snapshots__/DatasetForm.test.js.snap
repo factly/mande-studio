@@ -2,10 +2,34 @@
 
 exports[`DatasetForm component snapshot testing should match component in all steps 1`] = `
 <ForwardRef(InternalForm)
+  form={
+    Object {
+      "__INTERNAL__": Object {
+        "itemRef": [Function],
+      },
+      "getFieldError": [Function],
+      "getFieldInstance": [Function],
+      "getFieldValue": [Function],
+      "getFieldsError": [Function],
+      "getFieldsValue": [Function],
+      "getInternalHooks": [Function],
+      "isFieldTouched": [Function],
+      "isFieldValidating": [Function],
+      "isFieldsTouched": [Function],
+      "isFieldsValidating": [Function],
+      "resetFields": [Function],
+      "scrollToField": [Function],
+      "setFields": [Function],
+      "setFieldsValue": [Function],
+      "submit": [Function],
+      "validateFields": [Function],
+    }
+  }
   initialValues={
     Object {
       "contact_email": "contact_email",
       "contact_name": "contact_name",
+      "currency_id": "INR",
       "data_standard": "data_standard",
       "description": "description",
       "feature_media": Object {
@@ -19,6 +43,7 @@ exports[`DatasetForm component snapshot testing should match component in all st
       "granularity": "granularity",
       "id": 1,
       "license": "license",
+      "price": 1000,
       "related_articles": "related_articles",
       "source": "source",
       "temporal_coverage": "temporal_coverage",
@@ -111,6 +136,42 @@ exports[`DatasetForm component snapshot testing should match component in all st
     <Input
       placeholder="standard"
       type=""
+    />
+  </FormItem>
+  <FormItem
+    key="price"
+    label="Price"
+    name="price"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Price!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <ForwardRef
+      placeholder="1000"
+      step={1}
+    />
+  </FormItem>
+  <FormItem
+    key="currency_id"
+    label="Currency"
+    name="currency_id"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Currency!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Selector
+      action="Currencies"
+      field="iso_code"
     />
   </FormItem>
   <FormItem
@@ -260,10 +321,17 @@ exports[`DatasetForm component snapshot testing should match component in all st
     />
   </FormItem>
   <FormItem
-    key="medium"
-    label="Medium"
+    label="Is Public"
+    name="is_public"
+    valuePropName="checked"
   >
-    <MediaUploader
+    <Switch />
+  </FormItem>
+  <FormItem
+    label="Profiling URL"
+    name="profiling_url"
+  >
+    <Uploader
       onUploadSuccess={[Function]}
     />
   </FormItem>
@@ -290,10 +358,34 @@ exports[`DatasetForm component snapshot testing should match component in all st
 
 exports[`DatasetForm component snapshot testing should match component with data 1`] = `
 <ForwardRef(InternalForm)
+  form={
+    Object {
+      "__INTERNAL__": Object {
+        "itemRef": [Function],
+      },
+      "getFieldError": [Function],
+      "getFieldInstance": [Function],
+      "getFieldValue": [Function],
+      "getFieldsError": [Function],
+      "getFieldsValue": [Function],
+      "getInternalHooks": [Function],
+      "isFieldTouched": [Function],
+      "isFieldValidating": [Function],
+      "isFieldsTouched": [Function],
+      "isFieldsValidating": [Function],
+      "resetFields": [Function],
+      "scrollToField": [Function],
+      "setFields": [Function],
+      "setFieldsValue": [Function],
+      "submit": [Function],
+      "validateFields": [Function],
+    }
+  }
   initialValues={
     Object {
       "contact_email": "contact_email",
       "contact_name": "contact_name",
+      "currency_id": "INR",
       "data_standard": "data_standard",
       "description": "description",
       "feature_media": Object {
@@ -307,6 +399,7 @@ exports[`DatasetForm component snapshot testing should match component with data
       "granularity": "granularity",
       "id": 1,
       "license": "license",
+      "price": 1000,
       "related_articles": "related_articles",
       "source": "source",
       "temporal_coverage": "temporal_coverage",
@@ -402,6 +495,42 @@ exports[`DatasetForm component snapshot testing should match component with data
     />
   </FormItem>
   <FormItem
+    key="price"
+    label="Price"
+    name="price"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Price!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <ForwardRef
+      placeholder="1000"
+      step={1}
+    />
+  </FormItem>
+  <FormItem
+    key="currency_id"
+    label="Currency"
+    name="currency_id"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Currency!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Selector
+      action="Currencies"
+      field="iso_code"
+    />
+  </FormItem>
+  <FormItem
     key="frequency"
     label="Frequency"
     name="frequency"
@@ -548,10 +677,17 @@ exports[`DatasetForm component snapshot testing should match component with data
     />
   </FormItem>
   <FormItem
-    key="medium"
-    label="Medium"
+    label="Is Public"
+    name="is_public"
+    valuePropName="checked"
   >
-    <MediaUploader
+    <Switch />
+  </FormItem>
+  <FormItem
+    label="Profiling URL"
+    name="profiling_url"
+  >
+    <Uploader
       onUploadSuccess={[Function]}
     />
   </FormItem>
@@ -578,6 +714,29 @@ exports[`DatasetForm component snapshot testing should match component with data
 
 exports[`DatasetForm component snapshot testing should render the component 1`] = `
 <ForwardRef(InternalForm)
+  form={
+    Object {
+      "__INTERNAL__": Object {
+        "itemRef": [Function],
+      },
+      "getFieldError": [Function],
+      "getFieldInstance": [Function],
+      "getFieldValue": [Function],
+      "getFieldsError": [Function],
+      "getFieldsValue": [Function],
+      "getInternalHooks": [Function],
+      "isFieldTouched": [Function],
+      "isFieldValidating": [Function],
+      "isFieldsTouched": [Function],
+      "isFieldsValidating": [Function],
+      "resetFields": [Function],
+      "scrollToField": [Function],
+      "setFields": [Function],
+      "setFieldsValue": [Function],
+      "submit": [Function],
+      "validateFields": [Function],
+    }
+  }
   labelCol={
     Object {
       "span": 6,
@@ -666,6 +825,42 @@ exports[`DatasetForm component snapshot testing should render the component 1`] 
     />
   </FormItem>
   <FormItem
+    key="price"
+    label="Price"
+    name="price"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Price!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <ForwardRef
+      placeholder="1000"
+      step={1}
+    />
+  </FormItem>
+  <FormItem
+    key="currency_id"
+    label="Currency"
+    name="currency_id"
+    rules={
+      Array [
+        Object {
+          "message": "Please enter Currency!",
+          "required": true,
+        },
+      ]
+    }
+  >
+    <Selector
+      action="Currencies"
+      field="iso_code"
+    />
+  </FormItem>
+  <FormItem
     key="frequency"
     label="Frequency"
     name="frequency"
@@ -812,10 +1007,17 @@ exports[`DatasetForm component snapshot testing should render the component 1`] 
     />
   </FormItem>
   <FormItem
-    key="medium"
-    label="Medium"
+    label="Is Public"
+    name="is_public"
+    valuePropName="checked"
   >
-    <MediaUploader
+    <Switch />
+  </FormItem>
+  <FormItem
+    label="Profiling URL"
+    name="profiling_url"
+  >
+    <Uploader
       onUploadSuccess={[Function]}
     />
   </FormItem>

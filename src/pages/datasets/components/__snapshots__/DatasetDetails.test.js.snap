@@ -62,9 +62,95 @@ exports[`DatasetDetails component should render the component 1`] = `
       time_saved
     </DescriptionsItem>
     <DescriptionsItem
+      label="Profiling URL"
+    />
+    <DescriptionsItem
+      label="Is Public"
+    >
+      no
+    </DescriptionsItem>
+    <DescriptionsItem
       label="Created At"
     >
-      in 2 months
+      4 months ago
+    </DescriptionsItem>
+  </Descriptions>
+</Card>
+`;
+
+exports[`DatasetDetails component should render the component with public dataset 1`] = `
+<Card>
+  <Descriptions
+    column={1}
+    title="title 2"
+  >
+    <DescriptionsItem
+      label="Contact email"
+    >
+      contact_email
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Contact name"
+    >
+      contact_name
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Data standard"
+    >
+      data_standard
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Description"
+    >
+      description
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Frequency"
+    >
+      frequency
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Granularity"
+    >
+      granularity
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="License"
+    >
+      license
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Related articles"
+    >
+      related_articles
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Source"
+    >
+      source
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Temporal coverage"
+    >
+      temporal_coverage
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Time saved"
+    >
+      time_saved
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Profiling URL"
+    />
+    <DescriptionsItem
+      label="Is Public"
+    >
+      yes
+    </DescriptionsItem>
+    <DescriptionsItem
+      label="Created At"
+    >
+      4 months ago
     </DescriptionsItem>
   </Descriptions>
 </Card>
