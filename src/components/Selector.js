@@ -4,7 +4,11 @@ import { Select } from 'antd';
 
 function Selector({ action, value = [], onChange, multiple = false, field = 'name' }) {
   const dispatch = useDispatch();
-  const [page, setPage] = React.useState(1);
+
+  const [query, setQuery] = React.useState({
+    page: 1,
+    limit: 5,
+  });
 
   const entity = action.toLowerCase();
   const selectorType = require(`../actions/${entity}`);
@@ -13,10 +17,19 @@ function Selector({ action, value = [], onChange, multiple = false, field = 'nam
     value = [value];
   }
 
+  const onSearch = (value) => {
+    if (value) {
+      setQuery({ ...query, q: value });
+    } else {
+      setQuery({ page: query.page });
+    }
+  };
+
+
   const { details, total, loading } = useSelector((state) => {
     let ids = [];
 
-    for (var pageNumber = 1; pageNumber <= page; pageNumber++) {
+    for (var pageNumber = 1; pageNumber <= query.page; pageNumber++) {
       let pageIndex = state[entity].req.findIndex((request) => request.page === pageNumber);
       if (pageIndex !== -1) {
         ids = ids.concat(state[entity].req[pageIndex].ids);
@@ -37,10 +50,10 @@ function Selector({ action, value = [], onChange, multiple = false, field = 'nam
 
   React.useEffect(() => {
     fetchEntities();
-  }, [page]);
+  }, [query]);
 
   const fetchEntities = () => {
-    dispatch(selectorType['load' + action](page, 5));
+    dispatch(selectorType['load' + action](query));
   };
 
   return (
@@ -52,13 +65,14 @@ function Selector({ action, value = [], onChange, multiple = false, field = 'nam
       defaultValue={value}
       placeholder={`Add ${entity}`}
       onChange={(values) => onChange(values)}
+      onSearch={(value) => onSearch(value)}
       filterOption={(input, option) =>
         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
       }
       onPopupScroll={(e) => {
         if (e.target.scrollTop + e.target.offsetHeight === e.target.scrollHeight) {
           if (details.length < total) {
-            setPage(page + 1);
+            setQuery({ ...query, page: query.page + 1 });
           }
         }
       }}
