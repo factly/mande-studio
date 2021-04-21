@@ -21,7 +21,7 @@ const PaymentsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadPayments(pagination.page, pagination.limit));
+    dispatch(loadPayments(pagination));
   }, [pagination]);
 
   const columns = [

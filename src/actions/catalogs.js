@@ -12,18 +12,19 @@ import { addProducts } from './products';
 import { addMedia } from './media';
 import { getIds, getValues, buildObjectOfItems, deleteKeys } from '../utils/objects';
 
-export const loadCatalogs = (page = 1, limit = 5) => {
+export const loadCatalogs = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${CATALOG_API}?page=${page}&limit=${limit}`,
+      url: CATALOG_API,
       method: 'get',
+      params: query,
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setCatalogRequest(currentReq, total));
     dispatch(addCatalogs(nodes));
     dispatch(setCatalogIds(currentPageIds));

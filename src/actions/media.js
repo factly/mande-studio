@@ -10,18 +10,19 @@ import {
 } from '../constants/media';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadMedia = (page = 1, limit = 5) => {
+export const loadMedia = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${MEDIUM_API}?page=${page}&limit=${limit}`,
+      url: MEDIUM_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query ,ids: currentPageIds };
     dispatch(setMediumRequest(currentReq, total));
     dispatch(addMedia(nodes));
     dispatch(setMediumIds(currentPageIds));

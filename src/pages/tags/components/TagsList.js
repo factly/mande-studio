@@ -23,7 +23,7 @@ const TagsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadTags(pagination.page, pagination.limit));
+    dispatch(loadTags(pagination));
   }, [pagination]);
 
   const remove = (key) => {
@@ -32,7 +32,7 @@ const TagsList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadTags(pagination.page, pagination.limit));
+        dispatch(loadTags(pagination));
       })
       .catch(() => {
         notification.error({

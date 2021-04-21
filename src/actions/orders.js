@@ -12,18 +12,19 @@ import { addPayments } from './payments';
 import { addProducts } from './products';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadOrders = (page = 1, limit = 5) => {
+export const loadOrders = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${ORDER_API}?page=${page}&limit=${limit}`,
+      url: ORDER_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setOrderRequest(currentReq, total));
     dispatch(addOrders(nodes));
     dispatch(setOrderIds(currentPageIds));

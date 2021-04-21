@@ -22,7 +22,7 @@ const CurrenciesList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadCurrencies(pagination.page, pagination.limit));
+    dispatch(loadCurrencies(pagination));
   }, [pagination, total]);
 
   const remove = (key) => {
@@ -31,7 +31,7 @@ const CurrenciesList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadCurrencies(pagination.page, pagination.limit));
+        dispatch(loadCurrencies(pagination));
       })
       .catch(() => {
         notification.error({

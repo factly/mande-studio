@@ -32,7 +32,7 @@ const DatasetsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadDatasets(pagination.page, pagination.limit));
+    dispatch(loadDatasets(pagination));
   }, [pagination]);
 
   const remove = (key) => {
@@ -41,7 +41,7 @@ const DatasetsList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadDatasets(pagination.page, pagination.limit));
+        dispatch(loadDatasets(pagination));
       })
       .catch(() => {
         notification.error({

@@ -22,7 +22,7 @@ const PlansList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadPlans(pagination.page, pagination.limit));
+    dispatch(loadPlans(pagination));
   }, [pagination]);
 
   const remove = (key) => {
@@ -31,7 +31,7 @@ const PlansList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadPlans(pagination.page, pagination.limit));
+        dispatch(loadPlans(pagination));
       })
       .catch(() => {
         notification.error({

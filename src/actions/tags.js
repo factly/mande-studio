@@ -10,18 +10,19 @@ import {
 } from '../constants/tags';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadTags = (page = 1, limit = 5) => {
+export const loadTags = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${TAG_API}?page=${page}&limit=${limit}`,
+      url: TAG_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setTagRequest(currentReq, total));
     dispatch(addTags(nodes));
     dispatch(setTagIds(currentPageIds));

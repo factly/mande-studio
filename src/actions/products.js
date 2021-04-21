@@ -14,18 +14,19 @@ import { addMedium } from './media';
 import { addDatasets } from './datasets';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadProducts = (page = 1, limit = 5) => {
+export const loadProducts = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${PRODUCT_API}?page=${page}&limit=${limit}`,
+      url: PRODUCT_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(addProducts(nodes));
     dispatch(setProductIds(currentPageIds));
     dispatch(setProductRequest(currentReq, total));

@@ -15,18 +15,19 @@ import { addTags } from './tags';
 import { addMedium } from './media';
 import { getIds, buildObjectOfItems, getValues, deleteKeys } from '../utils/objects';
 
-export const loadDatasets = (page = 1, limit = 5) => {
+export const loadDatasets = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${DATASET_API}?page=${page}&limit=${limit}`,
+      url: DATASET_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query ,ids: currentPageIds };
     dispatch(setDatasetRequest(currentReq, total));
     dispatch(addDatasets(nodes));
     dispatch(setDatasetIds(currentPageIds));

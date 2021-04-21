@@ -45,7 +45,7 @@ const ProductsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadProducts(pagination.page, pagination.limit));
+    dispatch(loadProducts(pagination));
   }, [pagination]);
 
   const remove = (key) => {
@@ -54,7 +54,7 @@ const ProductsList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadProducts(pagination.page, pagination.limit));
+        dispatch(loadProducts(pagination));
       })
       .catch(() => {
         notification.error({

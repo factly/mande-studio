@@ -8,21 +8,21 @@ import {
 } from '../constants/memberships';
 import { addPlans } from './plans';
 import { addPayments } from './payments';
-import { setUsers } from './users';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadMemberships = (page = 1, limit = 5) => {
+export const loadMemberships = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${MEMBERSHIP_API}?page=${page}&limit=${limit}`,
+      url:MEMBERSHIP_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setMembershipRequest(currentReq, total));
     dispatch(addMemberships(nodes));
     dispatch(setMembershipIds(currentPageIds));
