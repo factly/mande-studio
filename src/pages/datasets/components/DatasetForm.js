@@ -26,20 +26,20 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
       type: 'email',
     },
     { label: 'Contact Name', name: 'contact_name', placeholder: 'Shashi', required: true },
-    { label: 'Description', name: 'description', placeholder: 'description' },
+    { label: 'Description', name: 'description', placeholder: 'description',required: true},
     { label: 'Data Standard', name: 'data_standard', placeholder: 'standard' },
     { label: 'Price', type: 'number', name: 'price', placeholder: '1000', required: true },
     { label: 'Currency', name: 'currency_id', placeholder: 'INR', required: true },
     { label: 'Frequency', name: 'frequency', placeholder: '1 month', required: true },
-    { label: 'Granularity', name: 'granularity', placeholder: 'granularity' },
-    { label: 'License', name: 'license', placeholder: 'MIT License' },
+    { label: 'Granularity', name: 'granularity', placeholder: 'granularity', required: true },
+    { label: 'License', name: 'license', placeholder: 'MIT License', required: true },
     {
       label: 'Related Articles',
       name: 'related_articles',
       placeholder: 'link://to.related.articles',
     },
-    { label: 'Source', name: 'source', placeholder: 'link://to.source.com' },
-    { label: 'Temporal Coverage', name: 'temporal_coverage', placeholder: 'temporal_coverage' },
+    { label: 'Source', name: 'source', placeholder: 'link://to.source.com',required: true },
+    { label: 'Temporal Coverage', name: 'temporal_coverage', placeholder: 'temporal_coverage',required: true },
     { label: 'Time Saved', type: 'number', name: 'time_saved', placeholder: '12' },
   ];
 
@@ -129,10 +129,10 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
           )}
         </Form.Item>
       ))}
-      <Form.Item name={'is_public'} label={'Is Public'} valuePropName="checked">
+      <Form.Item name={'is_public'} label={'Is Public'} valuePropName="checked" required>
         <Switch />
       </Form.Item>
-      <Form.Item name={'profiling_url'} label={'Profiling URL'}>
+      <Form.Item name={'profiling_url'} label={'Profiling URL'} required>
         {/* {media && media.name} */}
         {!profiling_url ? <Uploader onUploadSuccess={onUpload} /> : profiling_url}
       </Form.Item>
