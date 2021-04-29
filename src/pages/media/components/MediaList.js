@@ -21,7 +21,7 @@ const MediaList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadMedia(pagination.page, pagination.limit));
+    dispatch(loadMedia(pagination));
   }, [pagination, total]);
 
   const remove = (key) => {
@@ -30,7 +30,7 @@ const MediaList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadMedia(pagination.page, pagination.limit));
+        dispatch(loadMedia(pagination));
       })
       .catch(() => {
         notification.error({

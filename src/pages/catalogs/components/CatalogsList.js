@@ -22,7 +22,7 @@ const CatalogsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadCatalogs(pagination.page, pagination.limit));
+    dispatch(loadCatalogs(pagination));
   }, [pagination]);
 
   const remove = (key) => {
@@ -31,7 +31,7 @@ const CatalogsList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadCatalogs(pagination.page, pagination.limit));
+        dispatch(loadCatalogs(pagination));
       })
       .catch(() => {
         notification.error({

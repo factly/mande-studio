@@ -24,7 +24,7 @@ const FormatsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadFormats(pagination.page, pagination.limit));
+    dispatch(loadFormats(pagination));
   }, [pagination, total]);
 
   const remove = (key) => {
@@ -33,7 +33,7 @@ const FormatsList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadFormats(pagination.page, pagination.limit));
+        dispatch(loadFormats(pagination));
       })
       .catch(() => {
         notification.error({

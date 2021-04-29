@@ -22,7 +22,7 @@ const CartItems = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadCartItems(pagination.page, pagination.limit));
+    dispatch(loadCartItems(pagination));
   }, [pagination]);
 
   const columns = [

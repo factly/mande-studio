@@ -22,7 +22,7 @@ const DatasetItem = ({ dataset }) => {
 };
 
 const DatasetsList = () => {
-  const [pagination, setPagination] = useState({ page: 1, limit: 10 });
+  const [pagination, setPagination] = useState({ page: 1, limit: 20 });
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const DatasetsList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadDatasets(pagination.page, pagination.limit));
+    dispatch(loadDatasets(pagination));
   }, [pagination]);
 
   const remove = (key) => {
@@ -44,7 +44,7 @@ const DatasetsList = () => {
         notification.success({
           message: 'Success',
         });
-        dispatch(loadDatasets(pagination.page, pagination.limit));
+        dispatch(loadDatasets(pagination));
       })
       .catch(() => {
         notification.error({
@@ -71,7 +71,7 @@ const DatasetsList = () => {
       grid={{ gutter: 16, column: 4 }}
       pagination={{
         current: pagination.page,
-        defaultPageSize: 10,
+        defaultPageSize: 20,
         pageSize: pagination.limit,
         total,
         onChange: (page, limit) => setPagination({ page, limit }),

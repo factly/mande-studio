@@ -1,4 +1,4 @@
-import axios from '../utils/axios';
+import axios from 'axios';
 import {
   ADD_FORMAT,
   ADD_FORMATS,
@@ -10,18 +10,19 @@ import {
 } from '../constants/formats';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadFormats = (page = 1, limit = 5) => {
+export const loadFormats = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${FORMAT_API}?page=${page}&limit=${limit}`,
+      url:FORMAT_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setFormatRequest(currentReq, total));
     dispatch(addFormats(nodes));
     dispatch(setFormatIds(currentPageIds));

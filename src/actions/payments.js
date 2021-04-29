@@ -1,4 +1,4 @@
-import axios from '../utils/axios';
+import axios from 'axios';
 import {
   ADD_PAYMENTS,
   SET_PAYMENT_LOADING,
@@ -9,18 +9,19 @@ import {
 import { addCurrencies } from './currencies';
 import { getIds, getValues, deleteKeys, buildObjectOfItems } from '../utils/objects';
 
-export const loadPayments = (page = 1, limit = 5) => {
+export const loadPayments = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${PAYMENT_API}?page=${page}&limit=${limit}`,
+      url: PAYMENT_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query ,ids: currentPageIds };
     dispatch(setPaymentRequest(currentReq, total));
     dispatch(addPayments(nodes));
     dispatch(setPaymentIds(currentPageIds));

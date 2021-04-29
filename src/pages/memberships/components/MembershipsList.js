@@ -22,7 +22,7 @@ const MembershipList = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadMemberships(pagination.page, pagination.limit));
+    dispatch(loadMemberships(pagination));
   }, [pagination]);
 
   const columns = [

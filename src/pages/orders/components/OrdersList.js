@@ -24,7 +24,7 @@ const Orders = () => {
   });
 
   React.useEffect(() => {
-    dispatch(loadOrders(pagination.page, pagination.limit));
+    dispatch(loadOrders(pagination));
   }, [pagination]);
 
   const columns = [

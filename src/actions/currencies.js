@@ -1,4 +1,4 @@
-import axios from '../utils/axios';
+import axios from 'axios';
 import {
   ADD_CURRENCY,
   ADD_CURRENCIES,
@@ -10,18 +10,19 @@ import {
 } from '../constants/currencies';
 import { getIds, buildObjectOfItems } from '../utils/objects';
 
-export const loadCurrencies = (page = 1, limit = 5) => {
+export const loadCurrencies = (query) => {
   return async (dispatch, getState) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url: `${CURRENCY_API}?page=${page}&limit=${limit}`,
+      url: CURRENCY_API,
       method: 'get',
+      params: query
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { page: page, limit: limit, ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setCurrencyRequest(currentReq, total));
     dispatch(addCurrencies(nodes));
     dispatch(setCurrencyIds(currentPageIds));
