@@ -9,7 +9,7 @@ import { loadTags, deleteTag } from '../../../actions/tags';
 
 const TagsList = () => {
   const [form] = Form.useForm();
-  const [pagination, setPagination] = useState({ page: 1, limit: 5 });
+  const [pagination, setPagination] = useState({ page: 1, limit: 20 });
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -97,7 +97,7 @@ const TagsList = () => {
         columns={columns}
         pagination={{
           current: pagination.page,
-          defaultPageSize: 5,
+          defaultPageSize: 20,
           pageSize: pagination.limit,
           total,
           onChange: (page, limit) => setPagination({ page, limit }),
