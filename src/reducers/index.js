@@ -13,6 +13,7 @@ import catalogsReducer from './catalogs';
 import datasetsReducer from './datasets';
 import mediaReducer from './media';
 import usersReducer from './users';
+import organisationReducers from './organisation';
 
 export default combineReducers({
   cartItems: cartItemsReducer,
@@ -28,4 +29,5 @@ export default combineReducers({
   products: productsReducer,
   media: mediaReducer,
   users: usersReducer,
+  organisations: organisationReducers,
 });
