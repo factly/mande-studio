@@ -1,4 +1,4 @@
-import axios from '../utils/axios';
+import axios from 'axios';
 import {
   ADD_MEMBERSHIPS,
   SET_MEMBERSHIP_LOADING,

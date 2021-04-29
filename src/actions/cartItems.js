@@ -1,4 +1,4 @@
-import axios from '../utils/axios';
+import axios from 'axios';
 import {
   ADD_CARTITEMS,
   SET_CARTITEM_LOADING,
