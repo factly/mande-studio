@@ -1,32 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Button, AutoComplete, Divider } from 'antd';
+import { Layout, Menu } from 'antd';
 import './basic.css';
-import logo from '../assets/logo.svg';
 import routes from '../routes';
+import Header from '../components/Header'
 
-import { LogoutOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { getOrganisation } from '../actions/organisations';
+import { useDispatch, useSelector } from 'react-redux';
 
-const mockVal = (str, repeat = 1) => ({
-  value: str.repeat(repeat),
-});
 
 function BasicLayout(props) {
-  const { Header, Footer, Sider, Content } = Layout;
+  const {  Footer, Sider, Content } = Layout;
   const { children } = props;
+  const dispatch = useDispatch()
 
-  const [options, setOptions] = React.useState([]);
   const [collapsed, setCollapsed] = React.useState(false);
 
-  const onSearch = (searchText) => {
-    setOptions(
-      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
-    );
-  };
+  const selected = useSelector(({organisations:{selected}}) => selected)
 
-  const onSelect = (data) => {
-    console.log('onSelect', data);
-  };
+  React.useEffect(() => {
+    dispatch(getOrganisation())
+  }, [dispatch, selected]);
+
+ 
 
   return (
     <Layout hasSider={true}>
@@ -60,30 +56,8 @@ function BasicLayout(props) {
         </Menu>
       </Sider>
       <Layout>
-        <Header className="layout-header">
-          <div>
-            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: () => setCollapsed(!collapsed),
-            })}
-            <Divider type="vertical" />
-            <AutoComplete
-              style={{ width: 300 }}
-              options={options}
-              onSelect={onSelect}
-              onSearch={onSearch}
-              placeholder="Search....."
-            />
-            <Divider type="vertical" />
-            <a href={window.REACT_APP_KRATOS_PUBLIC_URL + '/self-service/browser/flows/logout'}>
-              <Button>
-                <LogoutOutlined />
-                Logout
-              </Button>
-            </a>
-          </div>
-        </Header>
-        <Content className="layout-content">{children}</Content>
+        <Header/>
+        <Content key={selected.toString()} className="layout-content">{children}</Content>
         <Footer></Footer>
       </Layout>
     </Layout>
