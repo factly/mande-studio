@@ -31,6 +31,12 @@ const DatasetDetails = ({ dataset }) => {
             dangerouslySetInnerHTML={{ __html: dataset.description }}
           />
         </Descriptions.Item>
+        <Descriptions.Item label="Units">
+          <div
+            style={{ whiteSpace: 'pre-wrap' }}
+            dangerouslySetInnerHTML={{ __html: dataset.units }}
+          />
+        </Descriptions.Item>
         <Descriptions.Item label="Frequency">{dataset.frequency}</Descriptions.Item>
         <Descriptions.Item label="Granularity">{dataset.granularity}</Descriptions.Item>
         <Descriptions.Item label="License">{dataset.license}</Descriptions.Item>

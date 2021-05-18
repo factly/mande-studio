@@ -31,6 +31,7 @@ const DatasetForm = ({ onSubmit, setDatasetId, data, next }) => {
       placeholder: 'finance, education, health',
       required: true,
     },
+    { label: 'Units', name: 'units', placeholder: 'Area: sq km', required: false },
     {
       label: 'Contact Email',
       name: 'contact_email',
