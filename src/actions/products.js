@@ -21,7 +21,7 @@ export const loadProducts = (query) => {
     const response = await axios({
       url: PRODUCT_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;

@@ -10,18 +10,18 @@ function App() {
   return (
     <div className="App">
       <Router basename={process.env.PUBLIC_URL}>
-          <BasicLayout>
-            <Switch>
-              {routes.map((route) => (
-                <Route
-                  key={route.path}
-                  exact={route.exact}
-                  path={route.path}
-                  component={route.component}
-                />
-              ))}
-            </Switch>
-          </BasicLayout>
+        <BasicLayout>
+          <Switch>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                exact={route.exact}
+                path={route.path}
+                component={route.component}
+              />
+            ))}
+          </Switch>
+        </BasicLayout>
       </Router>
     </div>
   );

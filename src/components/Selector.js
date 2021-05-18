@@ -25,7 +25,6 @@ function Selector({ action, value = [], onChange, multiple = false, field = 'nam
     }
   };
 
-
   const { details, total, loading } = useSelector((state) => {
     let ids = [];
 

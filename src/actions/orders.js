@@ -19,7 +19,7 @@ export const loadOrders = (query) => {
     const response = await axios({
       url: ORDER_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;

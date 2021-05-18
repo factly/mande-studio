@@ -17,7 +17,7 @@ export const loadCurrencies = (query) => {
     const response = await axios({
       url: CURRENCY_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;

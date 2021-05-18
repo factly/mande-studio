@@ -22,12 +22,12 @@ export const loadDatasets = (query) => {
     const response = await axios({
       url: DATASET_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { ...query ,ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setDatasetRequest(currentReq, total));
     dispatch(addDatasets(nodes));
     dispatch(setDatasetIds(currentPageIds));

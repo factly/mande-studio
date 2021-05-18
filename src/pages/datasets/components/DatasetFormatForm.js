@@ -58,8 +58,6 @@ const DatasetFormatForm = ({ datasetFormats, datasetId, onSubmit, prev }) => {
             });
           })
           .catch((error) => {
-            console.log(error);
-
             notification.error({
               message: 'Error',
               description: 'Something went wrong',

@@ -17,7 +17,7 @@ export const loadTags = (query) => {
     const response = await axios({
       url: TAG_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;

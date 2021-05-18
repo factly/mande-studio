@@ -1,7 +1,7 @@
 import {
   SET_ORGANISATION_LOADING,
   ADD_ORGANISATION,
-  API_GET_ORGANISATION
+  API_GET_ORGANISATION,
 } from '../constants/organisations';
 import axios from 'axios';
 
@@ -15,7 +15,6 @@ export const getOrganisation = () => {
         dispatch(setLoading());
       })
       .catch((err) => {
-        console.log({err})
         dispatch(setLoading());
       });
   };
@@ -23,12 +22,11 @@ export const getOrganisation = () => {
 
 export const setLoading = (loading) => {
   return {
-    type: SET_ORGANISATION_LOADING
+    type: SET_ORGANISATION_LOADING,
   };
 };
 
 export const addOrganisation = (org) => {
-  console.log({org : org})
   return {
     type: ADD_ORGANISATION,
     payload: org,
