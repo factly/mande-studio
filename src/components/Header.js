@@ -6,9 +6,9 @@ import OrganisationSelector from './OrganisationSelector';
 import { useSelector } from 'react-redux';
 
 function Header() {
-  const { details } = useSelector(({organisations}) => organisations);
+  const { details } = useSelector(({ organisations }) => organisations);
   return (
-    <Layout.Header style={{backgroundColor: "white"}}>
+    <Layout.Header style={{ backgroundColor: 'white' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
         <OrganisationSelector />
 

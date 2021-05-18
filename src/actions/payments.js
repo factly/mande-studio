@@ -16,12 +16,12 @@ export const loadPayments = (query) => {
     const response = await axios({
       url: PAYMENT_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { ...query ,ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setPaymentRequest(currentReq, total));
     dispatch(addPayments(nodes));
     dispatch(setPaymentIds(currentPageIds));

@@ -5,6 +5,7 @@ import { Form, Input, Button, notification, Select } from 'antd';
 
 import Selector from '../../../components/Selector';
 import { maker, checker } from '../../../utils/sluger';
+import MediaSelector from '../../../components/MediaSelector';
 
 const { Option } = Select;
 
@@ -120,29 +121,11 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
         <Input type="number" placeholder="Ex. 1999" />
       </Form.Item>
 
-      <Form.Item
-        label="Tag"
-        name="tag_ids"
-        rules={[
-          {
-            required: true,
-            message: 'Please select atleast one tag!',
-          },
-        ]}
-      >
+      <Form.Item label="Tag" name="tag_ids">
         <Selector action="Tags" multiple={true} field="title" />
       </Form.Item>
 
-      <Form.Item
-        label="Status"
-        name="status"
-        rules={[
-          {
-            required: true,
-            message: 'Please enter status!',
-          },
-        ]}
-      >
+      <Form.Item label="Status" name="status">
         <Select
           showSearch
           style={{ width: '100%' }}
@@ -171,6 +154,9 @@ const ProductCreateForm = ({ onSubmit, data = {} }) => {
         ]}
       >
         <Selector action="Datasets" multiple={true} field="title" />
+      </Form.Item>
+      <Form.Item label="Featured Image" name="featured_medium_id">
+        <MediaSelector />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

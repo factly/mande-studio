@@ -46,7 +46,6 @@ function MediaEdit() {
         history.push('/media');
       })
       .catch((error) => {
-        console.log(error);
         console.notification.error({
           message: 'Error',
           description: 'Something went wrong',

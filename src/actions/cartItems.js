@@ -17,12 +17,12 @@ export const loadCartItems = (query) => {
     const response = await axios({
       url: CARTITEM_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { ...query ,ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setCartItemRequest(currentReq, total));
     dispatch(addCartItems(nodes));
     dispatch(setCartItemIds(currentPageIds));

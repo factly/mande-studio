@@ -31,8 +31,6 @@ function MediaUploader({ onUploadSuccess = () => {} }) {
             onUploadSuccess(data);
           })
           .catch((error) => {
-            console.log(error);
-
             notification.error({
               message: 'Error',
               description: 'Something went wrong',

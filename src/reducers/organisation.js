@@ -1,7 +1,4 @@
-import {
-  SET_ORGANISATION_LOADING,
-  ADD_ORGANISATION
-} from '../constants/organisations';
+import { SET_ORGANISATION_LOADING, ADD_ORGANISATION } from '../constants/organisations';
 
 const initialState = {
   details: {},
@@ -20,11 +17,10 @@ export default function organisations(state = initialState, action = {}) {
         loading: true,
       };
     case ADD_ORGANISATION:
-
       return {
         details: action.payload,
-        selected: action.payload["id"],
-        loading: false
+        selected: action.payload['id'],
+        loading: false,
       };
     default:
       return state;

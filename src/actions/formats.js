@@ -15,9 +15,9 @@ export const loadFormats = (query) => {
     dispatch(setLoading(true));
 
     const response = await axios({
-      url:FORMAT_API,
+      url: FORMAT_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;

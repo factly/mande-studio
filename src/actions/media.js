@@ -17,12 +17,12 @@ export const loadMedia = (query) => {
     const response = await axios({
       url: MEDIUM_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { ...query ,ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setMediumRequest(currentReq, total));
     dispatch(addMedia(nodes));
     dispatch(setMediumIds(currentPageIds));

@@ -4,6 +4,8 @@ import moment from 'moment';
 import { Form, Input, InputNumber, DatePicker, Button, notification } from 'antd';
 
 import Selector from '../../../components/Selector';
+import { maker, checker } from '../../../utils/sluger';
+import MediaSelector from '../../../components/MediaSelector';
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -12,6 +14,7 @@ const formItemLayout = {
 
 const CatalogCreateForm = ({ onSubmit, data = {} }) => {
   const history = useHistory();
+  const [form] = Form.useForm();
 
   if (data.id) {
     data = {
@@ -38,8 +41,20 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
       });
   };
 
+  const onTitleChange = (string) => {
+    form.setFieldsValue({
+      slug: maker(string),
+    });
+  };
+
   return (
-    <Form name="catalogs_create" initialValues={data} {...formItemLayout} onFinish={onFinish}>
+    <Form
+      form={form}
+      name="catalogs_create"
+      initialValues={data}
+      {...formItemLayout}
+      onFinish={onFinish}
+    >
       <Form.Item
         label="Title"
         name="title"
@@ -50,7 +65,50 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
           },
         ]}
       >
-        <Input placeholder="Ex. Cricket" />
+        <Input placeholder="Ex. Cricket" onChange={(e) => onTitleChange(e.target.value)} />
+      </Form.Item>
+
+      <Form.Item
+        label="Slug"
+        name="slug"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter slug!',
+          },
+          {
+            pattern: checker,
+            message: 'Please enter valid slug!',
+          },
+        ]}
+      >
+        <Input placeholder="Ex. cricket" />
+      </Form.Item>
+
+      <Form.Item
+        label="Currency"
+        name="currency_id"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter currency!',
+          },
+        ]}
+      >
+        <Selector action="Currencies" field="iso_code" />
+      </Form.Item>
+
+      <Form.Item
+        label="Price"
+        name="price"
+        rules={[
+          {
+            required: true,
+            message: 'Please enter price!',
+          },
+        ]}
+      >
+        <InputNumber placeholder="Ex. 1999" />
       </Form.Item>
 
       <Form.Item
@@ -81,6 +139,10 @@ const CatalogCreateForm = ({ onSubmit, data = {} }) => {
 
       <Form.Item label="Published date" name="published_date">
         <DatePicker />
+      </Form.Item>
+
+      <Form.Item label="Featured Image" name="featured_medium_id">
+        <MediaSelector />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12, offset: 6 }}>

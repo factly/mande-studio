@@ -19,12 +19,12 @@ export const loadPlans = (query) => {
     const response = await axios({
       url: PLAN_API,
       method: 'get',
-      params: query
+      params: query,
     });
 
     const { nodes, total } = response.data;
     const currentPageIds = getIds(nodes);
-    const currentReq = { ...query ,ids: currentPageIds };
+    const currentReq = { ...query, ids: currentPageIds };
     dispatch(setPlanRequest(currentReq, total));
     dispatch(addPlans(nodes));
     dispatch(setPlanIds(currentPageIds));

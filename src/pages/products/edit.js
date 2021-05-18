@@ -10,7 +10,6 @@ const ProductEdit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   let { loading, product } = useSelector(({ products }) => {
-    console.log('products', products);
     return {
       loading: products.loading,
       product: { ...products.items[id] },
