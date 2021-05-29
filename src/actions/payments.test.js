@@ -116,6 +116,50 @@ describe('payments actions', () => {
       .then(() => expect(store.getActions()).toEqual(expectedActions));
     expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/payments?page=1&limit=5` });
   });
+  it('should create actions to load payments with no parameters', () => {
+    const payments = [
+      { id: 1, payment: 'Payment 1', currency: { id: 100, currency: 'Currency 1' } },
+    ];
+    const resp = { data: { nodes: payments, total: 1 } };
+    axios.mockResolvedValueOnce(resp);
+
+    const expectedActions = [
+      {
+        type: types.SET_PAYMENT_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_PAYMENT_REQUEST,
+        payload: { req: { page: 1, limit: 5, ids: [1] }, total: 1 },
+      },
+      {
+        payload: {
+          currencies: { 100: { id: 100, currency: 'Currency 1' } },
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          payments: { 1: { id: 1, payment: 'Payment 1' } },
+        },
+        type: types.ADD_PAYMENTS,
+      },
+      {
+        type: types.SET_PAYMENT_IDS,
+        payload: { ids: [1] },
+      },
+      {
+        type: types.SET_PAYMENT_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ payments: initialState });
+    store
+      .dispatch(actions.loadPayments())
+      .then(() => expect(store.getActions()).toEqual(expectedActions));
+    expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/payments?page=1&limit=5` });
+  });
   it('should create actions to load payments when req is in state', () => {
     const payments = [{ id: 1, name: 'Payment' }];
     const resp = { data: { nodes: payments, total: 1 } };
@@ -124,8 +168,32 @@ describe('payments actions', () => {
 
     const expectedActions = [
       {
+        type: types.SET_PAYMENT_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_PAYMENT_REQUEST,
+        payload: { req: { page: 1, limit: 5, ids: [1] }, total: 1 },
+      },
+      {
+        payload: {
+          currencies: {},
+        },
+        type: ADD_CURRENCIES,
+      },
+      {
+        payload: {
+          payments: { 1: { id: 1, name: 'Payment' } },
+        },
+        type: types.ADD_PAYMENTS,
+      },
+      {
         type: types.SET_PAYMENT_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_PAYMENT_LOADING,
+        payload: { loading: false },
       },
     ];
 
@@ -141,6 +209,6 @@ describe('payments actions', () => {
     store
       .dispatch(actions.loadPayments(1, 5))
       .then(() => expect(store.getActions()).toEqual(expectedActions));
-    expect(axios).not.toHaveBeenCalled();
+    expect(axios).toHaveBeenCalled();
   });
 });

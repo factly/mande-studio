@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import renderer, { act } from 'react-test-renderer';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { Table } from 'antd';
 
 import '../../../matchMedia.mock';
@@ -15,7 +15,7 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
+  ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
 }));
 jest.mock('../../../actions/memberships', () => ({
@@ -41,69 +41,162 @@ describe('Memberships List component', () => {
 
   describe('snapshot testing', () => {
     beforeEach(() => {
-      store = mockStore({});
-      store.dispatch = jest.fn();
+      store = mockStore({
+        memberships: {
+          loading: false,
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              payment_id: 1,
+              plan_id: 1,
+              user_id: 1,
+              status: 'status',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 1,
+        },
+        plans: {
+          loading: false,
+          items: {
+            1: {
+              id: 1,
+            },
+          },
+        },
+        users: {
+          loading: false,
+          items: {
+            1: {
+              id: 1,
+            },
+          },
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
       mockedDispatch = jest.fn();
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should render the component', () => {
-      useSelector.mockImplementation((state) => ({}));
-      const tree = renderer.create(<MembershipList />).toJSON();
+      const tree = renderer
+        .create(
+          <Provider store={store}>
+            <MembershipList />
+          </Provider>,
+        )
+        .toJSON();
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component when loading', () => {
-      useSelector.mockImplementation((state) => ({
-        data: [],
-        total: 0,
-        plans: {},
-        users: {},
-      }));
-      const tree = renderer.create(<MembershipList />).toJSON();
+      store = mockStore({
+        memberships: {
+          ids: [],
+          loading: true,
+          req: [],
+          items: {},
+          total: 0,
+        },
+        plans: {
+          items: {
+            1: {
+              id: 1,
+            },
+          },
+        },
+        users: {
+          items: {
+            1: {
+              id: 1,
+            },
+          },
+        },
+      });
+      const tree = renderer
+        .create(
+          <Provider store={store}>
+            <MembershipList />
+          </Provider>,
+        )
+        .toJSON();
       expect(tree).toMatchSnapshot();
-      expect(useSelector).toHaveBeenCalled();
     });
     it('should match component with memberships', () => {
       loadMemberships.mockReset();
-      useSelector.mockImplementation((state) => ({
-        data: [membership],
-        total: 1,
-        plans: { 1: { id: 1, plan_name: 'Plan' } },
-        users: { 1: { id: 1, email: 'em@il.co' } },
-      }));
-
       let component;
       act(() => {
         component = renderer.create(
-          <Router>
-            <MembershipList />
-          </Router>,
+          <Provider store={store}>
+            <Router>
+              <MembershipList />
+            </Router>
+          </Provider>,
         );
       });
       const tree = component.toJSON();
       expect(tree).toMatchSnapshot();
 
-      expect(useSelector).toHaveBeenCalled();
       expect(mockedDispatch).toHaveBeenCalledTimes(1);
-      expect(useSelector).toHaveReturnedWith({
-        data: [membership],
-        total: 1,
-        plans: { 1: { id: 1, plan_name: 'Plan' } },
-        users: { 1: { id: 1, email: 'em@il.co' } },
-      });
       expect(loadMemberships).toHaveBeenCalledWith(1, 5);
     });
   });
   describe('component testing', () => {
     beforeEach(() => {
       jest.clearAllMocks();
+      store = mockStore({
+        memberships: {
+          ids: [1],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              payment_id: 1,
+              plan_id: 1,
+              user_id: 1,
+              status: 'status',
+              created_at: '2020-12-12',
+            },
+          },
+          total: 1,
+        },
+        plans: {
+          items: {
+            1: {
+              id: 1,
+            },
+          },
+        },
+        users: {
+          items: {
+            1: {
+              id: 1,
+            },
+          },
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
       mockedDispatch = jest.fn(() => new Promise((resolve) => resolve(true)));
       useDispatch.mockReturnValue(mockedDispatch);
     });
     it('should change the page', () => {
-      useSelector.mockImplementation((state) => ({}));
-
-      const wrapper = shallow(<MembershipList />);
+      const wrapper = mount(
+        <Provider store={store}>
+          <MembershipList />
+        </Provider>,
+      );
       const table = wrapper.find(Table);
       table.props().pagination.onChange(2);
       wrapper.update();

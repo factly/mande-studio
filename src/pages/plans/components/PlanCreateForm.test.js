@@ -9,9 +9,12 @@ import '../../../matchMedia.mock';
 import PlanCreateForm from './PlanCreateForm';
 
 const data = {
-  plan_name: 'plan_name',
-  plan_info: 'plan_info',
+  name: 'plan_name',
   status: 'status',
+  currency_id: 'INR',
+  users: 5,
+  price: 1000,
+  duration: 12,
 };
 
 jest.mock('react-redux', () => ({
@@ -136,9 +139,12 @@ describe('Plans Create Form component', () => {
       setTimeout(() => {
         expect(props.onSubmit).toHaveBeenCalledTimes(1);
         expect(props.onSubmit).toHaveBeenCalledWith({
-          plan_name: 'plan_name',
-          plan_info: 'plan_info',
+          name: 'plan_name',
           status: 'status',
+          currency_id: 'INR',
+          users: 5,
+          price: 1000,
+          duration: 12,
         });
         done();
       }, 0);
@@ -152,12 +158,7 @@ describe('Plans Create Form component', () => {
           .simulate('change', { target: { value: 'new plan_name' } });
         wrapper
           .find('FormItem')
-          .at(1)
-          .find('Input')
-          .simulate('change', { target: { value: 'new plan_info' } });
-        wrapper
-          .find('FormItem')
-          .at(2)
+          .at(6)
           .find('Input')
           .simulate('change', { target: { value: 'new status' } });
 
@@ -169,9 +170,35 @@ describe('Plans Create Form component', () => {
       setTimeout(() => {
         expect(props.onSubmit).toHaveBeenCalledTimes(1);
         expect(props.onSubmit).toHaveBeenCalledWith({
-          plan_name: 'new plan_name',
-          plan_info: 'new plan_info',
+          name: 'new plan_name',
           status: 'new status',
+          currency_id: 'INR',
+          users: 5,
+          price: 1000,
+          duration: 12,
+        });
+        done();
+      }, 0);
+    });
+    it('should add all products on selection', (done) => {
+      act(() => {
+        wrapper.find('FormItem').at(7).find('Switch').at(0).props().onChange(true);
+        const submitButtom = wrapper.find('Button').at(0);
+        submitButtom.simulate('submit');
+        wrapper.update();
+      });
+
+      setTimeout(() => {
+        expect(props.onSubmit).toHaveBeenCalledTimes(1);
+        expect(props.onSubmit).toHaveBeenCalledWith({
+          name: 'plan_name',
+          all_products: true,
+          catalogs: [],
+          status: 'status',
+          currency_id: 'INR',
+          users: 5,
+          price: 1000,
+          duration: 12,
         });
         done();
       }, 0);

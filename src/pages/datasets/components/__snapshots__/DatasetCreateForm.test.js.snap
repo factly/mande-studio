@@ -7,12 +7,12 @@ exports[`DatasetCreateForm snapshot testing should match component in all steps 
     size="small"
   >
     <Step
-      key="Create Dataset"
-      title="Create Dataset"
+      key="Add Dataset Details"
+      title="Add Dataset Details"
     />
     <Step
-      key="Add Formats"
-      title="Add Formats"
+      key="Add Datasets"
+      title="Add Datasets"
     />
   </Steps>
   <br />
@@ -37,12 +37,12 @@ exports[`DatasetCreateForm snapshot testing should match component in all steps 
     size="small"
   >
     <Step
-      key="Create Dataset"
-      title="Create Dataset"
+      key="Add Dataset Details"
+      title="Add Dataset Details"
     />
     <Step
-      key="Add Formats"
-      title="Add Formats"
+      key="Add Datasets"
+      title="Add Datasets"
     />
   </Steps>
   <br />
@@ -73,12 +73,12 @@ exports[`DatasetCreateForm snapshot testing should render the component 1`] = `
     size="small"
   >
     <Step
-      key="Create Dataset"
-      title="Create Dataset"
+      key="Add Dataset Details"
+      title="Add Dataset Details"
     />
     <Step
-      key="Add Formats"
-      title="Add Formats"
+      key="Add Datasets"
+      title="Add Datasets"
     />
   </Steps>
   <br />

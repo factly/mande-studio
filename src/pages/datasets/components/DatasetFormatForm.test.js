@@ -18,7 +18,6 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
-  useSelector: jest.fn(),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -37,16 +36,27 @@ describe('DatasetFormatForm component', () => {
   store = mockStore({
     datasets: {
       loading: false,
-      ids: [],
+      ids: [1],
       req: [],
-      items: {},
+      items: {
+        1: {
+          id: 1,
+          url: 'url',
+          format: { id: 1, name: 'format' },
+        },
+      },
       total: 0,
     },
     formats: {
       loading: false,
-      ids: [],
+      ids: [1],
       req: [],
-      items: {},
+      items: {
+        1: {
+          id: 1,
+          name: 'format',
+        },
+      },
       total: 0,
     },
   });
@@ -55,7 +65,11 @@ describe('DatasetFormatForm component', () => {
   useDispatch.mockReturnValue(mockedDispatch);
   describe('snapshot testing', () => {
     it('should render the component', () => {
-      const component = shallow(<DatasetFormatForm />);
+      const component = shallow(
+        <Provider store={store}>
+          <DatasetFormatForm />
+        </Provider>,
+      );
       expect(component).toMatchSnapshot();
     });
   });
@@ -73,11 +87,52 @@ describe('DatasetFormatForm component', () => {
     };
     props.onSubmit.mockReturnValue(Promise.resolve());
     let wrapper;
+    beforeEach(() => {
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [1],
+          req: [],
+          items: {
+            1: {
+              id: 1,
+              url: 'url',
+              format: { id: 1, name: 'pdf' },
+            },
+          },
+          total: 0,
+        },
+        formats: {
+          loading: false,
+          ids: [1, 2],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1, 2],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'pdf',
+            },
+            2: {
+              id: 2,
+              name: 'format',
+            },
+          },
+          total: 2,
+        },
+      });
+      store.dispatch = jest.fn(() => ({}));
+      mockedDispatch = jest.fn(() => Promise.resolve({}));
+      useDispatch.mockReturnValue(mockedDispatch);
+    });
     afterEach(() => {
       wrapper.unmount();
     });
     it('should render the component successfully', () => {
-      useSelector.mockReturnValue({});
       act(() => {
         wrapper = mount(
           <Provider store={store}>
@@ -88,9 +143,45 @@ describe('DatasetFormatForm component', () => {
       expect(loadFormats).toHaveBeenCalledWith();
     });
     it('should call onFinish with format', (done) => {
-      useSelector.mockReturnValue([{ id: 1, name: 'pdf' }]);
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [1],
+          req: [],
+          items: {
+            1: {
+              id: 1,
+              url: 'url',
+              format: { id: 1, name: 'pdf' },
+            },
+          },
+          total: 0,
+        },
+        formats: {
+          loading: false,
+          ids: [1, 2],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1, 2],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'pdf',
+            },
+            2: {
+              id: 2,
+              name: 'format',
+            },
+          },
+          total: 2,
+        },
+      });
       act(() => {
-        wrapper = shallow(
+        wrapper = mount(
           <Provider store={store}>
             <DatasetFormatForm {...props} />
           </Provider>,
@@ -98,7 +189,6 @@ describe('DatasetFormatForm component', () => {
       });
       wrapper
         .find(DatasetFormatForm)
-        .dive()
         .find(Uploader)
         .props()
         .onUploadSuccess([{ uploadURL: 'uploadURL', extension: 'pdf' }]);
@@ -108,9 +198,8 @@ describe('DatasetFormatForm component', () => {
       }, 0);
     });
     it('should call onFinish without format', (done) => {
-      useSelector.mockReturnValue([{ id: 1, name: 'pdf' }]);
       act(() => {
-        wrapper = shallow(
+        wrapper = mount(
           <Provider store={store}>
             <DatasetFormatForm {...props} />
           </Provider>,
@@ -118,7 +207,6 @@ describe('DatasetFormatForm component', () => {
       });
       wrapper
         .find(DatasetFormatForm)
-        .dive()
         .find(Uploader)
         .props()
         .onUploadSuccess({ 0: { uploadURL: 'uploadURL', extension: 'csv' } });
@@ -131,18 +219,80 @@ describe('DatasetFormatForm component', () => {
       const push = jest.fn();
       useHistory.mockReturnValueOnce({ push });
       act(() => {
-        wrapper = shallow(
+        wrapper = mount(
           <Provider store={store}>
             <DatasetFormatForm {...props} />
           </Provider>,
         );
       });
-      const button = wrapper.find(DatasetFormatForm).dive().find(Button);
+      const button = wrapper.find(DatasetFormatForm).find(Button).at(1);
+      expect(button.text()).toBe('Done');
+
       button.props().onClick();
       setTimeout(() => {
         expect(push).toHaveBeenCalledWith('/datasets');
         done();
       }, 0);
+    });
+    it('should handle with sample url', () => {
+      store = mockStore({
+        datasets: {
+          loading: false,
+          ids: [1],
+          req: [],
+          items: {
+            1: {
+              id: 1,
+              url: 'url',
+              sample_url: 'sample_url',
+              format: { id: 1, name: 'pdf' },
+            },
+          },
+          total: 0,
+        },
+        formats: {
+          loading: false,
+          ids: [1, 2],
+          req: [
+            {
+              page: 1,
+              limit: 5,
+              ids: [1, 2],
+            },
+          ],
+          items: {
+            1: {
+              id: 1,
+              name: 'pdf',
+            },
+            2: {
+              id: 2,
+              name: 'format',
+            },
+          },
+          total: 2,
+        },
+      });
+      const datasetFormat = {
+        id: 1,
+        url: 'sample_url',
+        format: { name: 'format' },
+        created_at: '2020-12-12',
+      };
+      const props = {
+        datasetFormats: [datasetFormat],
+        datasetId: 1,
+        onSubmit: jest.fn(),
+      };
+      props.onSubmit.mockReturnValue(Promise.resolve());
+      act(() => {
+        wrapper = mount(
+          <Provider store={store}>
+            <DatasetFormatForm {...props} />
+          </Provider>,
+        );
+      });
+      expect(loadFormats).toHaveBeenCalledWith();
     });
   });
 });

@@ -152,7 +152,7 @@ describe('Tags Create Form component', () => {
           .find('FormItem')
           .at(1)
           .find('Input')
-          .simulate('change', { target: { value: 'new slug' } });
+          .simulate('change', { target: { value: 'new-slug' } });
 
         const submitButtom = wrapper.find('Button').at(0);
         submitButtom.simulate('submit');
@@ -163,7 +163,7 @@ describe('Tags Create Form component', () => {
         expect(props.onSubmit).toHaveBeenCalledTimes(1);
         expect(props.onSubmit).toHaveBeenCalledWith({
           title: 'new title',
-          slug: 'new slug',
+          slug: 'new-slug',
         });
         done();
       }, 0);

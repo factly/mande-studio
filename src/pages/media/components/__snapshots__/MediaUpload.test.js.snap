@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Media upload component snapshot testing should render the component 1`] = `
+<div>
+  <Uploader
+    metaFields={
+      Array [
+        Object {
+          "id": "name",
+          "name": "Name",
+          "placeholder": "file name",
+        },
+        Object {
+          "id": "caption",
+          "name": "Caption",
+          "placeholder": "add a caption",
+        },
+        Object {
+          "id": "description",
+          "name": "Description",
+          "placeholder": "describe what the image is about",
+        },
+      ]
+    }
+    onUploadSuccess={[Function]}
+  />
+</div>
+`;

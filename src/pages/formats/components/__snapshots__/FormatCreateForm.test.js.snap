@@ -434,52 +434,68 @@ exports[`Formats Create Form component snapshot testing should match component i
                                   update={1}
                                   value="description"
                                 >
-                                  <Input
+                                  <TextArea
                                     id="formats_create_description"
                                     onChange={[Function]}
                                     placeholder="Ex. Locked file"
-                                    type="text"
                                     value="description"
                                   >
                                     <ClearableLabeledInput
                                       bordered={true}
                                       element={
-                                        <input
-                                          className="ant-input"
+                                        <TextArea
+                                          className=""
                                           id="formats_create_description"
-                                          onBlur={[Function]}
                                           onChange={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
                                           placeholder="Ex. Locked file"
-                                          type="text"
+                                          prefixCls="ant-input"
                                           value="description"
                                         />
                                       }
-                                      focused={false}
                                       handleReset={[Function]}
                                       id="formats_create_description"
-                                      inputType="input"
+                                      inputType="text"
                                       onChange={[Function]}
                                       placeholder="Ex. Locked file"
                                       prefixCls="ant-input"
                                       triggerFocus={[Function]}
-                                      type="text"
                                       value="description"
                                     >
-                                      <input
-                                        className="ant-input"
+                                      <TextArea
+                                        className=""
                                         id="formats_create_description"
-                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onKeyDown={[Function]}
                                         placeholder="Ex. Locked file"
-                                        type="text"
+                                        prefixCls="ant-input"
                                         value="description"
-                                      />
+                                      >
+                                        <ResizableTextArea
+                                          className=""
+                                          id="formats_create_description"
+                                          onChange={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Locked file"
+                                          prefixCls="ant-input"
+                                          value="description"
+                                        >
+                                          <ResizeObserver
+                                            disabled={true}
+                                            onResize={[Function]}
+                                          >
+                                            <textarea
+                                              className="ant-input"
+                                              id="formats_create_description"
+                                              onChange={[Function]}
+                                              onKeyDown={[Function]}
+                                              placeholder="Ex. Locked file"
+                                              style={Object {}}
+                                              value="description"
+                                            />
+                                          </ResizeObserver>
+                                        </ResizableTextArea>
+                                      </TextArea>
                                     </ClearableLabeledInput>
-                                  </Input>
+                                  </TextArea>
                                 </Component>
                               </div>
                             </div>
@@ -1339,52 +1355,68 @@ exports[`Formats Create Form component snapshot testing should match component w
                                   update={1}
                                   value="description"
                                 >
-                                  <Input
+                                  <TextArea
                                     id="formats_create_description"
                                     onChange={[Function]}
                                     placeholder="Ex. Locked file"
-                                    type="text"
                                     value="description"
                                   >
                                     <ClearableLabeledInput
                                       bordered={true}
                                       element={
-                                        <input
-                                          className="ant-input"
+                                        <TextArea
+                                          className=""
                                           id="formats_create_description"
-                                          onBlur={[Function]}
                                           onChange={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
                                           placeholder="Ex. Locked file"
-                                          type="text"
+                                          prefixCls="ant-input"
                                           value="description"
                                         />
                                       }
-                                      focused={false}
                                       handleReset={[Function]}
                                       id="formats_create_description"
-                                      inputType="input"
+                                      inputType="text"
                                       onChange={[Function]}
                                       placeholder="Ex. Locked file"
                                       prefixCls="ant-input"
                                       triggerFocus={[Function]}
-                                      type="text"
                                       value="description"
                                     >
-                                      <input
-                                        className="ant-input"
+                                      <TextArea
+                                        className=""
                                         id="formats_create_description"
-                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onKeyDown={[Function]}
                                         placeholder="Ex. Locked file"
-                                        type="text"
+                                        prefixCls="ant-input"
                                         value="description"
-                                      />
+                                      >
+                                        <ResizableTextArea
+                                          className=""
+                                          id="formats_create_description"
+                                          onChange={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Locked file"
+                                          prefixCls="ant-input"
+                                          value="description"
+                                        >
+                                          <ResizeObserver
+                                            disabled={true}
+                                            onResize={[Function]}
+                                          >
+                                            <textarea
+                                              className="ant-input"
+                                              id="formats_create_description"
+                                              onChange={[Function]}
+                                              onKeyDown={[Function]}
+                                              placeholder="Ex. Locked file"
+                                              style={Object {}}
+                                              value="description"
+                                            />
+                                          </ResizeObserver>
+                                        </ResizableTextArea>
+                                      </TextArea>
                                     </ClearableLabeledInput>
-                                  </Input>
+                                  </TextArea>
                                 </Component>
                               </div>
                             </div>
@@ -2227,50 +2259,66 @@ exports[`Formats Create Form component snapshot testing should render the compon
                                 <Component
                                   update={1}
                                 >
-                                  <Input
+                                  <TextArea
                                     id="formats_create_description"
                                     onChange={[Function]}
                                     placeholder="Ex. Locked file"
-                                    type="text"
                                   >
                                     <ClearableLabeledInput
                                       bordered={true}
                                       element={
-                                        <input
-                                          className="ant-input"
+                                        <TextArea
+                                          className=""
                                           id="formats_create_description"
-                                          onBlur={[Function]}
                                           onChange={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
                                           placeholder="Ex. Locked file"
-                                          type="text"
+                                          prefixCls="ant-input"
                                         />
                                       }
-                                      focused={false}
                                       handleReset={[Function]}
                                       id="formats_create_description"
-                                      inputType="input"
+                                      inputType="text"
                                       onChange={[Function]}
                                       placeholder="Ex. Locked file"
                                       prefixCls="ant-input"
                                       triggerFocus={[Function]}
-                                      type="text"
                                       value=""
                                     >
-                                      <input
-                                        className="ant-input"
+                                      <TextArea
+                                        className=""
                                         id="formats_create_description"
-                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onKeyDown={[Function]}
                                         placeholder="Ex. Locked file"
-                                        type="text"
+                                        prefixCls="ant-input"
                                         value=""
-                                      />
+                                      >
+                                        <ResizableTextArea
+                                          className=""
+                                          id="formats_create_description"
+                                          onChange={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Locked file"
+                                          prefixCls="ant-input"
+                                          value=""
+                                        >
+                                          <ResizeObserver
+                                            disabled={true}
+                                            onResize={[Function]}
+                                          >
+                                            <textarea
+                                              className="ant-input"
+                                              id="formats_create_description"
+                                              onChange={[Function]}
+                                              onKeyDown={[Function]}
+                                              placeholder="Ex. Locked file"
+                                              style={Object {}}
+                                              value=""
+                                            />
+                                          </ResizeObserver>
+                                        </ResizableTextArea>
+                                      </TextArea>
                                     </ClearableLabeledInput>
-                                  </Input>
+                                  </TextArea>
                                 </Component>
                               </div>
                             </div>

@@ -136,12 +136,57 @@ describe('tags actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/tags?page=1&limit=5` });
       });
   });
-  it('should create actions to load tags when req is in state', () => {
+  it('should create actions to load tags with no parameters', () => {
+    const tags = [{ id: 1, name: 'Tag' }];
+    const resp = { data: { nodes: tags, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_TAG_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_TAG_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: types.ADD_TAGS,
+        payload: { tags: { 1: { id: 1, name: 'Tag' } } },
+      },
       {
         type: types.SET_TAG_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_TAG_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ tags: initialState });
+    store
+      .dispatch(actions.loadTags())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/tags?page=1&limit=5` });
+      });
+  });
+  it('should create actions to load tags when req is in state', () => {
+    const tags = [{ id: 1, name: 'Tag' }];
+    const resp = { data: { nodes: tags, total: 1 } };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+    const expectedActions = [
+      {
+        type: types.SET_TAG_LOADING,
+        payload: { loading: true },
       },
     ];
 
@@ -156,7 +201,7 @@ describe('tags actions', () => {
     });
     store.dispatch(actions.loadTags(1, 5));
     expect(store.getActions()).toEqual(expectedActions);
-    expect(axios).not.toHaveBeenCalled();
+    expect(axios).toHaveBeenCalled();
   });
   it('should create actions to create tag', () => {
     const tag = { name: 'Tag' };

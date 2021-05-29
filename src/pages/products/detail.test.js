@@ -17,7 +17,7 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
-  useSelector: jest.fn(),
+  //useSelector: jest.fn(),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -28,6 +28,7 @@ jest.mock('react-router-dom', () => ({
 
 jest.mock('../../actions/products', () => ({
   createProduct: jest.fn(),
+  getProduct: jest.fn(),
 }));
 
 describe('Products create component', () => {
@@ -37,7 +38,7 @@ describe('Products create component', () => {
   store = mockStore({
     products: {
       loading: false,
-      ids: [1],
+      ids: [1, 2],
       req: [],
       items: {
         1: {
@@ -50,8 +51,18 @@ describe('Products create component', () => {
           currency_id: 1,
           created_at: '2020-12-12',
         },
+        2: {
+          id: 2,
+          title: 'title',
+          slug: 'slug',
+          price: 100,
+          status: 'status',
+          tags: [],
+          currency_id: 1,
+          created_at: '2020-12-12',
+        },
       },
-      total: 1,
+      total: 2,
     },
     currencies: {
       loading: false,
@@ -77,7 +88,53 @@ describe('Products create component', () => {
   useDispatch.mockReturnValue(mockedDispatch);
   describe('snapshot testing', () => {
     it('should render the component', () => {
-      const component = shallow(
+      const component = mount(
+        <Provider store={store}>
+          <ProductDetail />
+        </Provider>,
+      );
+      expect(component).toMatchSnapshot();
+    });
+    it('should match when loading', () => {
+      store = mockStore({
+        products: {
+          loading: true,
+          ids: [1],
+          req: [],
+          items: {
+            1: {
+              id: 1,
+              title: 'title',
+              slug: 'slug',
+              price: 100,
+              status: 'status',
+              tags: [1],
+              currency_id: 1,
+              created_at: '2020-12-12',
+            },
+          },
+          total: 1,
+        },
+        currencies: {
+          loading: false,
+          ids: [1],
+          req: [],
+          items: {
+            1: { id: 1, iso_code: 'INR' },
+          },
+          total: 1,
+        },
+        tags: {
+          loading: false,
+          ids: [1],
+          req: [],
+          items: {
+            1: { id: 1, title: 'tag1' },
+          },
+          total: 1,
+        },
+      });
+      const component = mount(
         <Provider store={store}>
           <ProductDetail />
         </Provider>,

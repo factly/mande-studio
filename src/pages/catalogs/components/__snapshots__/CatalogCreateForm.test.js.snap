@@ -17,7 +17,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
     data={
       Object {
         "description": "description",
-        "price": 100,
         "product_ids": Array [
           1,
         ],
@@ -33,7 +32,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
       initialValues={
         Object {
           "description": "description",
-          "price": 100,
           "product_ids": Array [
             1,
           ],
@@ -88,7 +86,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
           initialValues={
             Object {
               "description": "description",
-              "price": 100,
               "product_ids": Array [
                 1,
               ],
@@ -455,462 +452,68 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                   update={1}
                                   value="description"
                                 >
-                                  <Input
+                                  <TextArea
                                     id="catalogs_create_description"
                                     onChange={[Function]}
                                     placeholder="Ex. Package of datasets of Indian cricket"
-                                    type="text"
                                     value="description"
                                   >
                                     <ClearableLabeledInput
                                       bordered={true}
                                       element={
-                                        <input
-                                          className="ant-input"
+                                        <TextArea
+                                          className=""
                                           id="catalogs_create_description"
-                                          onBlur={[Function]}
                                           onChange={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
                                           placeholder="Ex. Package of datasets of Indian cricket"
-                                          type="text"
+                                          prefixCls="ant-input"
                                           value="description"
                                         />
                                       }
-                                      focused={false}
                                       handleReset={[Function]}
                                       id="catalogs_create_description"
-                                      inputType="input"
+                                      inputType="text"
                                       onChange={[Function]}
                                       placeholder="Ex. Package of datasets of Indian cricket"
                                       prefixCls="ant-input"
                                       triggerFocus={[Function]}
-                                      type="text"
                                       value="description"
                                     >
-                                      <input
-                                        className="ant-input"
+                                      <TextArea
+                                        className=""
                                         id="catalogs_create_description"
-                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onKeyDown={[Function]}
                                         placeholder="Ex. Package of datasets of Indian cricket"
-                                        type="text"
+                                        prefixCls="ant-input"
                                         value="description"
-                                      />
-                                    </ClearableLabeledInput>
-                                  </Input>
-                                </Component>
-                              </div>
-                            </div>
-                            <CSSMotion
-                              motionAppear={true}
-                              motionDeadline={500}
-                              motionName="show-help"
-                              onLeaveEnd={[Function]}
-                              removeOnLeave={true}
-                              visible={false}
-                            >
-                              <DomWrapper />
-                            </CSSMotion>
-                          </div>
-                        </Col>
-                      </FormItemInput>
-                    </div>
-                  </Row>
-                </Field>
-              </WrapperField>
-            </FormItem>
-            <FormItem
-              label="Price"
-              name="price"
-              rules={
-                Array [
-                  Object {
-                    "message": "Please enter price!",
-                    "required": true,
-                  },
-                ]
-              }
-            >
-              <WrapperField
-                label="Price"
-                messageVariables={
-                  Object {
-                    "label": "Price",
-                  }
-                }
-                name="price"
-                onReset={[Function]}
-                rules={
-                  Array [
-                    Object {
-                      "message": "Please enter price!",
-                      "required": true,
-                    },
-                  ]
-                }
-                trigger="onChange"
-                validateTrigger="onChange"
-              >
-                <Field
-                  key="_price"
-                  label="Price"
-                  messageVariables={
-                    Object {
-                      "label": "Price",
-                    }
-                  }
-                  name={
-                    Array [
-                      "price",
-                    ]
-                  }
-                  onReset={[Function]}
-                  rules={
-                    Array [
-                      Object {
-                        "message": "Please enter price!",
-                        "required": true,
-                      },
-                    ]
-                  }
-                  trigger="onChange"
-                  validateTrigger="onChange"
-                  valuePropName="value"
-                >
-                  <Row
-                    className="ant-form-item"
-                    key="row"
-                  >
-                    <div
-                      className="ant-row ant-form-item"
-                      style={Object {}}
-                    >
-                      <FormItemLabel
-                        htmlFor="catalogs_create_price"
-                        label="Price"
-                        name="price"
-                        prefixCls="ant-form"
-                        required={true}
-                        requiredMark={true}
-                        rules={
-                          Array [
-                            Object {
-                              "message": "Please enter price!",
-                              "required": true,
-                            },
-                          ]
-                        }
-                      >
-                        <Col
-                          className="ant-form-item-label"
-                          span={6}
-                        >
-                          <div
-                            className="ant-col ant-col-6 ant-form-item-label"
-                            style={Object {}}
-                          >
-                            <label
-                              className="ant-form-item-required"
-                              htmlFor="catalogs_create_price"
-                              title="Price"
-                            >
-                              Price
-                            </label>
-                          </div>
-                        </Col>
-                      </FormItemLabel>
-                      <FormItemInput
-                        errors={Array []}
-                        label="Price"
-                        name={
-                          Array [
-                            "price",
-                          ]
-                        }
-                        onDomErrorVisibleChange={[Function]}
-                        prefixCls="ant-form"
-                        rules={
-                          Array [
-                            Object {
-                              "message": "Please enter price!",
-                              "required": true,
-                            },
-                          ]
-                        }
-                        touched={false}
-                        validateStatus=""
-                        validating={false}
-                      >
-                        <Col
-                          className="ant-form-item-control"
-                          span={14}
-                        >
-                          <div
-                            className="ant-col ant-col-14 ant-form-item-control"
-                            style={Object {}}
-                          >
-                            <div
-                              className="ant-form-item-control-input"
-                            >
-                              <div
-                                className="ant-form-item-control-input-content"
-                              >
-                                <Component
-                                  update={1}
-                                  value={100}
-                                >
-                                  <ForwardRef
-                                    id="catalogs_create_price"
-                                    min={0}
-                                    onChange={[Function]}
-                                    placeholder="Ex. 1999"
-                                    step={1}
-                                    value={100}
-                                  >
-                                    <InputNumber
-                                      autoComplete="off"
-                                      className=""
-                                      downHandler={
-                                        <ForwardRef(DownOutlined)
-                                          className="ant-input-number-handler-down-inner"
-                                        />
-                                      }
-                                      focusOnUpDown={true}
-                                      id="catalogs_create_price"
-                                      max={9007199254740991}
-                                      min={0}
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onFocus={[Function]}
-                                      onKeyDown={[Function]}
-                                      onPressEnter={[Function]}
-                                      parser={[Function]}
-                                      placeholder="Ex. 1999"
-                                      prefixCls="ant-input-number"
-                                      required={false}
-                                      step={1}
-                                      style={Object {}}
-                                      upHandler={
-                                        <ForwardRef(UpOutlined)
-                                          className="ant-input-number-handler-up-inner"
-                                        />
-                                      }
-                                      useTouch={false}
-                                      value={100}
-                                    >
-                                      <div
-                                        className="ant-input-number"
-                                        onBlur={[Function]}
-                                        onFocus={[Function]}
-                                        style={Object {}}
                                       >
-                                        <div
-                                          className="ant-input-number-handler-wrap"
+                                        <ResizableTextArea
+                                          className=""
+                                          id="catalogs_create_description"
+                                          onChange={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Package of datasets of Indian cricket"
+                                          prefixCls="ant-input"
+                                          value="description"
                                         >
-                                          <span
-                                            aria-label="Increase Value"
-                                            className="ant-input-number-handler ant-input-number-handler-up"
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            role="button"
-                                            unselectable="on"
+                                          <ResizeObserver
+                                            disabled={true}
+                                            onResize={[Function]}
                                           >
-                                            <ForwardRef(UpOutlined)
-                                              className="ant-input-number-handler-up-inner"
-                                            >
-                                              <AntdIcon
-                                                className="ant-input-number-handler-up-inner"
-                                                icon={
-                                                  Object {
-                                                    "icon": Object {
-                                                      "attrs": Object {
-                                                        "focusable": "false",
-                                                        "viewBox": "64 64 896 896",
-                                                      },
-                                                      "children": Array [
-                                                        Object {
-                                                          "attrs": Object {
-                                                            "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                          },
-                                                          "tag": "path",
-                                                        },
-                                                      ],
-                                                      "tag": "svg",
-                                                    },
-                                                    "name": "up",
-                                                    "theme": "outlined",
-                                                  }
-                                                }
-                                              >
-                                                <span
-                                                  aria-label="up"
-                                                  className="anticon anticon-up ant-input-number-handler-up-inner"
-                                                  role="img"
-                                                >
-                                                  <IconReact
-                                                    className=""
-                                                    icon={
-                                                      Object {
-                                                        "icon": Object {
-                                                          "attrs": Object {
-                                                            "focusable": "false",
-                                                            "viewBox": "64 64 896 896",
-                                                          },
-                                                          "children": Array [
-                                                            Object {
-                                                              "attrs": Object {
-                                                                "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                              },
-                                                              "tag": "path",
-                                                            },
-                                                          ],
-                                                          "tag": "svg",
-                                                        },
-                                                        "name": "up",
-                                                        "theme": "outlined",
-                                                      }
-                                                    }
-                                                  >
-                                                    <svg
-                                                      aria-hidden="true"
-                                                      className=""
-                                                      data-icon="up"
-                                                      fill="currentColor"
-                                                      focusable="false"
-                                                      height="1em"
-                                                      key="svg-up"
-                                                      viewBox="64 64 896 896"
-                                                      width="1em"
-                                                    >
-                                                      <path
-                                                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
-                                                        key="svg-up-svg-0"
-                                                      />
-                                                    </svg>
-                                                  </IconReact>
-                                                </span>
-                                              </AntdIcon>
-                                            </ForwardRef(UpOutlined)>
-                                          </span>
-                                          <span
-                                            aria-label="Decrease Value"
-                                            className="ant-input-number-handler ant-input-number-handler-down"
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            role="button"
-                                            unselectable="on"
-                                          >
-                                            <ForwardRef(DownOutlined)
-                                              className="ant-input-number-handler-down-inner"
-                                            >
-                                              <AntdIcon
-                                                className="ant-input-number-handler-down-inner"
-                                                icon={
-                                                  Object {
-                                                    "icon": Object {
-                                                      "attrs": Object {
-                                                        "focusable": "false",
-                                                        "viewBox": "64 64 896 896",
-                                                      },
-                                                      "children": Array [
-                                                        Object {
-                                                          "attrs": Object {
-                                                            "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                          },
-                                                          "tag": "path",
-                                                        },
-                                                      ],
-                                                      "tag": "svg",
-                                                    },
-                                                    "name": "down",
-                                                    "theme": "outlined",
-                                                  }
-                                                }
-                                              >
-                                                <span
-                                                  aria-label="down"
-                                                  className="anticon anticon-down ant-input-number-handler-down-inner"
-                                                  role="img"
-                                                >
-                                                  <IconReact
-                                                    className=""
-                                                    icon={
-                                                      Object {
-                                                        "icon": Object {
-                                                          "attrs": Object {
-                                                            "focusable": "false",
-                                                            "viewBox": "64 64 896 896",
-                                                          },
-                                                          "children": Array [
-                                                            Object {
-                                                              "attrs": Object {
-                                                                "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                              },
-                                                              "tag": "path",
-                                                            },
-                                                          ],
-                                                          "tag": "svg",
-                                                        },
-                                                        "name": "down",
-                                                        "theme": "outlined",
-                                                      }
-                                                    }
-                                                  >
-                                                    <svg
-                                                      aria-hidden="true"
-                                                      className=""
-                                                      data-icon="down"
-                                                      fill="currentColor"
-                                                      focusable="false"
-                                                      height="1em"
-                                                      key="svg-down"
-                                                      viewBox="64 64 896 896"
-                                                      width="1em"
-                                                    >
-                                                      <path
-                                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                                        key="svg-down-svg-0"
-                                                      />
-                                                    </svg>
-                                                  </IconReact>
-                                                </span>
-                                              </AntdIcon>
-                                            </ForwardRef(DownOutlined)>
-                                          </span>
-                                        </div>
-                                        <div
-                                          className="ant-input-number-input-wrap"
-                                        >
-                                          <input
-                                            aria-valuemax={9007199254740991}
-                                            aria-valuemin={0}
-                                            aria-valuenow={100}
-                                            autoComplete="off"
-                                            className="ant-input-number-input"
-                                            id="catalogs_create_price"
-                                            max={9007199254740991}
-                                            min={0}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            onKeyUp={[Function]}
-                                            onMouseUp={[Function]}
-                                            placeholder="Ex. 1999"
-                                            required={false}
-                                            role="spinbutton"
-                                            step={1}
-                                            value="100"
-                                          />
-                                        </div>
-                                      </div>
-                                    </InputNumber>
-                                  </ForwardRef>
+                                            <textarea
+                                              className="ant-input"
+                                              id="catalogs_create_description"
+                                              onChange={[Function]}
+                                              onKeyDown={[Function]}
+                                              placeholder="Ex. Package of datasets of Indian cricket"
+                                              style={Object {}}
+                                              value="description"
+                                            />
+                                          </ResizeObserver>
+                                        </ResizableTextArea>
+                                      </TextArea>
+                                    </ClearableLabeledInput>
+                                  </TextArea>
                                 </Component>
                               </div>
                             </div>
@@ -2903,7 +2506,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
     data={
       Object {
         "description": "description",
-        "price": 100,
         "product_ids": Array [
           1,
         ],
@@ -2920,7 +2522,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
       initialValues={
         Object {
           "description": "description",
-          "price": 100,
           "product_ids": Array [
             1,
           ],
@@ -2975,7 +2576,6 @@ exports[`Catalogs Create Form component snapshot testing should match component 
           initialValues={
             Object {
               "description": "description",
-              "price": 100,
               "product_ids": Array [
                 1,
               ],
@@ -3342,462 +2942,68 @@ exports[`Catalogs Create Form component snapshot testing should match component 
                                   update={1}
                                   value="description"
                                 >
-                                  <Input
+                                  <TextArea
                                     id="catalogs_create_description"
                                     onChange={[Function]}
                                     placeholder="Ex. Package of datasets of Indian cricket"
-                                    type="text"
                                     value="description"
                                   >
                                     <ClearableLabeledInput
                                       bordered={true}
                                       element={
-                                        <input
-                                          className="ant-input"
+                                        <TextArea
+                                          className=""
                                           id="catalogs_create_description"
-                                          onBlur={[Function]}
                                           onChange={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
                                           placeholder="Ex. Package of datasets of Indian cricket"
-                                          type="text"
+                                          prefixCls="ant-input"
                                           value="description"
                                         />
                                       }
-                                      focused={false}
                                       handleReset={[Function]}
                                       id="catalogs_create_description"
-                                      inputType="input"
+                                      inputType="text"
                                       onChange={[Function]}
                                       placeholder="Ex. Package of datasets of Indian cricket"
                                       prefixCls="ant-input"
                                       triggerFocus={[Function]}
-                                      type="text"
                                       value="description"
                                     >
-                                      <input
-                                        className="ant-input"
+                                      <TextArea
+                                        className=""
                                         id="catalogs_create_description"
-                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onKeyDown={[Function]}
                                         placeholder="Ex. Package of datasets of Indian cricket"
-                                        type="text"
+                                        prefixCls="ant-input"
                                         value="description"
-                                      />
-                                    </ClearableLabeledInput>
-                                  </Input>
-                                </Component>
-                              </div>
-                            </div>
-                            <CSSMotion
-                              motionAppear={true}
-                              motionDeadline={500}
-                              motionName="show-help"
-                              onLeaveEnd={[Function]}
-                              removeOnLeave={true}
-                              visible={false}
-                            >
-                              <DomWrapper />
-                            </CSSMotion>
-                          </div>
-                        </Col>
-                      </FormItemInput>
-                    </div>
-                  </Row>
-                </Field>
-              </WrapperField>
-            </FormItem>
-            <FormItem
-              label="Price"
-              name="price"
-              rules={
-                Array [
-                  Object {
-                    "message": "Please enter price!",
-                    "required": true,
-                  },
-                ]
-              }
-            >
-              <WrapperField
-                label="Price"
-                messageVariables={
-                  Object {
-                    "label": "Price",
-                  }
-                }
-                name="price"
-                onReset={[Function]}
-                rules={
-                  Array [
-                    Object {
-                      "message": "Please enter price!",
-                      "required": true,
-                    },
-                  ]
-                }
-                trigger="onChange"
-                validateTrigger="onChange"
-              >
-                <Field
-                  key="_price"
-                  label="Price"
-                  messageVariables={
-                    Object {
-                      "label": "Price",
-                    }
-                  }
-                  name={
-                    Array [
-                      "price",
-                    ]
-                  }
-                  onReset={[Function]}
-                  rules={
-                    Array [
-                      Object {
-                        "message": "Please enter price!",
-                        "required": true,
-                      },
-                    ]
-                  }
-                  trigger="onChange"
-                  validateTrigger="onChange"
-                  valuePropName="value"
-                >
-                  <Row
-                    className="ant-form-item"
-                    key="row"
-                  >
-                    <div
-                      className="ant-row ant-form-item"
-                      style={Object {}}
-                    >
-                      <FormItemLabel
-                        htmlFor="catalogs_create_price"
-                        label="Price"
-                        name="price"
-                        prefixCls="ant-form"
-                        required={true}
-                        requiredMark={true}
-                        rules={
-                          Array [
-                            Object {
-                              "message": "Please enter price!",
-                              "required": true,
-                            },
-                          ]
-                        }
-                      >
-                        <Col
-                          className="ant-form-item-label"
-                          span={6}
-                        >
-                          <div
-                            className="ant-col ant-col-6 ant-form-item-label"
-                            style={Object {}}
-                          >
-                            <label
-                              className="ant-form-item-required"
-                              htmlFor="catalogs_create_price"
-                              title="Price"
-                            >
-                              Price
-                            </label>
-                          </div>
-                        </Col>
-                      </FormItemLabel>
-                      <FormItemInput
-                        errors={Array []}
-                        label="Price"
-                        name={
-                          Array [
-                            "price",
-                          ]
-                        }
-                        onDomErrorVisibleChange={[Function]}
-                        prefixCls="ant-form"
-                        rules={
-                          Array [
-                            Object {
-                              "message": "Please enter price!",
-                              "required": true,
-                            },
-                          ]
-                        }
-                        touched={false}
-                        validateStatus=""
-                        validating={false}
-                      >
-                        <Col
-                          className="ant-form-item-control"
-                          span={14}
-                        >
-                          <div
-                            className="ant-col ant-col-14 ant-form-item-control"
-                            style={Object {}}
-                          >
-                            <div
-                              className="ant-form-item-control-input"
-                            >
-                              <div
-                                className="ant-form-item-control-input-content"
-                              >
-                                <Component
-                                  update={1}
-                                  value={100}
-                                >
-                                  <ForwardRef
-                                    id="catalogs_create_price"
-                                    min={0}
-                                    onChange={[Function]}
-                                    placeholder="Ex. 1999"
-                                    step={1}
-                                    value={100}
-                                  >
-                                    <InputNumber
-                                      autoComplete="off"
-                                      className=""
-                                      downHandler={
-                                        <ForwardRef(DownOutlined)
-                                          className="ant-input-number-handler-down-inner"
-                                        />
-                                      }
-                                      focusOnUpDown={true}
-                                      id="catalogs_create_price"
-                                      max={9007199254740991}
-                                      min={0}
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onFocus={[Function]}
-                                      onKeyDown={[Function]}
-                                      onPressEnter={[Function]}
-                                      parser={[Function]}
-                                      placeholder="Ex. 1999"
-                                      prefixCls="ant-input-number"
-                                      required={false}
-                                      step={1}
-                                      style={Object {}}
-                                      upHandler={
-                                        <ForwardRef(UpOutlined)
-                                          className="ant-input-number-handler-up-inner"
-                                        />
-                                      }
-                                      useTouch={false}
-                                      value={100}
-                                    >
-                                      <div
-                                        className="ant-input-number"
-                                        onBlur={[Function]}
-                                        onFocus={[Function]}
-                                        style={Object {}}
                                       >
-                                        <div
-                                          className="ant-input-number-handler-wrap"
+                                        <ResizableTextArea
+                                          className=""
+                                          id="catalogs_create_description"
+                                          onChange={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Package of datasets of Indian cricket"
+                                          prefixCls="ant-input"
+                                          value="description"
                                         >
-                                          <span
-                                            aria-label="Increase Value"
-                                            className="ant-input-number-handler ant-input-number-handler-up"
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            role="button"
-                                            unselectable="on"
+                                          <ResizeObserver
+                                            disabled={true}
+                                            onResize={[Function]}
                                           >
-                                            <ForwardRef(UpOutlined)
-                                              className="ant-input-number-handler-up-inner"
-                                            >
-                                              <AntdIcon
-                                                className="ant-input-number-handler-up-inner"
-                                                icon={
-                                                  Object {
-                                                    "icon": Object {
-                                                      "attrs": Object {
-                                                        "focusable": "false",
-                                                        "viewBox": "64 64 896 896",
-                                                      },
-                                                      "children": Array [
-                                                        Object {
-                                                          "attrs": Object {
-                                                            "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                          },
-                                                          "tag": "path",
-                                                        },
-                                                      ],
-                                                      "tag": "svg",
-                                                    },
-                                                    "name": "up",
-                                                    "theme": "outlined",
-                                                  }
-                                                }
-                                              >
-                                                <span
-                                                  aria-label="up"
-                                                  className="anticon anticon-up ant-input-number-handler-up-inner"
-                                                  role="img"
-                                                >
-                                                  <IconReact
-                                                    className=""
-                                                    icon={
-                                                      Object {
-                                                        "icon": Object {
-                                                          "attrs": Object {
-                                                            "focusable": "false",
-                                                            "viewBox": "64 64 896 896",
-                                                          },
-                                                          "children": Array [
-                                                            Object {
-                                                              "attrs": Object {
-                                                                "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                              },
-                                                              "tag": "path",
-                                                            },
-                                                          ],
-                                                          "tag": "svg",
-                                                        },
-                                                        "name": "up",
-                                                        "theme": "outlined",
-                                                      }
-                                                    }
-                                                  >
-                                                    <svg
-                                                      aria-hidden="true"
-                                                      className=""
-                                                      data-icon="up"
-                                                      fill="currentColor"
-                                                      focusable="false"
-                                                      height="1em"
-                                                      key="svg-up"
-                                                      viewBox="64 64 896 896"
-                                                      width="1em"
-                                                    >
-                                                      <path
-                                                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
-                                                        key="svg-up-svg-0"
-                                                      />
-                                                    </svg>
-                                                  </IconReact>
-                                                </span>
-                                              </AntdIcon>
-                                            </ForwardRef(UpOutlined)>
-                                          </span>
-                                          <span
-                                            aria-label="Decrease Value"
-                                            className="ant-input-number-handler ant-input-number-handler-down"
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            role="button"
-                                            unselectable="on"
-                                          >
-                                            <ForwardRef(DownOutlined)
-                                              className="ant-input-number-handler-down-inner"
-                                            >
-                                              <AntdIcon
-                                                className="ant-input-number-handler-down-inner"
-                                                icon={
-                                                  Object {
-                                                    "icon": Object {
-                                                      "attrs": Object {
-                                                        "focusable": "false",
-                                                        "viewBox": "64 64 896 896",
-                                                      },
-                                                      "children": Array [
-                                                        Object {
-                                                          "attrs": Object {
-                                                            "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                          },
-                                                          "tag": "path",
-                                                        },
-                                                      ],
-                                                      "tag": "svg",
-                                                    },
-                                                    "name": "down",
-                                                    "theme": "outlined",
-                                                  }
-                                                }
-                                              >
-                                                <span
-                                                  aria-label="down"
-                                                  className="anticon anticon-down ant-input-number-handler-down-inner"
-                                                  role="img"
-                                                >
-                                                  <IconReact
-                                                    className=""
-                                                    icon={
-                                                      Object {
-                                                        "icon": Object {
-                                                          "attrs": Object {
-                                                            "focusable": "false",
-                                                            "viewBox": "64 64 896 896",
-                                                          },
-                                                          "children": Array [
-                                                            Object {
-                                                              "attrs": Object {
-                                                                "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                              },
-                                                              "tag": "path",
-                                                            },
-                                                          ],
-                                                          "tag": "svg",
-                                                        },
-                                                        "name": "down",
-                                                        "theme": "outlined",
-                                                      }
-                                                    }
-                                                  >
-                                                    <svg
-                                                      aria-hidden="true"
-                                                      className=""
-                                                      data-icon="down"
-                                                      fill="currentColor"
-                                                      focusable="false"
-                                                      height="1em"
-                                                      key="svg-down"
-                                                      viewBox="64 64 896 896"
-                                                      width="1em"
-                                                    >
-                                                      <path
-                                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                                        key="svg-down-svg-0"
-                                                      />
-                                                    </svg>
-                                                  </IconReact>
-                                                </span>
-                                              </AntdIcon>
-                                            </ForwardRef(DownOutlined)>
-                                          </span>
-                                        </div>
-                                        <div
-                                          className="ant-input-number-input-wrap"
-                                        >
-                                          <input
-                                            aria-valuemax={9007199254740991}
-                                            aria-valuemin={0}
-                                            aria-valuenow={100}
-                                            autoComplete="off"
-                                            className="ant-input-number-input"
-                                            id="catalogs_create_price"
-                                            max={9007199254740991}
-                                            min={0}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            onKeyUp={[Function]}
-                                            onMouseUp={[Function]}
-                                            placeholder="Ex. 1999"
-                                            required={false}
-                                            role="spinbutton"
-                                            step={1}
-                                            value="100"
-                                          />
-                                        </div>
-                                      </div>
-                                    </InputNumber>
-                                  </ForwardRef>
+                                            <textarea
+                                              className="ant-input"
+                                              id="catalogs_create_description"
+                                              onChange={[Function]}
+                                              onKeyDown={[Function]}
+                                              placeholder="Ex. Package of datasets of Indian cricket"
+                                              style={Object {}}
+                                              value="description"
+                                            />
+                                          </ResizeObserver>
+                                        </ResizableTextArea>
+                                      </TextArea>
+                                    </ClearableLabeledInput>
+                                  </TextArea>
                                 </Component>
                               </div>
                             </div>
@@ -6183,456 +5389,66 @@ exports[`Catalogs Create Form component snapshot testing should render the compo
                                 <Component
                                   update={1}
                                 >
-                                  <Input
+                                  <TextArea
                                     id="catalogs_create_description"
                                     onChange={[Function]}
                                     placeholder="Ex. Package of datasets of Indian cricket"
-                                    type="text"
                                   >
                                     <ClearableLabeledInput
                                       bordered={true}
                                       element={
-                                        <input
-                                          className="ant-input"
+                                        <TextArea
+                                          className=""
                                           id="catalogs_create_description"
-                                          onBlur={[Function]}
                                           onChange={[Function]}
-                                          onFocus={[Function]}
-                                          onKeyDown={[Function]}
                                           placeholder="Ex. Package of datasets of Indian cricket"
-                                          type="text"
+                                          prefixCls="ant-input"
                                         />
                                       }
-                                      focused={false}
                                       handleReset={[Function]}
                                       id="catalogs_create_description"
-                                      inputType="input"
+                                      inputType="text"
                                       onChange={[Function]}
                                       placeholder="Ex. Package of datasets of Indian cricket"
                                       prefixCls="ant-input"
                                       triggerFocus={[Function]}
-                                      type="text"
                                       value=""
                                     >
-                                      <input
-                                        className="ant-input"
+                                      <TextArea
+                                        className=""
                                         id="catalogs_create_description"
-                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onKeyDown={[Function]}
                                         placeholder="Ex. Package of datasets of Indian cricket"
-                                        type="text"
+                                        prefixCls="ant-input"
                                         value=""
-                                      />
-                                    </ClearableLabeledInput>
-                                  </Input>
-                                </Component>
-                              </div>
-                            </div>
-                            <CSSMotion
-                              motionAppear={true}
-                              motionDeadline={500}
-                              motionName="show-help"
-                              onLeaveEnd={[Function]}
-                              removeOnLeave={true}
-                              visible={false}
-                            >
-                              <DomWrapper />
-                            </CSSMotion>
-                          </div>
-                        </Col>
-                      </FormItemInput>
-                    </div>
-                  </Row>
-                </Field>
-              </WrapperField>
-            </FormItem>
-            <FormItem
-              label="Price"
-              name="price"
-              rules={
-                Array [
-                  Object {
-                    "message": "Please enter price!",
-                    "required": true,
-                  },
-                ]
-              }
-            >
-              <WrapperField
-                label="Price"
-                messageVariables={
-                  Object {
-                    "label": "Price",
-                  }
-                }
-                name="price"
-                onReset={[Function]}
-                rules={
-                  Array [
-                    Object {
-                      "message": "Please enter price!",
-                      "required": true,
-                    },
-                  ]
-                }
-                trigger="onChange"
-                validateTrigger="onChange"
-              >
-                <Field
-                  key="_price"
-                  label="Price"
-                  messageVariables={
-                    Object {
-                      "label": "Price",
-                    }
-                  }
-                  name={
-                    Array [
-                      "price",
-                    ]
-                  }
-                  onReset={[Function]}
-                  rules={
-                    Array [
-                      Object {
-                        "message": "Please enter price!",
-                        "required": true,
-                      },
-                    ]
-                  }
-                  trigger="onChange"
-                  validateTrigger="onChange"
-                  valuePropName="value"
-                >
-                  <Row
-                    className="ant-form-item"
-                    key="row"
-                  >
-                    <div
-                      className="ant-row ant-form-item"
-                      style={Object {}}
-                    >
-                      <FormItemLabel
-                        htmlFor="catalogs_create_price"
-                        label="Price"
-                        name="price"
-                        prefixCls="ant-form"
-                        required={true}
-                        requiredMark={true}
-                        rules={
-                          Array [
-                            Object {
-                              "message": "Please enter price!",
-                              "required": true,
-                            },
-                          ]
-                        }
-                      >
-                        <Col
-                          className="ant-form-item-label"
-                          span={6}
-                        >
-                          <div
-                            className="ant-col ant-col-6 ant-form-item-label"
-                            style={Object {}}
-                          >
-                            <label
-                              className="ant-form-item-required"
-                              htmlFor="catalogs_create_price"
-                              title="Price"
-                            >
-                              Price
-                            </label>
-                          </div>
-                        </Col>
-                      </FormItemLabel>
-                      <FormItemInput
-                        errors={Array []}
-                        label="Price"
-                        name={
-                          Array [
-                            "price",
-                          ]
-                        }
-                        onDomErrorVisibleChange={[Function]}
-                        prefixCls="ant-form"
-                        rules={
-                          Array [
-                            Object {
-                              "message": "Please enter price!",
-                              "required": true,
-                            },
-                          ]
-                        }
-                        touched={false}
-                        validateStatus=""
-                        validating={false}
-                      >
-                        <Col
-                          className="ant-form-item-control"
-                          span={14}
-                        >
-                          <div
-                            className="ant-col ant-col-14 ant-form-item-control"
-                            style={Object {}}
-                          >
-                            <div
-                              className="ant-form-item-control-input"
-                            >
-                              <div
-                                className="ant-form-item-control-input-content"
-                              >
-                                <Component
-                                  update={1}
-                                >
-                                  <ForwardRef
-                                    id="catalogs_create_price"
-                                    min={0}
-                                    onChange={[Function]}
-                                    placeholder="Ex. 1999"
-                                    step={1}
-                                  >
-                                    <InputNumber
-                                      autoComplete="off"
-                                      className=""
-                                      downHandler={
-                                        <ForwardRef(DownOutlined)
-                                          className="ant-input-number-handler-down-inner"
-                                        />
-                                      }
-                                      focusOnUpDown={true}
-                                      id="catalogs_create_price"
-                                      max={9007199254740991}
-                                      min={0}
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onFocus={[Function]}
-                                      onKeyDown={[Function]}
-                                      onPressEnter={[Function]}
-                                      parser={[Function]}
-                                      placeholder="Ex. 1999"
-                                      prefixCls="ant-input-number"
-                                      required={false}
-                                      step={1}
-                                      style={Object {}}
-                                      upHandler={
-                                        <ForwardRef(UpOutlined)
-                                          className="ant-input-number-handler-up-inner"
-                                        />
-                                      }
-                                      useTouch={false}
-                                    >
-                                      <div
-                                        className="ant-input-number"
-                                        onBlur={[Function]}
-                                        onFocus={[Function]}
-                                        style={Object {}}
                                       >
-                                        <div
-                                          className="ant-input-number-handler-wrap"
+                                        <ResizableTextArea
+                                          className=""
+                                          id="catalogs_create_description"
+                                          onChange={[Function]}
+                                          onKeyDown={[Function]}
+                                          placeholder="Ex. Package of datasets of Indian cricket"
+                                          prefixCls="ant-input"
+                                          value=""
                                         >
-                                          <span
-                                            aria-label="Increase Value"
-                                            className="ant-input-number-handler ant-input-number-handler-up"
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            role="button"
-                                            unselectable="on"
+                                          <ResizeObserver
+                                            disabled={true}
+                                            onResize={[Function]}
                                           >
-                                            <ForwardRef(UpOutlined)
-                                              className="ant-input-number-handler-up-inner"
-                                            >
-                                              <AntdIcon
-                                                className="ant-input-number-handler-up-inner"
-                                                icon={
-                                                  Object {
-                                                    "icon": Object {
-                                                      "attrs": Object {
-                                                        "focusable": "false",
-                                                        "viewBox": "64 64 896 896",
-                                                      },
-                                                      "children": Array [
-                                                        Object {
-                                                          "attrs": Object {
-                                                            "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                          },
-                                                          "tag": "path",
-                                                        },
-                                                      ],
-                                                      "tag": "svg",
-                                                    },
-                                                    "name": "up",
-                                                    "theme": "outlined",
-                                                  }
-                                                }
-                                              >
-                                                <span
-                                                  aria-label="up"
-                                                  className="anticon anticon-up ant-input-number-handler-up-inner"
-                                                  role="img"
-                                                >
-                                                  <IconReact
-                                                    className=""
-                                                    icon={
-                                                      Object {
-                                                        "icon": Object {
-                                                          "attrs": Object {
-                                                            "focusable": "false",
-                                                            "viewBox": "64 64 896 896",
-                                                          },
-                                                          "children": Array [
-                                                            Object {
-                                                              "attrs": Object {
-                                                                "d": "M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z",
-                                                              },
-                                                              "tag": "path",
-                                                            },
-                                                          ],
-                                                          "tag": "svg",
-                                                        },
-                                                        "name": "up",
-                                                        "theme": "outlined",
-                                                      }
-                                                    }
-                                                  >
-                                                    <svg
-                                                      aria-hidden="true"
-                                                      className=""
-                                                      data-icon="up"
-                                                      fill="currentColor"
-                                                      focusable="false"
-                                                      height="1em"
-                                                      key="svg-up"
-                                                      viewBox="64 64 896 896"
-                                                      width="1em"
-                                                    >
-                                                      <path
-                                                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
-                                                        key="svg-up-svg-0"
-                                                      />
-                                                    </svg>
-                                                  </IconReact>
-                                                </span>
-                                              </AntdIcon>
-                                            </ForwardRef(UpOutlined)>
-                                          </span>
-                                          <span
-                                            aria-label="Decrease Value"
-                                            className="ant-input-number-handler ant-input-number-handler-down"
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            role="button"
-                                            unselectable="on"
-                                          >
-                                            <ForwardRef(DownOutlined)
-                                              className="ant-input-number-handler-down-inner"
-                                            >
-                                              <AntdIcon
-                                                className="ant-input-number-handler-down-inner"
-                                                icon={
-                                                  Object {
-                                                    "icon": Object {
-                                                      "attrs": Object {
-                                                        "focusable": "false",
-                                                        "viewBox": "64 64 896 896",
-                                                      },
-                                                      "children": Array [
-                                                        Object {
-                                                          "attrs": Object {
-                                                            "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                          },
-                                                          "tag": "path",
-                                                        },
-                                                      ],
-                                                      "tag": "svg",
-                                                    },
-                                                    "name": "down",
-                                                    "theme": "outlined",
-                                                  }
-                                                }
-                                              >
-                                                <span
-                                                  aria-label="down"
-                                                  className="anticon anticon-down ant-input-number-handler-down-inner"
-                                                  role="img"
-                                                >
-                                                  <IconReact
-                                                    className=""
-                                                    icon={
-                                                      Object {
-                                                        "icon": Object {
-                                                          "attrs": Object {
-                                                            "focusable": "false",
-                                                            "viewBox": "64 64 896 896",
-                                                          },
-                                                          "children": Array [
-                                                            Object {
-                                                              "attrs": Object {
-                                                                "d": "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z",
-                                                              },
-                                                              "tag": "path",
-                                                            },
-                                                          ],
-                                                          "tag": "svg",
-                                                        },
-                                                        "name": "down",
-                                                        "theme": "outlined",
-                                                      }
-                                                    }
-                                                  >
-                                                    <svg
-                                                      aria-hidden="true"
-                                                      className=""
-                                                      data-icon="down"
-                                                      fill="currentColor"
-                                                      focusable="false"
-                                                      height="1em"
-                                                      key="svg-down"
-                                                      viewBox="64 64 896 896"
-                                                      width="1em"
-                                                    >
-                                                      <path
-                                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
-                                                        key="svg-down-svg-0"
-                                                      />
-                                                    </svg>
-                                                  </IconReact>
-                                                </span>
-                                              </AntdIcon>
-                                            </ForwardRef(DownOutlined)>
-                                          </span>
-                                        </div>
-                                        <div
-                                          className="ant-input-number-input-wrap"
-                                        >
-                                          <input
-                                            aria-valuemax={9007199254740991}
-                                            aria-valuemin={0}
-                                            autoComplete="off"
-                                            className="ant-input-number-input"
-                                            id="catalogs_create_price"
-                                            max={9007199254740991}
-                                            min={0}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            onKeyUp={[Function]}
-                                            onMouseUp={[Function]}
-                                            placeholder="Ex. 1999"
-                                            required={false}
-                                            role="spinbutton"
-                                            step={1}
-                                            value=""
-                                          />
-                                        </div>
-                                      </div>
-                                    </InputNumber>
-                                  </ForwardRef>
+                                            <textarea
+                                              className="ant-input"
+                                              id="catalogs_create_description"
+                                              onChange={[Function]}
+                                              onKeyDown={[Function]}
+                                              placeholder="Ex. Package of datasets of Indian cricket"
+                                              style={Object {}}
+                                              value=""
+                                            />
+                                          </ResizeObserver>
+                                        </ResizableTextArea>
+                                      </TextArea>
+                                    </ClearableLabeledInput>
+                                  </TextArea>
                                 </Component>
                               </div>
                             </div>

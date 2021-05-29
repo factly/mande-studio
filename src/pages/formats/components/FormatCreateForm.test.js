@@ -173,7 +173,8 @@ describe('Formats Create Form component', () => {
         wrapper
           .find('FormItem')
           .at(1)
-          .find('Input')
+          .find('TextArea')
+          .at(0)
           .simulate('change', { target: { value: 'new description' } });
 
         const submitButtom = wrapper.find('Button').at(0);

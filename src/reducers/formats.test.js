@@ -2,7 +2,7 @@ import reducer from './formats';
 import * as types from '../constants/formats';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},
@@ -69,7 +69,7 @@ describe('formats reducer', () => {
       ids: [],
       total: 0,
       items: { 1: { id: 1, name: 'format 1' } },
-      loading: false,
+      loading: true,
     });
   });
   it('should handle ADD_FORMAT when already exists', () => {
@@ -110,7 +110,7 @@ describe('formats reducer', () => {
       ids: [],
       total: 0,
       items: { 1: { id: 1, name: 'format 1' }, 2: { id: 2, name: 'format 2' } },
-      loading: false,
+      loading: true,
     });
   });
   it('should handle empty payload ADD_FORMATS', () => {
@@ -120,7 +120,7 @@ describe('formats reducer', () => {
         payload: { formats: {} },
       }),
     ).toEqual({
-      loading: false,
+      loading: true,
       ids: [],
       req: [],
       items: {},
@@ -166,7 +166,7 @@ describe('formats reducer', () => {
       req: [],
       items: {},
       ids: [1, 2, 3],
-      loading: false,
+      loading: true,
       total: 0,
     });
   });
@@ -183,7 +183,7 @@ describe('formats reducer', () => {
       req: [{ ids: [1, 2, 3], page: 1, limit: 5 }],
       items: {},
       ids: [],
-      loading: false,
+      loading: true,
       total: 3,
     });
   });

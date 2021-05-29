@@ -244,7 +244,7 @@ exports[`Tags List component snapshot testing should render the component 1`] = 
             onKeyDown={[Function]}
             placeholder="Ex. crime-in-india"
             type="text"
-            value="slug"
+            value="tag-1"
           />
         </div>
       </div>

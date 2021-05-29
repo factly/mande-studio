@@ -18,7 +18,6 @@ const mockStore = configureMockStore(middlewares);
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: jest.fn(),
-  useSelector: jest.fn(),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -34,10 +33,10 @@ jest.mock('../../actions/tags', () => ({
 }));
 
 describe('Tags List component', () => {
-  const store = mockStore({
+  let store = mockStore({
     tags: {
       req: [],
-      details: {
+      items: {
         1: {
           id: 1,
           name: 'Tag-1',
@@ -51,7 +50,7 @@ describe('Tags List component', () => {
           description: 'description',
         },
       },
-      loading: true,
+      loading: false,
     },
   });
   store.dispatch = jest.fn(() => ({}));
@@ -61,15 +60,6 @@ describe('Tags List component', () => {
 
   describe('snapshot testing', () => {
     it('should render the component', () => {
-      useSelector.mockReturnValueOnce({
-        tag: {
-          id: 1,
-          name: 'tag',
-          slug: 'slug',
-          description: 'description',
-        },
-        loading: false,
-      });
       let component;
       rendererAct(() => {
         component = renderer.create(
@@ -82,9 +72,12 @@ describe('Tags List component', () => {
       expect(tree).toMatchSnapshot();
     });
     it('should match component with empty data', () => {
-      useSelector.mockReturnValueOnce({
-        tag: {},
-        loading: false,
+      store = mockStore({
+        tags: {
+          req: [],
+          items: {},
+          loading: false,
+        },
       });
       let component;
       store.details = {};
@@ -99,9 +92,12 @@ describe('Tags List component', () => {
       expect(tree).toMatchSnapshot();
     });
     it('should match skeleton while loading', () => {
-      useSelector.mockReturnValueOnce({
-        tag: {},
-        loading: true,
+      store = mockStore({
+        tags: {
+          req: [],
+          items: {},
+          loading: true,
+        },
       });
       let component;
       rendererAct(() => {
@@ -117,11 +113,32 @@ describe('Tags List component', () => {
   });
   describe('component testing', () => {
     let wrapper;
+    beforeEach(() => {
+      store = mockStore({
+        tags: {
+          req: [],
+          items: {
+            1: {
+              id: 1,
+              name: 'Tag-1',
+              slug: 'tag-1',
+              description: 'description',
+            },
+            2: {
+              id: 2,
+              name: 'Tag-2',
+              slug: 'tag-2',
+              description: 'description',
+            },
+          },
+          loading: false,
+        },
+      });
+    });
     afterEach(() => {
       wrapper.unmount();
     });
     it('should call get action', () => {
-      useSelector.mockReturnValueOnce({ tag: null, loading: true });
       actions.getTag.mockReset();
       act(() => {
         wrapper = mount(
@@ -133,7 +150,6 @@ describe('Tags List component', () => {
       expect(actions.getTag).toHaveBeenCalledWith('1');
     });
     it('should call updateTag', () => {
-      useSelector.mockReturnValueOnce({ tag: {}, loading: false });
       actions.updateTag.mockReset();
       const push = jest.fn();
       useHistory.mockReturnValueOnce({ push });

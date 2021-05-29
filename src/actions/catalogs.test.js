@@ -7,6 +7,8 @@ import * as types from '../constants/catalogs';
 import { ADD_PRODUCTS } from '../constants/products';
 import { ADD_CURRENCIES } from '../constants/currencies';
 import { ADD_TAGS } from '../constants/tags';
+import { ADD_MEDIA, ADD_MEDIUM } from '../constants/media';
+import { ADD_DATASETS } from '../constants/datasets';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -41,8 +43,40 @@ describe('catalogs actions', () => {
 
     const expectedActions = [
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
       },
       {
         type: ADD_TAGS,
@@ -50,7 +84,7 @@ describe('catalogs actions', () => {
       },
       {
         type: ADD_PRODUCTS,
-        payload: { products: { 11: { id: 11, name: 'Product 1', tags: [] } } },
+        payload: { products: { 11: { id: 11, name: 'Product 1', tags: [], datasets: [] } } },
       },
       {
         type: types.ADD_CATALOG,
@@ -70,8 +104,40 @@ describe('catalogs actions', () => {
 
     const expectedActions = [
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
       },
       {
         type: ADD_TAGS,
@@ -102,8 +168,40 @@ describe('catalogs actions', () => {
 
     const expectedActions = [
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
       },
       {
         type: ADD_TAGS,
@@ -111,7 +209,7 @@ describe('catalogs actions', () => {
       },
       {
         type: ADD_PRODUCTS,
-        payload: { products: { 11: { id: 11, name: 'Product 1', tags: [] } } },
+        payload: { products: { 11: { id: 11, name: 'Product 1', tags: [], datasets: [] } } },
       },
       {
         type: types.ADD_CATALOGS,
@@ -137,8 +235,40 @@ describe('catalogs actions', () => {
 
     const expectedActions = [
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
       },
       {
         type: ADD_TAGS,
@@ -204,8 +334,40 @@ describe('catalogs actions', () => {
         },
       },
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
       },
       {
         type: ADD_TAGS,
@@ -239,12 +401,164 @@ describe('catalogs actions', () => {
         expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/catalogs?page=1&limit=5` });
       });
   });
-  it('should create actions to load catalogs when req is in state', () => {
+  it('should create actions to load catalogs with no parameters', () => {
+    const catalogs = [{ id: 1, name: 'Catalog' }];
+    const resp = { data: { nodes: catalogs, total: 1 } };
     axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+
     const expectedActions = [
+      {
+        type: types.SET_CATALOG_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_CATALOG_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_PRODUCTS,
+        payload: { products: {} },
+      },
+      {
+        type: types.ADD_CATALOGS,
+        payload: { catalogs: { 1: { id: 1, name: 'Catalog', products: [] } } },
+      },
       {
         type: types.SET_CATALOG_IDS,
         payload: { ids: [1] },
+      },
+      {
+        type: types.SET_CATALOG_LOADING,
+        payload: { loading: false },
+      },
+    ];
+
+    const store = mockStore({ catalogs: initialState });
+    store
+      .dispatch(actions.loadCatalogs())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      })
+      .then(() => {
+        expect(axios).toHaveBeenCalledWith({ method: 'get', url: `/catalogs?page=1&limit=5` });
+      });
+  });
+  it('should create actions to load catalogs when req is in state', () => {
+    const catalogs = [{ id: 1, name: 'Catalog' }];
+    const resp = { data: { nodes: catalogs, total: 1 } };
+    axios.mockRestore();
+    axios.mockResolvedValueOnce(resp);
+    const expectedActions = [
+      {
+        type: types.SET_CATALOG_LOADING,
+        payload: { loading: true },
+      },
+      {
+        type: types.SET_CATALOG_REQUEST,
+        payload: {
+          req: { page: 1, limit: 5, ids: [1] },
+          total: 1,
+        },
+      },
+      {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: {
+          datasets: {},
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_PRODUCTS,
+        payload: { products: {} },
+      },
+      {
+        type: types.ADD_CATALOGS,
+        payload: { catalogs: { 1: { id: 1, name: 'Catalog', products: [] } } },
+      },
+      {
+        type: types.SET_CATALOG_IDS,
+        payload: { ids: [1] },
+      },
+      {
+        type: types.SET_CATALOG_LOADING,
+        payload: { loading: false },
       },
     ];
 
@@ -263,7 +577,7 @@ describe('catalogs actions', () => {
         expect(store.getActions()).toEqual(expectedActions);
       })
       .then(() => {
-        expect(axios).not.toHaveBeenCalled();
+        expect(axios).toHaveBeenCalled();
       });
   });
   it('should create actions to create catalog', () => {
@@ -308,8 +622,38 @@ describe('catalogs actions', () => {
         payload: { loading: true },
       },
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: { datasets: {} },
       },
       {
         type: ADD_TAGS,
@@ -317,7 +661,7 @@ describe('catalogs actions', () => {
       },
       {
         type: ADD_PRODUCTS,
-        payload: { products: { 11: { id: 11, name: 'Product 1', tags: [] } } },
+        payload: { products: { 11: { id: 11, name: 'Product 1', tags: [], datasets: [] } } },
       },
       {
         type: types.ADD_CATALOG,
@@ -353,8 +697,38 @@ describe('catalogs actions', () => {
         payload: { loading: true },
       },
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: { datasets: {} },
       },
       {
         type: ADD_TAGS,
@@ -447,8 +821,38 @@ describe('catalogs actions', () => {
         payload: { loading: true },
       },
       {
+        type: ADD_MEDIA,
+        payload: {
+          media: {},
+        },
+      },
+      {
         type: ADD_CURRENCIES,
         payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_CURRENCIES,
+        payload: { currencies: {} },
+      },
+      {
+        type: ADD_MEDIUM,
+        payload: {
+          medium: [],
+        },
+      },
+      {
+        type: ADD_TAGS,
+        payload: { tags: {} },
+      },
+      {
+        type: ADD_DATASETS,
+        payload: { datasets: {} },
       },
       {
         type: ADD_TAGS,

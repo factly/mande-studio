@@ -2,7 +2,7 @@ import reducer from './cartItems';
 import * as types from '../constants/cartItems';
 
 const initialState = {
-  loading: false,
+  loading: true,
   ids: [],
   req: [],
   items: {},
@@ -69,7 +69,7 @@ describe('cartItems reducer', () => {
       ids: [],
       total: 0,
       items: { 1: { id: 1, name: 'cartItem 1' }, 2: { id: 2, name: 'cartItem 2' } },
-      loading: false,
+      loading: true,
     });
   });
   it('should handle empty payload ADD_CARTITEMS', () => {
@@ -79,7 +79,7 @@ describe('cartItems reducer', () => {
         payload: { cartItems: {} },
       }),
     ).toEqual({
-      loading: false,
+      loading: true,
       ids: [],
       req: [],
       items: {},
@@ -125,7 +125,7 @@ describe('cartItems reducer', () => {
       req: [],
       items: {},
       ids: [1, 2, 3],
-      loading: false,
+      loading: true,
       total: 0,
     });
   });
@@ -142,7 +142,7 @@ describe('cartItems reducer', () => {
       req: [{ ids: [1, 2, 3], page: 1, limit: 5, id: 1 }],
       items: {},
       ids: [],
-      loading: false,
+      loading: true,
       total: 3,
     });
   });
