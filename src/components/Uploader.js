@@ -35,9 +35,9 @@ const Uploader = ({ onUploadSuccess, metaFields }) => {
       return updatedFiles;
     },
   })
-    .use(AwsS3, { companionUrl: 'http://localhost:3020' })
-    .use(Url, { companionUrl: 'http://localhost:3020' })
-    .use(GoogleDrive, { companionUrl: 'http://localhost:3020' })
+    .use(AwsS3, { companionUrl: window.REACT_APP_COMPANION_URL })
+    .use(Url, { companionUrl: window.REACT_APP_COMPANION_URL })
+    .use(GoogleDrive, { companionUrl: window.REACT_APP_COMPANION_URL })
     .on('complete', (result) => {
       onUploadSuccess(result.successful);
       setShow(false);
